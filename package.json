@@ -1,0 +1,32 @@
+{
+  "name": "pulsar-pathfinding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"lite-server\" \"npm run compile\"",
+    "compile": "webpack --config webpack.config.js",
+    "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaduMilici/pulsar-pathfinding.git"
+  },
+  "author": "RaduMilici",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaduMilici/pulsar-pathfinding/issues"
+  },
+  "homepage": "https://github.com/RaduMilici/pulsar-pathfinding#readme",
+  "dependencies": {
+    "typescript": "^2.9.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "lite-server": "^2.3.0",
+    "prettier": "^1.13.5",
+    "ts-loader": "^4.4.1",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.7"
+  }
+}
