@@ -5,12 +5,14 @@ import row from '../interfaces/row';
 import { int } from '../util/random';
 import Obstacles from './Obstacles';
 
+const defaultSize: size = { width: 10, height: 10 };
+
 export default class Grid {
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
   public readonly obstacles: Obstacles = new Obstacles(this);
 
-  constructor(private size: size) {
+  constructor(private size: size = defaultSize) {
     this.makeGrid();
   }
 
