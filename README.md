@@ -2,7 +2,7 @@
     <img
       alt="Node.js"
       src="https://i.imgur.com/1ltGIyN.png"
-      width="400"
+      width="200"
     />
 </p>
 
