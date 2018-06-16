@@ -20,7 +20,8 @@ npm install pulsar-pathfinding
 ```
 
 <h2 align="center">Examples</h2>  
-_NOTE: All pictures below are captured from debug mode. You may use the results in any way, graphical or not._
+NOTE: All pictures below are captured from debug mode. You may use the results in any way, 
+graphical or not.
 
 #### 1: Start by creating a `Grid`.  
 This represents an abstract mathematical graph of nodes implemented as `NavigatorTile`.
@@ -91,7 +92,7 @@ Once the shortest path is found, the `onComplete` function is called, with an ar
 <p align="center">
     Pictured below: an artificially slowed down demonstration of callbacks.
     <br>
-    Blue tiles are colored using onExplore and blue ones using onComplete.
+    Blue tiles are colored using onExplore and green ones using onComplete.
     <br>
     <img
       alt="Node.js"
