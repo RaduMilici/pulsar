@@ -10,6 +10,7 @@ type onComplete = (path: NavigatorTile[]) => void;
 
 export default class Navigator implements id {
   id: number = uniqueID();
+  private _path: row = [];
   private verticalCost: number = 1;
   private diagonalCost: number = 1.4;
   private neighborsCount: number = 9;
@@ -25,6 +26,10 @@ export default class Navigator implements id {
     private readonly onExplore: onExplore = () => {},
     private readonly onComplete: onComplete = Navigator.defaultOnComplete
   ) {}
+
+  get path(): row {
+    return this._path;
+  }
 
   start(): void {
     this.addOpenTiles(this.grid);
@@ -102,8 +107,11 @@ export default class Navigator implements id {
     const next = this.chooseNext();
 
     if (next) {
-      this.onExplore(next);
-      this.calculateG(next);
+      setTimeout(() => {
+
+        this.onExplore(next);
+        this.calculateG(next);
+      }, 10)
     } else {
       const path: NavigatorTile[] = this.getPath();
       this.onComplete(path);
@@ -191,12 +199,12 @@ export default class Navigator implements id {
   }
 
   private getPath(): NavigatorTile[] {
-    const path: NavigatorTile[] = [];
+    this._path = [];
     let { current } = this;
 
     while (current.id !== this.begin.id) {
       const currentNavData: NavigatorData = current.getNavigatorData(this);
-      path.push(current);
+      this._path.push(current);
 
       if (currentNavData.parent) {
         current = currentNavData.parent;
@@ -205,8 +213,8 @@ export default class Navigator implements id {
       }
     }
 
-    path.reverse();
-    return path;
+    this._path.reverse();
+    return this._path;
   }
 
   private static defaultOnComplete(path: NavigatorTile[]) {
