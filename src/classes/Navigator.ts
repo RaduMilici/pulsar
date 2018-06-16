@@ -102,14 +102,8 @@ export default class Navigator implements id {
     const next = this.chooseNext();
 
     if (next) {
-      setTimeout(() => {
-        this.onExplore(next);
-        this.calculateG(next);
-      }, 10);
-      /*
       this.onExplore(next);
       this.calculateG(next);
-      */
     } else {
       const path: NavigatorTile[] = this.getPath();
       this.onComplete(path);
