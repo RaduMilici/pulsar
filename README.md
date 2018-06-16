@@ -6,5 +6,5 @@
     />
 </p>
 
-Pulsar-pathfinding is a JavaScript library implementation of the 
+Pulsar-pathfinding is a TypeScript library implementation of the 
 Greedy Best-First pathfinding algorithm.
