@@ -1,7 +1,7 @@
 <p align="center">
     <img
       alt="Node.js"
-      src="https://i.imgur.com/1ltGIyN.png"
+      src="https://i.imgur.com/sp4pcTK.png"
       width="200"
     />
 </p>
