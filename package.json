@@ -1,6 +1,6 @@
 {
   "name": "pulsar-pathfinding",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "implementation of Greedy Best-First pathfinding",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
