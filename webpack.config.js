@@ -4,7 +4,6 @@ module.exports = {
   mode: 'development',
   entry: './src/index.ts',
   devtool: 'inline-source-map',
-  watch: true,
   module: {
     rules: [
       {
@@ -19,6 +18,8 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    library: 'pulsar-pathfinding',
+    libraryTarget: 'commonjs2'
   }
 };

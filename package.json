@@ -1,11 +1,14 @@
 {
   "name": "pulsar-pathfinding",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.ts",
+  "description": "implementation of Greedy Best-First pathfinding",
+  "main": "dist/bundle.js",
+  "module": "dist/bundle.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "dev": "concurrently \"lite-server\" \"npm run compile\"",
-    "compile": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "build-watch": "webpack --config webpack.config.js --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")"
   },
   "repository": {
@@ -18,10 +21,8 @@
     "url": "https://github.com/RaduMilici/pulsar-pathfinding/issues"
   },
   "homepage": "https://github.com/RaduMilici/pulsar-pathfinding#readme",
-  "dependencies": {
-    "typescript": "^2.9.2"
-  },
   "devDependencies": {
+    "typescript": "^2.9.2",
     "concurrently": "^3.5.1",
     "lite-server": "^2.3.0",
     "prettier": "^1.13.5",
