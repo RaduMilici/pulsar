@@ -2,11 +2,10 @@
   "name": "pulsar-pathfinding",
   "version": "1.0.1",
   "description": "implementation of Greedy Best-First pathfinding",
-  "main": "dist/bundle.js",
-  "module": "dist/bundle.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "concurrently \"lite-server\" \"npm run compile\"",
+    "dev": "concurrently \"lite-server\" \"npm run build-watch\"",
     "build": "webpack --config webpack.config.js",
     "build-watch": "webpack --config webpack.config.js --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")"
