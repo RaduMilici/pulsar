@@ -110,7 +110,9 @@ export default class Vector {
 
   static ArrangePointsCCW(points: Vector[]): Vector[] {
     const centroid: Vector = Vector.FindPolyCentroid(points);
-    const pointsWithAngle: Vector[] = points.map((point: Vector) => point.clone());
+    const pointsWithAngle: Vector[] = points.map((point: Vector) =>
+      point.clone()
+    );
 
     pointsWithAngle.sort((a: Vector, b: Vector) => {
       const angleA: number = Math.atan2(a.y - centroid.y, a.x - centroid.x);
@@ -123,7 +125,9 @@ export default class Vector {
 
   static UniqueFromArray(points: Vector[]): Vector[] {
     return points.filter((pointFilter: Vector) => {
-      return points.findIndex((pointIndex: Vector) => pointFilter.equals(pointIndex));
+      return points.findIndex((pointIndex: Vector) =>
+        pointFilter.equals(pointIndex)
+      );
     });
   }
 }

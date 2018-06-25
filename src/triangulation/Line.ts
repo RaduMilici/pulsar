@@ -17,8 +17,10 @@ export default class Line implements id {
   }
 
   equals(line: Line): boolean {
-    const equalsNormal: boolean = this.a.equals(line.a) && this.b.equals(line.b);
-    const equalsReverse: boolean = this.a.equals(line.b) && this.b.equals(line.a);
+    const equalsNormal: boolean =
+      this.a.equals(line.a) && this.b.equals(line.b);
+    const equalsReverse: boolean =
+      this.a.equals(line.b) && this.b.equals(line.a);
     return equalsNormal || equalsReverse;
   }
 

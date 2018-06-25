@@ -1,6 +1,6 @@
 import id from '../interfaces/id';
 import uniqueId from '../util/uniqueID';
-import point from '../interfaces/point';
+import Vector from '../triangulation/Vector';
 import Navigator from './Navigator';
 import { contains } from '../util/id';
 import NavigatorData from './NavigatorData';
@@ -10,7 +10,7 @@ export default class NavigatorTile implements id {
   isObstacle: boolean = false;
   private navigators: NavigatorData[] = [];
 
-  constructor(readonly position: point) {}
+  constructor(readonly position: Vector) {}
 
   registerNavigatorData(navigator: Navigator): boolean {
     const navigationData: NavigatorData = new NavigatorData(navigator);

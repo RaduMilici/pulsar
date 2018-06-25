@@ -1,3 +1,4 @@
+import Vector from '../triangulation/Vector';
 import uniqueID from '../util/uniqueID';
 import { contains } from '../util/id';
 export default class Navigator {
@@ -51,7 +52,7 @@ export default class Navigator {
         for (let i = 0; i < this.neighborsCount; i++) {
             const x = tile.position.x + Navigator.getColOffset(i);
             const y = tile.position.y + this.getRowOffset(i);
-            const exploring = this.grid.findTile({ x, y });
+            const exploring = this.grid.findTile(new Vector({ x, y }));
             if (!exploring) {
                 continue;
             }

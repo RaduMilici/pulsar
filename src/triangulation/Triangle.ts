@@ -35,11 +35,17 @@ export default class Triangle implements id {
   equals(triangle: Triangle): boolean {
     const { ab, bc, ca } = this.lines;
     const sameAB: boolean =
-      ab.equals(triangle.lines.ab) || ab.equals(triangle.lines.bc) || ab.equals(triangle.lines.ca);
+      ab.equals(triangle.lines.ab) ||
+      ab.equals(triangle.lines.bc) ||
+      ab.equals(triangle.lines.ca);
     const sameBC: boolean =
-      bc.equals(triangle.lines.ab) || bc.equals(triangle.lines.bc) || bc.equals(triangle.lines.ca);
+      bc.equals(triangle.lines.ab) ||
+      bc.equals(triangle.lines.bc) ||
+      bc.equals(triangle.lines.ca);
     const sameCA: boolean =
-      ca.equals(triangle.lines.ab) || ca.equals(triangle.lines.bc) || ca.equals(triangle.lines.ca);
+      ca.equals(triangle.lines.ab) ||
+      ca.equals(triangle.lines.bc) ||
+      ca.equals(triangle.lines.ca);
 
     return sameAB || sameBC || sameCA;
   }
@@ -69,7 +75,24 @@ export default class Triangle implements id {
     const o: number = point.x * point.x + point.y * point.y;
     const p: number = 1;
 
-    const matrix: Matrix4 = new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
+    const matrix: Matrix4 = new Matrix4(
+      a,
+      b,
+      c,
+      d,
+      e,
+      f,
+      g,
+      h,
+      i,
+      j,
+      k,
+      l,
+      m,
+      n,
+      o,
+      p
+    );
     return matrix.determine() < 0;
   }
 

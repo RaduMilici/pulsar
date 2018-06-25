@@ -7,5 +7,12 @@ import Vector from './triangulation/Vector';
 import Line from './triangulation/Line';
 import Triangle from './triangulation/Triangle';
 
-export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle };
-
+export {
+  Grid,
+  Navigator,
+  NavigatorTile,
+  Triangulation,
+  Vector,
+  Line,
+  Triangle,
+};

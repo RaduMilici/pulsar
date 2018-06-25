@@ -2,6 +2,7 @@ import NavigatorTile from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import row from '../interfaces/row';
 import Grid from './Grid';
+import Vector from '../triangulation/Vector';
 import uniqueID from '../util/uniqueID';
 import id from '../interfaces/id';
 import { contains } from '../util/id';
@@ -67,7 +68,9 @@ export default class Navigator implements id {
     for (let i = 0; i < this.neighborsCount; i++) {
       const x: number = tile.position.x + Navigator.getColOffset(i);
       const y: number = tile.position.y + this.getRowOffset(i);
-      const exploring: NavigatorTile | null = this.grid.findTile({ x, y });
+      const exploring: NavigatorTile | null = this.grid.findTile(
+        new Vector({ x, y })
+      );
 
       if (!exploring) {
         continue;
@@ -135,7 +138,7 @@ export default class Navigator implements id {
        iteration = 3, 4, or 5: [-1][ 0][+1]
        iteration = 6, 7, or 8: [-1][ 0][+1]
      */
-    return iteration % 3 - 1;
+    return (iteration % 3) - 1;
   }
 
   private static isDiagonal(

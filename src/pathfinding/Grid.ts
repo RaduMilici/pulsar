@@ -1,6 +1,6 @@
 import NavigatorTile from './NavigatorTile';
 import size from '../interfaces/size';
-import point from '../interfaces/point';
+import Vector from '../triangulation/Vector';
 import row from '../interfaces/row';
 import { int } from '../util/random';
 import Obstacles from './Obstacles';
@@ -20,20 +20,20 @@ export default class Grid {
     const x = int(0, this.size.width - 1);
     const y = int(0, this.size.height - 1);
 
-    return this.findTile({ x, y });
+    return this.findTile(new Vector({ x, y }));
   }
 
   randomFreeTile(): NavigatorTile | null {
     return this.obstacles.getRandomOpen();
   }
 
-  findTile(position: point): NavigatorTile | null {
+  findTile(position: Vector): NavigatorTile | null {
     return Grid.getTile(position, this.rows);
   }
 
-  private static getTile({ x, y }: point, list: row[]): NavigatorTile | null {
+  private static getTile({ x, y }: Vector, list: row[]): NavigatorTile | null {
     const row: row = list[y];
-    return (row && row.length > x) ? row[x] : null;
+    return row && row.length > x ? row[x] : null;
   }
 
   private makeGrid(): void {
@@ -41,7 +41,8 @@ export default class Grid {
       const row: row = [];
 
       for (let x = 0; x < this.size.width; x++) {
-        const tile: NavigatorTile = new NavigatorTile({ x, y });
+        const position = new Vector({ x, y });
+        const tile: NavigatorTile = new NavigatorTile(position);
         this.tiles.push(tile);
         row.push(tile);
       }
