@@ -83,10 +83,8 @@ export default class Navigator {
         }
         const next = this.chooseNext();
         if (next) {
-            setTimeout(() => {
-                this.onExplore(next);
-                this.calculateG(next);
-            }, 10);
+            this.onExplore(next);
+            this.calculateG(next);
         }
         else {
             const path = this.getPath();
