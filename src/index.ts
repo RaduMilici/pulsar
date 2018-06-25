@@ -1,6 +1,11 @@
-import Grid from './classes/Grid';
-import Navigator from './classes/Navigator';
-import NavigatorTile from './classes/NavigatorTile';
+import Grid from './pathfinding/Grid';
+import Navigator from './pathfinding/Navigator';
+import NavigatorTile from './pathfinding/NavigatorTile';
 
-export { Grid, Navigator, NavigatorTile };
+import Triangulation from './triangulation/Triangulation';
+import Vector from './triangulation/Vector';
+import Line from './triangulation/Line';
+import Triangle from './triangulation/Triangle';
+
+export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle };
 
