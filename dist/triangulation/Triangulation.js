@@ -10,7 +10,7 @@ export default class Triangulation {
         this.holderTriangle = Triangulation.MakeHolderTriangle();
         this.triangles.push(this.holderTriangle);
         this.hull = new Hull(this);
-        this.MST = new MinimumSpanningTree(this);
+        this.MST = new MinimumSpanningTree();
     }
     start() {
         this.points.forEach((point) => {
@@ -29,6 +29,7 @@ export default class Triangulation {
             });
         });
         this.cleanHolderTriangle();
+        this.addFinishedTriangulationLines();
     }
     static MakeHolderTriangle() {
         const side = Number.MAX_SAFE_INTEGER;
@@ -46,5 +47,11 @@ export default class Triangulation {
             }
         }
     }
+    addFinishedTriangulationLines() {
+        this.triangles.forEach((triangle) => {
+            Triangulation.Lines.push(...triangle.linesArray);
+        });
+    }
 }
+Triangulation.Lines = [];
 //# sourceMappingURL=Triangulation.js.map

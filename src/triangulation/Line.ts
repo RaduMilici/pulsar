@@ -2,11 +2,14 @@ import Vector from './Vector';
 import id from '../interfaces/id';
 import uniqueId from '../util/uniqueID';
 import Triangle from './Triangle';
+import DisjoinedSet from './DisjoinedSet';
 
 export default class Line implements id {
   id: number = uniqueId();
   static AllLines: Line[] = [];
-  constructor(readonly a: Vector, readonly b: Vector) {}
+  constructor(readonly a: Vector, readonly b: Vector) {
+    Line.AllLines.push(this);
+  }
 
   get length(): number {
     return this.a.sub(this.b).magnitude();
@@ -24,9 +27,14 @@ export default class Line implements id {
     return equalsNormal || equalsReverse;
   }
 
+  makeDisjoinedSets(): void {
+    this.a.set = new DisjoinedSet(this.a);
+    this.b.set = new DisjoinedSet(this.b);
+  }
+
   static GetUniqueLines(triangles: Triangle[]): Line[] {
-    const lines = Triangle.LinesFromArray(triangles);
-    return lines.filter((line: Line) => Line.IsUnique(line, lines));
+    const lines: Line[] = Triangle.LinesFromArray(triangles);
+    return Line.UniqueFromArray(lines);
   }
 
   static PointsFromArray(lines: Line[]): Vector[] {
@@ -45,8 +53,18 @@ export default class Line implements id {
   }
 
   static UniqueFromArray(lines: Line[]): Line[] {
-    return lines.filter((line: Line) => {
-      return Line.IsUnique(line, lines);
-    });
+    const clone: Line[] = [...lines];
+    clone.sort((a: Line, b: Line) => a.length - b.length);
+
+    for ( let i = clone.length - 1; i >= 1 ; i-- ) {
+      const a = clone[i];
+      const b = clone[i - 1];
+
+      if (a.equals(b)) {
+        clone.splice(i, 1);
+      }
+    }
+
+    return clone;
   }
 }

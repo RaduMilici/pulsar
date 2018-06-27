@@ -1,10 +1,12 @@
 import uniqueId from '../util/uniqueID';
 import Triangle from './Triangle';
+import DisjoinedSet from './DisjoinedSet';
 export default class Line {
     constructor(a, b) {
         this.a = a;
         this.b = b;
         this.id = uniqueId();
+        Line.AllLines.push(this);
     }
     get length() {
         return this.a.sub(this.b).magnitude();
@@ -17,9 +19,13 @@ export default class Line {
         const equalsReverse = this.a.equals(line.b) && this.b.equals(line.a);
         return equalsNormal || equalsReverse;
     }
+    makeDisjoinedSets() {
+        this.a.set = new DisjoinedSet(this.a);
+        this.b.set = new DisjoinedSet(this.b);
+    }
     static GetUniqueLines(triangles) {
         const lines = Triangle.LinesFromArray(triangles);
-        return lines.filter((line) => Line.IsUnique(line, lines));
+        return Line.UniqueFromArray(lines);
     }
     static PointsFromArray(lines) {
         return lines.reduce((accumulator, line) => {
@@ -33,9 +39,16 @@ export default class Line {
         }) === undefined);
     }
     static UniqueFromArray(lines) {
-        return lines.filter((line) => {
-            return Line.IsUnique(line, lines);
-        });
+        const clone = [...lines];
+        clone.sort((a, b) => a.length - b.length);
+        for (let i = clone.length - 1; i >= 1; i--) {
+            const a = clone[i];
+            const b = clone[i - 1];
+            if (a.equals(b)) {
+                clone.splice(i, 1);
+            }
+        }
+        return clone;
     }
 }
 Line.AllLines = [];

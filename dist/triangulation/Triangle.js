@@ -12,7 +12,6 @@ export default class Triangle {
         const bc = new Line(b, c);
         const ca = new Line(c, a);
         this.lines = { ab, bc, ca };
-        Line.AllLines.push(...this.linesArray);
     }
     get centroid() {
         return Vector.FindPolyCentroid(this.points);
@@ -25,9 +24,15 @@ export default class Triangle {
     }
     equals(triangle) {
         const { ab, bc, ca } = this.lines;
-        const sameAB = ab.equals(triangle.lines.ab) || ab.equals(triangle.lines.bc) || ab.equals(triangle.lines.ca);
-        const sameBC = bc.equals(triangle.lines.ab) || bc.equals(triangle.lines.bc) || bc.equals(triangle.lines.ca);
-        const sameCA = ca.equals(triangle.lines.ab) || ca.equals(triangle.lines.bc) || ca.equals(triangle.lines.ca);
+        const sameAB = ab.equals(triangle.lines.ab) ||
+            ab.equals(triangle.lines.bc) ||
+            ab.equals(triangle.lines.ca);
+        const sameBC = bc.equals(triangle.lines.ab) ||
+            bc.equals(triangle.lines.bc) ||
+            bc.equals(triangle.lines.ca);
+        const sameCA = ca.equals(triangle.lines.ab) ||
+            ca.equals(triangle.lines.bc) ||
+            ca.equals(triangle.lines.ca);
         return sameAB || sameBC || sameCA;
     }
     isPointInCircumcircle(point) {

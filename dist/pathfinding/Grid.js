@@ -24,7 +24,7 @@ export default class Grid {
     }
     static getTile({ x, y }, list) {
         const row = list[y];
-        return (row && row.length > x) ? row[x] : null;
+        return row && row.length > x ? row[x] : null;
     }
     makeGrid() {
         for (let y = 0; y < this.size.height; y++) {

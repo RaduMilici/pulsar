@@ -110,7 +110,7 @@ export default class Navigator {
            iteration = 3, 4, or 5: [-1][ 0][+1]
            iteration = 6, 7, or 8: [-1][ 0][+1]
          */
-        return iteration % 3 - 1;
+        return (iteration % 3) - 1;
     }
     static isDiagonal(tile, checkTile) {
         return (tile.position.x !== checkTile.position.x &&

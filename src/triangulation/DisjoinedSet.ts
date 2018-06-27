@@ -7,16 +7,15 @@ export default class DisjoinedSet implements id {
   readonly points: Vector[];
 
   constructor(point: Vector) {
-    point.set = this;
     this.points = [point];
   }
 
-  equals(set: DisjoinedSet): boolean {
-    return this.id === set.id;
+  equals({ id }: DisjoinedSet): boolean {
+    return this.id === id;
   }
 
-  merge(set: DisjoinedSet): DisjoinedSet {
-    set.points.forEach((point: Vector) => {
+  merge({ points }: DisjoinedSet): DisjoinedSet {
+    points.forEach((point: Vector) => {
       point.set = this;
       this.points.push(point);
     });

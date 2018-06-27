@@ -16,8 +16,6 @@ export default class Triangle implements id {
     const ca: Line = new Line(c, a);
 
     this.lines = { ab, bc, ca };
-
-    Line.AllLines.push(...this.linesArray);
   }
 
   get centroid(): Vector {
