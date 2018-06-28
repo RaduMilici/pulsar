@@ -4,7 +4,8 @@ export default class MinimumSpanningTree {
         this.lines = [];
         this._nonMinSpanLines = [];
         this.uniqueLines = [];
-        this.lines = lines;
+        this.triangulationLines = [];
+        this.triangulationLines = lines;
     }
     get nonMinSpanLines() {
         return this._nonMinSpanLines;
@@ -22,7 +23,7 @@ export default class MinimumSpanningTree {
         this._nonMinSpanLines = this._nonMinSpanLines.filter((line) => line);
     }
     getLines() {
-        let lines = Line.UniqueFromArray(this.lines);
+        let lines = Line.RemoveDuplicates(this.triangulationLines);
         this.uniqueLines = [...lines];
         this._nonMinSpanLines = [...lines];
     }

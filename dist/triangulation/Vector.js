@@ -70,25 +70,29 @@ export default class Vector {
         return deg * (Math.PI / 180);
     }
     static FindPolyCentroid(points) {
-        let v = new Vector();
-        points.forEach((vector) => {
-            v = v.add(vector);
+        let x = 0;
+        let y = 0;
+        points.forEach((point) => {
+            x += point.x;
+            y += point.y;
         });
-        return v.scale(1 / points.length);
+        x /= points.length;
+        y /= points.length;
+        return new Vector({ x, y });
     }
     static ArrangePointsCCW(points) {
         const centroid = Vector.FindPolyCentroid(points);
-        const pointsWithAngle = points.map((point) => point.clone());
-        pointsWithAngle.sort((a, b) => {
+        let clone = [...points];
+        clone.sort((a, b) => {
             const angleA = Math.atan2(a.y - centroid.y, a.x - centroid.x);
             const angleB = Math.atan2(b.y - centroid.y, b.x - centroid.x);
             return angleA - angleB;
         });
-        return pointsWithAngle;
+        return clone;
     }
     static UniqueFromArray(points) {
         return points.filter((pointFilter) => {
-            return points.findIndex((pointIndex) => pointFilter.equals(pointIndex));
+            return points.findIndex((pointIndex) => pointFilter.equals(pointIndex)) !== -1;
         });
     }
 }

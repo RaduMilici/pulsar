@@ -52,11 +52,12 @@ export default class Line implements id {
     );
   }
 
-  static UniqueFromArray(lines: Line[]): Line[] {
-    const clone: Line[] = [...lines];
+  static RemoveDuplicates(lines: Line[]): Line[] {
+    let clone: Line[] = [...lines];
+
     clone.sort((a: Line, b: Line) => a.length - b.length);
 
-    for ( let i = clone.length - 1; i >= 1 ; i-- ) {
+    for (let i = clone.length - 1; i >= 1; i--) {
       const a = clone[i];
       const b = clone[i - 1];
 

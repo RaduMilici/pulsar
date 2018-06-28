@@ -176,7 +176,7 @@ export default class Navigator implements id {
   }
 
   private chooseNext(): NavigatorTile | null {
-    this.open = this.open.sort((a: NavigatorTile, b: NavigatorTile) => {
+    this.open.sort((a: NavigatorTile, b: NavigatorTile) => {
       const aNavData: NavigatorData = a.getNavigatorData(this);
       const bNavData: NavigatorData = b.getNavigatorData(this);
       return aNavData.fVal - bNavData.fVal;

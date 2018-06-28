@@ -4,7 +4,7 @@ export default class MinimumSpanningTree {
     readonly lines: Line[];
     private _nonMinSpanLines;
     private uniqueLines;
-    private readonly points;
+    private readonly triangulationLines;
     constructor({ lines }: Triangulation);
     readonly nonMinSpanLines: Line[];
     start(): void;
