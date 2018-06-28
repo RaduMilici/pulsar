@@ -5,7 +5,7 @@ import Hull from './Hull';
 import MinimumSpanningTree from './MinimumSpanningTree';
 export default class Triangulation {
     readonly points: Vector[];
-    static readonly Lines: Line[];
+    readonly lines: Line[];
     readonly triangles: Triangle[];
     readonly MST: MinimumSpanningTree;
     readonly hull: Hull;

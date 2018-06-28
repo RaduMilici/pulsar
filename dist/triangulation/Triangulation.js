@@ -6,11 +6,12 @@ import MinimumSpanningTree from './MinimumSpanningTree';
 export default class Triangulation {
     constructor(points) {
         this.points = points;
+        this.lines = [];
         this.triangles = [];
         this.holderTriangle = Triangulation.MakeHolderTriangle();
         this.triangles.push(this.holderTriangle);
         this.hull = new Hull(this);
-        this.MST = new MinimumSpanningTree();
+        this.MST = new MinimumSpanningTree(this);
     }
     start() {
         this.points.forEach((point) => {
@@ -49,9 +50,8 @@ export default class Triangulation {
     }
     addFinishedTriangulationLines() {
         this.triangles.forEach((triangle) => {
-            Triangulation.Lines.push(...triangle.linesArray);
+            this.lines.push(...triangle.linesArray);
         });
     }
 }
-Triangulation.Lines = [];
 //# sourceMappingURL=Triangulation.js.map

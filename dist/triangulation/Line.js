@@ -25,7 +25,7 @@ export default class Line {
     }
     static GetUniqueLines(triangles) {
         const lines = Triangle.LinesFromArray(triangles);
-        return Line.UniqueFromArray(lines);
+        return lines.filter((line) => Line.IsUnique(line, lines));
     }
     static PointsFromArray(lines) {
         return lines.reduce((accumulator, line) => {

@@ -5,7 +5,7 @@ import Hull from './Hull';
 import MinimumSpanningTree from './MinimumSpanningTree';
 
 export default class Triangulation {
-  static readonly Lines: Line[] = [];
+  readonly lines: Line[] = [];
   readonly triangles: Triangle[] = [];
   readonly MST: MinimumSpanningTree;
   readonly hull: Hull;
@@ -14,7 +14,7 @@ export default class Triangulation {
   constructor(readonly points: Vector[]) {
     this.triangles.push(this.holderTriangle);
     this.hull = new Hull(this);
-    this.MST = new MinimumSpanningTree();
+    this.MST = new MinimumSpanningTree(this);
   }
 
   start(): void {
@@ -65,7 +65,7 @@ export default class Triangulation {
 
   private addFinishedTriangulationLines(): void {
     this.triangles.forEach((triangle: Triangle) => {
-      Triangulation.Lines.push(...triangle.linesArray);
+      this.lines.push(...triangle.linesArray);
     });
   }
 }

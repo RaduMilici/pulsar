@@ -34,7 +34,7 @@ export default class Line implements id {
 
   static GetUniqueLines(triangles: Triangle[]): Line[] {
     const lines: Line[] = Triangle.LinesFromArray(triangles);
-    return Line.UniqueFromArray(lines);
+    return lines.filter((line: Line) => Line.IsUnique(line, lines));
   }
 
   static PointsFromArray(lines: Line[]): Vector[] {

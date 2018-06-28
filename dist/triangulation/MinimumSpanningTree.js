@@ -1,10 +1,10 @@
 import Line from './Line';
-import Triangulation from './Triangulation';
 export default class MinimumSpanningTree {
-    constructor() {
+    constructor({ lines }) {
         this.lines = [];
         this._nonMinSpanLines = [];
         this.uniqueLines = [];
+        this.lines = lines;
     }
     get nonMinSpanLines() {
         return this._nonMinSpanLines;
@@ -22,7 +22,7 @@ export default class MinimumSpanningTree {
         this._nonMinSpanLines = this._nonMinSpanLines.filter((line) => line);
     }
     getLines() {
-        let lines = Line.UniqueFromArray(Triangulation.Lines);
+        let lines = Line.UniqueFromArray(this.lines);
         this.uniqueLines = [...lines];
         this._nonMinSpanLines = [...lines];
     }
