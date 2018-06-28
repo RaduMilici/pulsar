@@ -99,35 +99,38 @@ export default class Vector {
   }
 
   static FindPolyCentroid(points: Vector[]): Vector {
-    let v = new Vector();
+    let x = 0;
+    let y = 0;
 
-    points.forEach((vector: Vector) => {
-      v = v.add(vector);
+    points.forEach((point: Vector) => {
+      x += point.x;
+      y += point.y;
     });
 
-    return v.scale(1 / points.length);
+    x /= points.length;
+    y /= points.length;
+
+    return new Vector({ x, y });
   }
 
   static ArrangePointsCCW(points: Vector[]): Vector[] {
     const centroid: Vector = Vector.FindPolyCentroid(points);
-    const pointsWithAngle: Vector[] = points.map((point: Vector) =>
-      point.clone()
-    );
+    let clone: Vector[] = [...points];
 
-    pointsWithAngle.sort((a: Vector, b: Vector) => {
+    clone.sort((a: Vector, b: Vector) => {
       const angleA: number = Math.atan2(a.y - centroid.y, a.x - centroid.x);
       const angleB: number = Math.atan2(b.y - centroid.y, b.x - centroid.x);
       return angleA - angleB;
     });
 
-    return pointsWithAngle;
+    return clone;
   }
 
   static UniqueFromArray(points: Vector[]): Vector[] {
     return points.filter((pointFilter: Vector) => {
       return points.findIndex((pointIndex: Vector) =>
         pointFilter.equals(pointIndex)
-      );
+      ) !== -1;
     });
   }
 }

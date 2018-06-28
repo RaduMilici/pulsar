@@ -1,16 +1,14 @@
-import Vector from './Vector';
 import Line from './Line';
-import DisjoinedSet from './DisjoinedSet';
 import Triangulation from './Triangulation';
 
 export default class MinimumSpanningTree {
   readonly lines: Line[] = [];
   private _nonMinSpanLines: Line[] = [];
   private uniqueLines: Line[] = [];
-  private readonly points: Vector[];
+  private readonly triangulationLines: Line[] = [];
 
   constructor({ lines }: Triangulation) {
-    this.lines = lines;
+    this.triangulationLines = lines;
   }
 
   get nonMinSpanLines(): Line[] {
@@ -34,7 +32,7 @@ export default class MinimumSpanningTree {
   }
 
   private getLines(): void {
-    let lines: Line[] = Line.UniqueFromArray(this.lines);
+    let lines: Line[] = Line.RemoveDuplicates(this.triangulationLines);
     this.uniqueLines = [...lines];
     this._nonMinSpanLines = [...lines];
   }

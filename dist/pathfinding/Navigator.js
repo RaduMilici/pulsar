@@ -133,7 +133,7 @@ export default class Navigator {
         return null;
     }
     chooseNext() {
-        this.open = this.open.sort((a, b) => {
+        this.open.sort((a, b) => {
             const aNavData = a.getNavigatorData(this);
             const bNavData = b.getNavigatorData(this);
             return aNavData.fVal - bNavData.fVal;

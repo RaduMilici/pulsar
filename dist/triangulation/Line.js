@@ -38,8 +38,8 @@ export default class Line {
             return line.id === currentLine.id ? false : line.equals(currentLine);
         }) === undefined);
     }
-    static UniqueFromArray(lines) {
-        const clone = [...lines];
+    static RemoveDuplicates(lines) {
+        let clone = [...lines];
         clone.sort((a, b) => a.length - b.length);
         for (let i = clone.length - 1; i >= 1; i--) {
             const a = clone[i];

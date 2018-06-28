@@ -14,6 +14,6 @@ export default class Line implements id {
     static GetUniqueLines(triangles: Triangle[]): Line[];
     static PointsFromArray(lines: Line[]): Vector[];
     static IsUnique(line: Line, lines: Line[]): boolean;
-    static UniqueFromArray(lines: Line[]): Line[];
+    static RemoveDuplicates(lines: Line[]): Line[];
 }
 //# sourceMappingURL=Line.d.ts.map
