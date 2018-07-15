@@ -6,8 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "concurrently \"lite-server\" \"npm run build-watch\"",
-    "build": "rm -rf dist/; tsc",
-    "build-watch": "webpack --config webpack.config.js --watch",
+    "build": "tsc",
+    "build-watch": "tsc --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")"
   },
   "repository": {

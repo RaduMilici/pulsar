@@ -97,7 +97,7 @@ export default class Navigator implements id {
           this.open.push(exploring);
         }
 
-        if (Navigator.isDiagonal(tile, exploring)) {
+        if (tile.isDiagonal(exploring)) {
           exploringNavData.gVal = tileNavData.gVal + this.diagonalCost;
         } else {
           exploringNavData.gVal = tileNavData.gVal + this.verticalCost;
@@ -141,16 +141,6 @@ export default class Navigator implements id {
     return (iteration % 3) - 1;
   }
 
-  private static isDiagonal(
-    tile: NavigatorTile,
-    checkTile: NavigatorTile
-  ): boolean {
-    return (
-      tile.position.x !== checkTile.position.x &&
-      tile.position.y !== checkTile.position.y
-    );
-  }
-
   private getParent(
     tile: NavigatorTile,
     checkTile: NavigatorTile
@@ -163,7 +153,7 @@ export default class Navigator implements id {
       return tile;
     }
 
-    const moveCost = Navigator.isDiagonal(tile, checkTile)
+    const moveCost = tile.isDiagonal(checkTile)
       ? this.diagonalCost
       : this.verticalCost;
 

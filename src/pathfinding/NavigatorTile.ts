@@ -30,4 +30,11 @@ export default class NavigatorTile implements id {
 
     return navData ? navData : null;
   }
+
+  isDiagonal({ position }: NavigatorTile): boolean {
+    return (
+      this.position.x !== position.x &&
+      this.position.y !== position.y
+    );
+  }
 }

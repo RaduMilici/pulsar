@@ -22,5 +22,9 @@ export default class NavigatorTile {
         });
         return navData ? navData : null;
     }
+    isDiagonal({ position }) {
+        return (this.position.x !== position.x &&
+            this.position.y !== position.y);
+    }
 }
 //# sourceMappingURL=NavigatorTile.js.map

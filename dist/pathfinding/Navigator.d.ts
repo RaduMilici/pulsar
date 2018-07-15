@@ -28,7 +28,6 @@ export default class Navigator implements id {
     private calculateF;
     private getRowOffset;
     private static getColOffset;
-    private static isDiagonal;
     private getParent;
     private chooseNext;
     private getPath;
