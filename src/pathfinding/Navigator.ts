@@ -18,7 +18,6 @@ export default class Navigator implements id {
   private tiles: row = [];
   private open: row = [];
   private closed: row = [];
-  private current: NavigatorTile;
 
   constructor(
     private grid: Grid,
@@ -32,22 +31,26 @@ export default class Navigator implements id {
     return this._path;
   }
 
-  start(): void {
-    this.addOpenTiles(this.grid);
+  /** Begin the pathfinding process. Does not start if destination is an obstacle. */
+  start(): boolean {
+    if (this.end.isObstacle) {
+      return false;
+    }
+    this.registerOpenTiles(this.grid);
     this.calculateH();
     this.closed.push(this.begin);
     const beginNavData: NavigatorData = this.begin.getNavigatorData(this);
     beginNavData.gVal = 0;
     this.calculateG(this.begin);
+    return true;
   }
 
-  private addOpenTiles(grid: Grid): void {
+  private registerOpenTiles(grid: Grid): void {
     grid.rows.forEach((row: row) => {
-      const navigatorTiles: NavigatorTile[] = row.map((tile: NavigatorTile) => {
+      row.forEach((tile: NavigatorTile) => {
         tile.registerNavigatorData(this);
-        return tile;
       });
-      this.tiles = this.tiles.concat(navigatorTiles);
+      this.tiles.push(...row);
     });
   }
 
@@ -62,7 +65,6 @@ export default class Navigator implements id {
   }
 
   private calculateG(tile: NavigatorTile): void {
-    this.current = tile;
     const tileNavData = tile.getNavigatorData(this);
 
     for (let i = 0; i < this.neighborsCount; i++) {
@@ -181,7 +183,6 @@ export default class Navigator implements id {
     this.closed.push(next);
 
     if (next.id === this.end.id) {
-      this.current = this.end;
       return null;
     }
 
@@ -190,7 +191,7 @@ export default class Navigator implements id {
 
   private getPath(): NavigatorTile[] {
     this._path = [];
-    let { current } = this;
+    let current: NavigatorTile = this.end;
 
     while (current.id !== this.begin.id) {
       const currentNavData: NavigatorData = current.getNavigatorData(this);
@@ -199,7 +200,7 @@ export default class Navigator implements id {
       if (currentNavData.parent) {
         current = currentNavData.parent;
       } else {
-        break;
+        return null;
       }
     }
 

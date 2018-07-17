@@ -50,8 +50,8 @@ export default class Vector {
   }
 
   negative(): Vector {
-    const x: number = this.x * -1;
-    const y: number = this.y * -1;
+    const x: number = -this.x;
+    const y: number = -this.y;
 
     return new Vector({ x, y });
   }
@@ -128,9 +128,11 @@ export default class Vector {
 
   static UniqueFromArray(points: Vector[]): Vector[] {
     return points.filter((pointFilter: Vector) => {
-      return points.findIndex((pointIndex: Vector) =>
-        pointFilter.equals(pointIndex)
-      ) !== -1;
+      return (
+        points.findIndex((pointIndex: Vector) =>
+          pointFilter.equals(pointIndex)
+        ) !== -1
+      );
     });
   }
 }

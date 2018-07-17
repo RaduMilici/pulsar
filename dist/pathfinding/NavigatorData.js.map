@@ -1,1 +1,1 @@
-{"version":3,"file":"NavigatorData.js","sourceRoot":"","sources":["../../src/pathfinding/NavigatorData.ts"],"names":[],"mappings":"AAEA,OAAO,QAAQ,MAAM,kBAAkB,CAAC;AAGxC,MAAM,CAAC,OAAO;IAOZ,YAA4B,SAAoB;QAApB,cAAS,GAAT,SAAS,CAAW;QANhD,OAAE,GAAW,QAAQ,EAAE,CAAC;IAM2B,CAAC;CACrD"}
+{"version":3,"file":"NavigatorData.js","sourceRoot":"","sources":["../../src/pathfinding/NavigatorData.ts"],"names":[],"mappings":"AACA,OAAO,QAAQ,MAAM,kBAAkB,CAAC;AAIxC,MAAM,CAAC,OAAO;IAOZ,YAA4B,SAAoB;QAApB,cAAS,GAAT,SAAS,CAAW;QANhD,OAAE,GAAW,QAAQ,EAAE,CAAC;IAM2B,CAAC;CACrD"}

@@ -1,8 +1,8 @@
 import id from '../interfaces/id';
+import { contains } from '../util/id';
 import uniqueId from '../util/uniqueID';
 import Vector from '../triangulation/Vector';
 import Navigator from './Navigator';
-import { contains } from '../util/id';
 import NavigatorData from './NavigatorData';
 
 export default class NavigatorTile implements id {
@@ -32,9 +32,6 @@ export default class NavigatorTile implements id {
   }
 
   isDiagonal({ position }: NavigatorTile): boolean {
-    return (
-      this.position.x !== position.x &&
-      this.position.y !== position.y
-    );
+    return this.position.x !== position.x && this.position.y !== position.y;
   }
 }

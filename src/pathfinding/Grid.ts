@@ -16,23 +16,22 @@ export default class Grid {
     this.makeGrid();
   }
 
-  randomTile(): NavigatorTile | null {
+  /** Returns a random tile, obstacle or not. */
+  randomTile(): NavigatorTile {
     const x = int(0, this.size.width - 1);
     const y = int(0, this.size.height - 1);
 
     return this.findTile(new Vector({ x, y }));
   }
 
+  /** Returns a random non-obstacle tile, if it exists. */
   randomFreeTile(): NavigatorTile | null {
     return this.obstacles.getRandomOpen();
   }
 
-  findTile(position: Vector): NavigatorTile | null {
-    return Grid.getTile(position, this.rows);
-  }
-
-  private static getTile({ x, y }: Vector, list: row[]): NavigatorTile | null {
-    const row: row = list[y];
+  /** Returns a tile at the specified coordinates. */
+  findTile({ x, y }: Vector): NavigatorTile | null {
+    const row: row = this.rows[y];
     return row && row.length > x ? row[x] : null;
   }
 

@@ -11,19 +11,19 @@ export default class Grid {
         this.obstacles = new Obstacles(this);
         this.makeGrid();
     }
+    /** Returns a random tile, obstacle or not. */
     randomTile() {
         const x = int(0, this.size.width - 1);
         const y = int(0, this.size.height - 1);
         return this.findTile(new Vector({ x, y }));
     }
+    /** Returns a random non-obstacle tile, if it exists. */
     randomFreeTile() {
         return this.obstacles.getRandomOpen();
     }
-    findTile(position) {
-        return Grid.getTile(position, this.rows);
-    }
-    static getTile({ x, y }, list) {
-        const row = list[y];
+    /** Returns a tile at the specified coordinates. */
+    findTile({ x, y }) {
+        const row = this.rows[y];
         return row && row.length > x ? row[x] : null;
     }
     makeGrid() {

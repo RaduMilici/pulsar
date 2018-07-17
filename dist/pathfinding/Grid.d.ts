@@ -9,10 +9,12 @@ export default class Grid {
     readonly rows: row[];
     readonly obstacles: Obstacles;
     constructor(size?: size);
-    randomTile(): NavigatorTile | null;
+    /** Returns a random tile, obstacle or not. */
+    randomTile(): NavigatorTile;
+    /** Returns a random non-obstacle tile, if it exists. */
     randomFreeTile(): NavigatorTile | null;
-    findTile(position: Vector): NavigatorTile | null;
-    private static getTile;
+    /** Returns a tile at the specified coordinates. */
+    findTile({ x, y }: Vector): NavigatorTile | null;
     private makeGrid;
 }
 //# sourceMappingURL=Grid.d.ts.map

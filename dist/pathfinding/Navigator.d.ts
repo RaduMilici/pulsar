@@ -18,11 +18,11 @@ export default class Navigator implements id {
     private tiles;
     private open;
     private closed;
-    private current;
     constructor(grid: Grid, begin: NavigatorTile, end: NavigatorTile, onExplore?: onExplore, onComplete?: onComplete);
     readonly path: row;
-    start(): void;
-    private addOpenTiles;
+    /** Begin the pathfinding process. Does not start if destination is an obstacle. */
+    start(): boolean;
+    private registerOpenTiles;
     private calculateH;
     private calculateG;
     private calculateF;

@@ -33,8 +33,8 @@ export default class Vector {
         return new Vector({ x, y });
     }
     negative() {
-        const x = this.x * -1;
-        const y = this.y * -1;
+        const x = -this.x;
+        const y = -this.y;
         return new Vector({ x, y });
     }
     adjacent() {
@@ -92,7 +92,7 @@ export default class Vector {
     }
     static UniqueFromArray(points) {
         return points.filter((pointFilter) => {
-            return points.findIndex((pointIndex) => pointFilter.equals(pointIndex)) !== -1;
+            return (points.findIndex((pointIndex) => pointFilter.equals(pointIndex)) !== -1);
         });
     }
 }

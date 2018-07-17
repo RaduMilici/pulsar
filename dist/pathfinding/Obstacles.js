@@ -53,7 +53,7 @@ export default class Obstacles {
     manipulate(add, tile) {
         const isInvalid = add ? tile.isObstacle : !tile.isObstacle;
         if (isInvalid) {
-            return;
+            return false;
         }
         let list;
         let otherList;

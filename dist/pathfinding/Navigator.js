@@ -20,21 +20,25 @@ export default class Navigator {
     get path() {
         return this._path;
     }
+    /** Begin the pathfinding process. Does not start if destination is an obstacle. */
     start() {
-        this.addOpenTiles(this.grid);
+        if (this.end.isObstacle) {
+            return false;
+        }
+        this.registerOpenTiles(this.grid);
         this.calculateH();
         this.closed.push(this.begin);
         const beginNavData = this.begin.getNavigatorData(this);
         beginNavData.gVal = 0;
         this.calculateG(this.begin);
+        return true;
     }
-    addOpenTiles(grid) {
+    registerOpenTiles(grid) {
         grid.rows.forEach((row) => {
-            const navigatorTiles = row.map((tile) => {
+            row.forEach((tile) => {
                 tile.registerNavigatorData(this);
-                return tile;
             });
-            this.tiles = this.tiles.concat(navigatorTiles);
+            this.tiles.push(...row);
         });
     }
     calculateH() {
@@ -47,7 +51,6 @@ export default class Navigator {
         });
     }
     calculateG(tile) {
-        this.current = tile;
         const tileNavData = tile.getNavigatorData(this);
         for (let i = 0; i < this.neighborsCount; i++) {
             const x = tile.position.x + Navigator.getColOffset(i);
@@ -141,14 +144,13 @@ export default class Navigator {
         this.open.shift();
         this.closed.push(next);
         if (next.id === this.end.id) {
-            this.current = this.end;
             return null;
         }
         return next;
     }
     getPath() {
         this._path = [];
-        let { current } = this;
+        let current = this.end;
         while (current.id !== this.begin.id) {
             const currentNavData = current.getNavigatorData(this);
             this._path.push(current);
@@ -156,7 +158,7 @@ export default class Navigator {
                 current = currentNavData.parent;
             }
             else {
-                break;
+                return null;
             }
         }
         this._path.reverse();

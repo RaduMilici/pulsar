@@ -1,5 +1,5 @@
-import uniqueId from '../util/uniqueID';
 import { contains } from '../util/id';
+import uniqueId from '../util/uniqueID';
 import NavigatorData from './NavigatorData';
 export default class NavigatorTile {
     constructor(position) {
@@ -23,8 +23,7 @@ export default class NavigatorTile {
         return navData ? navData : null;
     }
     isDiagonal({ position }) {
-        return (this.position.x !== position.x &&
-            this.position.y !== position.y);
+        return this.position.x !== position.x && this.position.y !== position.y;
     }
 }
 //# sourceMappingURL=NavigatorTile.js.map

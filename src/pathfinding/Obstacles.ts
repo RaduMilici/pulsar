@@ -76,7 +76,7 @@ export default class Obstacles {
     const isInvalid: boolean = add ? tile.isObstacle : !tile.isObstacle;
 
     if (isInvalid) {
-      return;
+      return false;
     }
 
     let list: NavigatorTile[];
