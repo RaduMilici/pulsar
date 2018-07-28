@@ -9,7 +9,7 @@ export default class Grid {
     readonly rows: row[];
     readonly obstacles: Obstacles;
     constructor(size?: size);
-    /** Returns a random tile, obstacle or not. */
+    /** Returns a random tile, can be an obstacle or not. */
     randomTile(): NavigatorTile;
     /** Returns a random non-obstacle tile, if it exists. */
     randomFreeTile(): NavigatorTile | null;

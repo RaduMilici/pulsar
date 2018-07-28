@@ -11,7 +11,7 @@ export default class Grid {
         this.obstacles = new Obstacles(this);
         this.makeGrid();
     }
-    /** Returns a random tile, obstacle or not. */
+    /** Returns a random tile, can be an obstacle or not. */
     randomTile() {
         const x = int(0, this.size.width - 1);
         const y = int(0, this.size.height - 1);

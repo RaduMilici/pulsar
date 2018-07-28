@@ -56,7 +56,7 @@ export default class Vector {
     return new Vector({ x, y });
   }
 
-  adjacent(): { left: Vector; right: Vector } {
+  perpendicular(): { left: Vector; right: Vector } {
     const right: Vector = new Vector({ x: -this.y, y: this.x });
     const left: Vector = new Vector({ x: this.y, y: -this.x });
 

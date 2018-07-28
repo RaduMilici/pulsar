@@ -13,7 +13,7 @@ export default class Vector {
     sub(vector: Vector): Vector;
     normalize(): Vector;
     negative(): Vector;
-    adjacent(): {
+    perpendicular(): {
         left: Vector;
         right: Vector;
     };
