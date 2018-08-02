@@ -10,7 +10,10 @@ export default class Shape {
 
   containsPoint(point: Vector): boolean {
     let intersects: number = 0;
-    const checkPoint: Vector = new Vector({ x: point.x, y: Number.MAX_SAFE_INTEGER });
+    const checkPoint: Vector = new Vector({
+      x: point.x,
+      y: Number.MAX_SAFE_INTEGER,
+    });
     const checkLine: Line = new Line(point, checkPoint);
 
     this.lines.forEach((line: Line) => {
@@ -29,13 +32,13 @@ export default class Shape {
     for (let i = 1; i < ccwPoints.length; i++) {
       const a: Vector = ccwPoints[i - 1];
       const b: Vector = ccwPoints[i];
-      const ab = new Line(a, b);
+      const ab: Line = new Line(a, b);
       lines.push(ab);
     }
 
     const firstPoint: Vector = ccwPoints[0];
     const lastPoint: Vector = ccwPoints[ccwPoints.length - 1];
-    const closingLine = new Line(firstPoint, lastPoint);
+    const closingLine: Line = new Line(firstPoint, lastPoint);
 
     lines.push(closingLine);
 
