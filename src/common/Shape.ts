@@ -10,8 +10,8 @@ export default class Shape {
 
   containsPoint(point: Vector): boolean {
     let intersects: number = 0;
-    const maxB: Vector = new Vector({ x: point.x, y: 0 });
-    const checkLine: Line = new Line(point, maxB);
+    const checkPoint: Vector = new Vector({ x: point.x, y: Number.MAX_SAFE_INTEGER });
+    const checkLine: Line = new Line(point, checkPoint);
 
     this.lines.forEach((line: Line) => {
       if (line.intersects(checkLine)) {

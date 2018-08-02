@@ -42,13 +42,12 @@ export default class LineIntersection {
 
   get intersects(): boolean {
     const areValidCoords = isNumeric(this.point.x) && isNumeric(this.point.y);
-    return areValidCoords && this.isOnSegment();
+    return areValidCoords && this.isOnSegments();
   }
 
   get point(): Vector {
     const x = this.getX();
     const y = this.getY();
-    this.isOnSegment();
     return new Vector({ x, y });
   }
 
@@ -57,7 +56,7 @@ export default class LineIntersection {
     const b: Matrix2 = new Matrix2(this.x1, 1, this.x2, 1);
     const c: Matrix2 = new Matrix2(this.x3, this.y3, this.x4, this.y4);
     const d: Matrix2 = new Matrix2(this.x3, 1, this.x4, 1);
-    const abcd = new Matrix2(
+    const abcd: Matrix2 = new Matrix2(
       a.determine(),
       b.determine(),
       c.determine(),
@@ -72,7 +71,7 @@ export default class LineIntersection {
     const b: Matrix2 = new Matrix2(this.y1, 1, this.y2, 1);
     const c: Matrix2 = new Matrix2(this.x3, this.y3, this.x4, this.y4);
     const d: Matrix2 = new Matrix2(this.y3, 1, this.y4, 1);
-    const abcd = new Matrix2(
+    const abcd: Matrix2 = new Matrix2(
       a.determine(),
       b.determine(),
       c.determine(),
@@ -82,17 +81,37 @@ export default class LineIntersection {
     return abcd.determine() / this.efghDeterminant;
   }
 
-  private isOnSegment(): boolean {
-    const a: Matrix2 = new Matrix2(this.x1 - this.x3, this.x3 - this.x4, this.y1 - this.y3, this.y3 - this.y4);
-    const b: Matrix2 = new Matrix2(this.x1 - this.x2, this.x3 - this.x4, this.y1 - this.y2, this.y3 - this.y4);
-    const c: Matrix2 = new Matrix2(this.x1 - this.x2, this.x1 - this.x3, this.y1 - this.y2, this.y1 - this.y3);
-    const d: Matrix2 = new Matrix2(this.x1 - this.x2, this.x3 - this.x4, this.y1 - this.y2, this.y3 - this.y4);
+  private isOnSegments(): boolean {
+    const a: Matrix2 = new Matrix2(
+      this.x1 - this.x3,
+      this.x3 - this.x4,
+      this.y1 - this.y3,
+      this.y3 - this.y4
+    );
+    const b: Matrix2 = new Matrix2(
+      this.x1 - this.x2,
+      this.x3 - this.x4,
+      this.y1 - this.y2,
+      this.y3 - this.y4
+    );
+    const c: Matrix2 = new Matrix2(
+      this.x1 - this.x2,
+      this.x1 - this.x3,
+      this.y1 - this.y2,
+      this.y1 - this.y3
+    );
+    const d: Matrix2 = new Matrix2(
+      this.x1 - this.x2,
+      this.x3 - this.x4,
+      this.y1 - this.y2,
+      this.y3 - this.y4
+    );
 
     const divisionAB: number = a.determine() / b.determine();
     const divisionCD: number = -(c.determine() / d.determine());
 
-    const isOnSegmentA = divisionAB >= 0 && divisionAB <= 1;
-    const isOnSegmentB = divisionCD >= 0 && divisionCD <= 1;
+    const isOnSegmentA: boolean = divisionAB >= 0 && divisionAB <= 1;
+    const isOnSegmentB: boolean = divisionCD >= 0 && divisionCD <= 1;
 
     return isOnSegmentA && isOnSegmentB;
   }
