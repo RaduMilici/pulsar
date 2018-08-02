@@ -2,7 +2,7 @@ import NavigatorTile from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import row from '../interfaces/row';
 import Grid from './Grid';
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import uniqueID from '../util/uniqueID';
 import id from '../interfaces/id';
 import { contains } from '../util/id';

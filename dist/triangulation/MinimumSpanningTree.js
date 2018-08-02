@@ -1,4 +1,4 @@
-import Line from './Line';
+import Line from '../common/Line';
 export default class MinimumSpanningTree {
     constructor({ lines }) {
         this.lines = [];

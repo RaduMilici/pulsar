@@ -1,13 +1,13 @@
-import Line from './Line';
+import Line from '../common/Line';
 import Triangulation from './Triangulation';
 export default class MinimumSpanningTree {
-    readonly lines: Line[];
-    private _nonMinSpanLines;
-    private uniqueLines;
-    private readonly triangulationLines;
-    constructor({ lines }: Triangulation);
-    readonly nonMinSpanLines: Line[];
-    start(): void;
-    private getLines;
+  readonly lines: Line[];
+  private _nonMinSpanLines;
+  private uniqueLines;
+  private readonly triangulationLines;
+  constructor({ lines }: Triangulation);
+  readonly nonMinSpanLines: Line[];
+  start(): void;
+  private getLines;
 }
 //# sourceMappingURL=MinimumSpanningTree.d.ts.map

@@ -1,5 +1,5 @@
 import point from '../interfaces/point';
-import DisjoinedSet from './DisjoinedSet';
+import DisjoinedSet from '../triangulation/DisjoinedSet';
 
 export default class Vector {
   set: DisjoinedSet;

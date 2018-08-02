@@ -1,5 +1,5 @@
 import NavigatorTile from './NavigatorTile';
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import { int } from '../util/random';
 import Obstacles from './Obstacles';
 const defaultSize = { width: 10, height: 10 };
