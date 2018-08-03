@@ -1,15 +1,17 @@
 import point from '../interfaces/point';
 import DisjoinedSet from '../triangulation/DisjoinedSet';
+import QuadTree from '../quadtree/QuadTree';
 
 export default class Vector {
   set: DisjoinedSet;
+  quadTree: QuadTree;
   x: number;
   y: number;
   private floatPrecision: number = 2;
 
   constructor({ x, y }: point = { x: 0, y: 0 }) {
-    this.x = x;
-    this.y = y;
+    this.x = Number(x.toFixed(this.floatPrecision));
+    this.y = Number(y.toFixed(this.floatPrecision));
   }
 
   clone(): Vector {
@@ -88,6 +90,13 @@ export default class Vector {
 
   equals(vector: Vector): boolean {
     return this.x === vector.x && this.y === vector.y;
+  }
+
+  midpoint(vector: Vector): Vector {
+    const x: number = (this.x + vector.x) / 2;
+    const y: number = (this.y + vector.y) / 2;
+
+    return new Vector({ x, y });
   }
 
   static RadToDeg(rad: number): number {

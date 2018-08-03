@@ -7,7 +7,7 @@ export default class Shape {
   readonly lines: Line[];
   readonly boundingBox: BoundingBox;
 
-  constructor(private points: Vector[]) {
+  constructor(public readonly points: Vector[]) {
     this.lines = Shape.makeLines(points);
     this.boundingBox = new BoundingBox(points);
   }

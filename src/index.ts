@@ -4,6 +4,8 @@ import NavigatorTile from './pathfinding/NavigatorTile';
 
 import Triangulation from './triangulation/Triangulation';
 
+import QuadTree from './quadtree/QuadTree';
+
 import { Vector, Line, Triangle, Shape } from './common';
 
 export {
@@ -15,4 +17,5 @@ export {
   Line,
   Triangle,
   Shape,
+  QuadTree
 };
