@@ -1,4 +1,4 @@
-import boundingBox from '../interfaces/boundingBox';
+import BoundingBox from '../common/BoundingBox';
 import Vector from '../common/Vector';
 import Shape from '../common/Shape';
 
@@ -9,5 +9,5 @@ export default class QuadTree {
   private containedPoints: Vector[] = [];
   private side: number;
 
-  constructor(private boundingBox: boundingBox) {}
+  constructor(private boundingBox: BoundingBox) {}
 }

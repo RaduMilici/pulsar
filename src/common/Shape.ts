@@ -1,11 +1,15 @@
 import Vector from './Vector';
 import Line from './Line';
+import BoundingBox from './BoundingBox';
+import { isOdd } from '../util/number';
 
 export default class Shape {
   readonly lines: Line[];
+  readonly boundingBox: BoundingBox;
 
   constructor(private points: Vector[]) {
     this.lines = Shape.makeLines(points);
+    this.boundingBox = new BoundingBox(points);
   }
 
   containsPoint(point: Vector): boolean {
@@ -22,7 +26,7 @@ export default class Shape {
       }
     });
 
-    return Math.abs(intersects % 2) === 1;
+    return isOdd(intersects);
   }
 
   private static makeLines(points: Vector[]): Line[] {
