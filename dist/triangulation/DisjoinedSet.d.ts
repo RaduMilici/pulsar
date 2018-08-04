@@ -1,5 +1,5 @@
 import id from '../interfaces/id';
-import Vector from './Vector';
+import Vector from '../common/Vector';
 export default class DisjoinedSet implements id {
     id: number;
     readonly points: Vector[];

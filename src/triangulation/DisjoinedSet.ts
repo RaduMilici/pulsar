@@ -1,6 +1,6 @@
 import id from '../interfaces/id';
 import uniqueId from '../util/uniqueID';
-import Vector from './Vector';
+import Vector from '../common/Vector';
 
 export default class DisjoinedSet implements id {
   id: number = uniqueId();

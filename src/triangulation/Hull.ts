@@ -1,7 +1,7 @@
-import Vector from './Vector';
-import Line from './Line';
+import Vector from '../common/Vector';
+import Line from '../common/Line';
 import Triangulation from './Triangulation';
-import Triangle from './Triangle';
+import Triangle from '../common/Triangle';
 
 export default class Hull {
   readonly lines: Line[] = [];

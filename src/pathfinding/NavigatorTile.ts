@@ -1,7 +1,7 @@
 import id from '../interfaces/id';
 import { contains } from '../util/id';
 import uniqueId from '../util/uniqueID';
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
 

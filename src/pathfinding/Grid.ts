@@ -1,6 +1,6 @@
 import NavigatorTile from './NavigatorTile';
 import size from '../interfaces/size';
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import row from '../interfaces/row';
 import { int } from '../util/random';
 import Obstacles from './Obstacles';

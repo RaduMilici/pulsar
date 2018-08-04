@@ -1,4 +1,4 @@
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import uniqueID from '../util/uniqueID';
 import { contains } from '../util/id';
 export default class Navigator {

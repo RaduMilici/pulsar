@@ -2,7 +2,8 @@ import Vector from './Vector';
 import id from '../interfaces/id';
 import uniqueId from '../util/uniqueID';
 import Triangle from './Triangle';
-import DisjoinedSet from './DisjoinedSet';
+import DisjoinedSet from '../triangulation/DisjoinedSet';
+import LineIntersection from './LineIntersection';
 
 export default class Line implements id {
   id: number = uniqueId();
@@ -15,6 +16,10 @@ export default class Line implements id {
     return this.a.sub(this.b).magnitude();
   }
 
+  get midpoint(): Vector {
+    return this.a.midpoint(this.b);
+  }
+
   clone(): Line {
     return new Line(this.a, this.b);
   }
@@ -25,6 +30,14 @@ export default class Line implements id {
     const equalsReverse: boolean =
       this.a.equals(line.b) && this.b.equals(line.a);
     return equalsNormal || equalsReverse;
+  }
+
+  intersects(line: Line): boolean {
+    return new LineIntersection(this, line).intersects;
+  }
+
+  intersectionPoint(line: Line): Vector {
+    return new LineIntersection(this, line).point;
   }
 
   makeDisjoinedSets(): void {

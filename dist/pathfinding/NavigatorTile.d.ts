@@ -1,5 +1,5 @@
 import id from '../interfaces/id';
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
 export default class NavigatorTile implements id {

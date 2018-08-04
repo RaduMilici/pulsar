@@ -1,6 +1,6 @@
 import NavigatorTile from './NavigatorTile';
 import size from '../interfaces/size';
-import Vector from '../triangulation/Vector';
+import Vector from '../common/Vector';
 import row from '../interfaces/row';
 import Obstacles from './Obstacles';
 export default class Grid {
