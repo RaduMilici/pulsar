@@ -3,9 +3,10 @@ import Shape from '../common/Shape';
 
 export default class QuadTree {
   children: QuadTree[] = [];
+  containedPoints: Vector[] = [];
+
   private parent: QuadTree;
   private capacity: number = 1;
-  private containedPoints: Vector[] = [];
 
   constructor(public shape: Shape, private points: Vector[]) {
     this.start(points);

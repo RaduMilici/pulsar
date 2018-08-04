@@ -4,10 +4,18 @@ import limits from '../interfaces/limits';
 import { immutableObjectSort } from '../util/sort';
 
 export default class BoundingBox {
+  // points
   topLeft: Vector;
   topRight: Vector;
   bottomRight: Vector;
   bottomLeft: Vector;
+
+  // lines
+  private top: Line;
+  private right: Line;
+  private bottom: Line;
+  private left: Line;
+
   readonly lines: Line[];
   readonly limits: limits;
 
@@ -19,6 +27,10 @@ export default class BoundingBox {
 
   get midpoints(): limits {
     return this.limits;
+  }
+
+  get area(): number {
+    return this.topRight.x - this.topLeft.x;
   }
 
   private findCorners(): void {
