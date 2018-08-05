@@ -6,8 +6,7 @@ export default class Clock {
   private readonly timeFunction: any;
 
   constructor() {
-    this.timeFunction =
-      typeof performance === 'undefined' ? Date : performance;
+    this.timeFunction = typeof performance === 'undefined' ? Date : performance;
   }
 
   start(): void {

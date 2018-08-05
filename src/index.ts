@@ -20,5 +20,5 @@ export {
   Updater,
   Entity,
   Component,
-  tickData
+  tickData,
 };

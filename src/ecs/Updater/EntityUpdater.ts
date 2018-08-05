@@ -10,17 +10,20 @@ export default class EntityUpdater {
 
   add(entity: Entity): updaterReport[] {
     entity.updater = this.updater;
-    const callback: componentCallback = (component) => this.updater.addComponent(component);
+    const callback: componentCallback = component =>
+      this.updater.addComponent(component);
     return this.loopComponents(entity.components, callback);
   }
 
   remove({ components }: Entity): updaterReport[] {
-    const callback: componentCallback = (component) => this.updater.removeComponent(component);
+    const callback: componentCallback = component =>
+      this.updater.removeComponent(component);
     return this.loopComponents(components, callback);
   }
 
   toggle({ components }: Entity): updaterReport[] {
-    const callback: componentCallback = (component) => this.updater.toggleComponent(component);
+    const callback: componentCallback = component =>
+      this.updater.toggleComponent(component);
     return this.loopComponents(components, callback);
   }
 
