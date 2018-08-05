@@ -5,5 +5,6 @@ import row from './row';
 import size from './size';
 import tickData from './tickData';
 import Update from './update';
+import updaterReport from './updaterReport';
 
-export { id, limits, point, row, size, tickData, Update };
+export { id, limits, point, row, size, tickData, Update, updaterReport };

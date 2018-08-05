@@ -1,4 +1,5 @@
-import Updater from './Updater';
+import Updater from './Updater/Updater';
+import Entity from './Entity';
 import Component from './Component';
 
-export { Updater, Component };
+export { Updater, Entity, Component };
