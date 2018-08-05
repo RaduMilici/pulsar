@@ -1,8 +1,7 @@
-import Grid from './pathfinding/Grid';
-import Navigator from './pathfinding/Navigator';
-import NavigatorTile from './pathfinding/NavigatorTile';
+import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import Triangulation from './triangulation/Triangulation';
 import QuadTree from './quadtree/QuadTree';
 import { Vector, Line, Triangle, Shape } from './common';
-export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree };
+import { uniqueId } from './util';
+export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree, uniqueId };
 //# sourceMappingURL=index.d.ts.map
