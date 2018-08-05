@@ -1,12 +1,8 @@
-import Grid from './pathfinding/Grid';
-import Navigator from './pathfinding/Navigator';
-import NavigatorTile from './pathfinding/NavigatorTile';
-
+import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import Triangulation from './triangulation/Triangulation';
-
 import QuadTree from './quadtree/QuadTree';
-
 import { Vector, Line, Triangle, Shape } from './common';
+import { uniqueId } from './util';
 
 export {
   Grid,
@@ -17,5 +13,6 @@ export {
   Line,
   Triangle,
   Shape,
-  QuadTree
+  QuadTree,
+  uniqueId
 };
