@@ -4,5 +4,16 @@ const contains = (array, element) => {
 const findIndex = (array, find) => {
     return array.findIndex((element) => element.id === find.id);
 };
-export { contains, findIndex };
+const removeFromArray = (array, find) => {
+    const index = findIndex(array, find);
+    return removeFromArrayAtIndex(array, index);
+};
+const removeFromArrayAtIndex = (array, index) => {
+    if (index >= 0 && index < array.length) {
+        array.slice(index, 1);
+        return true;
+    }
+    return false;
+};
+export { contains, findIndex, removeFromArray, removeFromArrayAtIndex };
 //# sourceMappingURL=id.js.map

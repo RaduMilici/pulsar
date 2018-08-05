@@ -2,6 +2,7 @@ import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import Triangulation from './triangulation/Triangulation';
 import QuadTree from './quadtree/QuadTree';
 import { Vector, Line, Triangle, Shape } from './common';
+import { Updater } from './ecs';
 import { uniqueId } from './util';
 
 export {
@@ -14,5 +15,6 @@ export {
   Triangle,
   Shape,
   QuadTree,
-  uniqueId
+  uniqueId,
+  Updater,
 };

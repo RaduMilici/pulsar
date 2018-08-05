@@ -30,9 +30,19 @@ export default class QuadTree {
   }
 
   divide(points: Vector[]): void {
-    const { topLeft, topRight, bottomLeft, bottomRight } = this.shape.boundingBox;
+    const {
+      topLeft,
+      topRight,
+      bottomLeft,
+      bottomRight,
+    } = this.shape.boundingBox;
     const { top, bottom, left, right } = this.shape.boundingBox.midpoints;
-    const centroid: Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
+    const centroid: Vector = Vector.FindPolyCentroid([
+      top,
+      bottom,
+      left,
+      right,
+    ]);
 
     const shape1: Shape = new Shape([topLeft, top, centroid, left]);
     const quad1: QuadTree = new QuadTree(shape1, points);
