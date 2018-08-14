@@ -1,6 +1,7 @@
 import point from '../interfaces/point';
 import DisjoinedSet from '../triangulation/DisjoinedSet';
 import QuadTree from '../quadtree/QuadTree';
+import { toFloat } from '../util';
 
 export default class Vector {
   set: DisjoinedSet;
@@ -10,8 +11,8 @@ export default class Vector {
   private floatPrecision: number = 2;
 
   constructor({ x, y }: point = { x: 0, y: 0 }) {
-    this.x = Number(x.toFixed(this.floatPrecision));
-    this.y = Number(y.toFixed(this.floatPrecision));
+    this.x = toFloat(x);
+    this.y = toFloat(y);
   }
 
   clone(): Vector {
@@ -22,7 +23,7 @@ export default class Vector {
     const x: number = this.x * this.x;
     const y: number = this.y * this.y;
     const magnitude: number = Math.sqrt(x + y);
-    return Number(magnitude.toFixed(this.floatPrecision));
+    return toFloat(magnitude);
   }
 
   dotProduct({ x, y }: Vector): number {
@@ -73,10 +74,15 @@ export default class Vector {
     return new Vector({ x, y });
   }
 
-  angle(vector: Vector): number {
-    const product: number = this.dotProduct(vector);
-    const cosAngle: number = product / (this.magnitude() * vector.magnitude());
-    return Vector.RadToDeg(Math.acos(cosAngle));
+  angleDeg(vector: Vector): number {
+    const angle: number = this.angle(vector);
+    const degAngle: number = Vector.RadToDeg(angle);
+    return toFloat(degAngle);
+  }
+
+  angleRad(vector: Vector): number {
+    const angle: number = this.angle(vector);
+    return toFloat(angle);
   }
 
   bisector(vector: Vector): Vector {
@@ -143,5 +149,11 @@ export default class Vector {
         ) !== -1
       );
     });
+  }
+
+  private angle(vector: Vector): number {
+    const product: number = this.dotProduct(vector);
+    const cosAngle: number = product / (this.magnitude() * vector.magnitude());
+    return Math.acos(cosAngle);
   }
 }
