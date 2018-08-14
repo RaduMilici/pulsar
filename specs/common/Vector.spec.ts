@@ -1,9 +1,9 @@
-import Vector from '../../src/common/Vector';
+import { Vector } from '../../src/common';
 import point from '../../src/interfaces/point';
 
 describe('Vector functionality', () => {
   it('set x and y with proper float accuracy', () => {
-    const { x, y }: point = new Vector({ x: 1.234, y: 3.210 });
+    const { x, y }: point = new Vector({ x: 1.234, y: 3.21 });
     expect({ x, y }).toEqual({ x: 1.23, y: 3.21 });
   });
 
@@ -64,12 +64,12 @@ describe('Vector functionality', () => {
   });
 
   it('calculates two new left and right perpendicular Vectors', () => {
-    type leftRight = { left: Vector, right: Vector };
+    type leftRight = { left: Vector; right: Vector };
     const a: Vector = new Vector({ x: 2, y: 3 });
     const perpendicular: leftRight = a.perpendicular();
     const correct: leftRight = {
       left: new Vector({ x: 3, y: -2 }),
-      right: new Vector({ x: -3, y: 2 })
+      right: new Vector({ x: -3, y: 2 }),
     };
     expect(perpendicular).toEqual(correct);
   });
@@ -95,5 +95,58 @@ describe('Vector functionality', () => {
     const angle: number = a.angleRad(b);
     const correct: number = 1.57;
     expect(angle).toEqual(correct);
+  });
+
+  it('calculates a new bisector Vector', () => {
+    const a: Vector = new Vector({ x: 0, y: 1 });
+    const b: Vector = new Vector({ x: 1, y: 0 });
+    const correct: Vector = new Vector({ x: 0.71, y: 0.71 });
+    const bisector: Vector = a.bisector(b);
+    expect(bisector).toEqual(correct);
+  });
+
+  it('checks equality to another Vector', () => {
+    const a: Vector = new Vector({ x: 0, y: 1 });
+    const b: Vector = new Vector({ x: 0, y: 1 });
+    const equals: boolean = a.equals(b);
+    expect(equals).toBe(true);
+  });
+
+  it('finds a midpoint to another Vector', () => {
+    const a: Vector = new Vector({ x: 1, y: 1 });
+    const b: Vector = new Vector({ x: 2, y: 2 });
+    const correct: Vector = new Vector({ x: 1.5, y: 1.5 });
+    const midpoint: Vector = a.midpoint(b);
+    expect(midpoint).toEqual(correct);
+  });
+
+  it('finds centroid', () => {
+    const a: Vector = new Vector({ x: 0, y: 0 });
+    const b: Vector = new Vector({ x: 0, y: 1 });
+    const c: Vector = new Vector({ x: 1, y: 1 });
+    const d: Vector = new Vector({ x: 1, y: 0 });
+    const correct: Vector = new Vector({ x: 0.5, y: 0.5 });
+    const centroid: Vector = Vector.FindPolyCentroid([a, b, c, d]);
+    expect(centroid).toEqual(correct);
+  });
+
+  it('arranges points counterclockwise', () => {
+    const a: Vector = new Vector({ x: 0, y: 0 });
+    const b: Vector = new Vector({ x: 0, y: 1 });
+    const c: Vector = new Vector({ x: 1, y: 1 });
+    const d: Vector = new Vector({ x: 1, y: 0 });
+    const correct: Vector[] = [a, d, c, b];
+    const ccw: Vector[] = Vector.ArrangePointsCCW([a, b, c, d]);
+    expect(ccw).toEqual(correct);
+  });
+
+  it('filters unique points from an array', () => {
+    const a: Vector = new Vector({ x: 0, y: 0 });
+    const b: Vector = new Vector({ x: 0, y: 0 });
+    const c: Vector = new Vector({ x: 1, y: 1 });
+    const d: Vector = new Vector({ x: 1, y: 1 });
+    const correct: Vector[] = [a, c];
+    const unique: Vector[] = Vector.UniqueFromArray([a, b, c, d]);
+    expect(unique).toEqual(correct);
   });
 });

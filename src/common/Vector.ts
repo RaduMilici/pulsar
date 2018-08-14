@@ -1,14 +1,13 @@
 import point from '../interfaces/point';
 import DisjoinedSet from '../triangulation/DisjoinedSet';
 import QuadTree from '../quadtree/QuadTree';
-import { toFloat } from '../util';
+import { toFloat, RadToDeg } from '../util';
 
 export default class Vector {
   set: DisjoinedSet;
   quadTree: QuadTree;
   x: number;
   y: number;
-  private floatPrecision: number = 2;
 
   constructor({ x, y }: point = { x: 0, y: 0 }) {
     this.x = toFloat(x);
@@ -76,7 +75,7 @@ export default class Vector {
 
   angleDeg(vector: Vector): number {
     const angle: number = this.angle(vector);
-    const degAngle: number = Vector.RadToDeg(angle);
+    const degAngle: number = RadToDeg(angle);
     return toFloat(degAngle);
   }
 
@@ -103,14 +102,6 @@ export default class Vector {
     const y: number = (this.y + vector.y) / 2;
 
     return new Vector({ x, y });
-  }
-
-  static RadToDeg(rad: number): number {
-    return rad * (180 / Math.PI);
-  }
-
-  static DegToRad(deg: number): number {
-    return deg * (Math.PI / 180);
   }
 
   static FindPolyCentroid(points: Vector[]): Vector {
@@ -142,13 +133,15 @@ export default class Vector {
   }
 
   static UniqueFromArray(points: Vector[]): Vector[] {
-    return points.filter((pointFilter: Vector) => {
+    const isUnique = (vector: Vector, index: number, array: Vector[]) => {
       return (
-        points.findIndex((pointIndex: Vector) =>
-          pointFilter.equals(pointIndex)
-        ) !== -1
+        array.findIndex((vectorIndex: Vector) => {
+          return vector.equals(vectorIndex);
+        }) === index
       );
-    });
+    };
+
+    return points.filter(isUnique);
   }
 
   private angle(vector: Vector): number {
