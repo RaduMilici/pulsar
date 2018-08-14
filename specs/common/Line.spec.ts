@@ -78,6 +78,7 @@ describe('Vector functionality', () => {
   xit('finds unique lines from an array of Triangles', () => {
     const triangle1: Triangle = new Triangle(v1, v2, v3);
     const triangle2: Triangle = new Triangle(v2, v3, v4);
+    const triangle3: Triangle = new Triangle(v2, v3, v4);
 
     const unique: Line[] = Line.GetUniqueLines([triangle1, triangle2]);
 
