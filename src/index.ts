@@ -14,5 +14,5 @@ export {
   Triangle,
   Shape,
   QuadTree,
-  uniqueId
+  uniqueId,
 };

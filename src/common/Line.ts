@@ -7,10 +7,7 @@ import LineIntersection from './LineIntersection';
 
 export default class Line implements id {
   id: number = uniqueId();
-  static AllLines: Line[] = [];
-  constructor(readonly a: Vector, readonly b: Vector) {
-    Line.AllLines.push(this);
-  }
+  constructor(readonly a: Vector, readonly b: Vector) {}
 
   get length(): number {
     return this.a.sub(this.b).magnitude();
