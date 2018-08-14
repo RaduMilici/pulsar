@@ -5,5 +5,5 @@ import { Vector, Line, Triangle, Shape } from './common';
 import { Updater, Entity, Component } from './ecs';
 import { uniqueId } from './util';
 import { tickData } from './interfaces';
-export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree, uniqueId, Updater, Entity, Component, tickData };
+export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree, uniqueId, Updater, Entity, Component, tickData, };
 //# sourceMappingURL=index.d.ts.map
