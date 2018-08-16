@@ -4,6 +4,7 @@ import Shape from './Shape';
 import Triangle from './Triangle';
 import Vector from './Vector';
 import BoundingBox from './BoundingBox';
+import LineIntersection from './LineIntersection';
 
 export {
   Line,
@@ -14,4 +15,5 @@ export {
   Triangle,
   Vector,
   BoundingBox,
+  LineIntersection,
 };
