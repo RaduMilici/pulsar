@@ -1,1 +1,0 @@
-{"version":3,"file":"update.d.ts","sourceRoot":"","sources":["../../src/interfaces/update.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,MAAM,CAAC;AACtB,OAAO,QAAQ,MAAM,YAAY,CAAC;AAElC,MAAM,CAAC,OAAO,WAAW,MAAO,SAAQ,EAAE;IACxC,MAAM,CAAC,QAAQ,EAAE,QAAQ,GAAG,IAAI,CAAC;CAClC"}

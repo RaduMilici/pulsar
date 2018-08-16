@@ -5,5 +5,15 @@ import Triangle from './Triangle';
 import Vector from './Vector';
 import BoundingBox from './BoundingBox';
 import LineIntersection from './LineIntersection';
-export { Line, Matrix2, Matrix3, Matrix4, Shape, Triangle, Vector, BoundingBox, LineIntersection, };
+export {
+  Line,
+  Matrix2,
+  Matrix3,
+  Matrix4,
+  Shape,
+  Triangle,
+  Vector,
+  BoundingBox,
+  LineIntersection,
+};
 //# sourceMappingURL=index.d.ts.map

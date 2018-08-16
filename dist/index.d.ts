@@ -3,5 +3,16 @@ import Triangulation from './triangulation/Triangulation';
 import QuadTree from './quadtree/QuadTree';
 import { Vector, Line, Triangle, Shape } from './common';
 import { uniqueId } from './util';
-export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree, uniqueId, };
+export {
+  Grid,
+  Navigator,
+  NavigatorTile,
+  Triangulation,
+  Vector,
+  Line,
+  Triangle,
+  Shape,
+  QuadTree,
+  uniqueId,
+};
 //# sourceMappingURL=index.d.ts.map

@@ -3,6 +3,7 @@ import Triangulation from './triangulation/Triangulation';
 import QuadTree from './quadtree/QuadTree';
 import { Vector, Line, Triangle, Shape } from './common';
 import { uniqueId } from './util';
+import { Entity, Component, Updater } from './ecs';
 
 export {
   Grid,
@@ -15,4 +16,7 @@ export {
   Shape,
   QuadTree,
   uniqueId,
+  Entity,
+  Component,
+  Updater,
 };
