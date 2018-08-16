@@ -5,5 +5,6 @@ import Triangle from './Triangle';
 import Vector from './Vector';
 import BoundingBox from './BoundingBox';
 import LineIntersection from './LineIntersection';
-export { Line, Matrix2, Matrix3, Matrix4, Shape, Triangle, Vector, BoundingBox, LineIntersection, };
+import Clock from './Clock';
+export { Line, Matrix2, Matrix3, Matrix4, Shape, Triangle, Vector, BoundingBox, LineIntersection, Clock };
 //# sourceMappingURL=index.js.map
