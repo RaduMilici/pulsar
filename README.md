@@ -6,6 +6,8 @@
     />
 </p>
 
+[![Build Status](https://travis-ci.org/RaduMilici/pulsar.svg?branch=master)](https://travis-ci.org/RaduMilici/pulsar)
+
 <p align="center">pulsar-pathfinding is a TypeScript implementation of the Greedy Best-First 
 pathfinding algorithm.</p>
 

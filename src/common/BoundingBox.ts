@@ -3,6 +3,11 @@ import Line from './Line';
 import limits from '../interfaces/limits';
 import { immutableObjectSort } from '../util/sort';
 
+/*
+* !WARNING!
+* This class regards its point of origin at the top left corner.
+* */
+
 export default class BoundingBox {
   // points
   topLeft: Vector;
@@ -16,13 +21,12 @@ export default class BoundingBox {
   private bottom: Line;
   private left: Line;
 
-  readonly lines: Line[];
-  readonly limits: limits;
+  limits: limits;
 
   constructor(private readonly points: Vector[]) {
     this.findCorners();
-    this.lines = this.makeLines();
-    this.limits = this.getLimits();
+    this.makeLines();
+    this.findLimits();
   }
 
   get midpoints(): limits {
@@ -30,7 +34,11 @@ export default class BoundingBox {
   }
 
   get area(): number {
-    return this.topRight.x - this.topLeft.x;
+    return this.top.length * this.right.length;
+  }
+
+  get lines(): Line[] {
+    return [this.top, this.right, this.bottom, this.left];
   }
 
   private findCorners(): void {
@@ -48,21 +56,18 @@ export default class BoundingBox {
     this.bottomLeft = new Vector({ x: firstX.x, y: lastY.y });
   }
 
-  private makeLines(): Line[] {
-    const top: Line = new Line(this.topLeft, this.topRight);
-    const right: Line = new Line(this.topRight, this.bottomRight);
-    const bottom: Line = new Line(this.bottomRight, this.bottomLeft);
-    const left: Line = new Line(this.bottomLeft, this.topLeft);
-
-    return [top, right, bottom, left];
+  private makeLines(): void {
+    this.top = new Line(this.topLeft, this.topRight);
+    this.right = new Line(this.topRight, this.bottomRight);
+    this.bottom = new Line(this.bottomRight, this.bottomLeft);
+    this.left = new Line(this.bottomLeft, this.topLeft);
   }
 
-  private getLimits(): limits {
+  private findLimits(): void {
     const top: Vector = this.topLeft.midpoint(this.topRight);
     const bottom: Vector = this.bottomLeft.midpoint(this.bottomRight);
     const left: Vector = this.topLeft.midpoint(this.bottomLeft);
     const right: Vector = this.topRight.midpoint(this.bottomRight);
-
-    return { top, bottom, left, right };
+    this.limits = { top, bottom, left, right };
   }
 }
