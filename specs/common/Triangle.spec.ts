@@ -3,7 +3,7 @@ import { v00, v11, v22, v33 } from './fixtures/Vectors';
 import { ab, bc, ca } from './fixtures/Lines';
 import Line from '../../src/common/Line';
 
-describe('Triangle', () => {
+describe('common / Triangle', () => {
   it('stores ab, bc and ca lines', () => {
     const triangle: Triangle = new Triangle(v00, v11, v22);
 

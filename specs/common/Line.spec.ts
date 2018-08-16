@@ -2,7 +2,7 @@ import { Line, Vector, Triangle } from '../../src/common';
 import DisjoinedSet from '../../src/triangulation/DisjoinedSet';
 import { v00, v11, v22, v33 } from './fixtures/Vectors';
 
-describe('Line', () => {
+describe('common / Line', () => {
   it('set a and b points', () => {
     const line: Line = new Line(v00, v11);
 
