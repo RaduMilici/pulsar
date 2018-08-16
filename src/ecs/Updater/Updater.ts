@@ -2,7 +2,7 @@ import Component from '../Component';
 import Entity from '../Entity';
 import EntityUpdater from './EntityUpdater';
 import { tickData } from '../../interfaces/index';
-import { Clock } from '../../common/index';
+import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util/id';
 import { updaterReport } from '../../interfaces';
 

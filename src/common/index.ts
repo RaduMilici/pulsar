@@ -5,6 +5,7 @@ import Triangle from './Triangle';
 import Vector from './Vector';
 import BoundingBox from './BoundingBox';
 import LineIntersection from './LineIntersection';
+import Clock from './Clock';
 
 export {
   Line,
@@ -16,4 +17,5 @@ export {
   Vector,
   BoundingBox,
   LineIntersection,
+  Clock
 };
