@@ -34,7 +34,7 @@ export default class BoundingBox {
   }
 
   get area(): number {
-    return this.top.length * this.right.length
+    return this.top.length * this.right.length;
   }
 
   get lines(): Line[] {

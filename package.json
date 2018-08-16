@@ -12,7 +12,8 @@
     "build": "tsc",
     "build-watch": "tsc --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
-    "test": "jest --maxWorkers=4"
+    "test": "jest --maxWorkers=4",
+    "test-watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",

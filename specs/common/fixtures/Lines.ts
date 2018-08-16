@@ -1,6 +1,6 @@
 import Line from '../../../src/common/Line';
 import { v00, v01, v10, v11, v22 } from './Vectors';
-import { Vector } from "../../../src/common";
+import { Vector } from '../../../src/common';
 
 const makeLine = (a: Vector, b: Vector): Line => {
   // id is irrelevant in specs and tampers with assertions
