@@ -17,5 +17,5 @@ export {
   Vector,
   BoundingBox,
   LineIntersection,
-  Clock
+  Clock,
 };
