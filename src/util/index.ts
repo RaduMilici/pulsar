@@ -4,6 +4,7 @@ import { RadToDeg, DegToRad } from './radDeg';
 import { cloneObject, cloneObjectArray } from './clone';
 import { contains, findIndex } from './id';
 import { isOdd, isEven, isNumeric } from './number';
+import { sort, immutableObjectSort } from "./sort";
 
 export {
   uniqueId,
@@ -17,4 +18,6 @@ export {
   isOdd,
   isEven,
   isNumeric,
+  sort,
+  immutableObjectSort
 };
