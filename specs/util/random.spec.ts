@@ -1,7 +1,7 @@
-import { int, float } from "../../src/util/random";
+import { int, float } from '../../src/util/random';
 
-describe("util / random", () => {
-  it("should generate a random int", () => {
+describe('util / random', () => {
+  it('should generate a random int', () => {
     const n: number = int(0, 10);
 
     expect(n).toBeGreaterThanOrEqual(0);
@@ -9,7 +9,7 @@ describe("util / random", () => {
     expect(Number.isInteger(n)).toBe(true);
   });
 
-  it("should generate a random float", () => {
+  it('should generate a random float', () => {
     const n: number = float(0, 10);
 
     expect(n).toBeGreaterThanOrEqual(0);
