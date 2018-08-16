@@ -3,7 +3,7 @@ import { v00, v01, v11, v10, v33 } from './fixtures/Vectors';
 import { ad, de, ef, fa } from './fixtures/Lines';
 import limits from '../../src/interfaces/limits';
 
-describe('BoundingBox', () => {
+describe('common / BoundingBox', () => {
   it('should find its four corners', () => {
     const box: BoundingBox = new BoundingBox([v00, v01, v11, v10]);
 

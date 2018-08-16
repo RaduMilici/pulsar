@@ -1,7 +1,7 @@
 import { LineIntersection, Vector } from '../../src/common';
 import { ab, fd } from './fixtures/Lines';
 
-describe('LineIntersection', () => {
+describe('common / LineIntersection', () => {
   it('should know if two lines intersect', () => {
     const intersection: LineIntersection = new LineIntersection(ab, fd);
 

@@ -2,7 +2,7 @@ import { Shape, Vector, Line } from '../../src/common';
 import { v00, v01, v03, v11, v10, v30, v33 } from './fixtures/Vectors';
 import { ad, de, ef, af, ae, ed, fa } from './fixtures/Lines';
 
-describe('Shape', () => {
+describe('common / Shape', () => {
   it('should find its counterclockwise lines', () => {
     const shape: Shape = new Shape([v00, v01, v11, v10]);
 
