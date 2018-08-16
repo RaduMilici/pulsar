@@ -45,7 +45,7 @@ export default class Triangle implements id {
       ca.equals(triangle.lines.bc) ||
       ca.equals(triangle.lines.ca);
 
-    return sameAB || sameBC || sameCA;
+    return sameAB && sameBC && sameCA;
   }
 
   isPointInCircumcircle(point: Vector): boolean {
