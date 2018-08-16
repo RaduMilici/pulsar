@@ -33,7 +33,7 @@ export default class Triangle {
         const sameCA = ca.equals(triangle.lines.ab) ||
             ca.equals(triangle.lines.bc) ||
             ca.equals(triangle.lines.ca);
-        return sameAB || sameBC || sameCA;
+        return sameAB && sameBC && sameCA;
     }
     isPointInCircumcircle(point) {
         const ax = this.a.x;

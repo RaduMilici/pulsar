@@ -7,7 +7,6 @@ export default class Line {
         this.a = a;
         this.b = b;
         this.id = uniqueId();
-        Line.AllLines.push(this);
     }
     get length() {
         return this.a.sub(this.b).magnitude();
@@ -61,5 +60,4 @@ export default class Line {
         return clone;
     }
 }
-Line.AllLines = [];
 //# sourceMappingURL=Line.js.map

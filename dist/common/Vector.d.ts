@@ -6,7 +6,6 @@ export default class Vector {
     quadTree: QuadTree;
     x: number;
     y: number;
-    private floatPrecision;
     constructor({ x, y }?: point);
     clone(): Vector;
     magnitude(): number;
@@ -20,14 +19,14 @@ export default class Vector {
         right: Vector;
     };
     scale(length: number): Vector;
-    angle(vector: Vector): number;
+    angleDeg(vector: Vector): number;
+    angleRad(vector: Vector): number;
     bisector(vector: Vector): Vector;
     equals(vector: Vector): boolean;
     midpoint(vector: Vector): Vector;
-    static RadToDeg(rad: number): number;
-    static DegToRad(deg: number): number;
     static FindPolyCentroid(points: Vector[]): Vector;
     static ArrangePointsCCW(points: Vector[]): Vector[];
     static UniqueFromArray(points: Vector[]): Vector[];
+    private angle;
 }
 //# sourceMappingURL=Vector.d.ts.map

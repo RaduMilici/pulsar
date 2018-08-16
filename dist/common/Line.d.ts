@@ -5,7 +5,6 @@ export default class Line implements id {
     readonly a: Vector;
     readonly b: Vector;
     id: number;
-    static AllLines: Line[];
     constructor(a: Vector, b: Vector);
     readonly length: number;
     readonly midpoint: Vector;

@@ -11,13 +11,13 @@ export default class BoundingBox {
     private right;
     private bottom;
     private left;
-    readonly lines: Line[];
-    readonly limits: limits;
+    limits: limits;
     constructor(points: Vector[]);
     readonly midpoints: limits;
     readonly area: number;
+    readonly lines: Line[];
     private findCorners;
     private makeLines;
-    private getLimits;
+    private findLimits;
 }
 //# sourceMappingURL=BoundingBox.d.ts.map

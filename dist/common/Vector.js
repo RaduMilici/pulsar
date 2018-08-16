@@ -1,8 +1,8 @@
+import { toFloat, RadToDeg } from '../util';
 export default class Vector {
     constructor({ x, y } = { x: 0, y: 0 }) {
-        this.floatPrecision = 2;
-        this.x = Number(x.toFixed(this.floatPrecision));
-        this.y = Number(y.toFixed(this.floatPrecision));
+        this.x = toFloat(x);
+        this.y = toFloat(y);
     }
     clone() {
         return new Vector({ x: this.x, y: this.y });
@@ -11,7 +11,7 @@ export default class Vector {
         const x = this.x * this.x;
         const y = this.y * this.y;
         const magnitude = Math.sqrt(x + y);
-        return Number(magnitude.toFixed(this.floatPrecision));
+        return toFloat(magnitude);
     }
     dotProduct({ x, y }) {
         return this.x * x + this.y * y;
@@ -48,10 +48,14 @@ export default class Vector {
         const y = normalized.y * length;
         return new Vector({ x, y });
     }
-    angle(vector) {
-        const product = this.dotProduct(vector);
-        const cosAngle = product / (this.magnitude() * vector.magnitude());
-        return Vector.RadToDeg(Math.acos(cosAngle));
+    angleDeg(vector) {
+        const angle = this.angle(vector);
+        const degAngle = RadToDeg(angle);
+        return toFloat(degAngle);
+    }
+    angleRad(vector) {
+        const angle = this.angle(vector);
+        return toFloat(angle);
     }
     bisector(vector) {
         const normalized = this.normalize();
@@ -67,12 +71,6 @@ export default class Vector {
         const x = (this.x + vector.x) / 2;
         const y = (this.y + vector.y) / 2;
         return new Vector({ x, y });
-    }
-    static RadToDeg(rad) {
-        return rad * (180 / Math.PI);
-    }
-    static DegToRad(deg) {
-        return deg * (Math.PI / 180);
     }
     static FindPolyCentroid(points) {
         let x = 0;
@@ -96,9 +94,17 @@ export default class Vector {
         return clone;
     }
     static UniqueFromArray(points) {
-        return points.filter((pointFilter) => {
-            return (points.findIndex((pointIndex) => pointFilter.equals(pointIndex)) !== -1);
-        });
+        const isUnique = (vector, index, array) => {
+            return (array.findIndex((vectorIndex) => {
+                return vector.equals(vectorIndex);
+            }) === index);
+        };
+        return points.filter(isUnique);
+    }
+    angle(vector) {
+        const product = this.dotProduct(vector);
+        const cosAngle = product / (this.magnitude() * vector.magnitude());
+        return Math.acos(cosAngle);
     }
 }
 //# sourceMappingURL=Vector.js.map

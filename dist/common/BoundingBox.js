@@ -1,18 +1,25 @@
 import Vector from './Vector';
 import Line from './Line';
 import { immutableObjectSort } from '../util/sort';
+/*
+* !WARNING!
+* This class regards its point of origin at the top left corner.
+* */
 export default class BoundingBox {
     constructor(points) {
         this.points = points;
         this.findCorners();
-        this.lines = this.makeLines();
-        this.limits = this.getLimits();
+        this.makeLines();
+        this.findLimits();
     }
     get midpoints() {
         return this.limits;
     }
     get area() {
-        return this.topRight.x - this.topLeft.x;
+        return this.top.length * this.right.length;
+    }
+    get lines() {
+        return [this.top, this.right, this.bottom, this.left];
     }
     findCorners() {
         const sortedX = immutableObjectSort(this.points, 'x');
@@ -27,18 +34,17 @@ export default class BoundingBox {
         this.bottomLeft = new Vector({ x: firstX.x, y: lastY.y });
     }
     makeLines() {
-        const top = new Line(this.topLeft, this.topRight);
-        const right = new Line(this.topRight, this.bottomRight);
-        const bottom = new Line(this.bottomRight, this.bottomLeft);
-        const left = new Line(this.bottomLeft, this.topLeft);
-        return [top, right, bottom, left];
+        this.top = new Line(this.topLeft, this.topRight);
+        this.right = new Line(this.topRight, this.bottomRight);
+        this.bottom = new Line(this.bottomRight, this.bottomLeft);
+        this.left = new Line(this.bottomLeft, this.topLeft);
     }
-    getLimits() {
+    findLimits() {
         const top = this.topLeft.midpoint(this.topRight);
         const bottom = this.bottomLeft.midpoint(this.bottomRight);
         const left = this.topLeft.midpoint(this.bottomLeft);
         const right = this.topRight.midpoint(this.bottomRight);
-        return { top, bottom, left, right };
+        this.limits = { top, bottom, left, right };
     }
 }
 //# sourceMappingURL=BoundingBox.js.map
