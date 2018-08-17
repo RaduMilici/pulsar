@@ -70,9 +70,7 @@ export default class Navigator implements id {
     for (let i = 0; i < this.neighborsCount; i++) {
       const x: number = tile.position.x + Navigator.getColOffset(i);
       const y: number = tile.position.y + this.getRowOffset(i);
-      const exploring: NavigatorTile | null = this.grid.findTile(
-        new Vector({ x, y })
-      );
+      const exploring: NavigatorTile | null = this.grid.findTile({ x, y });
 
       if (!exploring) {
         continue;

@@ -1,7 +1,7 @@
-import NavigatorTile from './NavigatorTile';
-import Vector from '../common/Vector';
-import { int } from '../util/random';
+import { Vector } from '../common';
 import Obstacles from './Obstacles';
+import { int } from '../util/random';
+import NavigatorTile from './NavigatorTile';
 const defaultSize = { width: 10, height: 10 };
 export default class Grid {
     constructor(size = defaultSize) {
@@ -15,7 +15,7 @@ export default class Grid {
     randomTile() {
         const x = int(0, this.size.width - 1);
         const y = int(0, this.size.height - 1);
-        return this.findTile(new Vector({ x, y }));
+        return this.findTile({ x, y });
     }
     /** Returns a random non-obstacle tile, if it exists. */
     randomFreeTile() {

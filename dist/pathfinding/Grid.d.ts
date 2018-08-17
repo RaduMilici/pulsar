@@ -1,8 +1,6 @@
-import NavigatorTile from './NavigatorTile';
-import size from '../interfaces/size';
-import Vector from '../common/Vector';
-import row from '../interfaces/row';
 import Obstacles from './Obstacles';
+import NavigatorTile from './NavigatorTile';
+import { row, point, size } from '../interfaces';
 export default class Grid {
     private size;
     readonly tiles: NavigatorTile[];
@@ -14,7 +12,7 @@ export default class Grid {
     /** Returns a random non-obstacle tile, if it exists. */
     randomFreeTile(): NavigatorTile | null;
     /** Returns a tile at the specified coordinates. */
-    findTile({ x, y }: Vector): NavigatorTile | null;
+    findTile({ x, y }: point): NavigatorTile | null;
     private makeGrid;
 }
 //# sourceMappingURL=Grid.d.ts.map

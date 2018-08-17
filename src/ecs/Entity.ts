@@ -4,12 +4,8 @@ import { id } from '../interfaces';
 import { uniqueId } from '../util';
 
 export default class Entity implements id {
-  id: number;
+  id: number = uniqueId();
   name: string;
   updater: Updater;
   readonly components: Component[] = [];
-
-  constructor() {
-    this.id = uniqueId();
-  }
 }

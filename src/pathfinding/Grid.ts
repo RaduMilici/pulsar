@@ -1,9 +1,8 @@
-import NavigatorTile from './NavigatorTile';
-import size from '../interfaces/size';
-import Vector from '../common/Vector';
-import row from '../interfaces/row';
-import { int } from '../util/random';
+import { Vector } from '../common';
 import Obstacles from './Obstacles';
+import { int } from '../util/random';
+import NavigatorTile from './NavigatorTile';
+import { row, point, size } from '../interfaces';
 
 const defaultSize: size = { width: 10, height: 10 };
 
@@ -21,7 +20,7 @@ export default class Grid {
     const x = int(0, this.size.width - 1);
     const y = int(0, this.size.height - 1);
 
-    return this.findTile(new Vector({ x, y }));
+    return this.findTile({ x, y });
   }
 
   /** Returns a random non-obstacle tile, if it exists. */
@@ -30,7 +29,7 @@ export default class Grid {
   }
 
   /** Returns a tile at the specified coordinates. */
-  findTile({ x, y }: Vector): NavigatorTile | null {
+  findTile({ x, y }: point): NavigatorTile | null {
     const row: row = this.rows[y];
     return row && row.length > x ? row[x] : null;
   }
@@ -40,8 +39,7 @@ export default class Grid {
       const row: row = [];
 
       for (let x = 0; x < this.size.width; x++) {
-        const position = new Vector({ x, y });
-        const tile: NavigatorTile = new NavigatorTile(position);
+        const tile: NavigatorTile = new NavigatorTile({ x, y });
         this.tiles.push(tile);
         row.push(tile);
       }
