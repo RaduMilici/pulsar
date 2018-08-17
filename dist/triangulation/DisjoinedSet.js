@@ -1,4 +1,4 @@
-import uniqueId from '../util/uniqueID';
+import { uniqueId } from '../util';
 export default class DisjoinedSet {
     constructor(point) {
         this.id = uniqueId();

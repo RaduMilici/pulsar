@@ -1,6 +1,6 @@
 import { Shape, Vector, Line } from '../../src/common';
 import { v00, v01, v03, v11, v10, v30, v33 } from './fixtures/Vectors';
-import { ad, de, ef, af, ae, ed, fa } from './fixtures/Lines';
+import { ad, de, ef, af, fa } from './fixtures/Lines';
 
 describe('common / Shape', () => {
   it('should find its counterclockwise lines', () => {

@@ -1,7 +1,7 @@
 import Entity from '../Entity';
 import EntityUpdater from './EntityUpdater';
 import { Clock } from '../../common';
-import { contains, removeFromArray } from '../../util/id';
+import { contains, removeFromArray } from '../../util';
 export default class Updater {
     constructor() {
         this.components = [];

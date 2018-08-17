@@ -1,6 +1,4 @@
-import Vector from '../common/Vector';
-import Line from '../common/Line';
-import Triangle from '../common/Triangle';
+import { Vector, Line, Triangle } from '../common';
 import Hull from './Hull';
 import MinimumSpanningTree from './MinimumSpanningTree';
 

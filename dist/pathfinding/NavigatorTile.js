@@ -1,6 +1,5 @@
-import { contains } from '../util/id';
-import uniqueId from '../util/uniqueID';
 import NavigatorData from './NavigatorData';
+import { contains, uniqueId } from '../util';
 export default class NavigatorTile {
     constructor(position) {
         this.position = position;

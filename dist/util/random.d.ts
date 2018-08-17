@@ -1,5 +1,5 @@
-declare const int: (min: number, max: number) => number;
-declare const float: (min: number, max: number) => number;
-declare const color: () => string;
-export { int, float, color };
+declare const randomInt: (min: number, max: number) => number;
+declare const randomFloat: (min: number, max: number) => number;
+declare const randomColor: () => string;
+export { randomInt, randomFloat, randomColor };
 //# sourceMappingURL=random.d.ts.map

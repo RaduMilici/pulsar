@@ -1,6 +1,5 @@
-import { Vector } from '../common';
 import Obstacles from './Obstacles';
-import { int } from '../util/random';
+import { randomInt } from '../util';
 import NavigatorTile from './NavigatorTile';
 import { row, point, size } from '../interfaces';
 
@@ -17,8 +16,8 @@ export default class Grid {
 
   /** Returns a random tile, can be an obstacle or not. */
   randomTile(): NavigatorTile {
-    const x = int(0, this.size.width - 1);
-    const y = int(0, this.size.height - 1);
+    const x = randomInt(0, this.size.width - 1);
+    const y = randomInt(0, this.size.height - 1);
 
     return this.findTile({ x, y });
   }

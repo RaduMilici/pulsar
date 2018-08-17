@@ -1,5 +1,4 @@
-import uniqueID from '../util/uniqueID';
-import { contains } from '../util/id';
+import { uniqueId, contains } from '../util';
 export default class Navigator {
     constructor(grid, begin, end, onExplore = () => { }, onComplete = Navigator.defaultOnComplete) {
         this.grid = grid;
@@ -7,7 +6,7 @@ export default class Navigator {
         this.end = end;
         this.onExplore = onExplore;
         this.onComplete = onComplete;
-        this.id = uniqueID();
+        this.id = uniqueId();
         this._path = [];
         this.verticalCost = 1;
         this.diagonalCost = 1.4;

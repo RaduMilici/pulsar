@@ -1,4 +1,4 @@
-import id from '../interfaces/id';
+import { id } from '../interfaces';
 
 const contains = (array: id[], element: id): boolean => {
   return findIndex(array, element) !== -1;

@@ -1,7 +1,6 @@
 import NavigatorTile from './NavigatorTile';
-import row from '../interfaces/row';
+import { row, id } from '../interfaces';
 import Grid from './Grid';
-import id from '../interfaces/id';
 declare type onExplore = (tile: NavigatorTile) => void;
 declare type onComplete = (path: NavigatorTile[]) => void;
 export default class Navigator implements id {

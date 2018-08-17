@@ -6,6 +6,5 @@ export default class Entity implements id {
     name: string;
     updater: Updater;
     readonly components: Component[];
-    constructor();
 }
 //# sourceMappingURL=Entity.d.ts.map

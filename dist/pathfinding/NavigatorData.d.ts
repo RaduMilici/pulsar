@@ -1,4 +1,4 @@
-import id from '../interfaces/id';
+import { id } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorTile from './NavigatorTile';
 export default class NavigatorData implements id {

@@ -1,7 +1,7 @@
 import Vector from './Vector';
 import Line from './Line';
 import BoundingBox from './BoundingBox';
-import { isOdd } from '../util/number';
+import { isOdd } from '../util';
 export default class Shape {
     constructor(points) {
         this.points = points;

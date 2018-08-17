@@ -1,5 +1,4 @@
-import { int } from '../util/random';
-import { contains, findIndex } from '../util/id';
+import { contains, findIndex, randomInt } from '../util';
 export default class Obstacles {
     constructor(grid) {
         this.grid = grid;
@@ -27,7 +26,7 @@ export default class Obstacles {
     }
     getRandom(open) {
         const list = open ? this.openList : this.closedList;
-        const random = int(0, list.length - 1);
+        const random = randomInt(0, list.length - 1);
         const tile = list[random];
         return tile ? tile : null;
     }

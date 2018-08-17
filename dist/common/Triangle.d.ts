@@ -1,6 +1,6 @@
 import Vector from './Vector';
 import Line from './Line';
-import id from '../interfaces/id';
+import { id } from '../interfaces';
 declare type triangleLines = {
     ab: Line;
     bc: Line;

@@ -1,6 +1,6 @@
 import Grid from './Grid';
 import NavigatorTile from './NavigatorTile';
-import row from '../interfaces/row';
+import { row } from '../interfaces';
 export default class Obstacles {
     private grid;
     private readonly openList;

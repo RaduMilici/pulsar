@@ -1,8 +1,8 @@
 import { uniqueId } from '../util';
 export default class Entity {
     constructor() {
-        this.components = [];
         this.id = uniqueId();
+        this.components = [];
     }
 }
 //# sourceMappingURL=Entity.js.map
