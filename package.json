@@ -1,8 +1,8 @@
 {
-  "name": "pulsar-pathfinding",
+  "name": "pulsar",
   "author": "RaduMilici",
   "license": "ISC",
-  "homepage": "https://github.com/RaduMilici/pulsar-pathfinding#readme",
+  "homepage": "https://github.com/RaduMilici/pulsar#readme",
   "version": "1.2.0",
   "description": "implementation of Greedy Best-First pathfinding",
   "main": "dist/index.js",
@@ -17,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RaduMilici/pulsar-pathfinding.git"
+    "url": "git+https://github.com/RaduMilici/pulsar.git"
   },
   "bugs": {
-    "url": "https://github.com/RaduMilici/pulsar-pathfinding/issues"
+    "url": "https://github.com/RaduMilici/pulsar/issues"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
