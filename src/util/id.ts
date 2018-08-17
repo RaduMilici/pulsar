@@ -15,7 +15,7 @@ const removeFromArray = (array: id[], find: id): boolean => {
 
 const removeFromArrayAtIndex = (array: id[], index: number): boolean => {
   if (index >= 0 && index < array.length) {
-    array.slice(index, 1);
+    array.splice(index, 1);
     return true;
   }
 

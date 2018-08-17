@@ -1,4 +1,4 @@
 export default interface id {
-  id: number;
+    id: number;
 }
 //# sourceMappingURL=id.d.ts.map

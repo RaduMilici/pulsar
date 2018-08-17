@@ -2,7 +2,7 @@ import Component from '../Component';
 import Entity from '../Entity';
 import EntityUpdater from './EntityUpdater';
 import { tickData } from '../../interfaces/index';
-import { Clock } from '../../common/index';
+import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util/id';
 import { updaterReport } from '../../interfaces';
 
@@ -56,7 +56,7 @@ export default class Updater {
     if (behaviour instanceof Entity) {
       return this.entityUpdater.remove(behaviour);
     } else {
-      this.removeComponent(behaviour);
+      return this.removeComponent(behaviour);
     }
   }
 
@@ -66,12 +66,16 @@ export default class Updater {
     if (behaviour instanceof Entity) {
       return this.entityUpdater.toggle(behaviour);
     } else {
-      this.toggleComponent(behaviour);
+      return this.toggleComponent(behaviour);
     }
   }
 
+  isUpdatingComponent(component: Component): boolean {
+    return contains(this.components, component);
+  }
+
   addComponent(component: Component): boolean {
-    if (!contains(this.components, component)) {
+    if (!this.isUpdatingComponent(component)) {
       component.updater = this;
       this.pushToQueue(component);
       return true;
