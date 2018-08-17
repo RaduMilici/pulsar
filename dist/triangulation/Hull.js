@@ -1,5 +1,4 @@
-import Vector from '../common/Vector';
-import Line from '../common/Line';
+import { Vector, Line } from '../common';
 export default class Hull {
     constructor({ triangles }) {
         this.lines = [];

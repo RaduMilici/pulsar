@@ -1,14 +1,14 @@
-const int = (min, max) => {
-    return Math.round(float(min, max));
+const randomInt = (min, max) => {
+    return Math.round(randomFloat(min, max));
 };
-const float = (min, max) => {
+const randomFloat = (min, max) => {
     return Math.random() * (max - min) + min;
 };
-const color = () => {
-    const r = int(0, 255);
-    const g = int(0, 255);
-    const b = int(0, 255);
+const randomColor = () => {
+    const r = randomInt(0, 255);
+    const g = randomInt(0, 255);
+    const b = randomInt(0, 255);
     return `rgb(${r},${g},${b})`;
 };
-export { int, float, color };
+export { randomInt, randomFloat, randomColor };
 //# sourceMappingURL=random.js.map

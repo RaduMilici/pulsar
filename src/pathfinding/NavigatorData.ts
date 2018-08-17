@@ -1,10 +1,10 @@
-import id from '../interfaces/id';
-import uniqueID from '../util/uniqueID';
+import { id } from '../interfaces';
+import { uniqueId } from '../util';
 import Navigator from './Navigator';
 import NavigatorTile from './NavigatorTile';
 
 export default class NavigatorData implements id {
-  id: number = uniqueID();
+  id: number = uniqueId();
   gVal: number; // distance from start
   hVal: number; // distance from end
   fVal: number; // gCost + hCost

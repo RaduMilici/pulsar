@@ -1,7 +1,7 @@
 import Vector from './Vector';
 import Line from './Line';
-import limits from '../interfaces/limits';
-import { immutableObjectSort } from '../util/sort';
+import { limits } from '../interfaces';
+import { immutableObjectSort } from '../util';
 
 /*
 * !WARNING!

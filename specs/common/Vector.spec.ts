@@ -1,8 +1,8 @@
 import { Vector } from '../../src/common';
-import point from '../../src/interfaces/point';
+import { point } from '../../src/interfaces';
 
 describe('common / Vector', () => {
-  it('set x and y with proper float accuracy', () => {
+  it('set x and y with proper randomFloat accuracy', () => {
     const { x, y }: point = new Vector({ x: 1.234, y: 3.21 });
 
     expect({ x, y }).toEqual({ x: 1.23, y: 3.21 });

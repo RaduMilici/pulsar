@@ -1,5 +1,5 @@
-import Updater from './Updater/Updater';
-import Entity from './Entity';
 import Component from './Component';
-export { Updater, Entity, Component };
+import Entity from './Entity';
+import Updater from './Updater/Updater';
+export { Component, Entity, Updater };
 //# sourceMappingURL=index.js.map

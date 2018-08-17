@@ -1,5 +1,5 @@
 import { Matrix2, Vector } from '../common';
-import { isNumeric } from '../util/number';
+import { isNumeric } from '../util';
 // https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
 export default class LineIntersection {
     constructor(line1, line2) {

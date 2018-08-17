@@ -1,5 +1,5 @@
 import Vector from './Vector';
-import id from '../interfaces/id';
+import { id } from '../interfaces';
 import Triangle from './Triangle';
 export default class Line implements id {
     readonly a: Vector;

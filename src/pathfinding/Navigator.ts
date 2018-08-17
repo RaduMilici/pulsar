@@ -1,16 +1,14 @@
 import NavigatorTile from './NavigatorTile';
 import NavigatorData from './NavigatorData';
-import row from '../interfaces/row';
+import { row, id } from '../interfaces';
 import Grid from './Grid';
-import Vector from '../common/Vector';
-import uniqueID from '../util/uniqueID';
-import id from '../interfaces/id';
-import { contains } from '../util/id';
+import { uniqueId, contains } from '../util';
+
 type onExplore = (tile: NavigatorTile) => void;
 type onComplete = (path: NavigatorTile[]) => void;
 
 export default class Navigator implements id {
-  id: number = uniqueID();
+  id: number = uniqueId();
   private _path: row = [];
   private verticalCost: number = 1;
   private diagonalCost: number = 1.4;

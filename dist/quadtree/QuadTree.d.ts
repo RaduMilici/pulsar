@@ -1,5 +1,4 @@
-import Vector from '../common/Vector';
-import Shape from '../common/Shape';
+import { Vector, Shape } from '../common';
 export default class QuadTree {
     shape: Shape;
     private points;

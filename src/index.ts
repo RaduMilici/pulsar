@@ -1,5 +1,5 @@
 import { Grid, Navigator, NavigatorTile } from './pathfinding';
-import Triangulation from './triangulation/Triangulation';
+import { Triangulation } from './triangulation';
 import QuadTree from './quadtree/QuadTree';
 import { Vector, Line, Triangle, Shape } from './common';
 import { uniqueId } from './util';

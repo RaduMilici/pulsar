@@ -1,6 +1,6 @@
 import Vector from './Vector';
 import Line from './Line';
-import uniqueId from '../util/uniqueID';
+import { uniqueId } from '../util';
 import { Matrix4 } from './Matrix';
 export default class Triangle {
     constructor(a, b, c) {

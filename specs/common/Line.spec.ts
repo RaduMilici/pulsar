@@ -1,5 +1,5 @@
 import { Line, Vector, Triangle } from '../../src/common';
-import DisjoinedSet from '../../src/triangulation/DisjoinedSet';
+import { DisjoinedSet } from '../../src/triangulation';
 import { v00, v11, v22, v33 } from './fixtures/Vectors';
 
 describe('common / Line', () => {

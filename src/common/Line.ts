@@ -1,8 +1,8 @@
 import Vector from './Vector';
-import id from '../interfaces/id';
-import uniqueId from '../util/uniqueID';
+import { id } from '../interfaces';
+import { uniqueId } from '../util';
 import Triangle from './Triangle';
-import DisjoinedSet from '../triangulation/DisjoinedSet';
+import { DisjoinedSet } from '../triangulation';
 import LineIntersection from './LineIntersection';
 
 export default class Line implements id {

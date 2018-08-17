@@ -1,8 +1,8 @@
 import { uniqueId } from '../util';
 export default class Component {
     constructor() {
-        this.updatePriority = null;
         this.id = uniqueId();
+        this.updatePriority = null;
     }
     start() { }
     stop() { }

@@ -1,7 +1,7 @@
 import Vector from './Vector';
 import Line from './Line';
-import id from '../interfaces/id';
-import uniqueId from '../util/uniqueID';
+import { id } from '../interfaces';
+import { uniqueId } from '../util';
 import { Matrix4 } from './Matrix';
 
 type triangleLines = { ab: Line; bc: Line; ca: Line };
