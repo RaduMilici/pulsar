@@ -5,6 +5,7 @@ import { uniqueId } from '../util';
 
 export default class Entity implements id {
   id: number;
+  name: string;
   updater: Updater;
   readonly components: Component[] = [];
 

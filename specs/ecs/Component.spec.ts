@@ -19,14 +19,14 @@ class MyComponent extends Component {
   }
 }
 
-describe("ecs / Component", () => {
+describe('ecs / Component', () => {
   beforeEach(() => {
     startMock = jest.fn();
     stopMock = jest.fn();
     updateMock = jest.fn();
   });
 
-  it("should have the three lifecycle hooks called by Updater", () => {
+  it('should have its lifecycle hooks called by Updater', () => {
     const updater: Updater = new Updater();
     const component: MyComponent = new MyComponent();
 
@@ -39,7 +39,7 @@ describe("ecs / Component", () => {
     expect(updateMock.mock.calls.length).toBe(1);
   });
 
-  it("should call update with a tickData argument", () => {
+  it('should call update with a tickData argument', () => {
     const updater: Updater = new Updater();
     const component: MyComponent = new MyComponent();
 

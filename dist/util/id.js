@@ -10,7 +10,7 @@ const removeFromArray = (array, find) => {
 };
 const removeFromArrayAtIndex = (array, index) => {
     if (index >= 0 && index < array.length) {
-        array.slice(index, 1);
+        array.splice(index, 1);
         return true;
     }
     return false;

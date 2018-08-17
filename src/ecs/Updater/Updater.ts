@@ -56,7 +56,7 @@ export default class Updater {
     if (behaviour instanceof Entity) {
       return this.entityUpdater.remove(behaviour);
     } else {
-      this.removeComponent(behaviour);
+      return this.removeComponent(behaviour);
     }
   }
 
