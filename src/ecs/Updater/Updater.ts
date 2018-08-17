@@ -66,12 +66,16 @@ export default class Updater {
     if (behaviour instanceof Entity) {
       return this.entityUpdater.toggle(behaviour);
     } else {
-      this.toggleComponent(behaviour);
+      return this.toggleComponent(behaviour);
     }
   }
 
+  isUpdatingComponent(component: Component): boolean {
+    return contains(this.components, component);
+  }
+
   addComponent(component: Component): boolean {
-    if (!contains(this.components, component)) {
+    if (!this.isUpdatingComponent(component)) {
       component.updater = this;
       this.pushToQueue(component);
       return true;
