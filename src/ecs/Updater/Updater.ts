@@ -6,6 +6,8 @@ import { contains, removeFromArray } from '../../util';
 import { updaterReport, tickData } from '../../interfaces';
 
 export default class Updater {
+  onUpdateComplete: Component = new Component();
+
   private components: Component[] = [];
   private running: boolean = false;
   private clock: Clock = new Clock();
@@ -107,10 +109,12 @@ export default class Updater {
 
     const deltaTime: number = this.clock.getDelta();
     const elapsedTime: number = this.clock.getElapsed();
+    const tickData: tickData = { deltaTime, elapsedTime };
 
     this.components.forEach((component: Component) => {
-      const tickData: tickData = { deltaTime, elapsedTime };
       component.update(tickData);
     });
+
+    this.onUpdateComplete.update(tickData);
   }
 }

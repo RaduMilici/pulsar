@@ -4,6 +4,7 @@ import { QuadTree } from './quadtree';
 import { Vector, Line, Triangle, Shape } from './common';
 import { uniqueId } from './util';
 import { Entity, Component, Updater } from './ecs';
+import { tickData } from './interfaces';
 
 export {
   Grid,
@@ -19,4 +20,5 @@ export {
   Entity,
   Component,
   Updater,
+  tickData,
 };

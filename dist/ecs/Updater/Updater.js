@@ -4,6 +4,7 @@ import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util';
 export default class Updater {
     constructor() {
+        this.onUpdateComplete = new Component();
         this.components = [];
         this.running = false;
         this.clock = new Clock();
@@ -90,10 +91,11 @@ export default class Updater {
         this.frameId = requestAnimationFrame(() => this.update());
         const deltaTime = this.clock.getDelta();
         const elapsedTime = this.clock.getElapsed();
+        const tickData = { deltaTime, elapsedTime };
         this.components.forEach((component) => {
-            const tickData = { deltaTime, elapsedTime };
             component.update(tickData);
         });
+        this.onUpdateComplete.update(tickData);
     }
 }
 //# sourceMappingURL=Updater.js.map

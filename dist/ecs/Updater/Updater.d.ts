@@ -2,6 +2,7 @@ import Component from '../Component';
 import Entity from '../Entity';
 import { updaterReport } from '../../interfaces';
 export default class Updater {
+    onUpdateComplete: Component;
     private components;
     private running;
     private clock;

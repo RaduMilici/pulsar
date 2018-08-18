@@ -4,5 +4,6 @@ import { QuadTree } from './quadtree';
 import { Vector, Line, Triangle, Shape } from './common';
 import { uniqueId } from './util';
 import { Entity, Component, Updater } from './ecs';
-export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree, uniqueId, Entity, Component, Updater, };
+import { tickData } from './interfaces';
+export { Grid, Navigator, NavigatorTile, Triangulation, Vector, Line, Triangle, Shape, QuadTree, uniqueId, Entity, Component, Updater, tickData, };
 //# sourceMappingURL=index.d.ts.map
