@@ -42,30 +42,30 @@ export default class Updater {
   add(entity: Entity): updaterReport[];
   add(component: Component): boolean;
   add(behaviour: Entity | Component): boolean | updaterReport[] {
-    if (behaviour instanceof Entity) {
-      return this.entityUpdater.add(behaviour);
-    } else {
+    if (behaviour instanceof Component) {
       return this.addComponent(behaviour);
+    } else {
+      return this.entityUpdater.add(behaviour);
     }
   }
 
   remove(entity: Entity): updaterReport[];
   remove(component: Component): boolean;
   remove(behaviour: Entity | Component): boolean | updaterReport[] {
-    if (behaviour instanceof Entity) {
-      return this.entityUpdater.remove(behaviour);
-    } else {
+    if (behaviour instanceof Component) {
       return this.removeComponent(behaviour);
+    } else {
+      return this.entityUpdater.remove(behaviour);
     }
   }
 
   toggle(entity: Entity): updaterReport[];
   toggle(component: Component): boolean;
   toggle(behaviour: Entity | Component): boolean | updaterReport[] {
-    if (behaviour instanceof Entity) {
-      return this.entityUpdater.toggle(behaviour);
-    } else {
+    if (behaviour instanceof Component) {
       return this.toggleComponent(behaviour);
+    } else {
+      return this.entityUpdater.toggle(behaviour);
     }
   }
 

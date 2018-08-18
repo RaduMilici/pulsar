@@ -4,7 +4,10 @@ export default class EntityUpdater {
     }
     add(entity) {
         entity.updater = this.updater;
-        const callback = component => this.updater.addComponent(component);
+        const callback = (component) => {
+            component.entity = entity;
+            return this.updater.addComponent(component);
+        };
         return this.loopComponents(entity.components, callback);
     }
     remove({ components }) {

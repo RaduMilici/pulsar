@@ -1,4 +1,4 @@
-import Entity from '../Entity';
+import Component from '../Component';
 import EntityUpdater from './EntityUpdater';
 import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util';
@@ -34,27 +34,27 @@ export default class Updater {
         this.components.length = 0;
     }
     add(behaviour) {
-        if (behaviour instanceof Entity) {
-            return this.entityUpdater.add(behaviour);
+        if (behaviour instanceof Component) {
+            return this.addComponent(behaviour);
         }
         else {
-            return this.addComponent(behaviour);
+            return this.entityUpdater.add(behaviour);
         }
     }
     remove(behaviour) {
-        if (behaviour instanceof Entity) {
-            return this.entityUpdater.remove(behaviour);
+        if (behaviour instanceof Component) {
+            return this.removeComponent(behaviour);
         }
         else {
-            return this.removeComponent(behaviour);
+            return this.entityUpdater.remove(behaviour);
         }
     }
     toggle(behaviour) {
-        if (behaviour instanceof Entity) {
-            return this.entityUpdater.toggle(behaviour);
+        if (behaviour instanceof Component) {
+            return this.toggleComponent(behaviour);
         }
         else {
-            return this.toggleComponent(behaviour);
+            return this.entityUpdater.toggle(behaviour);
         }
     }
     isUpdatingComponent(component) {
