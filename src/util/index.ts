@@ -2,7 +2,13 @@ import { cloneObject, cloneObjectArray } from './clone';
 import { contains, findIndex, removeFromArray } from './id';
 import { RadToDeg, DegToRad } from './radDeg';
 import { isOdd, isEven, isNumeric } from './number';
-import { randomInt, randomFloat, randomColor } from './random';
+import {
+  randomInt,
+  randomFloat,
+  randomColor,
+  randomPoint,
+  randomPoints,
+} from './random';
 import { sort, immutableObjectSort } from './sort';
 import toFloat from './toFloat';
 import uniqueId from './uniqueID';
@@ -25,4 +31,6 @@ export {
   immutableObjectSort,
   toFloat,
   uniqueId,
+  randomPoint,
+  randomPoints,
 };
