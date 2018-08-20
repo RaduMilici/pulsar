@@ -2,7 +2,7 @@ import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import { Triangulation } from './triangulation';
 import { QuadTree } from './quadtree';
 import { Vector, Line, Triangle, Shape, BoundingBox } from './common';
-import { uniqueId } from './util';
+import { uniqueId, sort, immutableObjectSort } from './util';
 import { Entity, Component, Updater } from './ecs';
 import { tickData, point, size, limits } from './interfaces';
 import {
@@ -25,6 +25,8 @@ export {
   BoundingBox,
   QuadTree,
   uniqueId,
+  sort,
+  immutableObjectSort,
   Entity,
   Component,
   Updater,

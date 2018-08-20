@@ -22,6 +22,9 @@ export default class Shape {
         });
         return isOdd(intersects);
     }
+    get centroid() {
+        return Vector.FindPolyCentroid(this.points);
+    }
     static makeLines(points) {
         const lines = [];
         const ccwPoints = Vector.ArrangePointsCCW(points);

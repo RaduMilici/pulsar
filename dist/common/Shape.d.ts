@@ -7,6 +7,7 @@ export default class Shape {
     readonly boundingBox: BoundingBox;
     constructor(points: Vector[]);
     containsPoint(point: Vector): boolean;
+    readonly centroid: Vector;
     private static makeLines;
 }
 //# sourceMappingURL=Shape.d.ts.map

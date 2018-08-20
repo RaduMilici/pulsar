@@ -41,6 +41,21 @@ export default class BoundingBox {
     return [this.top, this.right, this.bottom, this.left];
   }
 
+  get width(): number {
+    return this.topRight.x - this.topLeft.x;
+  }
+
+  get height(): number {
+    return this.topRight.y - this.bottomRight.y;
+  }
+
+  grow(n: number): void {
+    this.topLeft = this.topLeft.add(new Vector({ x: -n, y: n }));
+    this.topRight = this.topRight.add(new Vector({ x: n, y: n }));
+    this.bottomLeft = this.bottomLeft.add(new Vector({ x: -n, y: -n }));
+    this.bottomRight = this.bottomRight.add(new Vector({ x: n, y: -n }));
+  }
+
   private findCorners(): void {
     const sortedX: Vector[] = immutableObjectSort(this.points, 'x');
     const sortedY: Vector[] = immutableObjectSort(this.points, 'y');
@@ -50,10 +65,10 @@ export default class BoundingBox {
     const lastX = sortedX[sortedX.length - 1];
     const lastY = sortedY[sortedY.length - 1];
 
-    this.topLeft = new Vector({ x: firstX.x, y: firstY.y });
-    this.topRight = new Vector({ x: lastX.x, y: firstY.y });
-    this.bottomRight = new Vector({ x: lastX.x, y: lastY.y });
-    this.bottomLeft = new Vector({ x: firstX.x, y: lastY.y });
+    this.topLeft = new Vector({ x: firstX.x, y: lastY.y });
+    this.topRight = new Vector({ x: lastX.x, y: lastY.y });
+    this.bottomRight = new Vector({ x: lastX.x, y: firstY.y });
+    this.bottomLeft = new Vector({ x: firstX.x, y: firstY.y });
   }
 
   private makeLines(): void {

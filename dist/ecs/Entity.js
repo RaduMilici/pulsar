@@ -4,5 +4,7 @@ export default class Entity {
         this.id = uniqueId();
         this.components = [];
     }
+    start() { }
+    stop() { }
 }
 //# sourceMappingURL=Entity.js.map
