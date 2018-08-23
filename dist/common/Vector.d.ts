@@ -23,6 +23,7 @@ export default class Vector {
     angleRad(vector: Vector): number;
     bisector(vector: Vector): Vector;
     equals(vector: Vector): boolean;
+    distanceTo(vector: Vector): number;
     midpoint(vector: Vector): Vector;
     static FindPolyCentroid(points: Vector[]): Vector;
     static ArrangePointsCCW(points: Vector[]): Vector[];

@@ -16,6 +16,9 @@ export default class BoundingBox {
     readonly midpoints: limits;
     readonly area: number;
     readonly lines: Line[];
+    readonly width: number;
+    readonly height: number;
+    grow(n: number): void;
     private findCorners;
     private makeLines;
     private findLimits;

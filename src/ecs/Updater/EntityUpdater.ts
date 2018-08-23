@@ -6,10 +6,25 @@ import { updaterReport } from '../../interfaces';
 type componentCallback = (component: Component) => boolean;
 
 export default class EntityUpdater {
+  private readonly entities: Entity[] = [];
+
   constructor(private readonly updater: Updater) {}
+
+  start(): void {
+    this.entities.forEach((entity: Entity) => entity.start());
+  }
+
+  stop(): void {
+    this.entities.forEach((entity: Entity) => entity.stop());
+  }
+
+  clear(): void {
+    this.entities.length = 0;
+  }
 
   add(entity: Entity): updaterReport[] {
     entity.updater = this.updater;
+    this.entities.push(entity);
     const callback: componentCallback = (component: Component) => {
       component.entity = entity;
       return this.updater.addComponent(component);

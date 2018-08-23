@@ -14,7 +14,7 @@ describe('common / Line', () => {
     const line: Line = new Line(v00, v11);
     const length: number = line.length;
 
-    expect(length).toBe(1.41);
+    expect(length).toBeCloseTo(1.41, 2);
   });
 
   it('calculates its midpoint', () => {

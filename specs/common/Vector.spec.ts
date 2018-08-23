@@ -2,7 +2,8 @@ import { Vector } from '../../src/common';
 import { point } from '../../src/interfaces';
 
 describe('common / Vector', () => {
-  it('set x and y with proper randomFloat accuracy', () => {
+  xit('set x and y with proper randomFloat accuracy', () => {
+    // no longert using forced accuracy
     const { x, y }: point = new Vector({ x: 1.234, y: 3.21 });
 
     expect({ x, y }).toEqual({ x: 1.23, y: 3.21 });
@@ -19,7 +20,7 @@ describe('common / Vector', () => {
     const vector: Vector = new Vector({ x: 1, y: 1 });
     const magnitude: number = vector.magnitude();
 
-    expect(magnitude).toEqual(1.41);
+    expect(magnitude).toBeCloseTo(1.41, 2);
   });
 
   it('calculates dot product', () => {
@@ -53,7 +54,8 @@ describe('common / Vector', () => {
     const normalized: Vector = a.normalize();
     const correct: Vector = new Vector({ x: 0.55, y: 0.83 });
 
-    expect(normalized).toEqual(correct);
+    expect(normalized.x).toBeCloseTo(correct.x, 2);
+    expect(normalized.y).toBeCloseTo(correct.y, 2);
   });
 
   it('negates into a new Vector', () => {
@@ -89,7 +91,8 @@ describe('common / Vector', () => {
     const scaled: Vector = a.scale(10);
     const correct: Vector = new Vector({ x: 7.1, y: 7.1 });
 
-    expect(scaled).toEqual(correct);
+    expect(scaled.x).toBeCloseTo(correct.x, 1);
+    expect(scaled.y).toBeCloseTo(correct.y, 1);
   });
 
   it('calculates angle to another Vector in degrees', () => {
@@ -107,7 +110,7 @@ describe('common / Vector', () => {
     const angle: number = a.angleRad(b);
     const correct: number = 1.57;
 
-    expect(angle).toEqual(correct);
+    expect(angle).toBeCloseTo(correct, 2);
   });
 
   it('calculates a new bisector Vector', () => {
@@ -116,7 +119,8 @@ describe('common / Vector', () => {
     const correct: Vector = new Vector({ x: 0.71, y: 0.71 });
     const bisector: Vector = a.bisector(b);
 
-    expect(bisector).toEqual(correct);
+    expect(bisector.x).toBeCloseTo(correct.x, 2);
+    expect(bisector.y).toBeCloseTo(correct.y, 2);
   });
 
   it('checks equality to another Vector', () => {

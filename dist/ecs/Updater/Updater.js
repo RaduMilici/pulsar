@@ -14,6 +14,7 @@ export default class Updater {
         if (!this.running) {
             this.running = true;
             this.clock.start();
+            this.entityUpdater.start();
             this.components.forEach((component) => component.start());
             this.update();
             return true;
@@ -25,6 +26,7 @@ export default class Updater {
             this.running = false;
             cancelAnimationFrame(this.frameId);
             this.clock.stop();
+            this.entityUpdater.stop();
             this.components.forEach((component) => component.stop());
             return true;
         }
@@ -32,6 +34,7 @@ export default class Updater {
     }
     clear() {
         this.stop();
+        this.entityUpdater.clear();
         this.components.length = 0;
     }
     add(behaviour) {

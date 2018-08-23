@@ -8,4 +8,8 @@ export default class Entity implements id {
   name: string;
   updater: Updater;
   readonly components: Component[] = [];
+
+  start(): void {}
+
+  stop(): void {}
 }
