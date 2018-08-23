@@ -10,8 +10,8 @@ export default class Vector {
   y: number;
 
   constructor({ x, y }: point = { x: 0, y: 0 }) {
-    this.x = toFloat(x);
-    this.y = toFloat(y);
+    this.x = x;
+    this.y = y;
   }
 
   clone(): Vector {
@@ -22,7 +22,7 @@ export default class Vector {
     const x: number = this.x * this.x;
     const y: number = this.y * this.y;
     const magnitude: number = Math.sqrt(x + y);
-    return toFloat(magnitude);
+    return magnitude;
   }
 
   dotProduct({ x, y }: Vector): number {
@@ -75,13 +75,11 @@ export default class Vector {
 
   angleDeg(vector: Vector): number {
     const angle: number = this.angle(vector);
-    const degAngle: number = RadToDeg(angle);
-    return toFloat(degAngle);
+    return RadToDeg(angle);
   }
 
   angleRad(vector: Vector): number {
-    const angle: number = this.angle(vector);
-    return toFloat(angle);
+    return this.angle(vector);
   }
 
   bisector(vector: Vector): Vector {
@@ -95,6 +93,10 @@ export default class Vector {
 
   equals(vector: Vector): boolean {
     return this.x === vector.x && this.y === vector.y;
+  }
+
+  distanceTo(vector: Vector): number {
+    return this.sub(vector).magnitude();
   }
 
   midpoint(vector: Vector): Vector {

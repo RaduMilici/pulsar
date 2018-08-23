@@ -1,8 +1,8 @@
-import { toFloat, RadToDeg } from '../util';
+import { RadToDeg } from '../util';
 export default class Vector {
     constructor({ x, y } = { x: 0, y: 0 }) {
-        this.x = toFloat(x);
-        this.y = toFloat(y);
+        this.x = x;
+        this.y = y;
     }
     clone() {
         return new Vector({ x: this.x, y: this.y });
@@ -11,7 +11,7 @@ export default class Vector {
         const x = this.x * this.x;
         const y = this.y * this.y;
         const magnitude = Math.sqrt(x + y);
-        return toFloat(magnitude);
+        return magnitude;
     }
     dotProduct({ x, y }) {
         return this.x * x + this.y * y;
@@ -50,12 +50,10 @@ export default class Vector {
     }
     angleDeg(vector) {
         const angle = this.angle(vector);
-        const degAngle = RadToDeg(angle);
-        return toFloat(degAngle);
+        return RadToDeg(angle);
     }
     angleRad(vector) {
-        const angle = this.angle(vector);
-        return toFloat(angle);
+        return this.angle(vector);
     }
     bisector(vector) {
         const normalized = this.normalize();
@@ -66,6 +64,9 @@ export default class Vector {
     }
     equals(vector) {
         return this.x === vector.x && this.y === vector.y;
+    }
+    distanceTo(vector) {
+        return this.sub(vector).magnitude();
     }
     midpoint(vector) {
         const x = (this.x + vector.x) / 2;
