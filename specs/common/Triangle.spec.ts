@@ -16,7 +16,8 @@ describe('common / Triangle', () => {
     const triangle: Triangle = new Triangle(v00, v11, v22b);
     const correct: Vector = new Vector({ x: 1, y: 0.33 });
 
-    expect(triangle.centroid).toEqual(correct);
+    expect(triangle.centroid.x).toBeCloseTo(correct.x, 2);
+    expect(triangle.centroid.y).toBeCloseTo(correct.y, 2);
   });
 
   it('stores its points in an array', () => {
