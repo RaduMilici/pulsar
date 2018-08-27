@@ -24,6 +24,21 @@ export default class QuadTree {
             }
         }
     }
+    findChildThatContains(point) {
+        const contains = this.shape.containsPoint(point);
+        const hasChildren = this.children.length > 0;
+        if (contains) {
+            if (hasChildren) {
+                return this.children.find((child) => {
+                    return child.findChildThatContains(point) !== null;
+                });
+            }
+            else {
+                return this;
+            }
+        }
+        return null;
+    }
     divide(points) {
         const { topLeft, topRight, bottomLeft, bottomRight, } = this.shape.boundingBox;
         const { top, bottom, left, right } = this.shape.boundingBox.midpoints;

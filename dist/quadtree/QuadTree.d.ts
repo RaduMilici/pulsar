@@ -8,6 +8,7 @@ export default class QuadTree {
     private capacity;
     constructor(shape: Shape, points: Vector[]);
     private start;
+    findChildThatContains(point: Vector): QuadTree;
     divide(points: Vector[]): void;
 }
 //# sourceMappingURL=QuadTree.d.ts.map
