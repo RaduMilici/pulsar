@@ -28,6 +28,23 @@ export default class QuadTree {
     }
   }
 
+  findChildThatContains(point: Vector): QuadTree {
+    const contains: boolean = this.shape.containsPoint(point);
+    const hasChildren: boolean = this.children.length > 0;
+
+    if (contains) {
+      if (hasChildren) {
+        return this.children.find((child: QuadTree) => {
+          return child.findChildThatContains(point) !== null;
+        });
+      } else {
+        return this;
+      }
+    }
+
+    return null;
+  }
+
   divide(points: Vector[]): void {
     const {
       topLeft,
