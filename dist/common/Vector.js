@@ -37,6 +37,11 @@ export default class Vector {
         const y = this.y / magnitude;
         return new Vector({ x, y });
     }
+    lerp(vector, alpha) {
+        const x = this.x + (vector.x - this.x) * alpha;
+        const y = this.y + (vector.y - this.y) * alpha;
+        return new Vector({ x, y });
+    }
     negative() {
         const x = -this.x;
         const y = -this.y;

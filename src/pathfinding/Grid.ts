@@ -4,15 +4,15 @@ import NavigatorTile from './NavigatorTile';
 import { row, point, size } from '../interfaces';
 
 const defaultSize: size = { width: 10, height: 10 };
+type onTileCreate = (tile: NavigatorTile) => void;
 
 export default class Grid {
+  onTileCreate: onTileCreate = () => {};
+  readonly obstacles: Obstacles = new Obstacles(this);
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
-  public readonly obstacles: Obstacles = new Obstacles(this);
 
-  constructor(private size: size = defaultSize) {
-    this.makeGrid();
-  }
+  constructor(private size: size = defaultSize) { }
 
   /** Returns a random tile, can be an obstacle or not. */
   randomTile(): NavigatorTile {
@@ -33,12 +33,13 @@ export default class Grid {
     return row && row.length > x ? row[x] : null;
   }
 
-  private makeGrid(): void {
+  makeGrid(): void {
     for (let y = 0; y < this.size.height; y++) {
       const row: row = [];
 
       for (let x = 0; x < this.size.width; x++) {
         const tile: NavigatorTile = new NavigatorTile({ x, y });
+        this.onTileCreate(tile);
         this.tiles.push(tile);
         row.push(tile);
       }

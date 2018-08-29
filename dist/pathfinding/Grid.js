@@ -5,10 +5,10 @@ const defaultSize = { width: 10, height: 10 };
 export default class Grid {
     constructor(size = defaultSize) {
         this.size = size;
+        this.onTileCreate = () => { };
+        this.obstacles = new Obstacles(this);
         this.tiles = [];
         this.rows = [];
-        this.obstacles = new Obstacles(this);
-        this.makeGrid();
     }
     /** Returns a random tile, can be an obstacle or not. */
     randomTile() {
@@ -30,6 +30,7 @@ export default class Grid {
             const row = [];
             for (let x = 0; x < this.size.width; x++) {
                 const tile = new NavigatorTile({ x, y });
+                this.onTileCreate(tile);
                 this.tiles.push(tile);
                 row.push(tile);
             }

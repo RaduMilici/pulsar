@@ -4,7 +4,7 @@ import { QuadTree } from './quadtree';
 import { Vector, Line, Triangle, Shape, BoundingBox } from './common';
 import { uniqueId, sort, immutableObjectSort, contains } from './util';
 import { Entity, Component, Updater } from './ecs';
-import { tickData, point, size, limits } from './interfaces';
+import { tickData, point, size, limits, row } from './interfaces';
 import {
   randomPoint,
   randomPoints,
@@ -36,6 +36,7 @@ export {
   point,
   size,
   limits,
+  row,
   randomPoint,
   randomPoints,
   randomInt,

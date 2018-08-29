@@ -14,6 +14,7 @@ export default class Vector {
     sub(vector: Vector): Vector;
     multiplyScalar(scalar: number): Vector;
     normalize(): Vector;
+    lerp(vector: Vector, alpha: number): Vector;
     negative(): Vector;
     perpendicular(): {
         left: Vector;
