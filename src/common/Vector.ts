@@ -43,6 +43,13 @@ export default class Vector {
     return new Vector({ x, y });
   }
 
+  multiplyScalar(scalar: number): Vector {
+    const x: number = this.x * scalar;
+    const y: number = this.y * scalar;
+
+    return new Vector({ x, y });
+  }
+
   normalize(): Vector {
     const magnitude: number = this.magnitude();
     const x: number = this.x / magnitude;

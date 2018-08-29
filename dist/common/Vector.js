@@ -26,6 +26,11 @@ export default class Vector {
         const y = this.y + -vector.y;
         return new Vector({ x, y });
     }
+    multiplyScalar(scalar) {
+        const x = this.x * scalar;
+        const y = this.y * scalar;
+        return new Vector({ x, y });
+    }
     normalize() {
         const magnitude = this.magnitude();
         const x = this.x / magnitude;

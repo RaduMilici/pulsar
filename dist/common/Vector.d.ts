@@ -12,6 +12,7 @@ export default class Vector {
     dotProduct({ x, y }: Vector): number;
     add(vector: Vector): Vector;
     sub(vector: Vector): Vector;
+    multiplyScalar(scalar: number): Vector;
     normalize(): Vector;
     negative(): Vector;
     perpendicular(): {

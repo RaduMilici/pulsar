@@ -4,7 +4,7 @@ export default class QuadTree {
   children: QuadTree[] = [];
   containedPoints: Vector[] = [];
 
-  private parent: QuadTree;
+  parent: QuadTree;
   private capacity: number = 1;
 
   constructor(public shape: Shape, private points: Vector[]) {
