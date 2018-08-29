@@ -12,7 +12,7 @@ export default class Grid {
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
 
-  constructor(private size: size = defaultSize) { }
+  constructor(private size: size = defaultSize) {}
 
   /** Returns a random tile, can be an obstacle or not. */
   randomTile(): NavigatorTile {

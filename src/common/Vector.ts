@@ -61,7 +61,7 @@ export default class Vector {
   lerp(vector: Vector, alpha: number): Vector {
     const x = this.x + (vector.x - this.x) * alpha;
     const y = this.y + (vector.y - this.y) * alpha;
-    
+
     return new Vector({ x, y });
   }
 
