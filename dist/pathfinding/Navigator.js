@@ -10,7 +10,6 @@ export default class Navigator {
         this._path = [];
         this.verticalCost = 1;
         this.diagonalCost = 1.4;
-        this.neighborsCount = 9;
         this.tiles = [];
         this.open = [];
         this.closed = [];
@@ -50,9 +49,9 @@ export default class Navigator {
     }
     calculateG(tile) {
         const tileNavData = tile.getNavigatorData(this);
-        for (let i = 0; i < this.neighborsCount; i++) {
+        for (let i = 0; i < Navigator.neighborsCount; i++) {
             const x = tile.position.x + Navigator.getColOffset(i);
-            const y = tile.position.y + this.getRowOffset(i);
+            const y = tile.position.y + Navigator.getRowOffset(i);
             const exploring = this.grid.findTile({ x, y });
             if (!exploring) {
                 continue;
@@ -97,13 +96,13 @@ export default class Navigator {
         const { gVal, hVal } = tile.getNavigatorData(this);
         return gVal + hVal;
     }
-    getRowOffset(iteration) {
+    static getRowOffset(iteration) {
         /*
            iteration = 0, 1, or 2: [-1][-1][-1]
            iteration = 3, 4, or 5: [ 0][ 0][ 0]
            iteration = 6, 7, or 8: [+1][+1][+1]
          */
-        return this.neighborsCount + -Math.floor((32 - iteration) / 3);
+        return Navigator.neighborsCount + -Math.floor((32 - iteration) / 3);
     }
     static getColOffset(iteration) {
         /*
@@ -166,4 +165,5 @@ export default class Navigator {
         console.log(path);
     }
 }
+Navigator.neighborsCount = 9;
 //# sourceMappingURL=Navigator.js.map

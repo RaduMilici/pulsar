@@ -2,13 +2,14 @@ import { id, point } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
 import { contains, uniqueId } from '../util';
+import { Vector } from '../common';
 
 export default class NavigatorTile implements id {
   id: number = uniqueId();
   isObstacle: boolean = false;
   private navigators: NavigatorData[] = [];
 
-  constructor(readonly position: point) {}
+  constructor(readonly position: Vector) {}
 
   registerNavigatorData(navigator: Navigator): boolean {
     const navigationData: NavigatorData = new NavigatorData(navigator);

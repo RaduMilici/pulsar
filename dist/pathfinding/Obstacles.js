@@ -10,9 +10,11 @@ export default class Obstacles {
         return this.closedList;
     }
     add(tile) {
+        tile.isObstacle = true;
         return this.manipulate(true, tile);
     }
     remove(tile) {
+        tile.isObstacle = false;
         return this.manipulate(false, tile);
     }
     addRandom(count = 1) {

@@ -13,7 +13,7 @@ export default class Navigator implements id {
     private _path;
     private verticalCost;
     private diagonalCost;
-    private neighborsCount;
+    private static neighborsCount;
     private tiles;
     private open;
     private closed;
@@ -25,8 +25,8 @@ export default class Navigator implements id {
     private calculateH;
     private calculateG;
     private calculateF;
-    private getRowOffset;
-    private static getColOffset;
+    static getRowOffset(iteration: number): number;
+    static getColOffset(iteration: number): number;
     private getParent;
     private chooseNext;
     private getPath;

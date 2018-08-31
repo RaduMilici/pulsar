@@ -1,12 +1,13 @@
-import { id, point } from '../interfaces';
+import { id } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
+import { Vector } from '../common';
 export default class NavigatorTile implements id {
-    readonly position: point;
+    readonly position: Vector;
     id: number;
     isObstacle: boolean;
     private navigators;
-    constructor(position: point);
+    constructor(position: Vector);
     registerNavigatorData(navigator: Navigator): boolean;
     getNavigatorData(navigator: Navigator): NavigatorData | null;
     isDiagonal({ position }: NavigatorTile): boolean;

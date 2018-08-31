@@ -19,6 +19,7 @@ export default class BoundingBox {
     readonly width: number;
     readonly height: number;
     grow(n: number): void;
+    clone(): BoundingBox;
     private findCorners;
     private makeLines;
     private findLimits;

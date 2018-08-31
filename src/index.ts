@@ -2,7 +2,14 @@ import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import { Triangulation, Hull } from './triangulation';
 import { QuadTree } from './quadtree';
 import { Vector, Line, Triangle, Shape, BoundingBox } from './common';
-import { uniqueId, sort, immutableObjectSort, contains } from './util';
+import {
+  uniqueId,
+  sort,
+  immutableObjectSort,
+  contains,
+  RadToDeg,
+  DegToRad,
+} from './util';
 import { Entity, Component, Updater } from './ecs';
 import { tickData, point, size, limits, row } from './interfaces';
 import {
@@ -29,6 +36,8 @@ export {
   sort,
   immutableObjectSort,
   contains,
+  RadToDeg,
+  DegToRad,
   Entity,
   Component,
   Updater,

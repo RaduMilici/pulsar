@@ -33,6 +33,9 @@ export default class BoundingBox {
         this.bottomLeft = this.bottomLeft.add(new Vector({ x: -n, y: -n }));
         this.bottomRight = this.bottomRight.add(new Vector({ x: n, y: -n }));
     }
+    clone() {
+        return new BoundingBox(this.points);
+    }
     findCorners() {
         const sortedX = immutableObjectSort(this.points, 'x');
         const sortedY = immutableObjectSort(this.points, 'y');

@@ -12,7 +12,7 @@ export default class Navigator implements id {
   private _path: row = [];
   private verticalCost: number = 1;
   private diagonalCost: number = 1.4;
-  private neighborsCount: number = 9;
+  private static neighborsCount: number = 9;
   private tiles: row = [];
   private open: row = [];
   private closed: row = [];
@@ -65,9 +65,9 @@ export default class Navigator implements id {
   private calculateG(tile: NavigatorTile): void {
     const tileNavData = tile.getNavigatorData(this);
 
-    for (let i = 0; i < this.neighborsCount; i++) {
+    for (let i = 0; i < Navigator.neighborsCount; i++) {
       const x: number = tile.position.x + Navigator.getColOffset(i);
-      const y: number = tile.position.y + this.getRowOffset(i);
+      const y: number = tile.position.y + Navigator.getRowOffset(i);
       const exploring: NavigatorTile | null = this.grid.findTile({ x, y });
 
       if (!exploring) {
@@ -121,16 +121,16 @@ export default class Navigator implements id {
     return gVal + hVal;
   }
 
-  private getRowOffset(iteration: number): number {
+  static getRowOffset(iteration: number): number {
     /*
        iteration = 0, 1, or 2: [-1][-1][-1]
        iteration = 3, 4, or 5: [ 0][ 0][ 0]
        iteration = 6, 7, or 8: [+1][+1][+1]
      */
-    return this.neighborsCount + -Math.floor((32 - iteration) / 3);
+    return Navigator.neighborsCount + -Math.floor((32 - iteration) / 3);
   }
 
-  private static getColOffset(iteration: number): number {
+  static getColOffset(iteration: number): number {
     /*
        iteration = 0, 1, or 2: [-1][ 0][+1]
        iteration = 3, 4, or 5: [-1][ 0][+1]

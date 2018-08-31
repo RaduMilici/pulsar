@@ -16,10 +16,12 @@ export default class Obstacles {
   }
 
   add(tile: NavigatorTile): boolean {
+    tile.isObstacle = true;
     return this.manipulate(true, tile);
   }
 
   remove(tile: NavigatorTile): boolean {
+    tile.isObstacle = false;
     return this.manipulate(false, tile);
   }
 

@@ -1,6 +1,7 @@
 import Obstacles from './Obstacles';
 import { randomInt } from '../util';
 import NavigatorTile from './NavigatorTile';
+import { Vector } from '../common';
 const defaultSize = { width: 10, height: 10 };
 export default class Grid {
     constructor(size = defaultSize) {
@@ -29,7 +30,8 @@ export default class Grid {
         for (let y = 0; y < this.size.height; y++) {
             const row = [];
             for (let x = 0; x < this.size.width; x++) {
-                const tile = new NavigatorTile({ x, y });
+                const pos = new Vector({ x, y });
+                const tile = new NavigatorTile(pos);
                 this.onTileCreate(tile);
                 this.tiles.push(tile);
                 row.push(tile);

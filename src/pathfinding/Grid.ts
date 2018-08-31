@@ -2,6 +2,7 @@ import Obstacles from './Obstacles';
 import { randomInt } from '../util';
 import NavigatorTile from './NavigatorTile';
 import { row, point, size } from '../interfaces';
+import { Vector } from '../common';
 
 const defaultSize: size = { width: 10, height: 10 };
 type onTileCreate = (tile: NavigatorTile) => void;
@@ -38,7 +39,8 @@ export default class Grid {
       const row: row = [];
 
       for (let x = 0; x < this.size.width; x++) {
-        const tile: NavigatorTile = new NavigatorTile({ x, y });
+        const pos: Vector = new Vector({ x, y });
+        const tile: NavigatorTile = new NavigatorTile(pos);
         this.onTileCreate(tile);
         this.tiles.push(tile);
         row.push(tile);
