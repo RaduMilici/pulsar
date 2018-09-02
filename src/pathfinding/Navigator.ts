@@ -34,7 +34,7 @@ export default class Navigator implements id {
     if (this.end.isObstacle) {
       return false;
     }
-    this.registerOpenTiles(this.grid);
+    this.registerOpenTiles();
     this.calculateH();
     this.closed.push(this.begin);
     const beginNavData: NavigatorData = this.begin.getNavigatorData(this);
@@ -43,12 +43,20 @@ export default class Navigator implements id {
     return true;
   }
 
-  private registerOpenTiles(grid: Grid): void {
-    grid.rows.forEach((row: row) => {
+  private registerOpenTiles(): void {
+    this.grid.rows.forEach((row: row) => {
       row.forEach((tile: NavigatorTile) => {
         tile.registerNavigatorData(this);
       });
       this.tiles.push(...row);
+    });
+  }
+
+  private unregisterNavigatorData(): void {
+    this.grid.rows.forEach((row: row) => {
+      row.forEach((tile: NavigatorTile) => {
+        tile.unregisterNavigatorData(this);
+      });
     });
   }
 
@@ -112,6 +120,7 @@ export default class Navigator implements id {
       this.calculateG(next);
     } else {
       const path: NavigatorTile[] = this.getPath();
+      this.unregisterNavigatorData();
       this.onComplete(path);
     }
   }

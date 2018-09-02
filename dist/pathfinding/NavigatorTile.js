@@ -1,5 +1,5 @@
 import NavigatorData from './NavigatorData';
-import { contains, uniqueId } from '../util';
+import { contains, uniqueId, removeFromArray } from '../util';
 export default class NavigatorTile {
     constructor(position) {
         this.position = position;
@@ -14,6 +14,10 @@ export default class NavigatorTile {
         }
         this.navigators.push(navigationData);
         return true;
+    }
+    unregisterNavigatorData(navigator) {
+        const navData = this.getNavigatorData(navigator);
+        return removeFromArray(this.navigators, navData);
     }
     getNavigatorData(navigator) {
         const navData = this.navigators.find((navigationData) => {

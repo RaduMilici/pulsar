@@ -9,6 +9,7 @@ export default class NavigatorTile implements id {
     private navigators;
     constructor(position: Vector);
     registerNavigatorData(navigator: Navigator): boolean;
+    unregisterNavigatorData(navigator: Navigator): boolean;
     getNavigatorData(navigator: Navigator): NavigatorData | null;
     isDiagonal({ position }: NavigatorTile): boolean;
 }

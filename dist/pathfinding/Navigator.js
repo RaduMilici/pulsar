@@ -22,7 +22,7 @@ export default class Navigator {
         if (this.end.isObstacle) {
             return false;
         }
-        this.registerOpenTiles(this.grid);
+        this.registerOpenTiles();
         this.calculateH();
         this.closed.push(this.begin);
         const beginNavData = this.begin.getNavigatorData(this);
@@ -30,12 +30,19 @@ export default class Navigator {
         this.calculateG(this.begin);
         return true;
     }
-    registerOpenTiles(grid) {
-        grid.rows.forEach((row) => {
+    registerOpenTiles() {
+        this.grid.rows.forEach((row) => {
             row.forEach((tile) => {
                 tile.registerNavigatorData(this);
             });
             this.tiles.push(...row);
+        });
+    }
+    unregisterNavigatorData() {
+        this.grid.rows.forEach((row) => {
+            row.forEach((tile) => {
+                tile.unregisterNavigatorData(this);
+            });
         });
     }
     calculateH() {
@@ -89,6 +96,7 @@ export default class Navigator {
         }
         else {
             const path = this.getPath();
+            this.unregisterNavigatorData();
             this.onComplete(path);
         }
     }

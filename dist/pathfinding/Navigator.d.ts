@@ -22,6 +22,7 @@ export default class Navigator implements id {
     /** Begin the pathfinding process. Does not start if destination is an obstacle. */
     start(): boolean;
     private registerOpenTiles;
+    private unregisterNavigatorData;
     private calculateH;
     private calculateG;
     private calculateF;
