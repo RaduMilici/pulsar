@@ -9,6 +9,7 @@ import {
   contains,
   RadToDeg,
   DegToRad,
+  removeFromArray,
 } from './util';
 import { Entity, Component, Updater } from './ecs';
 import { tickData, point, size, limits, row } from './interfaces';
@@ -38,6 +39,7 @@ export {
   contains,
   RadToDeg,
   DegToRad,
+  removeFromArray,
   Entity,
   Component,
   Updater,
