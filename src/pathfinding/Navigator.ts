@@ -1,7 +1,7 @@
+import Grid from './Grid';
 import NavigatorTile from './NavigatorTile';
 import NavigatorData from './NavigatorData';
-import { row, id } from '../interfaces';
-import Grid from './Grid';
+import { row, id, navigatorSettings } from '../interfaces';
 import { uniqueId, contains } from '../util';
 
 type onExplore = (tile: NavigatorTile) => void;
@@ -17,13 +17,29 @@ export default class Navigator implements id {
   private open: row = [];
   private closed: row = [];
 
-  constructor(
-    private grid: Grid,
-    private begin: NavigatorTile,
-    private end: NavigatorTile,
-    private readonly onExplore: onExplore = () => {},
-    private readonly onComplete: onComplete = Navigator.defaultOnComplete
-  ) {}
+  private grid: Grid;
+  private begin: NavigatorTile;
+  private end: NavigatorTile;
+  private onExplore: (tile: NavigatorTile) => void;
+  private onComplete: (path: NavigatorTile[]) => void;
+  private maxSteps: number;
+  private steps: number = 0;
+
+  constructor({
+    grid,
+    begin,
+    end,
+    onExplore,
+    onComplete,
+    maxSteps,
+  }: navigatorSettings) {
+    this.grid = grid;
+    this.begin = begin;
+    this.end = end;
+    this.onExplore = onExplore || (() => {});
+    this.onComplete = onComplete || (() => {});
+    this.maxSteps = maxSteps !== undefined ? maxSteps : Infinity;
+  }
 
   get path(): row {
     return this._path;
@@ -73,6 +89,11 @@ export default class Navigator implements id {
   private calculateG(tile: NavigatorTile): void {
     const tileNavData = tile.getNavigatorData(this);
 
+    if (++this.steps === this.maxSteps) {
+      this.done([]);
+      return;
+    }
+
     for (let i = 0; i < Navigator.neighborsCount; i++) {
       const x: number = tile.position.x + Navigator.getColOffset(i);
       const y: number = tile.position.y + Navigator.getRowOffset(i);
@@ -120,9 +141,13 @@ export default class Navigator implements id {
       this.calculateG(next);
     } else {
       const path: NavigatorTile[] = this.getPath();
-      this.unregisterNavigatorData();
-      this.onComplete(path);
+      this.done(path);
     }
+  }
+
+  private done(path: NavigatorTile[]) {
+    this.unregisterNavigatorData();
+    this.onComplete(path);
   }
 
   private calculateF(tile: NavigatorTile): number {
@@ -211,9 +236,5 @@ export default class Navigator implements id {
 
     this._path.reverse();
     return this._path;
-  }
-
-  private static defaultOnComplete(path: NavigatorTile[]) {
-    console.log(path);
   }
 }

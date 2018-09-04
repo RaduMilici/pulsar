@@ -1,11 +1,6 @@
 import { uniqueId, contains } from '../util';
 export default class Navigator {
-    constructor(grid, begin, end, onExplore = () => { }, onComplete = Navigator.defaultOnComplete) {
-        this.grid = grid;
-        this.begin = begin;
-        this.end = end;
-        this.onExplore = onExplore;
-        this.onComplete = onComplete;
+    constructor({ grid, begin, end, onExplore, onComplete, maxSteps, }) {
         this.id = uniqueId();
         this._path = [];
         this.verticalCost = 1;
@@ -13,6 +8,13 @@ export default class Navigator {
         this.tiles = [];
         this.open = [];
         this.closed = [];
+        this.steps = 0;
+        this.grid = grid;
+        this.begin = begin;
+        this.end = end;
+        this.onExplore = onExplore || (() => { });
+        this.onComplete = onComplete || (() => { });
+        this.maxSteps = maxSteps !== undefined ? maxSteps : Infinity;
     }
     get path() {
         return this._path;
@@ -56,6 +58,10 @@ export default class Navigator {
     }
     calculateG(tile) {
         const tileNavData = tile.getNavigatorData(this);
+        if (++this.steps === this.maxSteps) {
+            this.done([]);
+            return;
+        }
         for (let i = 0; i < Navigator.neighborsCount; i++) {
             const x = tile.position.x + Navigator.getColOffset(i);
             const y = tile.position.y + Navigator.getRowOffset(i);
@@ -96,9 +102,12 @@ export default class Navigator {
         }
         else {
             const path = this.getPath();
-            this.unregisterNavigatorData();
-            this.onComplete(path);
+            this.done(path);
         }
+    }
+    done(path) {
+        this.unregisterNavigatorData();
+        this.onComplete(path);
     }
     calculateF(tile) {
         const { gVal, hVal } = tile.getNavigatorData(this);
@@ -168,9 +177,6 @@ export default class Navigator {
         }
         this._path.reverse();
         return this._path;
-    }
-    static defaultOnComplete(path) {
-        console.log(path);
     }
 }
 Navigator.neighborsCount = 9;

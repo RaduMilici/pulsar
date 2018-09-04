@@ -12,7 +12,14 @@ import {
   removeFromArray,
 } from './util';
 import { Entity, Component, Updater } from './ecs';
-import { tickData, point, size, limits, row } from './interfaces';
+import {
+  tickData,
+  point,
+  size,
+  limits,
+  row,
+  navigatorSettings,
+} from './interfaces';
 import {
   randomPoint,
   randomPoints,
@@ -48,6 +55,7 @@ export {
   size,
   limits,
   row,
+  navigatorSettings,
   randomPoint,
   randomPoints,
   randomInt,
