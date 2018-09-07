@@ -99,6 +99,12 @@ export default class Updater {
     return true;
   }
 
+  getTickData(): tickData {
+    const deltaTime: number = this.clock.getDelta();
+    const elapsedTime: number = this.clock.getElapsed();
+    return { deltaTime, elapsedTime };
+  }
+
   private pushToQueue(component: Component): void {
     if (typeof component.updatePriority === 'number') {
       this.components.splice(component.updatePriority, 0, component);
@@ -110,9 +116,7 @@ export default class Updater {
   private update(): void {
     this.frameId = requestAnimationFrame(() => this.update());
 
-    const deltaTime: number = this.clock.getDelta();
-    const elapsedTime: number = this.clock.getElapsed();
-    const tickData: tickData = { deltaTime, elapsedTime };
+    const tickData: tickData = this.getTickData();
 
     this.components.forEach((component: Component) => {
       component.update(tickData);
