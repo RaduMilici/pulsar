@@ -1,4 +1,4 @@
-import { Line, Vector, Triangle } from '../../src/common';
+import { Line, Vector } from '../../src/common';
 import { DisjoinedSet } from '../../src/triangulation';
 import { v00, v11, v22, v33 } from './fixtures/Vectors';
 
@@ -73,21 +73,6 @@ describe('common / Line', () => {
 
     expect(line.a.set).toBeInstanceOf(DisjoinedSet);
     expect(line.b.set).toBeInstanceOf(DisjoinedSet);
-  });
-
-  it('finds unique lines from an array of Triangles', () => {
-    const triangle1: Triangle = new Triangle(v00, v11, v22);
-    const triangle2: Triangle = new Triangle(v00, v11, v33);
-
-    const unique: Line[] = Line.GetUniqueLines([triangle1, triangle2]);
-    const correct: Line[] = [
-      triangle1.lines.bc,
-      triangle1.lines.ca,
-      triangle2.lines.bc,
-      triangle2.lines.ca,
-    ];
-
-    expect(unique).toEqual(correct);
   });
 
   it('finds all points from an array of Lines', () => {
