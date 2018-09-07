@@ -51,7 +51,6 @@ export default class Navigator implements id {
       return false;
     }
     this.registerOpenTiles();
-    this.calculateH();
     this.closed.push(this.begin);
     const beginNavData: NavigatorData = this.begin.getNavigatorData(this);
     beginNavData.gVal = 0;
@@ -76,13 +75,10 @@ export default class Navigator implements id {
     });
   }
 
-  private calculateH(): void {
-    this.tiles.forEach((tile: NavigatorTile) => {
-      // manhattan distance
-      const colVal: number = Math.abs(tile.position.x - this.end.position.x);
-      const rowVal: number = Math.abs(tile.position.y - this.end.position.y);
-      tile.hVal = colVal + rowVal;
-    });
+  private calculateH(tile: NavigatorTile): number {
+    const colVal: number = Math.abs(tile.position.x - this.end.position.x);
+    const rowVal: number = Math.abs(tile.position.y - this.end.position.y);
+    return colVal + rowVal;
   }
 
   private calculateG(tile: NavigatorTile): void {
@@ -150,8 +146,9 @@ export default class Navigator implements id {
   }
 
   private calculateF(tile: NavigatorTile): number {
+    const hVal = this.calculateH(tile);
     const { gVal }: NavigatorData = tile.getNavigatorData(this);
-    return gVal + tile.hVal;
+    return gVal + hVal;
   }
 
   static getRowOffset(iteration: number): number {

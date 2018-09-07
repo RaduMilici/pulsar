@@ -4,6 +4,7 @@ import NavigatorTile from './NavigatorTile';
 export default class NavigatorData implements id {
     readonly navigator: Navigator;
     id: number;
+    hVal: number;
     gVal: number;
     fVal: number;
     parent: NavigatorTile;

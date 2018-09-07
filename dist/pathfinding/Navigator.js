@@ -25,7 +25,6 @@ export default class Navigator {
             return false;
         }
         this.registerOpenTiles();
-        this.calculateH();
         this.closed.push(this.begin);
         const beginNavData = this.begin.getNavigatorData(this);
         beginNavData.gVal = 0;
@@ -47,13 +46,10 @@ export default class Navigator {
             });
         });
     }
-    calculateH() {
-        this.tiles.forEach((tile) => {
-            // manhattan distance
-            const colVal = Math.abs(tile.position.x - this.end.position.x);
-            const rowVal = Math.abs(tile.position.y - this.end.position.y);
-            tile.hVal = colVal + rowVal;
-        });
+    calculateH(tile) {
+        const colVal = Math.abs(tile.position.x - this.end.position.x);
+        const rowVal = Math.abs(tile.position.y - this.end.position.y);
+        return colVal + rowVal;
     }
     calculateG(tile) {
         const tileNavData = tile.getNavigatorData(this);
@@ -109,8 +105,9 @@ export default class Navigator {
         this.onComplete(path);
     }
     calculateF(tile) {
+        const hVal = this.calculateH(tile);
         const { gVal } = tile.getNavigatorData(this);
-        return gVal + tile.hVal;
+        return gVal + hVal;
     }
     static getRowOffset(iteration) {
         /*

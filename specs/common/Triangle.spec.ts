@@ -74,7 +74,6 @@ describe('common / Triangle', () => {
     expect(Triangle.LinesFromArray(triangles)).toMatchObject(correct);
   });
 
-
   it('finds unique lines from an array of Triangles', () => {
     const triangle1: Triangle = new Triangle(v00, v11, v22);
     const triangle2: Triangle = new Triangle(v00, v11, v33);

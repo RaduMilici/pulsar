@@ -5,6 +5,7 @@ import NavigatorTile from './NavigatorTile';
 
 export default class NavigatorData implements id {
   id: number = uniqueId();
+  hVal: number; // distance from end
   gVal: number; // distance from start
   fVal: number; // gCost + hCost
   parent: NavigatorTile;

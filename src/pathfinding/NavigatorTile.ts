@@ -7,7 +7,6 @@ import { Vector } from '../common';
 export default class NavigatorTile implements id {
   id: number = uniqueId();
   isObstacle: boolean = false;
-  hVal: number; // distance from end
 
   private navigators: NavigatorData[] = [];
 
