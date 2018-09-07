@@ -1,6 +1,5 @@
 import { uniqueId } from '../util';
-import Triangle from './Triangle';
-import { DisjoinedSet } from '../triangulation';
+import DisjoinedSet from '../triangulation/DisjoinedSet';
 import LineIntersection from './LineIntersection';
 export default class Line {
     constructor(a, b) {
@@ -31,10 +30,6 @@ export default class Line {
     makeDisjoinedSets() {
         this.a.set = new DisjoinedSet(this.a);
         this.b.set = new DisjoinedSet(this.b);
-    }
-    static GetUniqueLines(triangles) {
-        const lines = Triangle.LinesFromArray(triangles);
-        return lines.filter((line) => Line.IsUnique(line, lines));
     }
     static PointsFromArray(lines) {
         return lines.reduce((accumulator, line) => {

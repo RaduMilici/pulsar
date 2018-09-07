@@ -1,6 +1,6 @@
+import { immutableObjectSort } from '../util';
 import Vector from './Vector';
 import Line from './Line';
-import { immutableObjectSort } from '../util';
 /*
 * !WARNING!
 * This class regards its point of origin at the top left corner.

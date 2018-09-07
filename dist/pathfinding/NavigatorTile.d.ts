@@ -6,6 +6,7 @@ export default class NavigatorTile implements id {
     readonly position: Vector;
     id: number;
     isObstacle: boolean;
+    hVal: number;
     private navigators;
     constructor(position: Vector);
     registerNavigatorData(navigator: Navigator): boolean;

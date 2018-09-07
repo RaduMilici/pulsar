@@ -1,5 +1,6 @@
 type tickData = {
   deltaTime: number;
+  deltaTimeMS: number;
   elapsedTime: number;
 };
 

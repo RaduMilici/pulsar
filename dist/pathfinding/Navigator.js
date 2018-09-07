@@ -50,10 +50,9 @@ export default class Navigator {
     calculateH() {
         this.tiles.forEach((tile) => {
             // manhattan distance
-            const navData = tile.getNavigatorData(this);
             const colVal = Math.abs(tile.position.x - this.end.position.x);
             const rowVal = Math.abs(tile.position.y - this.end.position.y);
-            navData.hVal = colVal + rowVal;
+            tile.hVal = colVal + rowVal;
         });
     }
     calculateG(tile) {
@@ -110,8 +109,8 @@ export default class Navigator {
         this.onComplete(path);
     }
     calculateF(tile) {
-        const { gVal, hVal } = tile.getNavigatorData(this);
-        return gVal + hVal;
+        const { gVal } = tile.getNavigatorData(this);
+        return gVal + tile.hVal;
     }
     static getRowOffset(iteration) {
         /*

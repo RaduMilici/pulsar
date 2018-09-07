@@ -1,4 +1,4 @@
-import { Vector, Line } from '../common';
+import { Vector, Line, Triangle } from '../common';
 export default class Hull {
     constructor({ triangles }) {
         this.lines = [];
@@ -8,7 +8,7 @@ export default class Hull {
         return this._points;
     }
     start() {
-        const uniqueLines = Line.GetUniqueLines(this.triangles);
+        const uniqueLines = Triangle.GetUniqueLines(this.triangles);
         const uniquePoints = Line.PointsFromArray(uniqueLines);
         const ccwPoints = Vector.ArrangePointsCCW(uniquePoints);
         this._points = Vector.UniqueFromArray(ccwPoints);

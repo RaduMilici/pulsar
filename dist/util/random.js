@@ -1,4 +1,4 @@
-import { Vector } from '../common';
+import Vector from '../common/Vector';
 const randomInt = (min, max) => {
     return Math.round(randomFloat(min, max));
 };

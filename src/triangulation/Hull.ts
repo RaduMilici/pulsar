@@ -15,7 +15,7 @@ export default class Hull {
   }
 
   start(): void {
-    const uniqueLines: Line[] = Line.GetUniqueLines(this.triangles);
+    const uniqueLines: Line[] = Triangle.GetUniqueLines(this.triangles);
     const uniquePoints: Vector[] = Line.PointsFromArray(uniqueLines);
     const ccwPoints: Vector[] = Vector.ArrangePointsCCW(uniquePoints);
     this._points = Vector.UniqueFromArray(ccwPoints);

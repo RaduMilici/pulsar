@@ -1,6 +1,6 @@
+import { updaterReport, tickData } from '../../interfaces';
 import Component from '../Component';
 import Entity from '../Entity';
-import { updaterReport } from '../../interfaces';
 export default class Updater {
     onUpdateComplete: Component;
     private components;
@@ -21,6 +21,9 @@ export default class Updater {
     addComponent(component: Component): boolean;
     removeComponent(component: Component): boolean;
     toggleComponent(component: Component): boolean;
+    invoke(component: Component, time: number): void;
+    invokeRepeating(component: Component, time: number, times?: number): void;
+    getTickData(): tickData;
     private pushToQueue;
     private update;
 }

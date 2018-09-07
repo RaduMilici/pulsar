@@ -1,4 +1,5 @@
-import { Vector, BoundingBox } from '../common';
+import Vector from '../common/Vector';
+import BoundingBox from '../common/BoundingBox';
 declare const randomInt: (min: number, max: number) => number;
 declare const randomFloat: (min: number, max: number) => number;
 declare const randomColor: () => string;

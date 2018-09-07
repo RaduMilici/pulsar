@@ -5,7 +5,6 @@ export default class NavigatorData implements id {
     readonly navigator: Navigator;
     id: number;
     gVal: number;
-    hVal: number;
     fVal: number;
     parent: NavigatorTile;
     constructor(navigator: Navigator);

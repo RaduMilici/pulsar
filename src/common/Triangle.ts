@@ -112,4 +112,9 @@ export default class Triangle implements id {
       return accumulator;
     }, []);
   }
+
+  static GetUniqueLines(triangles: Triangle[]): Line[] {
+    const lines: Line[] = Triangle.LinesFromArray(triangles);
+    return lines.filter((line: Line) => Line.IsUnique(line, lines));
+  }
 }

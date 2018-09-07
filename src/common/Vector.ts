@@ -1,7 +1,8 @@
 import { point } from '../interfaces';
 import { DisjoinedSet } from '../triangulation';
 import { QuadTree } from '../quadtree';
-import { toFloat, RadToDeg } from '../util';
+import { RadToDeg } from '../util/radDeg';
+import toFloat from '../util/toFloat';
 
 export default class Vector {
   set: DisjoinedSet;

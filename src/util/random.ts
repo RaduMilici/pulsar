@@ -1,4 +1,5 @@
-import { Vector, BoundingBox } from '../common';
+import Vector from '../common/Vector';
+import BoundingBox from '../common/BoundingBox';
 
 const randomInt = (min: number, max: number): number => {
   return Math.round(randomFloat(min, max));

@@ -75,5 +75,9 @@ export default class Triangle {
             return accumulator;
         }, []);
     }
+    static GetUniqueLines(triangles) {
+        const lines = Triangle.LinesFromArray(triangles);
+        return lines.filter((line) => Line.IsUnique(line, lines));
+    }
 }
 //# sourceMappingURL=Triangle.js.map

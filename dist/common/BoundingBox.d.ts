@@ -1,6 +1,6 @@
+import { limits } from '../interfaces';
 import Vector from './Vector';
 import Line from './Line';
-import { limits } from '../interfaces';
 export default class BoundingBox {
     private readonly points;
     topLeft: Vector;

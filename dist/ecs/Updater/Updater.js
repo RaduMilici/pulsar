@@ -1,7 +1,9 @@
-import Component from '../Component';
-import EntityUpdater from './EntityUpdater';
 import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util';
+import Component from '../Component';
+import EntityUpdater from './EntityUpdater';
+import Invoke from './Invoke';
+import InvokeRepeating from './InvokeRepeating';
 export default class Updater {
     constructor() {
         this.onUpdateComplete = new Component();
@@ -82,6 +84,20 @@ export default class Updater {
         }
         return true;
     }
+    invoke(component, time) {
+        const invoke = new Invoke(this, component, time);
+        this.add(invoke);
+    }
+    invokeRepeating(component, time, times = Infinity) {
+        const invoke = new InvokeRepeating(this, component, time, times);
+        this.add(invoke);
+    }
+    getTickData() {
+        const deltaTime = this.clock.getDelta();
+        const deltaTimeMS = deltaTime * 1000;
+        const elapsedTime = this.clock.getElapsed();
+        return { deltaTime, deltaTimeMS, elapsedTime };
+    }
     pushToQueue(component) {
         if (typeof component.updatePriority === 'number') {
             this.components.splice(component.updatePriority, 0, component);
@@ -92,9 +108,7 @@ export default class Updater {
     }
     update() {
         this.frameId = requestAnimationFrame(() => this.update());
-        const deltaTime = this.clock.getDelta();
-        const elapsedTime = this.clock.getElapsed();
-        const tickData = { deltaTime, elapsedTime };
+        const tickData = this.getTickData();
         this.components.forEach((component) => {
             component.update(tickData);
         });

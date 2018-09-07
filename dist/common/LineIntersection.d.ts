@@ -1,5 +1,5 @@
 import Line from './Line';
-import { Vector } from '../common';
+import Vector from '../common/Vector';
 export default class LineIntersection {
     private line1;
     private line2;

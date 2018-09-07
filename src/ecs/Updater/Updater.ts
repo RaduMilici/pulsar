@@ -1,9 +1,11 @@
-import Component from '../Component';
-import Entity from '../Entity';
-import EntityUpdater from './EntityUpdater';
 import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util';
 import { updaterReport, tickData } from '../../interfaces';
+import Component from '../Component';
+import Entity from '../Entity';
+import EntityUpdater from './EntityUpdater';
+import Invoke from './Invoke';
+import InvokeRepeating from './InvokeRepeating';
 
 export default class Updater {
   onUpdateComplete: Component = new Component();
@@ -99,10 +101,30 @@ export default class Updater {
     return true;
   }
 
+  invoke(component: Component, time: number): void {
+    const invoke: Invoke = new Invoke(this, component, time);
+    this.add(invoke);
+  }
+
+  invokeRepeating(
+    component: Component,
+    time: number,
+    times: number = Infinity
+  ): void {
+    const invoke: InvokeRepeating = new InvokeRepeating(
+      this,
+      component,
+      time,
+      times
+    );
+    this.add(invoke);
+  }
+
   getTickData(): tickData {
     const deltaTime: number = this.clock.getDelta();
+    const deltaTimeMS: number = deltaTime * 1000;
     const elapsedTime: number = this.clock.getElapsed();
-    return { deltaTime, elapsedTime };
+    return { deltaTime, deltaTimeMS, elapsedTime };
   }
 
   private pushToQueue(component: Component): void {

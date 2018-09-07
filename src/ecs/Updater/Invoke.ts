@@ -3,16 +3,29 @@ import Updater from './Updater';
 import { id, Update, tickData } from '../../interfaces';
 import { uniqueId } from '../../util';
 
-export default class Invoke implements id, Update {
-    id: number = uniqueId();
+export default class Invoke extends Component {
+  id: number = uniqueId();
+  originalTimeout: number;
 
-    constructor(readonly updater: Updater, readonly component: Component, readonly timeout: number) {
-        setTimeout(() => this.update(), timeout);
+  constructor(
+    readonly updater: Updater,
+    readonly component: Component,
+    public timeout: number
+  ) {
+    super();
+    this.originalTimeout = timeout;
+  }
+
+  update(tickData: tickData): void {
+    this.timeout -= tickData.deltaTimeMS;
+
+    if (this.timeout <= 0) {
+      this.component.update(tickData);
+      this.stop();
     }
+  }
 
-    update() {
-        const tickData: tickData = this.updater.getTickData();
-        this.component.update(tickData);
-    }
-
+  stop(): boolean {
+    return this.updater.remove(this);
+  }
 }

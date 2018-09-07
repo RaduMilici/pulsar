@@ -21,6 +21,7 @@ export default class Triangle implements id {
     hasPoint(point: Vector): boolean;
     hasAnyPoint(points: Vector[]): boolean;
     static LinesFromArray(triangles: Triangle[]): Line[];
+    static GetUniqueLines(triangles: Triangle[]): Line[];
 }
 export {};
 //# sourceMappingURL=Triangle.d.ts.map

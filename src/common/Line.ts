@@ -1,9 +1,8 @@
-import Vector from './Vector';
 import { id } from '../interfaces';
 import { uniqueId } from '../util';
-import Triangle from './Triangle';
-import { DisjoinedSet } from '../triangulation';
+import DisjoinedSet from '../triangulation/DisjoinedSet';
 import LineIntersection from './LineIntersection';
+import Vector from './Vector';
 
 export default class Line implements id {
   id: number = uniqueId();
@@ -40,11 +39,6 @@ export default class Line implements id {
   makeDisjoinedSets(): void {
     this.a.set = new DisjoinedSet(this.a);
     this.b.set = new DisjoinedSet(this.b);
-  }
-
-  static GetUniqueLines(triangles: Triangle[]): Line[] {
-    const lines: Line[] = Triangle.LinesFromArray(triangles);
-    return lines.filter((line: Line) => Line.IsUnique(line, lines));
   }
 
   static PointsFromArray(lines: Line[]): Vector[] {

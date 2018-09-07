@@ -79,10 +79,9 @@ export default class Navigator implements id {
   private calculateH(): void {
     this.tiles.forEach((tile: NavigatorTile) => {
       // manhattan distance
-      const navData: NavigatorData = tile.getNavigatorData(this);
       const colVal: number = Math.abs(tile.position.x - this.end.position.x);
       const rowVal: number = Math.abs(tile.position.y - this.end.position.y);
-      navData.hVal = colVal + rowVal;
+      tile.hVal = colVal + rowVal;
     });
   }
 
@@ -151,8 +150,8 @@ export default class Navigator implements id {
   }
 
   private calculateF(tile: NavigatorTile): number {
-    const { gVal, hVal }: NavigatorData = tile.getNavigatorData(this);
-    return gVal + hVal;
+    const { gVal }: NavigatorData = tile.getNavigatorData(this);
+    return gVal + tile.hVal;
   }
 
   static getRowOffset(iteration: number): number {
