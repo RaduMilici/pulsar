@@ -218,7 +218,7 @@ export default class Navigator implements id {
       if (currentNavData.parent) {
         current = currentNavData.parent;
       } else {
-        return null;
+        return [];
       }
     }
 

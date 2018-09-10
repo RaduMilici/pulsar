@@ -156,7 +156,7 @@ export default class Navigator {
                 current = currentNavData.parent;
             }
             else {
-                return null;
+                return [];
             }
         }
         this._path.reverse();
