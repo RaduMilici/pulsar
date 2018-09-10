@@ -9,8 +9,8 @@ export default class NavigatorTile implements id {
     private navigators;
     constructor(position: Vector);
     registerNavigatorData(navigator: Navigator): boolean;
-    unregisterNavigatorData(navigator: Navigator): boolean;
-    getNavigatorData(navigator: Navigator): NavigatorData | null;
+    deregisterNavigatorData(navigator: Navigator): boolean;
+    getNavigatorData(navigator: Navigator): NavigatorData;
     isDiagonal({ position }: NavigatorTile): boolean;
 }
 //# sourceMappingURL=NavigatorTile.d.ts.map

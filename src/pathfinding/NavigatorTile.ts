@@ -1,7 +1,7 @@
 import { id, point } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
-import { contains, uniqueId, removeFromArray } from '../util';
+import { contains, uniqueId, removeFromArray, findIndex } from '../util';
 import { Vector } from '../common';
 
 export default class NavigatorTile implements id {
@@ -23,17 +23,21 @@ export default class NavigatorTile implements id {
     return true;
   }
 
-  unregisterNavigatorData(navigator: Navigator): boolean {
+  deregisterNavigatorData(navigator: Navigator): boolean {
     const navData: NavigatorData = this.getNavigatorData(navigator);
     return removeFromArray(this.navigators, navData);
   }
 
-  getNavigatorData(navigator: Navigator): NavigatorData | null {
-    const navData = this.navigators.find((navigationData: NavigatorData) => {
-      return navigationData.navigator.id === navigator.id;
-    });
+  getNavigatorData(navigator: Navigator): NavigatorData {
+    const index: number = findIndex(this.navigators, navigator);
 
-    return navData ? navData : null;
+    if (index !== -1) {
+      return this.navigators[index];
+    }
+
+    const data: NavigatorData = new NavigatorData(navigator);
+    this.navigators.push(data);
+    return data;
   }
 
   isDiagonal({ position }: NavigatorTile): boolean {

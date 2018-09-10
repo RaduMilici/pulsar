@@ -1,8 +1,7 @@
-import { uniqueId } from '../util';
 export default class NavigatorData {
     constructor(navigator) {
         this.navigator = navigator;
-        this.id = uniqueId();
+        this.id = navigator.id;
     }
 }
 //# sourceMappingURL=NavigatorData.js.map

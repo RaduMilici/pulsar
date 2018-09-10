@@ -1,5 +1,5 @@
 import NavigatorData from './NavigatorData';
-import { contains, uniqueId, removeFromArray } from '../util';
+import { contains, uniqueId, removeFromArray, findIndex } from '../util';
 export default class NavigatorTile {
     constructor(position) {
         this.position = position;
@@ -15,15 +15,18 @@ export default class NavigatorTile {
         this.navigators.push(navigationData);
         return true;
     }
-    unregisterNavigatorData(navigator) {
+    deregisterNavigatorData(navigator) {
         const navData = this.getNavigatorData(navigator);
         return removeFromArray(this.navigators, navData);
     }
     getNavigatorData(navigator) {
-        const navData = this.navigators.find((navigationData) => {
-            return navigationData.navigator.id === navigator.id;
-        });
-        return navData ? navData : null;
+        const index = findIndex(this.navigators, navigator);
+        if (index !== -1) {
+            return this.navigators[index];
+        }
+        const data = new NavigatorData(navigator);
+        this.navigators.push(data);
+        return data;
     }
     isDiagonal({ position }) {
         return this.position.x !== position.x && this.position.y !== position.y;

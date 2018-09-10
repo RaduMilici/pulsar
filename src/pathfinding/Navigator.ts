@@ -16,6 +16,7 @@ export default class Navigator implements id {
   private tiles: row = [];
   private open: row = [];
   private closed: row = [];
+  private registeredTiles: NavigatorTile[] = [];
 
   private grid: Grid;
   private begin: NavigatorTile;
@@ -50,29 +51,19 @@ export default class Navigator implements id {
     if (this.end.isObstacle) {
       return false;
     }
-    this.registerOpenTiles();
     this.closed.push(this.begin);
     const beginNavData: NavigatorData = this.begin.getNavigatorData(this);
+    this.addToExplored(this.begin);
+
     beginNavData.gVal = 0;
     this.calculateG(this.begin);
     return true;
   }
 
-  private registerOpenTiles(): void {
-    this.grid.rows.forEach((row: row) => {
-      row.forEach((tile: NavigatorTile) => {
-        tile.registerNavigatorData(this);
-      });
-      this.tiles.push(...row);
-    });
-  }
-
-  private unregisterNavigatorData(): void {
-    this.grid.rows.forEach((row: row) => {
-      row.forEach((tile: NavigatorTile) => {
-        tile.unregisterNavigatorData(this);
-      });
-    });
+  private deregisterNavigatorData(): void {
+    this.registeredTiles.forEach((tile: NavigatorTile) =>
+      tile.deregisterNavigatorData(this)
+    );
   }
 
   private calculateH(tile: NavigatorTile): number {
@@ -83,6 +74,7 @@ export default class Navigator implements id {
 
   private calculateG(tile: NavigatorTile): void {
     const tileNavData = tile.getNavigatorData(this);
+    this.addToExplored(tile);
 
     if (++this.steps === this.maxSteps) {
       this.done([]);
@@ -99,6 +91,7 @@ export default class Navigator implements id {
       }
 
       const exploringNavData: NavigatorData = exploring.getNavigatorData(this);
+      this.addToExplored(exploring);
 
       if (exploring.isObstacle) {
         continue;
@@ -111,7 +104,7 @@ export default class Navigator implements id {
       if (tile.id === exploring.id) {
         this.closed.push(exploring);
       } else {
-        if (!this.getParent(tile, exploring)) {
+        if (!this.getParent(tile, exploring, tileNavData, exploringNavData)) {
           continue;
         }
 
@@ -126,7 +119,7 @@ export default class Navigator implements id {
         }
       }
 
-      exploringNavData.fVal = this.calculateF(exploring);
+      exploringNavData.fVal = this.calculateF(exploring, exploringNavData);
     }
 
     const next = this.chooseNext();
@@ -141,14 +134,13 @@ export default class Navigator implements id {
   }
 
   private done(path: NavigatorTile[]) {
-    this.unregisterNavigatorData();
+    this.deregisterNavigatorData();
     this.onComplete(path);
   }
 
-  private calculateF(tile: NavigatorTile): number {
+  private calculateF(tile: NavigatorTile, data: NavigatorData): number {
     const hVal = this.calculateH(tile);
-    const { gVal }: NavigatorData = tile.getNavigatorData(this);
-    return gVal + hVal;
+    return data.gVal + hVal;
   }
 
   static getRowOffset(iteration: number): number {
@@ -171,11 +163,10 @@ export default class Navigator implements id {
 
   private getParent(
     tile: NavigatorTile,
-    checkTile: NavigatorTile
+    checkTile: NavigatorTile,
+    tileNavData: NavigatorData,
+    checkNavData: NavigatorData
   ): NavigatorTile | null {
-    const tileNavData: NavigatorData = tile.getNavigatorData(this);
-    const checkNavData: NavigatorData = checkTile.getNavigatorData(this);
-
     if (!checkNavData.parent) {
       checkNavData.parent = tile;
       return tile;
@@ -197,6 +188,7 @@ export default class Navigator implements id {
     this.open.sort((a: NavigatorTile, b: NavigatorTile) => {
       const aNavData: NavigatorData = a.getNavigatorData(this);
       const bNavData: NavigatorData = b.getNavigatorData(this);
+
       return aNavData.fVal - bNavData.fVal;
     });
     const next: NavigatorTile | undefined = this.open[0];
@@ -232,5 +224,11 @@ export default class Navigator implements id {
 
     this._path.reverse();
     return this._path;
+  }
+
+  private addToExplored(tile: NavigatorTile): void {
+    if (!contains(this.registeredTiles, tile)) {
+      this.registeredTiles.push(tile);
+    }
   }
 }

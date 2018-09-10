@@ -8,6 +8,7 @@ export default class Navigator {
         this.tiles = [];
         this.open = [];
         this.closed = [];
+        this.registeredTiles = [];
         this.steps = 0;
         this.grid = grid;
         this.begin = begin;
@@ -24,27 +25,15 @@ export default class Navigator {
         if (this.end.isObstacle) {
             return false;
         }
-        this.registerOpenTiles();
         this.closed.push(this.begin);
         const beginNavData = this.begin.getNavigatorData(this);
+        this.addToExplored(this.begin);
         beginNavData.gVal = 0;
         this.calculateG(this.begin);
         return true;
     }
-    registerOpenTiles() {
-        this.grid.rows.forEach((row) => {
-            row.forEach((tile) => {
-                tile.registerNavigatorData(this);
-            });
-            this.tiles.push(...row);
-        });
-    }
-    unregisterNavigatorData() {
-        this.grid.rows.forEach((row) => {
-            row.forEach((tile) => {
-                tile.unregisterNavigatorData(this);
-            });
-        });
+    deregisterNavigatorData() {
+        this.registeredTiles.forEach((tile) => tile.deregisterNavigatorData(this));
     }
     calculateH(tile) {
         const colVal = Math.abs(tile.position.x - this.end.position.x);
@@ -53,6 +42,7 @@ export default class Navigator {
     }
     calculateG(tile) {
         const tileNavData = tile.getNavigatorData(this);
+        this.addToExplored(tile);
         if (++this.steps === this.maxSteps) {
             this.done([]);
             return;
@@ -65,6 +55,7 @@ export default class Navigator {
                 continue;
             }
             const exploringNavData = exploring.getNavigatorData(this);
+            this.addToExplored(exploring);
             if (exploring.isObstacle) {
                 continue;
             }
@@ -75,7 +66,7 @@ export default class Navigator {
                 this.closed.push(exploring);
             }
             else {
-                if (!this.getParent(tile, exploring)) {
+                if (!this.getParent(tile, exploring, tileNavData, exploringNavData)) {
                     continue;
                 }
                 if (!contains(this.open, exploring)) {
@@ -88,7 +79,7 @@ export default class Navigator {
                     exploringNavData.gVal = tileNavData.gVal + this.verticalCost;
                 }
             }
-            exploringNavData.fVal = this.calculateF(exploring);
+            exploringNavData.fVal = this.calculateF(exploring, exploringNavData);
         }
         const next = this.chooseNext();
         if (next) {
@@ -101,13 +92,12 @@ export default class Navigator {
         }
     }
     done(path) {
-        this.unregisterNavigatorData();
+        this.deregisterNavigatorData();
         this.onComplete(path);
     }
-    calculateF(tile) {
+    calculateF(tile, data) {
         const hVal = this.calculateH(tile);
-        const { gVal } = tile.getNavigatorData(this);
-        return gVal + hVal;
+        return data.gVal + hVal;
     }
     static getRowOffset(iteration) {
         /*
@@ -125,9 +115,7 @@ export default class Navigator {
          */
         return (iteration % 3) - 1;
     }
-    getParent(tile, checkTile) {
-        const tileNavData = tile.getNavigatorData(this);
-        const checkNavData = checkTile.getNavigatorData(this);
+    getParent(tile, checkTile, tileNavData, checkNavData) {
         if (!checkNavData.parent) {
             checkNavData.parent = tile;
             return tile;
@@ -173,6 +161,11 @@ export default class Navigator {
         }
         this._path.reverse();
         return this._path;
+    }
+    addToExplored(tile) {
+        if (!contains(this.registeredTiles, tile)) {
+            this.registeredTiles.push(tile);
+        }
     }
 }
 Navigator.neighborsCount = 9;

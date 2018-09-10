@@ -8,6 +8,7 @@ export default class Navigator implements id {
     private tiles;
     private open;
     private closed;
+    private registeredTiles;
     private grid;
     private begin;
     private end;
@@ -19,8 +20,7 @@ export default class Navigator implements id {
     readonly path: row;
     /** Begin the pathfinding process. Does not start if destination is an obstacle. */
     start(): boolean;
-    private registerOpenTiles;
-    private unregisterNavigatorData;
+    private deregisterNavigatorData;
     private calculateH;
     private calculateG;
     private done;
@@ -30,5 +30,6 @@ export default class Navigator implements id {
     private getParent;
     private chooseNext;
     private getPath;
+    private addToExplored;
 }
 //# sourceMappingURL=Navigator.d.ts.map
