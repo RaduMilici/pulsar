@@ -1,8 +1,9 @@
 import { Vector, Shape } from '../common';
 export default class QuadTree {
-    constructor(shape, points) {
+    constructor(shape, points, level = 0) {
         this.shape = shape;
         this.points = points;
+        this.level = level;
         this.children = [];
         this.containedPoints = [];
         this.capacity = 1;
@@ -23,6 +24,16 @@ export default class QuadTree {
                 break;
             }
         }
+    }
+    getLevel(level) {
+        let children = [this];
+        for (let i = 0; i < level; i++) {
+            children = children.reduce((acc, quadTree) => {
+                acc.push(...quadTree.children);
+                return acc;
+            }, []);
+        }
+        return children.length ? children : null;
     }
     findChildThatContains(point) {
         const contains = this.shape.containsPoint(point);
@@ -48,14 +59,15 @@ export default class QuadTree {
             left,
             right,
         ]);
+        const nextLevel = this.level + 1;
         const shape1 = new Shape([topLeft, top, centroid, left]);
-        const quad1 = new QuadTree(shape1, points);
+        const quad1 = new QuadTree(shape1, points, nextLevel);
         const shape2 = new Shape([top, topRight, right, centroid]);
-        const quad2 = new QuadTree(shape2, points);
+        const quad2 = new QuadTree(shape2, points, nextLevel);
         const shape3 = new Shape([centroid, right, bottomRight, bottom]);
-        const quad3 = new QuadTree(shape3, points);
+        const quad3 = new QuadTree(shape3, points, nextLevel);
         const shape4 = new Shape([centroid, bottom, bottomLeft, left]);
-        const quad4 = new QuadTree(shape4, points);
+        const quad4 = new QuadTree(shape4, points, nextLevel);
         this.children.push(quad1, quad2, quad3, quad4);
         this.children.forEach((child) => {
             child.parent = this;
