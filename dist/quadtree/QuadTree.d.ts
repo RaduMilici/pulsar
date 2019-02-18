@@ -11,6 +11,7 @@ export default class QuadTree {
     private start;
     getLevel(level: number): QuadTree[] | null;
     findChildThatContains(point: Vector): QuadTree;
+    forceDivide(times: number): void;
     divide(points: Vector[]): void;
 }
 //# sourceMappingURL=QuadTree.d.ts.map

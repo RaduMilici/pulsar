@@ -63,6 +63,19 @@ export default class QuadTree {
     return null;
   }
 
+  forceDivide(times: number): void {
+    for (let i = 0; i < times; i++) {
+      const children: QuadTree[] = this.getLevel(i);
+      
+      children.forEach((child: QuadTree) => {
+        if (!child.children.length) {
+          child.divide(child.points);
+        }
+      });
+
+    }
+  }
+
   divide(points: Vector[]): void {
     const {
       topLeft,

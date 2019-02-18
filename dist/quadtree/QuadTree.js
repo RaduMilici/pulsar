@@ -50,6 +50,16 @@ export default class QuadTree {
         }
         return null;
     }
+    forceDivide(times) {
+        for (let i = 0; i < times; i++) {
+            const children = this.getLevel(i);
+            children.forEach((child) => {
+                if (!child.children.length) {
+                    child.divide(child.points);
+                }
+            });
+        }
+    }
     divide(points) {
         const { topLeft, topRight, bottomLeft, bottomRight, } = this.shape.boundingBox;
         const { top, bottom, left, right } = this.shape.boundingBox.midpoints;
