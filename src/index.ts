@@ -1,7 +1,16 @@
 import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import { Triangulation, Hull } from './triangulation';
 import { QuadTree } from './quadtree';
-import { Vector, Line, Triangle, Shape, BoundingBox } from './common';
+import {
+  Vector,
+  Line,
+  Triangle,
+  Shape,
+  BoundingBox,
+  Matrix2,
+  Matrix3,
+  Matrix4,
+} from './common';
 import {
   uniqueId,
   sort,
@@ -39,6 +48,9 @@ export {
   Triangle,
   Shape,
   BoundingBox,
+  Matrix2,
+  Matrix3,
+  Matrix4,
   QuadTree,
   uniqueId,
   sort,
