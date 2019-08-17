@@ -7,6 +7,11 @@ describe('common / Matrix2', () => {
     m = new Matrix2(1, 2, 3, 4);
   });
 
+  it('defaults to a zero matrix when missing arguments', () => {
+    const mZero = new Matrix2();
+    expect(mZero.elements).toEqual([0, 0, 0, 0]);
+  });
+
   it('returns its elements', () => {
     expect(m.elements).toEqual([1, 2, 3, 4]);
   });
@@ -25,6 +30,11 @@ describe('common / Matrix3', () => {
 
   beforeEach(() => {
     m = new Matrix3(5, 4, 3, 2, 1, 6, 7, 8, 9);
+  });
+
+  it('defaults to a zero matrix when missing arguments', () => {
+    const mZero = new Matrix3();
+    expect(mZero.elements).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   });
 
   it('returns its elements', () => {
@@ -47,6 +57,28 @@ describe('common / Matrix4', () => {
 
   beforeEach(() => {
     m = new Matrix4(5, 4, 3, 2, 1, 6, 7, 8, 9, 5, 2, 8, 9, 1, 0, 3);
+  });
+
+  it('defaults to a zero matrix when missing arguments', () => {
+    const mZero = new Matrix4();
+    expect(mZero.elements).toEqual([
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ]);
   });
 
   it('returns its elements', () => {

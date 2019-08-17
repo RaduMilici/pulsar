@@ -1,9 +1,9 @@
 class Matrix2 {
   constructor(
-    readonly a: number,
-    readonly b: number,
-    readonly c: number,
-    readonly d: number
+    readonly a: number = 0,
+    readonly b: number = 0,
+    readonly c: number = 0,
+    readonly d: number = 0
   ) {}
 
   get elements(): number[] {
@@ -24,15 +24,15 @@ class Matrix2 {
 
 class Matrix3 extends Matrix2 {
   constructor(
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    readonly e: number,
-    readonly f: number,
-    readonly g: number,
-    readonly h: number,
-    readonly i: number
+    a: number = 0,
+    b: number = 0,
+    c: number = 0,
+    d: number = 0,
+    readonly e: number = 0,
+    readonly f: number = 0,
+    readonly g: number = 0,
+    readonly h: number = 0,
+    readonly i: number = 0
   ) {
     super(a, b, c, d);
   }
@@ -62,22 +62,22 @@ class Matrix3 extends Matrix2 {
 
 class Matrix4 extends Matrix3 {
   constructor(
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    e: number,
-    f: number,
-    g: number,
-    h: number,
-    i: number,
-    readonly j: number,
-    readonly k: number,
-    readonly l: number,
-    readonly m: number,
-    readonly n: number,
-    readonly o: number,
-    readonly p: number
+    a: number = 0,
+    b: number = 0,
+    c: number = 0,
+    d: number = 0,
+    e: number = 0,
+    f: number = 0,
+    g: number = 0,
+    h: number = 0,
+    i: number = 0,
+    readonly j: number = 0,
+    readonly k: number = 0,
+    readonly l: number = 0,
+    readonly m: number = 0,
+    readonly n: number = 0,
+    readonly o: number = 0,
+    readonly p: number = 0
   ) {
     super(a, b, c, d, e, f, g, h, i);
   }
