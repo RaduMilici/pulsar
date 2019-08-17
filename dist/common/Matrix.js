@@ -8,6 +8,15 @@ class Matrix2 {
     determine() {
         return this.a * this.d - this.b * this.c;
     }
+    multiplyScalar(scalar) {
+        const newa = [this.a, this.b, this.c, this.d].map((number) => {
+        });
+        const a = scalar * this.a;
+        const b = scalar * this.b;
+        const c = scalar * this.c;
+        const d = scalar * this.d;
+        return new Matrix2(a, b, c, d);
+    }
 }
 class Matrix3 extends Matrix2 {
     constructor(a, b, c, d, e, f, g, h, i) {

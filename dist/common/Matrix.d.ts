@@ -5,6 +5,7 @@ declare class Matrix2 {
     readonly d: number;
     constructor(a: number, b: number, c: number, d: number);
     determine(): number;
+    multiplyScalar(scalar: number): Matrix2;
 }
 declare class Matrix3 extends Matrix2 {
     readonly e: number;
