@@ -4,9 +4,9 @@ import Vector from './Vector';
 import Line from './Line';
 
 /*
-* !WARNING!
-* This class regards its point of origin at the top left corner.
-* */
+ * !WARNING!
+ * This class regards its point of origin at the top left corner.
+ * */
 
 export default class BoundingBox {
   // points

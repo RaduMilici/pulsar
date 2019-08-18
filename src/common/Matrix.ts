@@ -27,16 +27,12 @@ abstract class Matrix {
   protected static Multiply(rows: number[][], columns: number[][]): number[] {
     const elements: number[] = [];
 
-    rows.forEach(
-      (row: number[]): void => {
-        columns.forEach(
-          (column: number[]): void => {
-            const element: number = Matrix.CrossProduct(row, column);
-            elements.push(element);
-          }
-        );
-      }
-    );
+    rows.forEach((row: number[]): void => {
+      columns.forEach((column: number[]): void => {
+        const element: number = Matrix.CrossProduct(row, column);
+        elements.push(element);
+      });
+    });
 
     return elements;
   }

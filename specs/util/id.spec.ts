@@ -3,9 +3,9 @@ import { v00, v11 } from '../common/fixtures/Vectors';
 import { contains, findIndex } from '../../src/util';
 
 /*
-* In this case, we do not import fixtures because
-* we actually need the id.
-* */
+ * In this case, we do not import fixtures because
+ * we actually need the id.
+ * */
 
 describe('util / id', () => {
   it('should know if an array contains an id', () => {
