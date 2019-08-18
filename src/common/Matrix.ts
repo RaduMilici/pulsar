@@ -1,4 +1,4 @@
-class Matrix {
+abstract class Matrix {
   protected static addElements(
     elementsA: number[],
     elementsB: number[]
@@ -41,15 +41,16 @@ class Matrix2 extends Matrix {
   }
 
   add({ elements }: Matrix2): Matrix2 {
-    const [a, b, c, d]: number[] = Matrix.addElements(this.elements, elements);
-    return new Matrix2(a, b, c, d);
+    const sum: number[] = Matrix.addElements(this.elements, elements);
+    return new Matrix2(...sum);
   }
 
   multiplyScalar(scalar: number): Matrix2 {
-    const [a, b, c, d]: number[] = this.elements.map((element: number) => {
-      return scalar * element;
-    });
-    return new Matrix2(a, b, c, d);
+    const product: number[] = Matrix.multiplyElementsScalar(
+      this.elements,
+      scalar
+    );
+    return new Matrix2(...product);
   }
 }
 
@@ -81,21 +82,16 @@ class Matrix3 extends Matrix2 {
   }
 
   add({ elements }: Matrix3): Matrix3 {
-    const [a, b, c, d, e, f, g, h, i] = Matrix.addElements(
-      this.elements,
-      elements
-    );
-    return new Matrix3(a, b, c, d, e, f, g, h, i);
+    const sum = Matrix.addElements(this.elements, elements);
+    return new Matrix3(...sum);
   }
 
   multiplyScalar(scalar: number): Matrix3 {
-    const [a, b, c, d]: number[] = super.multiplyScalar(scalar).elements;
-    const { 4: e, 5: f, 6: g, 7: h, 8: i }: number[] = this.elements.map(
-      (element: number) => {
-        return scalar * element;
-      }
+    const product: number[] = Matrix.multiplyElementsScalar(
+      this.elements,
+      scalar
     );
-    return new Matrix3(a, b, c, d, e, f, g, h, i);
+    return new Matrix3(...product);
   }
 }
 
@@ -188,43 +184,16 @@ class Matrix4 extends Matrix3 {
   }
 
   add({ elements }: Matrix4): Matrix4 {
-    const [
-      a,
-      b,
-      c,
-      d,
-      e,
-      f,
-      g,
-      h,
-      i,
-      j,
-      k,
-      l,
-      m,
-      n,
-      o,
-      p,
-    ]: number[] = Matrix.addElements(this.elements, elements);
-    return new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
+    const sum: number[] = Matrix.addElements(this.elements, elements);
+    return new Matrix4(...sum);
   }
 
   multiplyScalar(scalar: number): Matrix4 {
-    const [a, b, c, d, e, f, g, h, i]: number[] = super.multiplyScalar(
+    const product: number[] = Matrix.multiplyElementsScalar(
+      this.elements,
       scalar
-    ).elements;
-    const {
-      9: j,
-      10: k,
-      11: l,
-      12: m,
-      13: n,
-      14: o,
-      15: p,
-    }: number[] = this.elements.map((element: number) => {
-      return scalar * element;
-    });
-    return new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
+    );
+    return new Matrix4(...product);
   }
 }
 
