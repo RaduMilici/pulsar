@@ -1,5 +1,8 @@
 abstract class Matrix {
-  protected static addElements(
+  rows: number[][] = [];
+  columns: number[][] = [];
+
+  protected static AddElements(
     elementsA: number[],
     elementsB: number[]
   ): number[] {
@@ -8,17 +11,41 @@ abstract class Matrix {
     });
   }
 
-  protected static multiplyElementsScalar(
+  protected static MultiplyElementsScalar(
     elements: number[],
     scalar: number
   ): number[] {
     let sum: number[] = new Array(elements.length).fill(0);
 
     for (let i = 0; i < scalar; i++) {
-      sum = Matrix.addElements(sum, elements);
+      sum = Matrix.AddElements(sum, elements);
     }
 
     return sum;
+  }
+
+  protected static Multiply(rows: number[][], columns: number[][]): number[] {
+    const elements: number[] = [];
+
+    rows.forEach(
+      (row: number[]): void => {
+        columns.forEach(
+          (column: number[]): void => {
+            const element: number = Matrix.CrossProduct(row, column);
+            elements.push(element);
+          }
+        );
+      }
+    );
+
+    return elements;
+  }
+
+  private static CrossProduct(row: number[], column: number[]): number {
+    return row.reduce((acc: number, number: number, index: number): number => {
+      acc += number * column[index];
+      return acc;
+    }, 0);
   }
 }
 
@@ -30,6 +57,8 @@ class Matrix2 extends Matrix {
     readonly d: number = 0
   ) {
     super();
+    this.rows = [[a, b], [c, d]];
+    this.columns = [[a, c], [b, d]];
   }
 
   get elements(): number[] {
@@ -41,12 +70,17 @@ class Matrix2 extends Matrix {
   }
 
   add({ elements }: Matrix2): Matrix2 {
-    const sum: number[] = Matrix.addElements(this.elements, elements);
+    const sum: number[] = Matrix.AddElements(this.elements, elements);
     return new Matrix2(...sum);
   }
 
+  multiply(m2: Matrix2): Matrix2 {
+    const elements: number[] = Matrix.Multiply(this.rows, m2.columns);
+    return new Matrix2(...elements);
+  }
+
   multiplyScalar(scalar: number): Matrix2 {
-    const product: number[] = Matrix.multiplyElementsScalar(
+    const product: number[] = Matrix.MultiplyElementsScalar(
       this.elements,
       scalar
     );
@@ -67,6 +101,8 @@ class Matrix3 extends Matrix2 {
     readonly i: number = 0
   ) {
     super(a, b, c, d);
+    this.rows = [[a, b, c], [d, e, f], [g, h, i]];
+    this.columns = [[a, d, g], [b, e, h], [c, f, i]];
   }
 
   get elements(): number[] {
@@ -82,12 +118,17 @@ class Matrix3 extends Matrix2 {
   }
 
   add({ elements }: Matrix3): Matrix3 {
-    const sum = Matrix.addElements(this.elements, elements);
+    const sum: number[] = Matrix.AddElements(this.elements, elements);
     return new Matrix3(...sum);
   }
 
+  multiply({ columns }: Matrix3): Matrix3 {
+    const elements: number[] = Matrix.Multiply(this.rows, columns);
+    return new Matrix3(...elements);
+  }
+
   multiplyScalar(scalar: number): Matrix3 {
-    const product: number[] = Matrix.multiplyElementsScalar(
+    const product: number[] = Matrix.MultiplyElementsScalar(
       this.elements,
       scalar
     );
@@ -115,6 +156,8 @@ class Matrix4 extends Matrix3 {
     readonly p: number = 0
   ) {
     super(a, b, c, d, e, f, g, h, i);
+    this.rows = [[a, b, c, d], [e, f, g, h], [i, j, k, l], [m, n, o, p]];
+    this.columns = [[a, e, i, m], [b, f, j, n], [c, g, k, o], [d, h, l, p]];
   }
 
   get elements(): number[] {
@@ -184,16 +227,21 @@ class Matrix4 extends Matrix3 {
   }
 
   add({ elements }: Matrix4): Matrix4 {
-    const sum: number[] = Matrix.addElements(this.elements, elements);
+    const sum: number[] = Matrix.AddElements(this.elements, elements);
     return new Matrix4(...sum);
   }
 
   multiplyScalar(scalar: number): Matrix4 {
-    const product: number[] = Matrix.multiplyElementsScalar(
+    const product: number[] = Matrix.MultiplyElementsScalar(
       this.elements,
       scalar
     );
     return new Matrix4(...product);
+  }
+
+  multiply({ columns }: Matrix4): Matrix4 {
+    const elements: number[] = Matrix.Multiply(this.rows, columns);
+    return new Matrix4(...elements);
   }
 }
 

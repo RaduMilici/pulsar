@@ -1,6 +1,10 @@
 declare abstract class Matrix {
-    protected static addElements(elementsA: number[], elementsB: number[]): number[];
-    protected static multiplyElementsScalar(elements: number[], scalar: number): number[];
+    rows: number[][];
+    columns: number[][];
+    protected static AddElements(elementsA: number[], elementsB: number[]): number[];
+    protected static MultiplyElementsScalar(elements: number[], scalar: number): number[];
+    protected static Multiply(rows: number[][], columns: number[][]): number[];
+    private static CrossProduct;
 }
 declare class Matrix2 extends Matrix {
     readonly a: number;
@@ -11,6 +15,7 @@ declare class Matrix2 extends Matrix {
     readonly elements: number[];
     determine(): number;
     add({ elements }: Matrix2): Matrix2;
+    multiply(m2: Matrix2): Matrix2;
     multiplyScalar(scalar: number): Matrix2;
 }
 declare class Matrix3 extends Matrix2 {
@@ -23,6 +28,7 @@ declare class Matrix3 extends Matrix2 {
     readonly elements: number[];
     determine(): number;
     add({ elements }: Matrix3): Matrix3;
+    multiply({ columns }: Matrix3): Matrix3;
     multiplyScalar(scalar: number): Matrix3;
 }
 declare class Matrix4 extends Matrix3 {
@@ -38,6 +44,7 @@ declare class Matrix4 extends Matrix3 {
     determine(): number;
     add({ elements }: Matrix4): Matrix4;
     multiplyScalar(scalar: number): Matrix4;
+    multiply({ columns }: Matrix4): Matrix4;
 }
 export { Matrix2, Matrix3, Matrix4 };
 //# sourceMappingURL=Matrix.d.ts.map

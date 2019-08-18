@@ -28,6 +28,11 @@ describe('common / Matrix2', () => {
   it('should multiply a scalar', () => {
     expect(m.multiplyScalar(9)).toEqual(new Matrix2(9, 18, 27, 36));
   });
+
+  it('should mutiply with another Matrix2', () => {
+    const m2 = new Matrix2(4, 3, 2, 1);
+    expect(m.multiply(m2)).toEqual(new Matrix2(8, 5, 20, 13));
+  });
 });
 
 describe('common / Matrix3', () => {
@@ -58,6 +63,13 @@ describe('common / Matrix3', () => {
   it('should multiply a scalar', () => {
     expect(m.multiplyScalar(29)).toEqual(
       new Matrix3(145, 116, 87, 58, 29, 174, 203, 232, 261)
+    );
+  });
+
+  it('should mutiply with another Matrix3', () => {
+    const m3 = new Matrix3(4, 3, 2, 1, 2, 3, 4, 5, 6);
+    expect(m.multiply(m3)).toEqual(
+      new Matrix3(36, 38, 40, 33, 38, 43, 72, 82, 92)
     );
   });
 });
@@ -159,6 +171,30 @@ describe('common / Matrix4', () => {
         29,
         0,
         87
+      )
+    );
+  });
+
+  it('should mutiply with another Matrix3', () => {
+    const m4 = new Matrix4(4, 3, 2, 1, 2, 3, 4, 5, 6, 9, 8, 5, 4, 6, 8, 1);
+    expect(m.multiply(m4)).toEqual(
+      new Matrix4(
+        54,
+        66,
+        66,
+        42,
+        90,
+        132,
+        146,
+        74,
+        90,
+        108,
+        118,
+        52,
+        50,
+        48,
+        46,
+        17
       )
     );
   });

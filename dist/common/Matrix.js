@@ -1,15 +1,35 @@
 class Matrix {
-    static addElements(elementsA, elementsB) {
+    constructor() {
+        this.rows = [];
+        this.columns = [];
+    }
+    static AddElements(elementsA, elementsB) {
         return elementsA.map((elementA, index) => {
             return elementA + elementsB[index];
         });
     }
-    static multiplyElementsScalar(elements, scalar) {
+    static MultiplyElementsScalar(elements, scalar) {
         let sum = new Array(elements.length).fill(0);
         for (let i = 0; i < scalar; i++) {
-            sum = Matrix.addElements(sum, elements);
+            sum = Matrix.AddElements(sum, elements);
         }
         return sum;
+    }
+    static Multiply(rows, columns) {
+        const elements = [];
+        rows.forEach((row) => {
+            columns.forEach((column) => {
+                const element = Matrix.CrossProduct(row, column);
+                elements.push(element);
+            });
+        });
+        return elements;
+    }
+    static CrossProduct(row, column) {
+        return row.reduce((acc, number, index) => {
+            acc += number * column[index];
+            return acc;
+        }, 0);
     }
 }
 class Matrix2 extends Matrix {
@@ -19,6 +39,8 @@ class Matrix2 extends Matrix {
         this.b = b;
         this.c = c;
         this.d = d;
+        this.rows = [[a, b], [c, d]];
+        this.columns = [[a, c], [b, d]];
     }
     get elements() {
         return [this.a, this.b, this.c, this.d];
@@ -27,11 +49,15 @@ class Matrix2 extends Matrix {
         return this.a * this.d - this.b * this.c;
     }
     add({ elements }) {
-        const sum = Matrix.addElements(this.elements, elements);
+        const sum = Matrix.AddElements(this.elements, elements);
         return new Matrix2(...sum);
     }
+    multiply(m2) {
+        const elements = Matrix.Multiply(this.rows, m2.columns);
+        return new Matrix2(...elements);
+    }
     multiplyScalar(scalar) {
-        const product = Matrix.multiplyElementsScalar(this.elements, scalar);
+        const product = Matrix.MultiplyElementsScalar(this.elements, scalar);
         return new Matrix2(...product);
     }
 }
@@ -43,6 +69,8 @@ class Matrix3 extends Matrix2 {
         this.g = g;
         this.h = h;
         this.i = i;
+        this.rows = [[a, b, c], [d, e, f], [g, h, i]];
+        this.columns = [[a, d, g], [b, e, h], [c, f, i]];
     }
     get elements() {
         return [...super.elements, this.e, this.f, this.g, this.h, this.i];
@@ -53,11 +81,15 @@ class Matrix3 extends Matrix2 {
             this.c * new Matrix2(this.d, this.e, this.g, this.h).determine());
     }
     add({ elements }) {
-        const sum = Matrix.addElements(this.elements, elements);
+        const sum = Matrix.AddElements(this.elements, elements);
         return new Matrix3(...sum);
     }
+    multiply({ columns }) {
+        const elements = Matrix.Multiply(this.rows, columns);
+        return new Matrix3(...elements);
+    }
     multiplyScalar(scalar) {
-        const product = Matrix.multiplyElementsScalar(this.elements, scalar);
+        const product = Matrix.MultiplyElementsScalar(this.elements, scalar);
         return new Matrix3(...product);
     }
 }
@@ -71,6 +103,8 @@ class Matrix4 extends Matrix3 {
         this.n = n;
         this.o = o;
         this.p = p;
+        this.rows = [[a, b, c, d], [e, f, g, h], [i, j, k, l], [m, n, o, p]];
+        this.columns = [[a, e, i, m], [b, f, j, n], [c, g, k, o], [d, h, l, p]];
     }
     get elements() {
         return [
@@ -95,12 +129,16 @@ class Matrix4 extends Matrix3 {
                 new Matrix3(this.e, this.f, this.g, this.i, this.j, this.k, this.m, this.n, this.o).determine());
     }
     add({ elements }) {
-        const sum = Matrix.addElements(this.elements, elements);
+        const sum = Matrix.AddElements(this.elements, elements);
         return new Matrix4(...sum);
     }
     multiplyScalar(scalar) {
-        const product = Matrix.multiplyElementsScalar(this.elements, scalar);
+        const product = Matrix.MultiplyElementsScalar(this.elements, scalar);
         return new Matrix4(...product);
+    }
+    multiply({ columns }) {
+        const elements = Matrix.Multiply(this.rows, columns);
+        return new Matrix4(...elements);
     }
 }
 export { Matrix2, Matrix3, Matrix4 };
