@@ -75,8 +75,8 @@ class Matrix2 extends Matrix {
   }
 
   multiply(m2: Matrix2): Matrix2 {
-    const elements: number[] = Matrix.Multiply(this.rows, m2.columns);
-    return new Matrix2(...elements);
+    const product: number[] = Matrix.Multiply(this.rows, m2.columns);
+    return new Matrix2(...product);
   }
 
   multiplyScalar(scalar: number): Matrix2 {
@@ -123,8 +123,8 @@ class Matrix3 extends Matrix2 {
   }
 
   multiply({ columns }: Matrix3): Matrix3 {
-    const elements: number[] = Matrix.Multiply(this.rows, columns);
-    return new Matrix3(...elements);
+    const product: number[] = Matrix.Multiply(this.rows, columns);
+    return new Matrix3(...product);
   }
 
   multiplyScalar(scalar: number): Matrix3 {
@@ -240,8 +240,8 @@ class Matrix4 extends Matrix3 {
   }
 
   multiply({ columns }: Matrix4): Matrix4 {
-    const elements: number[] = Matrix.Multiply(this.rows, columns);
-    return new Matrix4(...elements);
+    const product: number[] = Matrix.Multiply(this.rows, columns);
+    return new Matrix4(...product);
   }
 }
 

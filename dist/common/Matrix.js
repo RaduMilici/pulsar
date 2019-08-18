@@ -53,8 +53,8 @@ class Matrix2 extends Matrix {
         return new Matrix2(...sum);
     }
     multiply(m2) {
-        const elements = Matrix.Multiply(this.rows, m2.columns);
-        return new Matrix2(...elements);
+        const product = Matrix.Multiply(this.rows, m2.columns);
+        return new Matrix2(...product);
     }
     multiplyScalar(scalar) {
         const product = Matrix.MultiplyElementsScalar(this.elements, scalar);
@@ -85,8 +85,8 @@ class Matrix3 extends Matrix2 {
         return new Matrix3(...sum);
     }
     multiply({ columns }) {
-        const elements = Matrix.Multiply(this.rows, columns);
-        return new Matrix3(...elements);
+        const product = Matrix.Multiply(this.rows, columns);
+        return new Matrix3(...product);
     }
     multiplyScalar(scalar) {
         const product = Matrix.MultiplyElementsScalar(this.elements, scalar);
@@ -137,8 +137,8 @@ class Matrix4 extends Matrix3 {
         return new Matrix4(...product);
     }
     multiply({ columns }) {
-        const elements = Matrix.Multiply(this.rows, columns);
-        return new Matrix4(...elements);
+        const product = Matrix.Multiply(this.rows, columns);
+        return new Matrix4(...product);
     }
 }
 export { Matrix2, Matrix3, Matrix4 };
