@@ -1,10 +1,36 @@
-class Matrix2 {
+class Matrix {
+  protected static addElements(
+    elementsA: number[],
+    elementsB: number[]
+  ): number[] {
+    return elementsA.map((elementA: number, index: number) => {
+      return elementA + elementsB[index];
+    });
+  }
+
+  protected static multiplyElementsScalar(
+    elements: number[],
+    scalar: number
+  ): number[] {
+    let sum: number[] = new Array(elements.length).fill(0);
+
+    for (let i = 0; i < scalar; i++) {
+      sum = Matrix.addElements(sum, elements);
+    }
+
+    return sum;
+  }
+}
+
+class Matrix2 extends Matrix {
   constructor(
     readonly a: number = 0,
     readonly b: number = 0,
     readonly c: number = 0,
     readonly d: number = 0
-  ) {}
+  ) {
+    super();
+  }
 
   get elements(): number[] {
     return [this.a, this.b, this.c, this.d];
@@ -12,6 +38,11 @@ class Matrix2 {
 
   determine(): number {
     return this.a * this.d - this.b * this.c;
+  }
+
+  add({ elements }: Matrix2): Matrix2 {
+    const [a, b, c, d]: number[] = Matrix.addElements(this.elements, elements);
+    return new Matrix2(a, b, c, d);
   }
 
   multiplyScalar(scalar: number): Matrix2 {
@@ -47,6 +78,14 @@ class Matrix3 extends Matrix2 {
       this.b * new Matrix2(this.d, this.f, this.g, this.i).determine() +
       this.c * new Matrix2(this.d, this.e, this.g, this.h).determine()
     );
+  }
+
+  add({ elements }: Matrix3): Matrix3 {
+    const [a, b, c, d, e, f, g, h, i] = Matrix.addElements(
+      this.elements,
+      elements
+    );
+    return new Matrix3(a, b, c, d, e, f, g, h, i);
   }
 
   multiplyScalar(scalar: number): Matrix3 {
@@ -146,6 +185,28 @@ class Matrix4 extends Matrix3 {
           this.o
         ).determine()
     );
+  }
+
+  add({ elements }: Matrix4): Matrix4 {
+    const [
+      a,
+      b,
+      c,
+      d,
+      e,
+      f,
+      g,
+      h,
+      i,
+      j,
+      k,
+      l,
+      m,
+      n,
+      o,
+      p,
+    ]: number[] = Matrix.addElements(this.elements, elements);
+    return new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
   }
 
   multiplyScalar(scalar: number): Matrix4 {
