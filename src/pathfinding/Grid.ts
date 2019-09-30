@@ -13,6 +13,7 @@ export default class Grid {
 
   constructor(private size: size = DEFAULT_GRID_SIZE) {
     this.assertMinimumGridSize(size);
+    this.makeGrid();
   }
 
   /** Returns a random tile, can be an obstacle or not. */
@@ -39,8 +40,8 @@ export default class Grid {
       const row: row = [];
 
       for (let x = 0; x < this.size.width; x++) {
-        const pos: Vector = new Vector({ x, y });
-        const tile: NavigatorTile = new NavigatorTile(pos);
+        const tilePosition: Vector = new Vector({ x, y });
+        const tile: NavigatorTile = new NavigatorTile(tilePosition);
         this.onTileCreate(tile);
         this.tiles.push(tile);
         row.push(tile);
