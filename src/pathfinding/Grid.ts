@@ -22,7 +22,7 @@ export default class Grid {
   }
 
   /** Returns a random non-obstacle tile, if it exists. */
-  randomFreeTile(): NavigatorTile | null {
+  getRandomFreeTile(): NavigatorTile | null {
     return this.obstacles.getRandomOpen();
   }
 
