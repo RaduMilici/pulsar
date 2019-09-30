@@ -18,7 +18,7 @@ export default class Grid {
     const x: number = randomInt(0, this.size.width - 1);
     const y: number = randomInt(0, this.size.height - 1);
 
-    return this.findTile({ x, y });
+    return this.getTile({ x, y });
   }
 
   /** Returns a random non-obstacle tile, if it exists. */
@@ -27,7 +27,7 @@ export default class Grid {
   }
 
   /** Returns a tile at the specified coordinates. */
-  findTile({ x, y }: point): NavigatorTile | null {
+  getTile({ x, y }: point): NavigatorTile | null {
     const row: row = this.rows[y];
     return row && row.length > x ? row[x] : null;
   }
