@@ -35,6 +35,12 @@ export default class Grid {
     return row && row.length > x ? row[x] : null;
   }
 
+  private assertMinimumGridSize({ width, height }: size): void {
+    if (width <= 0 || height <= 0) {
+      throw new Error(MIN_GRID_SIZE_ERROR);
+    }
+  }
+
   private makeGrid(): void {
     for (let y = 0; y < this.size.height; y++) {
       const row: row = [];
@@ -48,12 +54,6 @@ export default class Grid {
       }
 
       this.rows.push(row);
-    }
-  }
-
-  private assertMinimumGridSize({ width, height }: size): void {
-    if (width <= 0 || height <= 0) {
-      throw new Error(MIN_GRID_SIZE_ERROR);
     }
   }
 }
