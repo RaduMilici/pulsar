@@ -41,10 +41,12 @@ export default class Grid {
   }
 
   private makeGrid(): void {
-    for (let y: number = 0; y < this.size.height; y++) {
+    const { width, height }: size = this.size;
+    
+    for (let y: number = 0; y < height; y++) {
       const row: row = [];
 
-      for (let x: number = 0; x < this.size.width; x++) {
+      for (let x: number = 0; x < width; x++) {
         const tilePosition: Vector = new Vector({ x, y });
         const tile: NavigatorTile = new NavigatorTile(tilePosition);
         this.tiles.push(tile);
