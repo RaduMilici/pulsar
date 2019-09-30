@@ -14,7 +14,7 @@ export default class Grid {
   constructor(private size: size = DEFAULT_GRID_SIZE) {}
 
   /** Returns a random tile, can be an obstacle or not. */
-  randomTile(): NavigatorTile {
+  getRandomTile(): NavigatorTile {
     const x: number = randomInt(0, this.size.width - 1);
     const y: number = randomInt(0, this.size.height - 1);
 
