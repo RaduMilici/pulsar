@@ -2,19 +2,16 @@ import Obstacles from './Obstacles';
 import NavigatorTile from './NavigatorTile';
 import { Vector } from '../common';
 import { randomInt } from '../util';
-import { row, point, size, onTileCreate } from '../interfaces';
-import { DEFAULT_GRID_SIZE, NO_OP, MIN_GRID_SIZE_ERROR } from '../constants';
+import { row, point, size } from '../interfaces';
+import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../constants';
 
 export default class Grid {
   readonly obstacles: Obstacles = new Obstacles(this);
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
 
-  constructor(
-    private size: size = DEFAULT_GRID_SIZE,
-    private onTileCreate: onTileCreate = NO_OP
-  ) {
-    this.assertMinimumGridSize(size);
+  constructor(private size: size = DEFAULT_GRID_SIZE) {
+    this.assertMinimumGridSize();
     this.makeGrid();
   }
 
@@ -36,7 +33,8 @@ export default class Grid {
     return this.obstacles.getRandomOpen();
   }
 
-  private assertMinimumGridSize({ width, height }: size): void {
+  private assertMinimumGridSize(): void {
+    const { width, height }: size = this.size;
     if (width <= 0 || height <= 0) {
       throw new Error(MIN_GRID_SIZE_ERROR);
     }
@@ -49,7 +47,6 @@ export default class Grid {
       for (let x: number = 0; x < this.size.width; x++) {
         const tilePosition: Vector = new Vector({ x, y });
         const tile: NavigatorTile = new NavigatorTile(tilePosition);
-        this.onTileCreate(tile);
         this.tiles.push(tile);
         row.push(tile);
       }

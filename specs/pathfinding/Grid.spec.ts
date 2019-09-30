@@ -1,6 +1,6 @@
 import Grid from '../../src/pathfinding/Grid';
 import { size } from '../../src/interfaces';
-import { MIN_GRID_SIZE_ERROR } from '../../src/constants'
+import { MIN_GRID_SIZE_ERROR } from '../../src/constants';
 
 describe('pathfinding / Grid', () => {
   it('throws an error if size is invalid', () => {
@@ -9,6 +9,4 @@ describe('pathfinding / Grid', () => {
       new Grid(invalidSize);
     }).toThrow(new Error(MIN_GRID_SIZE_ERROR));
   });
-
-
 });
