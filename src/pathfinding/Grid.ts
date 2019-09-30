@@ -35,7 +35,7 @@ export default class Grid {
     return row && row.length > x ? row[x] : null;
   }
 
-  makeGrid(): void {
+  private makeGrid(): void {
     for (let y = 0; y < this.size.height; y++) {
       const row: row = [];
 
