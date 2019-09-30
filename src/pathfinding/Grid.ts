@@ -16,6 +16,12 @@ export default class Grid {
     this.makeGrid();
   }
 
+  /** Returns a tile at the specified coordinates. */
+  getTile({ x, y }: point): NavigatorTile | null {
+    const row: row = this.rows[y];
+    return row && row.length > x ? row[x] : null;
+  }
+
   /** Returns a random tile, can be an obstacle or not. */
   getRandomTile(): NavigatorTile {
     const x: number = randomInt(0, this.size.width - 1);
@@ -27,12 +33,6 @@ export default class Grid {
   /** Returns a random non-obstacle tile, if it exists. */
   getRandomFreeTile(): NavigatorTile | null {
     return this.obstacles.getRandomOpen();
-  }
-
-  /** Returns a tile at the specified coordinates. */
-  getTile({ x, y }: point): NavigatorTile | null {
-    const row: row = this.rows[y];
-    return row && row.length > x ? row[x] : null;
   }
 
   private assertMinimumGridSize({ width, height }: size): void {
