@@ -6,12 +6,14 @@ import { row, point, size, onTileCreate } from '../interfaces';
 import { DEFAULT_GRID_SIZE, NO_OP, MIN_GRID_SIZE_ERROR } from '../constants';
 
 export default class Grid {
-  onTileCreate: onTileCreate = NO_OP;
   readonly obstacles: Obstacles = new Obstacles(this);
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
 
-  constructor(private size: size = DEFAULT_GRID_SIZE) {
+  constructor(
+    private size: size = DEFAULT_GRID_SIZE,
+    private onTileCreate: onTileCreate = NO_OP
+  ) {
     this.assertMinimumGridSize(size);
     this.makeGrid();
   }
