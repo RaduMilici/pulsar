@@ -42,7 +42,7 @@ export default class Grid {
 
   private makeGrid(): void {
     const { width, height }: size = this.size;
-    
+
     for (let y: number = 0; y < height; y++) {
       const row: row = [];
 
