@@ -3,7 +3,7 @@ import { randomInt } from '../util';
 import NavigatorTile from './NavigatorTile';
 import { row, point, size, onTileCreate } from '../interfaces';
 import { Vector } from '../common';
-import { DEFAULT_GRID_SIZE, NO_OP } from '../constants';
+import { DEFAULT_GRID_SIZE, NO_OP, MIN_GRID_SIZE_ERROR } from '../constants';
 
 export default class Grid {
   onTileCreate: onTileCreate = NO_OP;
@@ -11,7 +11,9 @@ export default class Grid {
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
 
-  constructor(private size: size = DEFAULT_GRID_SIZE) {}
+  constructor(private size: size = DEFAULT_GRID_SIZE) {
+    this.assertMinimumGridSize(size);
+  }
 
   /** Returns a random tile, can be an obstacle or not. */
   getRandomTile(): NavigatorTile {
@@ -45,6 +47,12 @@ export default class Grid {
       }
 
       this.rows.push(row);
+    }
+  }
+
+  private assertMinimumGridSize({ width, height }: size): void {
+    if (width <= 0 || height <= 0) {
+      throw new Error(MIN_GRID_SIZE_ERROR);
     }
   }
 }

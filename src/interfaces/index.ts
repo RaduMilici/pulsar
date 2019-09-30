@@ -19,5 +19,5 @@ export {
   Update,
   updaterReport,
   navigatorSettings,
-  onTileCreate
+  onTileCreate,
 };
