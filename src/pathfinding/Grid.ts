@@ -15,8 +15,8 @@ export default class Grid {
 
   /** Returns a random tile, can be an obstacle or not. */
   randomTile(): NavigatorTile {
-    const x = randomInt(0, this.size.width - 1);
-    const y = randomInt(0, this.size.height - 1);
+    const x: number = randomInt(0, this.size.width - 1);
+    const y: number = randomInt(0, this.size.height - 1);
 
     return this.findTile({ x, y });
   }
