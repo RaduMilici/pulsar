@@ -175,7 +175,7 @@ describe('common / Matrix4', () => {
     );
   });
 
-  it('should mutiply with another Matrix3', () => {
+  it('should mutiply with another Matrix4', () => {
     const m4 = new Matrix4(4, 3, 2, 1, 2, 3, 4, 5, 6, 9, 8, 5, 4, 6, 8, 1);
     expect(m.multiply(m4)).toEqual(
       new Matrix4(
@@ -195,6 +195,36 @@ describe('common / Matrix4', () => {
         48,
         46,
         17
+      )
+    );
+  });
+
+  it('should mutiply with another Matrix4', () => {
+    const m1: Matrix4 = new Matrix4(0.004, 0,0,0,0,-0.004, 0,0,0,0,0.01,0,-1,1,0,1)
+    const m2: Matrix4 = new Matrix4(
+      0.9999999968000002, 0,-0.00007999999789369669, 0,
+      0,1,0,0,
+      0.00007999999789369669, 0, 0.9999999968000002, 0,
+      0, 0, 0, 1
+    );
+    expect(m1.multiply(m2)).toEqual(
+      new Matrix4(
+        0.0039999999872000008,
+        0,
+        -0.00000031999999157478676,
+        0,
+        0,
+        -0.004,
+        0,
+        0,
+        0.0000007999999789369669,
+        0,
+        0.009999999968000002,
+        0,
+        -0.9999999968000002	,
+        1,
+        0.00007999999789369669,
+        1
       )
     );
   });
