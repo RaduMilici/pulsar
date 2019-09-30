@@ -1,19 +1,17 @@
 import Obstacles from './Obstacles';
 import { randomInt } from '../util';
 import NavigatorTile from './NavigatorTile';
-import { row, point, size } from '../interfaces';
+import { row, point, size, onTileCreate } from '../interfaces';
 import { Vector } from '../common';
-
-const defaultSize: size = { width: 10, height: 10 };
-type onTileCreate = (tile: NavigatorTile) => void;
+import { DEFAULT_GRID_SIZE, NO_OP } from '../constants';
 
 export default class Grid {
-  onTileCreate: onTileCreate = () => {};
+  onTileCreate: onTileCreate = NO_OP;
   readonly obstacles: Obstacles = new Obstacles(this);
   readonly tiles: NavigatorTile[] = [];
   readonly rows: row[] = [];
 
-  constructor(private size: size = defaultSize) {}
+  constructor(private size: size = DEFAULT_GRID_SIZE) {}
 
   /** Returns a random tile, can be an obstacle or not. */
   randomTile(): NavigatorTile {

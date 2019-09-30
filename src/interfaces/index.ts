@@ -7,6 +7,7 @@ import tickData from './tickData';
 import Update from './update';
 import updaterReport from './updaterReport';
 import navigatorSettings from './navigatorSettings';
+import { onTileCreate } from './gridTypes';
 
 export {
   id,
@@ -18,4 +19,5 @@ export {
   Update,
   updaterReport,
   navigatorSettings,
+  onTileCreate
 };
