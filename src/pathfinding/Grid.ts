@@ -11,7 +11,7 @@ export default class Grid {
   readonly rows: row[] = [];
 
   constructor(private size: size = DEFAULT_GRID_SIZE) {
-    this.assertMinimumGridSize();
+    this.checkMinimumGridSize();
     this.makeGrid();
   }
 
@@ -33,7 +33,7 @@ export default class Grid {
     return this.obstacles.getRandomOpen();
   }
 
-  private assertMinimumGridSize(): void {
+  private checkMinimumGridSize(): void {
     const { width, height }: size = this.size;
     if (width <= 0 || height <= 0) {
       throw new Error(MIN_GRID_SIZE_ERROR);
