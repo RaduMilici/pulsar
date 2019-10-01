@@ -1,4 +1,4 @@
-import { id, point } from '../interfaces';
+import { id } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
 import { contains, uniqueId, removeFromArray, findIndex } from '../util';
