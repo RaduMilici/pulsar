@@ -198,7 +198,7 @@ export default class Navigator implements id {
 
       return aNavData.fVal - bNavData.fVal;
     });
-    
+
     const next: NavigatorTile | undefined = this.open[0];
 
     if (!next) {
