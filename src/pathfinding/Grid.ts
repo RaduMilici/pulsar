@@ -7,7 +7,7 @@ import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../constants';
 
 export default class Grid {
   readonly obstacles: Obstacles = new Obstacles(this);
-  readonly tiles: NavigatorTile[] = [];
+  readonly tiles: row = [];
   readonly rows: row[] = [];
 
   constructor(private size: size = DEFAULT_GRID_SIZE) {
