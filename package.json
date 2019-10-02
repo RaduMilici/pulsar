@@ -8,7 +8,6 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "concurrently \"lite-server\" \"npm run build-watch\"",
     "build": "tsc",
     "build-watch": "tsc --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
@@ -24,9 +23,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.14",
-    "concurrently": "^3.6.1",
     "jest": "^23.6.0",
-    "lite-server": "^2.5.4",
     "prettier": "^1.18.2",
     "ts-jest": "^23.10.5",
     "typescript": "^3.5.3"
