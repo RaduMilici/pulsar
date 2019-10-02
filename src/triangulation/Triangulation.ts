@@ -13,9 +13,10 @@ export default class Triangulation {
     this.triangles.push(this.holderTriangle);
     this.hull = new Hull(this);
     this.MST = new MinimumSpanningTree(this);
+    this.triangulate();
   }
 
-  start(): void {
+  private triangulate(): void {
     this.points.forEach((point: Vector) => {
       const badTriangles: Triangle[] = [];
 
