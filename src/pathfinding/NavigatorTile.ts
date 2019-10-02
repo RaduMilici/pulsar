@@ -1,7 +1,7 @@
 import { id } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
-import { contains, uniqueId, removeFromArray, findIndex } from '../util';
+import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../util';
 import { Vector } from '../common';
 
 export default class NavigatorTile implements id {
@@ -40,7 +40,30 @@ export default class NavigatorTile implements id {
     return data;
   }
 
-  isDiagonal({ position }: NavigatorTile): boolean {
-    return this.position.x !== position.x && this.position.y !== position.y;
+  distanceTo({ position }: NavigatorTile): number {
+    return this.position.distanceTo(position);
+  }
+
+  equals({ position }: NavigatorTile): boolean {
+    return this.position.equals(position);
+  }
+
+  isNeighbour({ position }: NavigatorTile): boolean {
+    const distance: number = this.position.distanceTo(position);
+    return Math.round(distance) === 1;
+  }
+
+  isDiagonal(tile: NavigatorTile): boolean {
+    const isNeighbour: boolean = this.isNeighbour(tile);
+    const hasDifferentX: boolean = this.position.x !== tile.position.x;
+    const hasDifferentY: boolean = this.position.y !== tile.position.y;
+    return isNeighbour && hasDifferentX && hasDifferentY;
+  }
+
+  isAdjacent(tile: NavigatorTile): boolean {
+    const isNeighbour: boolean = this.isNeighbour(tile);
+    const hasSameX: boolean = this.position.x === tile.position.x;
+    const hasSameY: boolean = this.position.y === tile.position.y;
+    return isNeighbour && XOR(hasSameX, hasSameY);
   }
 }
