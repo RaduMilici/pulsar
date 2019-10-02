@@ -12,6 +12,7 @@ import {
 import { sort, immutableObjectSort } from './sort';
 import toFloat from './toFloat';
 import uniqueId from './uniqueID';
+import XOR from './xor';
 
 export {
   cloneObject,
@@ -33,4 +34,5 @@ export {
   uniqueId,
   randomPoint,
   randomPoints,
+  XOR,
 };
