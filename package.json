@@ -12,7 +12,7 @@
     "build-watch": "tsc --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
-    "test-watch": "jest --watchAll"
+    "test-watch": "jest --maxWorkers=4 --watchAll"
   },
   "repository": {
     "type": "git",
