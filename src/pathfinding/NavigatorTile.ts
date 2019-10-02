@@ -3,6 +3,7 @@ import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
 import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../util';
 import { Vector } from '../common';
+import { NAVIGATOR_DIAGONAL_COST, NAVIGATOR_VERTICAL_COST } from '../constants';
 
 export default class NavigatorTile implements id {
   id: string = uniqueId();
@@ -50,7 +51,11 @@ export default class NavigatorTile implements id {
 
   isNeighbour({ position }: NavigatorTile): boolean {
     const distance: number = this.position.distanceTo(position);
-    return Math.round(distance) === 1;
+    const fixedDistance: number = Number(distance.toFixed(1));
+    return (
+      fixedDistance === NAVIGATOR_VERTICAL_COST ||
+      fixedDistance === NAVIGATOR_DIAGONAL_COST
+    );
   }
 
   isDiagonal(tile: NavigatorTile): boolean {
