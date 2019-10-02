@@ -9,6 +9,7 @@ import updaterReport from './updaterReport';
 import navigatorSettings from './navigatorSettings';
 import { onTileCreate } from './gridTypes';
 import { onExplore, onComplete } from './navigator';
+import { triangleLines } from './triangle';
 
 export {
   id,
@@ -23,4 +24,5 @@ export {
   onTileCreate,
   onExplore,
   onComplete,
+  triangleLines,
 };

@@ -1,21 +1,19 @@
 import Vector from './Vector';
 import Line from './Line';
-import { id } from '../interfaces';
+import { id, triangleLines } from '../interfaces';
 import { uniqueId } from '../util';
 import { Matrix4 } from './Matrix';
-
-type triangleLines = { ab: Line; bc: Line; ca: Line };
 
 export default class Triangle implements id {
   id: string = uniqueId();
   readonly lines: triangleLines;
 
   constructor(readonly a: Vector, readonly b: Vector, readonly c: Vector) {
-    const ab: Line = new Line(a, b);
-    const bc: Line = new Line(b, c);
-    const ca: Line = new Line(c, a);
-
-    this.lines = { ab, bc, ca };
+    this.lines = {
+      ab: new Line(a, b),
+      bc: new Line(b, c),
+      ca: new Line(c, a),
+    };
   }
 
   get centroid(): Vector {
