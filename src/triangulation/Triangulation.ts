@@ -11,9 +11,9 @@ export default class Triangulation {
 
   constructor(readonly points: Vector[]) {
     this.triangles.push(this.holderTriangle);
+    this.triangulate();
     this.hull = new Hull(this);
     this.MST = new MinimumSpanningTree(this);
-    this.triangulate();
   }
 
   private triangulate(): void {
