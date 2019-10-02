@@ -6,8 +6,8 @@ import {
   NAVIGATOR_VERTICAL_COST,
   NAVIGATOR_DIAGONAL_COST,
 } from './navigator';
-
 import { TILE_NEIGHBORS_COUNT } from './tile';
+import { DEFAULT_VECTOR_POSITION } from './vector';
 
 export {
   NO_OP,
@@ -17,4 +17,5 @@ export {
   NAVIGATOR_VERTICAL_COST,
   NAVIGATOR_DIAGONAL_COST,
   TILE_NEIGHBORS_COUNT,
+  DEFAULT_VECTOR_POSITION,
 };

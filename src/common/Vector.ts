@@ -2,7 +2,7 @@ import { point } from '../interfaces';
 import { DisjoinedSet } from '../triangulation';
 import { QuadTree } from '../quadtree';
 import { RadToDeg } from '../util/radDeg';
-import toFloat from '../util/toFloat';
+import { DEFAULT_VECTOR_POSITION } from '../constants'
 
 export default class Vector {
   set: DisjoinedSet;
@@ -10,7 +10,7 @@ export default class Vector {
   x: number;
   y: number;
 
-  constructor({ x, y }: point = { x: 0, y: 0 }) {
+  constructor({ x, y }: point = DEFAULT_VECTOR_POSITION) {
     this.x = x;
     this.y = y;
   }
