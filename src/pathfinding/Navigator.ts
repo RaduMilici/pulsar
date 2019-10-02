@@ -1,45 +1,52 @@
 import Grid from './Grid';
 import NavigatorTile from './NavigatorTile';
 import NavigatorData from './NavigatorData';
-import { row, id, navigatorSettings } from '../interfaces';
 import { uniqueId, contains } from '../util';
-
-type onExplore = (tile: NavigatorTile) => void;
-type onComplete = (path: NavigatorTile[]) => void;
+import {
+  row,
+  id,
+  navigatorSettings,
+  onExplore,
+  onComplete,
+} from '../interfaces';
+import {
+  NO_OP,
+  NAVIGATOR_MAX_STEPS,
+  NAVIGATOR_VERTICAL_COST,
+  NAVIGATOR_DIAGONAL_COST,
+  TILE_NEIGHBORS_COUNT,
+} from '../constants';
 
 export default class Navigator implements id {
-  id: number = uniqueId();
+  readonly id: number = uniqueId();
+  private verticalCost: number = NAVIGATOR_VERTICAL_COST;
+  private diagonalCost: number = NAVIGATOR_DIAGONAL_COST;
   private _path: row = [];
-  private verticalCost: number = 1;
-  private diagonalCost: number = 1.4;
-  private static neighborsCount: number = 9;
-  private tiles: row = [];
   private open: row = [];
   private closed: row = [];
-  private registeredTiles: NavigatorTile[] = [];
-
+  private registeredTiles: row = [];
+  private steps: number = 0;
   private grid: Grid;
   private begin: NavigatorTile;
   private end: NavigatorTile;
-  private onExplore: (tile: NavigatorTile) => void;
-  private onComplete: (path: NavigatorTile[]) => void;
+  private onExplore: onExplore;
+  private onComplete: onComplete;
   private maxSteps: number;
-  private steps: number = 0;
 
   constructor({
     grid,
     begin,
     end,
-    onExplore,
-    onComplete,
-    maxSteps,
+    onExplore = NO_OP,
+    onComplete = NO_OP,
+    maxSteps = NAVIGATOR_MAX_STEPS,
   }: navigatorSettings) {
     this.grid = grid;
     this.begin = begin;
     this.end = end;
-    this.onExplore = onExplore || (() => {});
-    this.onComplete = onComplete || (() => {});
-    this.maxSteps = maxSteps !== undefined ? maxSteps : Infinity;
+    this.onExplore = onExplore;
+    this.onComplete = onComplete;
+    this.maxSteps = maxSteps;
   }
 
   get path(): row {
@@ -81,7 +88,7 @@ export default class Navigator implements id {
       return;
     }
 
-    for (let i = 0; i < Navigator.neighborsCount; i++) {
+    for (let i = 0; i < TILE_NEIGHBORS_COUNT; i++) {
       const x: number = tile.position.x + Navigator.getColOffset(i);
       const y: number = tile.position.y + Navigator.getRowOffset(i);
       const exploring: NavigatorTile | null = this.grid.getTile({ x, y });
@@ -149,7 +156,7 @@ export default class Navigator implements id {
        iteration = 3, 4, or 5: [ 0][ 0][ 0]
        iteration = 6, 7, or 8: [+1][+1][+1]
      */
-    return Navigator.neighborsCount + -Math.floor((32 - iteration) / 3);
+    return TILE_NEIGHBORS_COUNT + -Math.floor((32 - iteration) / 3);
   }
 
   static getColOffset(iteration: number): number {
@@ -191,6 +198,7 @@ export default class Navigator implements id {
 
       return aNavData.fVal - bNavData.fVal;
     });
+    
     const next: NavigatorTile | undefined = this.open[0];
 
     if (!next) {

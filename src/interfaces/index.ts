@@ -8,6 +8,7 @@ import Update from './update';
 import updaterReport from './updaterReport';
 import navigatorSettings from './navigatorSettings';
 import { onTileCreate } from './gridTypes';
+import { onExplore, onComplete } from './navigator';
 
 export {
   id,
@@ -20,4 +21,6 @@ export {
   updaterReport,
   navigatorSettings,
   onTileCreate,
+  onExplore,
+  onComplete,
 };
