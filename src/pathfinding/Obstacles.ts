@@ -1,14 +1,14 @@
 import Grid from './Grid';
 import NavigatorTile from './NavigatorTile';
-import { contains, findIndex, randomInt } from '../util';
 import { row } from '../interfaces';
+import { contains, findIndex, randomInt } from '../util';
 
 export default class Obstacles {
-  private readonly openList: NavigatorTile[] = [];
-  private readonly closedList: NavigatorTile[] = [];
+  private readonly openList: row = [];
+  private readonly closedList: row = [];
 
-  constructor(private grid: Grid) {
-    this.openList = grid.tiles;
+  constructor({ tiles }: Grid) {
+    this.openList = tiles;
   }
 
   get list(): NavigatorTile[] {
