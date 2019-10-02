@@ -1,5 +1,4 @@
 import { id } from '../interfaces';
-import { uniqueId } from '../util';
 import Navigator from './Navigator';
 import NavigatorTile from './NavigatorTile';
 
