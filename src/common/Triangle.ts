@@ -7,7 +7,7 @@ import { Matrix4 } from './Matrix';
 type triangleLines = { ab: Line; bc: Line; ca: Line };
 
 export default class Triangle implements id {
-  id: number = uniqueId();
+  id: string = uniqueId();
   readonly lines: triangleLines;
 
   constructor(readonly a: Vector, readonly b: Vector, readonly c: Vector) {

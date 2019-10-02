@@ -5,7 +5,7 @@ import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../util';
 import { Vector } from '../common';
 
 export default class NavigatorTile implements id {
-  id: number = uniqueId();
+  id: string = uniqueId();
   isObstacle: boolean = false;
 
   private navigators: NavigatorData[] = [];

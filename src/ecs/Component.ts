@@ -4,7 +4,7 @@ import { uniqueId } from '../util';
 import Entity from './Entity';
 
 export default class Component implements id, Update {
-  readonly id: number = uniqueId();
+  readonly id: string = uniqueId();
   name: string;
   updater: Updater;
   entity: Entity;

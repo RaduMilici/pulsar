@@ -4,7 +4,7 @@ import { id, Update, tickData } from '../../interfaces';
 import { uniqueId } from '../../util';
 
 export default class Invoke extends Component {
-  id: number = uniqueId();
+  id: string = uniqueId();
   originalTimeout: number;
 
   constructor(

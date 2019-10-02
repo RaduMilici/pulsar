@@ -18,7 +18,7 @@ import {
 } from '../constants';
 
 export default class Navigator implements id {
-  readonly id: number = uniqueId();
+  readonly id: string = uniqueId();
   private verticalCost: number = NAVIGATOR_VERTICAL_COST;
   private diagonalCost: number = NAVIGATOR_DIAGONAL_COST;
   private _path: row = [];

@@ -3,7 +3,7 @@ import { uniqueId } from '../util';
 import { Vector } from '../common';
 
 export default class DisjoinedSet implements id {
-  id: number = uniqueId();
+  id: string = uniqueId();
   readonly points: Vector[];
 
   constructor(point: Vector) {

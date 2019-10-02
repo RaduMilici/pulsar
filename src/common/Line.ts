@@ -5,7 +5,7 @@ import LineIntersection from './LineIntersection';
 import Vector from './Vector';
 
 export default class Line implements id {
-  id: number = uniqueId();
+  id: string = uniqueId();
   constructor(readonly a: Vector, readonly b: Vector) {}
 
   get length(): number {
