@@ -1,8 +1,8 @@
-import { id } from '../interfaces';
 import Navigator from './Navigator';
 import NavigatorData from './NavigatorData';
-import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../util';
+import { id } from '../interfaces';
 import { Vector } from '../common';
+import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../util';
 import { NAVIGATOR_DIAGONAL_COST, NAVIGATOR_VERTICAL_COST } from '../constants';
 
 export default class NavigatorTile implements id {
