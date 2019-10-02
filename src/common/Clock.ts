@@ -3,7 +3,7 @@ export default class Clock {
   private oldTime: number = 0;
   private elapsedTime: number = 0;
   private running: boolean = false;
-  private readonly timeFunction: any;
+  private readonly timeFunction: Performance | DateConstructor;
 
   constructor() {
     this.timeFunction = typeof performance === 'undefined' ? Date : performance;
