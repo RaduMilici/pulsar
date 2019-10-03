@@ -49,7 +49,7 @@ export default class BoundingBox {
     return this.topRight.y - this.bottomRight.y;
   }
 
-  grow(n: number): void {
+  growBy(n: number): void {
     this.topLeft = this.topLeft.add(new Vector({ x: -n, y: n }));
     this.topRight = this.topRight.add(new Vector({ x: n, y: n }));
     this.bottomLeft = this.bottomLeft.add(new Vector({ x: -n, y: -n }));
