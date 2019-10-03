@@ -6,7 +6,8 @@ describe('until / uniqueId', () => {
     const ids: string[] = [];
 
     for (let i = 0; i < count; i++) {
-      ids.push(uniqueId());
+      const id: string = uniqueId();
+      ids.push(id);
     }
 
     const set: Set<string> = new Set(ids);
