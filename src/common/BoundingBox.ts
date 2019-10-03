@@ -1,7 +1,7 @@
-import { limits } from '../interfaces';
-import { immutableObjectSort } from '../util';
 import Vector from './Vector';
 import Line from './Line';
+import { limits, boundingBoxLines } from '../interfaces';
+import { immutableObjectSort } from '../util';
 
 /*
  * !WARNING!
@@ -16,10 +16,11 @@ export default class BoundingBox {
   bottomLeft: Vector;
 
   // lines
-  private top: Line;
-  private right: Line;
-  private bottom: Line;
-  private left: Line;
+  readonly lines: boundingBoxLines;
+  // private top: Line;
+  // private right: Line;
+  // private bottom: Line;
+  // private left: Line;
 
   limits: limits;
 
@@ -34,11 +35,7 @@ export default class BoundingBox {
   }
 
   get area(): number {
-    return this.top.length * this.right.length;
-  }
-
-  get lines(): Line[] {
-    return [this.top, this.right, this.bottom, this.left];
+    return this.lines.top.length * this.lines.right.length;
   }
 
   get width(): number {
@@ -76,10 +73,10 @@ export default class BoundingBox {
   }
 
   private makeLines(): void {
-    this.top = new Line(this.topLeft, this.topRight);
-    this.right = new Line(this.topRight, this.bottomRight);
-    this.bottom = new Line(this.bottomRight, this.bottomLeft);
-    this.left = new Line(this.bottomLeft, this.topLeft);
+    this.lines.top = new Line(this.topLeft, this.topRight);
+    this.lines.right = new Line(this.topRight, this.bottomRight);
+    this.lines.bottom = new Line(this.bottomRight, this.bottomLeft);
+    this.lines.left = new Line(this.bottomLeft, this.topLeft);
   }
 
   private findLimits(): void {
