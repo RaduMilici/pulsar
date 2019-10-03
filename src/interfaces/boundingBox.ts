@@ -1,4 +1,4 @@
-import { Line, Vector } from '../common'
+import { Line, Vector } from '../common';
 
 type boundingBoxLines = {
   top: Line;
