@@ -1,4 +1,0 @@
-{
-  fileExtensions: ['ts'],
-  tsConfig: './tsConfig'
-}
