@@ -14,13 +14,12 @@ export default class BoundingBox {
   topRight: Vector;
   bottomRight: Vector;
   bottomLeft: Vector;
-
-  // lines
-  readonly lines: boundingBoxLines;
-  // private top: Line;
-  // private right: Line;
-  // private bottom: Line;
-  // private left: Line;
+  readonly lines: boundingBoxLines = {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null,
+  };
 
   limits: limits;
 

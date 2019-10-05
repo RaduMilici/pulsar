@@ -1,4 +1,5 @@
 import { Shape, Vector, Line } from '../../src/common';
+import { boundingBoxLines } from '../../src/interfaces';
 import { v00, v01, v03, v11, v10, v30, v33 } from './fixtures/Vectors';
 import { ad, de, ef, af, da, ae, ed } from './fixtures/Lines';
 
@@ -11,7 +12,12 @@ describe('common / Shape', () => {
 
   it('should find its bounding box', () => {
     const shape: Shape = new Shape([v00, v11, v10]);
-    const correct: Line[] = [ae, ed, da, af];
+    const correct: boundingBoxLines = {
+      top: ae,
+      right: ed,
+      bottom: da,
+      left: af,
+    };
 
     expect(shape.boundingBox.lines).toMatchObject(correct);
   });

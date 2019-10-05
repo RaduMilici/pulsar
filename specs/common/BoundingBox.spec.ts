@@ -1,7 +1,7 @@
 import { BoundingBox, Line, Vector } from '../../src/common';
 import { v00, v01, v11, v10, v33 } from './fixtures/Vectors';
 import { ae, ed, da, af } from './fixtures/Lines';
-import { limits } from '../../src/interfaces';
+import { limits, boundingBoxLines } from '../../src/interfaces';
 
 describe('common / BoundingBox', () => {
   it('should find its four corners', () => {
@@ -15,7 +15,12 @@ describe('common / BoundingBox', () => {
 
   it('should find its four bounding lines', () => {
     const box: BoundingBox = new BoundingBox([v00, v01, v11, v10]);
-    const correct: Line[] = [ae, ed, da, af];
+    const correct: boundingBoxLines = {
+      top: ae,
+      right: ed,
+      bottom: da,
+      left: af,
+    };
 
     expect(box.lines).toMatchObject(correct);
   });
