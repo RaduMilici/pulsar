@@ -1,5 +1,5 @@
 import tickData from '../tickData';
 
-export default interface Update {
+export default interface Updatable {
   update(tickData: tickData): void;
 }

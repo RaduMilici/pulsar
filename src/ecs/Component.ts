@@ -1,16 +1,8 @@
-import Updater from './Updater/Updater';
-import { tickData, I_Component, I_Entity } from '../interfaces';
-import { uniqueId } from '../util';
-// import Entity from './Entity';
+import Entity from './Entity';
+import { I_Component, I_Entity } from '../interfaces';
 
-export default class Component implements I_Component {
-  updater: Updater;
+export default class Component extends Entity implements I_Component {
   entity: I_Entity;
-  readonly id: string = uniqueId();
-  readonly name: string;
-  readonly updatePriority: number | null = null;
 
-  start(): void {}
-  stop(): void {}
-  update(tickData: tickData): void {}
+  update(): void {}
 }

@@ -3,14 +3,19 @@ import point from './point';
 import row from './row';
 import size from './size';
 import tickData from './tickData';
-import Update from './ECS/I_Update';
 import updaterReport from './updaterReport';
 import navigatorSettings from './navigatorSettings';
 import { onTileCreate } from './gridTypes';
 import { onExplore, onComplete } from './navigator';
 import { triangleLines } from './triangle';
 import { boundingBoxLines, limits } from './boundingBox';
-import { I_Entity, I_Component } from './ECS';
+import {
+  I_Component,
+  I_Updatable,
+  I_Updater,
+  I_Entity,
+  I_GameObject,
+} from './ECS';
 
 export {
   id,
@@ -19,7 +24,6 @@ export {
   row,
   size,
   tickData,
-  Update,
   updaterReport,
   navigatorSettings,
   onTileCreate,
@@ -27,5 +31,9 @@ export {
   onComplete,
   triangleLines,
   boundingBoxLines,
-  I_Entity, I_Component
+  I_Updatable,
+  I_Updater,
+  I_Component,
+  I_Entity,
+  I_GameObject,
 };

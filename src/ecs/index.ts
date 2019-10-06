@@ -1,5 +1,5 @@
 import Component from './Component';
-import Entity from './Entity';
+import GameObject from './GameObject';
 import Updater from './Updater/Updater';
 
-export { Component, Entity, Updater };
+export { Component, GameObject, Updater };
