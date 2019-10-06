@@ -3,7 +3,6 @@ import point from './point';
 import row from './row';
 import size from './size';
 import tickData from './tickData';
-import updaterReport from './updaterReport';
 import navigatorSettings from './navigatorSettings';
 import { onTileCreate } from './gridTypes';
 import { onExplore, onComplete } from './navigator';
@@ -24,7 +23,6 @@ export {
   row,
   size,
   tickData,
-  updaterReport,
   navigatorSettings,
   onTileCreate,
   onExplore,

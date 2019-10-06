@@ -1,6 +1,4 @@
-import id from './id';
-
-interface updaterReport extends id {
+type updaterReport = {
   name: string;
   success: boolean;
 }

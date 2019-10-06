@@ -1,4 +1,4 @@
-import Entity from '../Entity';
+import Entity from '../GameObject';
 import Component from '../Component';
 import Updater from './Updater';
 import { updaterReport } from '../../interfaces';

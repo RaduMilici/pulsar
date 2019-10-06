@@ -1,6 +1,5 @@
 import Component from '../Component';
-import Updater from './Updater';
-import { id, Update, tickData } from '../../interfaces';
+import { tickData, I_Updater } from '../../interfaces';
 import { uniqueId } from '../../util';
 
 export default class Invoke extends Component {
@@ -8,7 +7,7 @@ export default class Invoke extends Component {
   originalTimeout: number;
 
   constructor(
-    readonly updater: Updater,
+    readonly updater: I_Updater,
     readonly component: Component,
     public timeout: number
   ) {

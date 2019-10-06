@@ -1,92 +1,78 @@
 import { Clock } from '../../common';
-import { contains, removeFromArray } from '../../util';
-import { updaterReport, tickData } from '../../interfaces';
+import { contains, removeFromArray, uniqueId } from '../../util';
+import { tickData, I_Updater } from '../../interfaces';
+import { updaterReport } from '../../types';
 import Component from '../Component';
-import Entity from '../Entity';
-import EntityUpdater from './EntityUpdater';
+import GameObject from '../GameObject';
+//import EntityUpdater from './EntityUpdater';
 import Invoke from './Invoke';
 import InvokeRepeating from './InvokeRepeating';
 
-export default class Updater {
+export default class Updater implements I_Updater {
+  name: string = 'Updater';
+  id: string = uniqueId();
   onUpdateComplete: Component = new Component();
 
   private components: Component[] = [];
   private running: boolean = false;
   private clock: Clock = new Clock();
-  private entityUpdater: EntityUpdater = new EntityUpdater(this);
   private frameId: number;
 
   start(): boolean {
-    if (!this.running) {
-      this.running = true;
-      this.clock.start();
-      this.entityUpdater.start();
-      this.components.forEach((component: Component) => component.start());
-      this.update();
-      return true;
+    if (this.running) {
+      return false;
     }
-    return false;
+    this.running = true;
+    this.clock.start();
+    this.components.forEach((component: Component) => component.start());
+    this.update();
+    return true;
   }
 
   stop(): boolean {
-    if (this.running) {
-      this.running = false;
-      cancelAnimationFrame(this.frameId);
-      this.clock.stop();
-      this.entityUpdater.stop();
-      this.components.forEach((component: Component) => component.stop());
-      return true;
+    if (!this.running) {
+      return false;
     }
-    return false;
+    this.running = false;
+    cancelAnimationFrame(this.frameId);
+    this.clock.stop();
+    this.components.forEach((component: Component) => component.stop());
+    return true;
   }
 
   clear(): void {
     this.stop();
-    this.entityUpdater.clear();
     this.components.length = 0;
   }
 
-  add(entity: Entity): updaterReport[];
+  add(gameObject: GameObject): updaterReport[];
   add(component: Component): boolean;
-  add(behaviour: Entity | Component): boolean | updaterReport[] {
+  add(behaviour: GameObject | Component): boolean | updaterReport[] {
     if (behaviour instanceof Component) {
       return this.addComponent(behaviour);
     } else {
-      return this.entityUpdater.add(behaviour);
+      //return this.entityUpdater.add(behaviour);
     }
   }
 
-  remove(entity: Entity): updaterReport[];
+  remove(entity: GameObject): updaterReport[];
   remove(component: Component): boolean;
-  remove(behaviour: Entity | Component): boolean | updaterReport[] {
+  remove(behaviour: GameObject | Component): boolean | updaterReport[] {
     if (behaviour instanceof Component) {
       return this.removeComponent(behaviour);
     } else {
-      return this.entityUpdater.remove(behaviour);
+      //return this.entityUpdater.remove(behaviour);
     }
   }
 
-  toggle(entity: Entity): updaterReport[];
+  toggle(entity: GameObject): updaterReport[];
   toggle(component: Component): boolean;
-  toggle(behaviour: Entity | Component): boolean | updaterReport[] {
+  toggle(behaviour: GameObject | Component): boolean | updaterReport[] {
     if (behaviour instanceof Component) {
       return this.toggleComponent(behaviour);
     } else {
-      return this.entityUpdater.toggle(behaviour);
+      //return this.entityUpdater.toggle(behaviour);
     }
-  }
-
-  isUpdatingComponent(component: Component): boolean {
-    return contains(this.components, component);
-  }
-
-  addComponent(component: Component): boolean {
-    if (!this.isUpdatingComponent(component)) {
-      component.updater = this;
-      this.pushToQueue(component);
-      return true;
-    }
-    return false;
   }
 
   removeComponent(component: Component): boolean {
@@ -120,7 +106,19 @@ export default class Updater {
     this.add(invoke);
   }
 
-  getTickData(): tickData {
+  private addComponent(component: Component): boolean {
+    if (!this.isUpdatingComponent(component)) {
+      this.pushToQueue(component);
+      return true;
+    }
+    return false;
+  }
+
+  private isUpdatingComponent(component: Component): boolean {
+    return contains(this.components, component);
+  }
+
+  private getTickData(): tickData {
     const deltaTime: number = this.clock.getDelta();
     const deltaTimeMS: number = deltaTime * 1000;
     const elapsedTime: number = this.clock.getElapsed();
@@ -128,15 +126,15 @@ export default class Updater {
   }
 
   private pushToQueue(component: Component): void {
-    if (typeof component.updatePriority === 'number') {
+    if (Number.isFinite(component.updatePriority)) {
       this.components.splice(component.updatePriority, 0, component);
     } else {
       this.components.push(component);
     }
   }
 
-  private update(): void {
-    this.frameId = requestAnimationFrame(() => this.update());
+  private update = (): void => {
+    this.frameId = requestAnimationFrame(this.update);
 
     const tickData: tickData = this.getTickData();
 

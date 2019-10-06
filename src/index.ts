@@ -20,7 +20,7 @@ import {
   DegToRad,
   removeFromArray,
 } from './util';
-import { Entity, Component, Updater } from './ecs';
+import { GameObject, Component, Updater } from './ecs';
 import {
   tickData,
   point,
@@ -59,7 +59,7 @@ export {
   RadToDeg,
   DegToRad,
   removeFromArray,
-  Entity,
+  GameObject,
   Component,
   Updater,
   tickData,

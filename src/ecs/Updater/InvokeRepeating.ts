@@ -1,5 +1,4 @@
-import { id, Update, tickData } from '../../interfaces';
-import { uniqueId } from '../../util';
+import { tickData } from '../../interfaces';
 import Component from '../Component';
 import Updater from './Updater';
 import Invoke from './Invoke';
