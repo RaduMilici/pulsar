@@ -1,13 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  entry: './debugger/index.ts',
+  mode: 'production',
+  entry: './debugger/src/index.ts',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /src/],
       },
     ],
   },
@@ -16,6 +17,6 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'debugger/build/'),
   },
 };
