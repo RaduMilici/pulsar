@@ -32,6 +32,8 @@ module.exports = {
     path: path.resolve(__dirname, 'debugger/build/'),
   },
   plugins: [
-    new MonacoWebpackPlugin()
+    new MonacoWebpackPlugin({
+      languages: ['typescript']
+    })
   ]
 };
