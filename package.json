@@ -13,7 +13,8 @@
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --maxWorkers=4 --watchAll",
-    "madge-circular": "npx madge --circular --extensions ts src"
+    "madge-circular": "npx madge --circular --extensions ts src",
+    "build-debugger": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,8 @@
     "ts-jest": "^23.10.5",
     "ts-loader": "^6.2.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.41.0"
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
   },
   "jest": {
     "transform": {
