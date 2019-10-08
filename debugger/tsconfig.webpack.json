@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2015",                   
+    "module": "es2015",                   
+    "declaration": true,                  
+    "declarationMap": true,               
+    "sourceMap": true,                    
+    "outDir": "./dist/",                  
+    "noEmitOnError": true,
+    "strict": true,                       
+    "noImplicitAny": true,                
+    "strictNullChecks": false,            
+    "noUnusedParameters": false,          
+    "moduleResolution": "node",           
+    "allowSyntheticDefaultImports": true, 
+    "esModuleInterop": true               
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include":[
+    "src/*.ts",
+    "src/!*.d.ts"
+  ]
+}
