@@ -1,5 +1,6 @@
 .idea
 dist/
+debugger/build/
 
 # Logs
 logs
