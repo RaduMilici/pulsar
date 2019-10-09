@@ -9,7 +9,7 @@ export default class Editor {
   private dependencyNames: string[];
   private dependencyValues: any[];
 
-  constructor({ container, value, dependencies }: editorConfig) {
+  constructor({ container, value, dependencies, onChange }: editorConfig) {
     this.editor = monaco.editor.create(container, {
       value,
       language: 'typescript',
@@ -19,7 +19,10 @@ export default class Editor {
     monaco.editor.setTheme('vs-dark');
     this.setDependencyNameValue();
     this.addExtraLibs();
-    this.editor.onDidChangeModelContent(this.compile);
+    this.editor.onDidChangeModelContent(() => {
+      onChange.forEach(callback => callback());
+      this.compile();
+    });
     this.compile();
   }
 

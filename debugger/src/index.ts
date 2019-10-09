@@ -7,11 +7,17 @@ import { triangulationMode } from './modes';
 const editorContainer: HTMLElement = document.getElementById('editor-container');
 const canvasContainer: HTMLElement = document.getElementById('canvas-container');
 
+const canvas: Canvas = new Canvas(canvasContainer);
+
 const editorConfig: editorConfig = {
   container: editorContainer,
   value: triangulationMode.code,
-  dependencies: [{ name: 'pulsar', value: pulsar }, { name: 'util', value: util }]
+  dependencies: [
+    { name: 'pulsar', value: pulsar }, 
+    { name: 'util', value: util },
+    { name: 'canvas', value: canvas }
+  ],
+  onChange: [() => { canvas.draw.clear(); }]
 };
 
 new Editor(editorConfig);
-new Canvas(canvasContainer);

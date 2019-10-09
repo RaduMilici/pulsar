@@ -11,7 +11,7 @@ const points = random.points(10, box);
 const triangulation = new Triangulation(points);
 triangulation.MST.start();
 triangulation.hull.start();
-console.log(triangulation);
+canvas.draw.points(points);
 `;
 
 export default { code };

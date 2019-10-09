@@ -1,12 +1,14 @@
+import Draw from '../draw';
+
 export default class Canvas {
+  readonly draw: Draw;
   private readonly canvasElement: HTMLCanvasElement;
-  private readonly context: CanvasRenderingContext2D;
 
   constructor(container: HTMLElement) {
     this.canvasElement = document.createElement('canvas');
     this.matchSizeToContainer(container);
-    this.context = this.canvasElement.getContext('2d');
     container.appendChild(this.canvasElement);
+    this.draw = new Draw(this.canvasElement);
   }
 
   matchSizeToContainer(container: HTMLElement): void {
