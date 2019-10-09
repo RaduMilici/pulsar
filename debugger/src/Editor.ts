@@ -6,7 +6,7 @@ export default class Editor {
   constructor(
     container: HTMLElement, 
     value: string = '', 
-    readonly dependencies: any[] = []
+    private dependencies: any[] = []
   ) {
     this.editor = monaco.editor.create(container, {
       value,
