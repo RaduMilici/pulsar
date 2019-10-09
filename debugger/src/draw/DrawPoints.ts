@@ -1,16 +1,12 @@
 import { point, Vector } from '../../../src';
+import Draw from './Draw';
 import {
   c_pointStroke,
   c_pointFill,
   s_point
-} from '../canvas/const';
-import Draw from './Draw';
+} from './const';
 
 export default class DrawPoints extends Draw {
-  constructor(context: CanvasRenderingContext2D) {
-    super(context);
-  }
-
   point(
     { x, y }: Vector,
     strokeColor: string = c_pointStroke,

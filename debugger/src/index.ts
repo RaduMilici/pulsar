@@ -15,7 +15,7 @@ const editorConfig: editorConfig = {
   dependencies: [
     { name: 'pulsar', value: pulsar }, 
     { name: 'util', value: util },
-    { name: 'canvas', value: canvas }
+    { name: 'draw', value: canvas.draw }
   ],
   onChange: [() => { canvas.draw.clear(); }]
 };

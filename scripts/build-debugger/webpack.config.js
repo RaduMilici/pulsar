@@ -17,7 +17,7 @@ const config = {
             loader: 'ts-loader',
             options: {
               configFile: `${debuggerRoot}/tsconfig.webpack.json`,
-              transpileOnly: true
+              // transpileOnly: true
             }  
           }
         ],

@@ -13,7 +13,8 @@
     "noUnusedParameters": false,          
     "moduleResolution": "node",           
     "allowSyntheticDefaultImports": true, 
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["interfaces"]
   },
   "exclude": [
     "node_modules"

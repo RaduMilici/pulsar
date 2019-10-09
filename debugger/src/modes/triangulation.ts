@@ -1,5 +1,5 @@
 const code = 
-`const { Triangulation, Vector, Line } = pulsar;
+`const { Triangulation } = pulsar;
 const { random } = util;
 const box = {
   top: 300,
@@ -7,11 +7,10 @@ const box = {
   left: -300,
   right: 300,
 };
-const points = random.points(10, box);
-const triangulation = new Triangulation(points);
-triangulation.MST.start();
-triangulation.hull.start();
-canvas.draw.points(points);
+const points = random.points(100, box);
+const { triangles } = new Triangulation(points);
+draw.triangles(triangles);
+draw.points(points);
 `;
 
 export default { code };
