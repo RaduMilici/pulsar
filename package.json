@@ -14,7 +14,7 @@
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --maxWorkers=4 --watchAll",
     "madge-circular": "npx madge --circular --extensions ts src",
-    "build-debugger": "webpack --config webpack.config.js"
+    "build-debugger": "node scripts/build-debugger/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.14",
+    "chalk": "^2.4.2",
     "css-loader": "^3.2.0",
     "jest": "^23.6.0",
     "madge": "^3.4.4",

@@ -1,10 +1,11 @@
 const path = require('path');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const debuggerRoot = path.resolve(__dirname, '../../debugger')
 
-module.exports = {
+const config = {
   mode: 'development',
   entry: {
-    main: './debugger/src/index.ts',
+    main: `${debuggerRoot}/src/index.ts`,
     // pulsar: './src/index.ts'
   },
   module: {
@@ -15,7 +16,7 @@ module.exports = {
           { 
             loader: 'ts-loader',
             options: {
-              configFile: path.resolve(__dirname, 'debugger/tsconfig.webpack.json'),
+              configFile: `${debuggerRoot}/tsconfig.webpack.json`,
             }  
           }
         ],
@@ -32,7 +33,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'debugger/build/'),
+    path: `${debuggerRoot}/build`,
   },
   plugins: [
     new MonacoWebpackPlugin({
@@ -40,3 +41,5 @@ module.exports = {
     })
   ]
 };
+
+module.exports = { config, debuggerRoot };
