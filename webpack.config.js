@@ -3,7 +3,10 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './debugger/src/index.ts',
+  entry: {
+    main: './debugger/src/index.ts',
+    // pulsar: './src/index.ts'
+  },
   module: {
     rules: [
       {
@@ -12,7 +15,7 @@ module.exports = {
           { 
             loader: 'ts-loader',
             options: {
-              configFile: 'tsconfig.webpack.json'
+              configFile: path.resolve(__dirname, 'debugger/tsconfig.webpack.json'),
             }  
           }
         ],
@@ -28,7 +31,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'debugger/build/'),
   },
   plugins: [

@@ -3,7 +3,6 @@ import * as pulsar from '../../src';
 const container: HTMLElement = document.getElementById('container');
 const code = 
 `const { Vector } = pulsar;
-console.log(pulsar);
 const a = new Vector({ x: 3, y: 7 });
 const b = new Vector({ x: 5, y: 1 });
 const magnitude: number = a.add(b).magnitude();
@@ -23,7 +22,13 @@ const compile = async (editor: any, dependencies: any[]) => {
   const proxy: any = await woker(editor.getModel().uri);
   const result: any = await proxy.getEmitOutput(editor.getModel().uri.toString());
   const text: string = result.outputFiles[0].text;
-  const f: Function = new Function('pulsar', text);
+  const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+  const asyncText = `
+    (async function(pulsar) {
+      ${text}
+    })(pulsar)
+  `;
+  const f = new AsyncFunction('pulsar', asyncText);
   f.apply(null, dependencies);
 }
 
