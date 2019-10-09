@@ -28,6 +28,7 @@ import {
   limits,
   row,
   navigatorSettings,
+  boundingBox,
 } from './interfaces';
 import {
   randomPoint,
@@ -73,4 +74,5 @@ export {
   randomInt,
   randomFloat,
   randomColor,
+  boundingBox
 };

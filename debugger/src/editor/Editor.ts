@@ -1,20 +1,24 @@
 import * as monaco from 'monaco-editor';
+import editorConfig from './editorConfig';
+import editorDependencies from './editorDependencies';
+
 
 export default class Editor {
-  editor: any;
+  private editor: any;
+  private dependencies: editorDependencies[];
+  private dependencyNames: string[];
+  private dependencyValues: any[];
 
-  constructor(
-    container: HTMLElement, 
-    value: string = '', 
-    private dependencies: any[] = []
-  ) {
+  constructor({ container, value, dependencies }: editorConfig) {
     this.editor = monaco.editor.create(container, {
       value,
       language: 'typescript',
       fontSize: 16,
     });
+    this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
-    monaco.languages.typescript.typescriptDefaults.addExtraLib('declare var pulsar: any;');
+    this.setDependencyNameValue();
+    this.addExtraLibs();
     this.editor.onDidChangeModelContent(this.compile);
     this.compile();
   }
@@ -27,8 +31,19 @@ export default class Editor {
     this.executeCompiledCode(code);
   }
 
-  private executeCompiledCode(code: string) {
-    const compileFunction: Function = new Function('pulsar', code);
-    compileFunction.apply(null, this.dependencies);
+  private setDependencyNameValue() {
+    this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
+    this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);
+  }
+
+  private addExtraLibs(): void {
+    this.dependencyNames.forEach((name: string) => {
+      monaco.languages.typescript.typescriptDefaults.addExtraLib(`declare var ${name}: any;`);
+    })
+  }
+
+  private executeCompiledCode(code: string): void  {
+    const compileFunction: Function = new Function(...this.dependencyNames, code);
+    compileFunction.apply(null, this.dependencyValues);
   }
 }

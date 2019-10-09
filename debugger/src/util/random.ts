@@ -4,8 +4,8 @@ import { Vector, randomInt } from '../../../src';
 const random = {
   color(): string {
     const r = randomInt(0, 255);
-    const g = 0; //randomInt(0, 255);
-    const b = 0; //randomInt(0, 255);
+    const g = randomInt(0, 255); 
+    const b = randomInt(0, 255);
     return `rgb(${r},${g},${b})`;
   },
 
@@ -27,4 +27,4 @@ const random = {
   }
 }
 
-export { random };
+export default random;

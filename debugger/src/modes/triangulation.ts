@@ -1,9 +1,17 @@
 const code = 
 `const { Triangulation, Vector, Line } = pulsar;
-const a = new Vector({ x: 3, y: 7 });
-const b = new Vector({ x: 5, y: 1 });
-const magnitude: number = a.add(b).magnitude();
-console.log(a, b, magnitude);
+const { random } = util;
+const box = {
+  top: 300,
+  bottom: -300,
+  left: -300,
+  right: 300,
+};
+const points = random.points(10, box);
+const triangulation = new Triangulation(points);
+triangulation.MST.start();
+triangulation.hull.start();
+console.log(triangulation);
 `;
 
 export default { code };
