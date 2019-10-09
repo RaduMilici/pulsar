@@ -18,15 +18,15 @@ const editor = monaco.editor.create(container, {
 monaco.editor.setTheme('vs-dark');
 monaco.languages.typescript.typescriptDefaults.addExtraLib('declare var pulsar: any;');
 
-const compile = async (editor: any) => {
+const compile = async (editor: any, dependencies: any[]) => {
   const woker: any = await monaco.languages.typescript.getTypeScriptWorker();
   const proxy: any = await woker(editor.getModel().uri);
   const result: any = await proxy.getEmitOutput(editor.getModel().uri.toString());
   const text: string = result.outputFiles[0].text;
   const f: Function = new Function('pulsar', text);
-  f.apply(null, [pulsar]);
+  f.apply(null, dependencies);
 }
 
-editor.onDidChangeModelContent((event) => { compile(editor); });
+editor.onDidChangeModelContent(() => compile(editor, [pulsar]));
 
-compile(editor);
+compile(editor, [pulsar]);
