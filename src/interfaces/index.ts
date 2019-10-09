@@ -9,7 +9,7 @@ import navigatorSettings from './navigatorSettings';
 import { onTileCreate } from './gridTypes';
 import { onExplore, onComplete } from './navigator';
 import { triangleLines } from './triangle';
-import { boundingBoxLines, limits } from './boundingBox';
+import { boundingBoxLines, limits, boundingBox } from './boundingBox';
 
 export {
   id,
@@ -26,4 +26,5 @@ export {
   onComplete,
   triangleLines,
   boundingBoxLines,
+  boundingBox,
 };
