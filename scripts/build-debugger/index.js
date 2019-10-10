@@ -6,7 +6,7 @@ const { config, debuggerRoot } = require('./webpack.config');
 const onBuildComplete = () => {
   try {
     copyIndexToDist();
-    copyInterfacesToDist();
+    generateDefFile();
     console.log(chalk.green.bold('*** successfully built Pulsar debugger ***'));    
   }
   catch (err) {
@@ -15,13 +15,13 @@ const onBuildComplete = () => {
   }  
 }
 
-const copyIndexToDist = () => {
+const generateDefFile = () => {
   const src = `${debuggerRoot}/src/index.html`;
   const dest = `${debuggerRoot}/build/index.html`;
   fs.copyFileSync(src, dest);
 }
 
-const copyInterfacesToDist = () => {
+const generateDefFile = () => {
   const src = `${debuggerRoot}/src/interfaces`;
   const dest = `${debuggerRoot}/build/interfaces`;
   fs.copySync(src, dest);
