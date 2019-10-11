@@ -1,7 +1,7 @@
 .idea
 dist/
 debugger/build/
-scripts/build-debugger/build/
+scripts/build-debugger/dtsBuild/
 
 # Logs
 logs
