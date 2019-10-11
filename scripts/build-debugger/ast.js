@@ -7,7 +7,7 @@ const { Project } = require('ts-morph');
 const getProgressBar = (total) => {
   return new ProgressBar(':bar :current / :total', { 
     total,
-    width: 30,
+    width: Number.POSITIVE_INFINITY,
   });
 };
 
