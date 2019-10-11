@@ -4,6 +4,13 @@ const ProgressBar = require('progress');
 const glob = require('glob');
 const { Project } = require('ts-morph');
 
+const getProgressBar = () => {
+  return new ProgressBar(':bar :current / :total', { 
+    total: sourceFiles.length,
+    width: 30,
+  });
+};
+
 const generateDTSfiles = () => {
   console.log('Generating .d.ts files:');
   
@@ -17,10 +24,7 @@ const generateDTSfiles = () => {
   project.addExistingSourceFiles(`${srcPath}/**/*.ts`);
   const sourceFiles = project.getSourceFiles();
 
-  const bar = new ProgressBar(':bar :current / :total', { 
-    total: sourceFiles.length,
-    width: 30,
-  });
+  const bar = getProgressBar();
   
   sourceFiles.forEach(file => {
     if (file.isDeclarationFile()) {
