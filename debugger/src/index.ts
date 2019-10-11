@@ -1,6 +1,6 @@
 import * as pulsar from '../../src';
 import * as util from './util';
-import { Editor, editorConfig } from './editor';
+import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
 import { triangulationMode } from './modes';
 
@@ -8,22 +8,23 @@ const editorContainer: HTMLElement = document.getElementById('editor-container')
 const canvasContainer: HTMLElement = document.getElementById('canvas-container');
 
 const canvas: Canvas = new Canvas(canvasContainer);
-
-const dependencies: { name: string, value: any}[] = [
+const extraLibs: editorDependencies[] = [
   { name: 'util', value: util },
   { name: 'draw', value: canvas.draw }
 ];
 
-// const keys = Object.keys(pulsar);
-// keys.forEach( name => {
-//   dependencies.push({ name, value: pulsar[name] })
-// });
+const keys: string[] = Object.keys(pulsar);
+const dependencies: editorDependencies[] = keys.map(name => {
+  const value: any = (<any>pulsar)[name];
+  return { name, value };
+});
 
 const editorConfig: editorConfig = {
   container: editorContainer,
   value: triangulationMode.code,
-  dependencies,
+  dependencies: [...extraLibs, ...dependencies],
   onChange: [() => { canvas.draw.clear(); }]
 };
 
-new Editor(editorConfig);
+const editor: Editor = new Editor(editorConfig);
+extraLibs.forEach(extraLib => editor.addExtraLibs(extraLib));

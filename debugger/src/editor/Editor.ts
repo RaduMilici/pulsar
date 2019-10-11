@@ -13,7 +13,9 @@ export default class Editor {
     this.editor = monaco.editor.create(container, {
       value,
       language: 'typescript',
-      fontSize: 16,
+      fontSize: 14,
+      wordWrap: 'on',
+      wrappingIndent: 'indent'
     });
     this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
@@ -37,6 +39,12 @@ export default class Editor {
   private setDependencyNameValue() {
     this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
     this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);
+  }
+
+  addExtraLibs({ name }: editorDependencies) {
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      `declare const ${name}: any`
+    );
   }
 
   private executeCompiledCode(code: string): void  {
