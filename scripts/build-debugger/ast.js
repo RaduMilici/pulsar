@@ -4,15 +4,6 @@ const ProgressBar = require('progress');
 const glob = require('glob');
 const { Project } = require('ts-morph');
 
-let bar;
-
-const makeProgressBar = (total) => {
-  bar = new ProgressBar(':bar :current / :total', { 
-    total,
-    width: 30,
-  });
-}
-
 const generateDTSfiles = () => {
   console.log('Generating .d.ts files:');
   
@@ -26,7 +17,10 @@ const generateDTSfiles = () => {
   project.addExistingSourceFiles(`${srcPath}/**/*.ts`);
   const sourceFiles = project.getSourceFiles();
 
-  makeProgressBar(sourceFiles.length * 2);
+  const bar = new ProgressBar(':bar :current / :total', { 
+    total: sourceFiles.length,
+    width: 30,
+  });
   
   sourceFiles.forEach(file => {
     if (file.isDeclarationFile()) {
@@ -39,7 +33,6 @@ const generateDTSfiles = () => {
     importStatements.forEach(statement => statement.remove());
     exportStatements.forEach(statement => statement.remove());
     file.removeDefaultExport();
-    file.remove
     bar.tick();
   });
   
@@ -53,7 +46,6 @@ const concatDTSfiles = () => {
   filePaths.forEach(filePath => {
     const fileText = fs.readFileSync(filePath, 'utf8');
     allFileTexts.push(fileText);
-    bar.tick();
   });
 
   const text = `export default \`${allFileTexts.join('')}\``;

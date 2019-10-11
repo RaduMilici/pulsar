@@ -11,10 +11,10 @@ const onBuildComplete = () => {
     concatDTSfiles();
     moveDTSBundle();
     fs.removeSync(`${__dirname}/dtsBuild`);
-    console.log(chalk.green.bold('*** successfully built Pulsar debugger ***'));    
+    console.log(chalk.green.bold('\n*** successfully built Pulsar debugger ***'));    
   }
   catch (err) {
-    console.error(chalk.red.bold('*** error building Pulsar debugger ***')); 
+    console.error(chalk.red.bold('\n*** error building Pulsar debugger ***')); 
     console.error(err);    
   }  
 }
