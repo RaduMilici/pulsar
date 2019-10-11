@@ -1,4 +1,5 @@
 const path = require('path');
+const WebpackBar = require('webpackbar');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const debuggerRoot = path.resolve(__dirname, '../../debugger')
 
@@ -39,7 +40,8 @@ const config = {
   plugins: [
     new MonacoWebpackPlugin({
       languages: ['typescript']
-    })
+    }),
+    new WebpackBar()
   ]
 };
 

@@ -29,18 +29,21 @@
     "chalk": "^2.4.2",
     "css-loader": "^3.2.0",
     "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
     "jest": "^23.6.0",
     "madge": "^3.4.4",
     "monaco-editor": "^0.18.1",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "prettier": "^1.18.2",
+    "progress": "^2.0.3",
     "style-loader": "^1.0.0",
     "ts-jest": "^23.10.5",
     "ts-loader": "^6.2.0",
     "ts-morph": "^4.2.0",
     "typescript": "^3.5.3",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpackbar": "^4.0.0"
   },
   "jest": {
     "transform": {

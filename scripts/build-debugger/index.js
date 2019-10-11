@@ -2,12 +2,13 @@ const fs = require('fs-extra');
 const webpack = require('webpack');
 const chalk = require('chalk');
 const { config, debuggerRoot } = require('./webpack.config');
-const ast = require('./ast');
+const { generateDTSfiles, concatDTSfiles } = require('./ast');
 
 const onBuildComplete = () => {
   try {
-    //copyIndexToDist();
-    //generateDefFile();
+    copyIndexToDist();
+    generateDTSfiles();
+    concatDTSfiles();
     console.log(chalk.green.bold('*** successfully built Pulsar debugger ***'));    
   }
   catch (err) {
@@ -22,10 +23,4 @@ const copyIndexToDist = () => {
   fs.copyFileSync(src, dest);
 }
 
-const generateDefFile = () => {
-  const src = `${debuggerRoot}/src/interfaces`;
-  const dest = `${debuggerRoot}/build/interfaces`;
-  fs.copySync(src, dest);
-}
-
-// webpack(config).run(onBuildComplete);
+webpack(config).run(onBuildComplete);
