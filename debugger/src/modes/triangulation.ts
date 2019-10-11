@@ -1,6 +1,5 @@
 const code = 
-`const { Triangulation } = pulsar;
-const { random } = util;
+`const { random } = util;
 const box = {
   top: 300,
   bottom: -300,
@@ -8,8 +7,8 @@ const box = {
   right: 300,
 };
 const points = random.points(100, box);
-const { triangles } = new Triangulation(points);
-draw.triangles(triangles);
+const triangulation = new pulsar.Triangulation(points);
+draw.triangles(triangulation.triangles);
 draw.points(points);
 `;
 

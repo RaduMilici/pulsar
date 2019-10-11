@@ -9,14 +9,20 @@ const canvasContainer: HTMLElement = document.getElementById('canvas-container')
 
 const canvas: Canvas = new Canvas(canvasContainer);
 
+const dependencies: { name: string, value: any}[] = [
+  { name: 'util', value: util },
+  { name: 'draw', value: canvas.draw }
+];
+
+// const keys = Object.keys(pulsar);
+// keys.forEach( name => {
+//   dependencies.push({ name, value: pulsar[name] })
+// });
+
 const editorConfig: editorConfig = {
   container: editorContainer,
   value: triangulationMode.code,
-  dependencies: [
-    { name: 'pulsar', value: pulsar }, 
-    { name: 'util', value: util },
-    { name: 'draw', value: canvas.draw }
-  ],
+  dependencies,
   onChange: [() => { canvas.draw.clear(); }]
 };
 

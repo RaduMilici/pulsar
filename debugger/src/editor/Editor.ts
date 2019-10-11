@@ -1,7 +1,7 @@
 import * as monaco from 'monaco-editor';
 import editorConfig from './editorConfig';
 import editorDependencies from './editorDependencies';
-
+import dtsBundle from './dtsBundle';
 
 export default class Editor {
   private editor: any;
@@ -18,7 +18,7 @@ export default class Editor {
     this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
     this.setDependencyNameValue();
-    this.addExtraLibs();
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
     this.editor.onDidChangeModelContent(() => {
       onChange.forEach(callback => callback());
       this.compile();
@@ -37,12 +37,6 @@ export default class Editor {
   private setDependencyNameValue() {
     this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
     this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);
-  }
-
-  private addExtraLibs(): void {
-    this.dependencyNames.forEach((name: string) => {
-      monaco.languages.typescript.typescriptDefaults.addExtraLib(`declare var ${name}: any;`);
-    })
   }
 
   private executeCompiledCode(code: string): void  {
