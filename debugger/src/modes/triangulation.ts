@@ -6,9 +6,9 @@ const code =
   right: 200,
 };
 const points: Vector[] = util.random.points(20, limits);
-const triangulation: Triangulation = new Triangulation(points);
+const { triangles }: Triangulation = new Triangulation(points);
 
-draw.triangles(triangulation.triangles);
+draw.triangles(triangles);
 draw.points(points);
 `;
 

@@ -24,7 +24,8 @@
 #debugger-title-text {
   font-family: sans-serif;
   margin: 0 0 0 15px;
-  color: var(--color-malibu)
+  color: var(--color-malibu);
+  font-family: "Roboto", sans-serif;
 }
 
 #debugger-controls {

@@ -23,7 +23,7 @@ const dependencies: editorDependencies[] = keys.map(name => {
 
 const editorConfig: editorConfig = {
   container: editorContainer,
-  value: pathfindingMode.code,
+  value: triangulationMode.code,
   dependencies: [...extraLibs, ...dependencies],
   onChange: [() => { canvas.draw.clear(); }]
 };
