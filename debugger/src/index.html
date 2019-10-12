@@ -6,29 +6,33 @@
   <body>
     <div id="debugger-container">
       <div id="debugger-command-bar">
+        <div id="debugger-title">
+          <p id="debugger-title-text">pulsar dev tool</p>
+        </div>
 
-        <div class="debugger-command-bar__item">
-          <select id="debugger-code-select"></select>
-        </div><!--code-select-->
-
-        <div class="debugger-command-bar__item">
-          <button 
-            id="debugger-run-button" 
-            class=" button button-primary"
-          >
-            &#9658;
-          </button>
-        </div><!--run-button-->
-
-        <div class="debugger-command-bar__item">
-          <button 
-            id="debugger-reload-button" 
-            class=" button button-primary"
-          >
-            &#8635;
-          </button>
-        </div><!--reload-button-->
-        
+        <div id="debugger-controls">
+          <div class="debugger-command-bar__item">
+            <select id="debugger-code-select"></select>
+          </div><!--code-select-->
+  
+          <div class="debugger-command-bar__item">
+            <button 
+              id="debugger-run-button" 
+              class=" button button-primary"
+            >
+              &#9658;
+            </button>
+          </div><!--run-button-->
+  
+          <div class="debugger-command-bar__item">
+            <button 
+              id="debugger-reload-button" 
+              class=" button button-primary"
+            >
+              &#8635;
+            </button>
+          </div><!--reload-button-->
+        </div>        
       </div>
       <div id="debugger-editor">
 

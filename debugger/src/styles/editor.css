@@ -7,8 +7,29 @@
 
 #debugger-command-bar { 
   display: flex;
-  justify-content: center;
   background-color: rgb(30, 30, 30);
+}
+
+#debugger-title, #debugger-controls {
+  width: 50%;
+}
+
+#debugger-title {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#debugger-title-text {
+  font-family: sans-serif;
+  margin: 0 0 0 15px;
+  color: var(--color-malibu)
+}
+
+#debugger-controls {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .debugger-command-bar__item {
