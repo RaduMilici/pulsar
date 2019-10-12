@@ -10,7 +10,7 @@ export default class Grid {
   readonly tiles: row = [];
   readonly rows: row[] = [];
 
-  constructor(private size: size = DEFAULT_GRID_SIZE) {
+  constructor(readonly size: size = DEFAULT_GRID_SIZE) {
     this.checkMinimumGridSize();
     this.makeGrid();
   }

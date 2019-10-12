@@ -8,8 +8,10 @@ export default class Editor {
   private dependencies: editorDependencies[];
   private dependencyNames: string[];
   private dependencyValues: any[];
+  private value: string;
 
   constructor({ container, value, dependencies, onChange }: editorConfig) {
+    this.value = value;
     this.editor = monaco.editor.create(container, {
       value,
       language: 'typescript',
@@ -28,6 +30,10 @@ export default class Editor {
     this.compile();
   }
 
+  reset = () => {
+    this.setCode(this.value);
+  }
+
   compile = async () => {    
     const woker: any = await monaco.languages.typescript.getTypeScriptWorker();
     const proxy: any = await woker(this.editor.getModel().uri);
@@ -36,8 +42,9 @@ export default class Editor {
     this.executeCompiledCode(code);
   }
 
-  setCode(value: string): void {
-    this.editor.setValue(value);
+  setCode = (value: string): void => {
+    this.value = value;
+    this.editor.setValue(this.value);
   }
 
   private setDependencyNameValue() {

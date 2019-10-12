@@ -13,3 +13,6 @@ export const s_line: number = 1;
 export const c_triangleLine: string = 'rgb(102, 219, 249)';
 export const c_triangleFill: string = 'rgb(41, 44, 52)';
 export const s_triangle: number = 1;
+//square
+export const c_squareLine: string = 'rgb(102, 219, 249)';
+export const c_squareFill: string = 'rgb(41, 44, 52)';

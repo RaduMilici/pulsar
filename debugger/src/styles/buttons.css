@@ -16,7 +16,6 @@
 }
 
 .button:hover {
-  cursor: pointer;
 	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
 }
 
