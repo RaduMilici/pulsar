@@ -1,11 +1,11 @@
 const code = 
-`const box: boundingBox = {
-  top: 300,
-  bottom: -300,
-  left: -300,
-  right: 300,
+`const limits = {
+  top: 250,
+  bottom: -250,
+  left: -250,
+  right: 250,
 };
-const points: Vector[] = util.random.points(20, box);
+const points: Vector[] = util.random.points(20, limits);
 const triangulation: Triangulation = new Triangulation(points);
 
 draw.triangles(triangulation.triangles);

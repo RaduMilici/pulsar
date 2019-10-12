@@ -1,8 +1,9 @@
+import './styles/editor.css';
 import * as pulsar from '../../src';
 import * as util from './util';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
-import { triangulationMode } from './modes';
+import { triangulationMode, quadTreeMode } from './modes';
 
 const editorContainer: HTMLElement = document.getElementById('editor-container');
 const canvasContainer: HTMLElement = document.getElementById('canvas-container');
@@ -21,7 +22,7 @@ const dependencies: editorDependencies[] = keys.map(name => {
 
 const editorConfig: editorConfig = {
   container: editorContainer,
-  value: triangulationMode.code,
+  value: quadTreeMode.code,
   dependencies: [...extraLibs, ...dependencies],
   onChange: [() => { canvas.draw.clear(); }]
 };

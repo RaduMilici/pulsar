@@ -1,17 +1,19 @@
-import { Vector, Triangle } from '../../../src';
+import { Vector, Triangle, Line, QuadTree } from '../../../src';
 import DrawPoints from './DrawPoints';
 import DrawTriangles from './DrawTriangles';
-import ICanvasDrawer from '../interfaces/ICanvasDrawer';
+import DrawLines from './DrawLines';
 
-export default class CanvasDrawer implements ICanvasDrawer {
+export default class CanvasDrawer {
   private readonly context: CanvasRenderingContext2D;
   private readonly drawPoints: DrawPoints;
   private readonly drawTriangles: DrawTriangles;
+  private readonly drawLines: DrawLines;
   
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.context = this.canvas.getContext('2d');
     this.drawPoints = new DrawPoints(this.context);
     this.drawTriangles = new DrawTriangles(this.context);
+    this.drawLines = new DrawLines(this.context);
   }
 
   point(
@@ -38,6 +40,22 @@ export default class CanvasDrawer implements ICanvasDrawer {
     fillColor?: string,
     size?: number) {
       this.drawTriangles.triangles(triangles, strokeColor, fillColor, size);
+  }
+
+  line(line: Line, color?: string, size?: number): void {
+    this.drawLines.line(line, color, size);
+  }
+
+  lines(lines: Line[], color?: string, size?: number): void {
+    this.drawLines.lines(lines, color, size);
+  }
+
+  quadTree(quadTree: QuadTree, color?: string, size?: number): void {
+    this.lines(quadTree.shape.lines, color, size);
+    quadTree.children.forEach((child: QuadTree) => {
+      this.quadTree(child);            
+      //child.children.forEach(this.drawLoop.bind(this));
+    });
   }
 
   clear(): void {
