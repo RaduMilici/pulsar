@@ -6,19 +6,26 @@
   <body>
     <div id="debugger-container">
       <div id="debugger-command-bar">
-        <button 
-          id="debugger-run-button" 
-          class="debugger-command-bar__item button button-primary">
-          &#9658;
-        </button>
-        <select 
-          id="debugger-code-select"
-          class="debugger-command-bar__item"
-        ></select>
+
+        <div class="debugger-command-bar__item">
+          <select id="debugger-code-select"></select>
+        </div>
+
+        <div class="debugger-command-bar__item">
+          <button 
+            id="debugger-run-button" 
+            class=" button button-primary"
+          >
+            &#9658;
+          </button>
+        </div>
+
       </div>
       <div id="debugger-editor">
+
         <div id="debugger-canvas-container"></div>
         <div id="debugger-editor-container"></div>
+        
       </div>
     </div>
     <script src="main.js"></script>

@@ -17,10 +17,12 @@
 
 #debugger-editor {
   display: flex; 
+  position: relative;
   flex: 1;
+  overflow: hidden;
 }
 
 #debugger-editor-container, #debugger-canvas-container { 
   width: 50%; 
-  height: 100%; 
+  height: 100%;
 }

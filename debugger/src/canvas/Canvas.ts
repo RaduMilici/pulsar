@@ -13,9 +13,10 @@ export default class Canvas {
 
   matchSizeToContainer(container: HTMLElement): void {
     const { clientWidth, clientHeight } = container;
+    // const realToCSSPixels: number = window.devicePixelRatio;
+    // const displayWidth: number  = Math.floor(clientWidth  * realToCSSPixels);
+    // const displayHeight: number = Math.floor(clientHeight * realToCSSPixels);
     this.canvasElement.width  = clientWidth;
     this.canvasElement.height = clientHeight;
-    this.canvasElement.style.width = `${clientWidth}`;
-    this.canvasElement.style.height = `${clientHeight}`;
   }
 }
