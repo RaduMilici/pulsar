@@ -21,10 +21,10 @@ export default class Editor {
     monaco.editor.setTheme('vs-dark');
     this.setDependencyNameValue();
     monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
-    this.editor.onDidChangeModelContent(() => {
+    /*this.editor.onDidChangeModelContent(() => {
       onChange.forEach(callback => callback());
       this.compile();
-    });
+    });*/
     this.compile();
   }
 

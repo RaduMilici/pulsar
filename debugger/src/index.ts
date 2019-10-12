@@ -1,12 +1,13 @@
-import './styles/editor.css';
+import './styles';
+import { runButton } from './ui';
 import * as pulsar from '../../src';
 import * as util from './util';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
 import { triangulationMode, quadTreeMode } from './modes';
 
-const editorContainer: HTMLElement = document.getElementById('editor-container');
-const canvasContainer: HTMLElement = document.getElementById('canvas-container');
+const editorContainer: HTMLElement = document.getElementById('debugger-editor-container');
+const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');
 
 const canvas: Canvas = new Canvas(canvasContainer);
 const extraLibs: editorDependencies[] = [
@@ -29,3 +30,8 @@ const editorConfig: editorConfig = {
 
 const editor: Editor = new Editor(editorConfig);
 extraLibs.forEach(extraLib => editor.addExtraLibs(extraLib));
+
+runButton.addCallback((): void => {
+  canvas.draw.clear();
+  editor.compile();
+});

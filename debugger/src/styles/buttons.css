@@ -1,0 +1,31 @@
+.button {
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+button:disabled {
+  color: black;
+  background: #dddddd;
+  cursor: not-allowed;
+}
+
+.button:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+}
+
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+.button-black {
+  background-color: var(--color-malibu); 
+  color: var(--color-shark);
+}
