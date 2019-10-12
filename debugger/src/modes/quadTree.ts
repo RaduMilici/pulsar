@@ -16,4 +16,4 @@ draw.points(points);
 draw.quadTree(quadTree);
 `;
 
-export default { code };
+export default { code, name: 'quad tree' };

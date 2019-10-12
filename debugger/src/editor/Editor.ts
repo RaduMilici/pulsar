@@ -36,6 +36,10 @@ export default class Editor {
     this.executeCompiledCode(code);
   }
 
+  setCode(value: string): void {
+    this.editor.setValue(value);
+  }
+
   private setDependencyNameValue() {
     this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
     this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);

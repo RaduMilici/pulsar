@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pulsar debugger</title>
   </head>
   <body>
@@ -11,9 +8,13 @@
       <div id="debugger-command-bar">
         <button 
           id="debugger-run-button" 
-          class="button button-black">
+          class="debugger-command-bar__item button button-primary">
           &#9658;
         </button>
+        <select 
+          id="debugger-code-select"
+          class="debugger-command-bar__item"
+        ></select>
       </div>
       <div id="debugger-editor">
         <div id="debugger-canvas-container"></div>

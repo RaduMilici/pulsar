@@ -10,13 +10,14 @@
   outline: none;
 }
 
-button:disabled {
+.button:disabled {
   color: black;
   background: #dddddd;
   cursor: not-allowed;
 }
 
 .button:hover {
+  cursor: pointer;
 	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
 }
 
@@ -25,7 +26,7 @@ button:disabled {
 	top:1px;
 }
 
-.button-black {
+.button-primary {
   background-color: var(--color-malibu); 
   color: var(--color-shark);
 }

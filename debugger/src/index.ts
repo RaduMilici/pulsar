@@ -1,5 +1,5 @@
 import './styles';
-import { runButton } from './ui';
+import { runButton, codeSelect } from './ui';
 import * as pulsar from '../../src';
 import * as util from './util';
 import { Editor, editorConfig, editorDependencies } from './editor';
@@ -31,7 +31,14 @@ const editorConfig: editorConfig = {
 const editor: Editor = new Editor(editorConfig);
 extraLibs.forEach(extraLib => editor.addExtraLibs(extraLib));
 
-runButton.addCallback((): void => {
+const clearAndCompile = () => {
   canvas.draw.clear();
   editor.compile();
+}
+
+runButton.addCallback(clearAndCompile);
+
+codeSelect.addCallback((value: string): void => {
+  editor.setCode(value);
+  clearAndCompile();
 });

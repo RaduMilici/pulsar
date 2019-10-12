@@ -1,9 +1,9 @@
 const code = 
 `const limits = {
-  top: 250,
-  bottom: -250,
-  left: -250,
-  right: 250,
+  top: 200,
+  bottom: -200,
+  left: -200,
+  right: 200,
 };
 const points: Vector[] = util.random.points(20, limits);
 const triangulation: Triangulation = new Triangulation(points);
@@ -12,4 +12,4 @@ draw.triangles(triangulation.triangles);
 draw.points(points);
 `;
 
-export default { code };
+export default { code, name: 'triangluation' };

@@ -7,9 +7,12 @@
 
 #debugger-command-bar { 
   display: flex;
-  justify-content: space-around;
-  height: 30px; 
+  justify-content: center;
   background-color: rgb(30, 30, 30);
+}
+
+.debugger-command-bar__item {
+  margin: 5px 10px;
 }
 
 #debugger-editor {

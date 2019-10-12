@@ -1,5 +1,5 @@
 class RunButton {
-  buttonElement: HTMLButtonElement;
+  private buttonElement: HTMLButtonElement;
   private onClickCallbacks: { (): void; }[] = [];
 
   constructor() {
