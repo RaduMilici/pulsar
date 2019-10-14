@@ -1,10 +1,7 @@
 import { Grid, Vector, NavigatorTile, point } from '../../../src';
 import DrawSquares  from './DrawSquares';
 import Draw from './Draw';
-import {
-  c_line,
-  s_line,
-} from './const';
+import { GRID_DEFAULT_SIDE } from './const';
 
 export default class DrawGrid extends Draw {
   private drawSquares: DrawSquares;
@@ -14,26 +11,41 @@ export default class DrawGrid extends Draw {
     this.drawSquares = new DrawSquares(context);
   }
 
-  tile(tile: NavigatorTile): void {
-
-  }
-
-  gridTiles(grid: Grid, tiles: NavigatorTile[], gridSide: number): void {
-    
-  }
-
-  grid(grid: Grid, gridSide: number, lineSize?: number): void {
+  gridTile(
+    grid: Grid, 
+    tile: NavigatorTile, 
+    gridSide: number = GRID_DEFAULT_SIDE,
+    lineSize?: number,
+    fillColor?: string
+  ): void {
     const divideBy: number = 
-      grid.size.width > grid.size.height ? 
-      grid.size.width :
-      grid.size.height;
+    grid.size.width > grid.size.height ? 
+    grid.size.width :
+    grid.size.height;
     const squareSide: number = gridSide / divideBy;
     const halfGrid: number = gridSide / 2;
-    const tilePositions: Vector[] = grid.tiles.map(({ position }: NavigatorTile) => {
-      const x = this.origin.x - halfGrid + position.x * squareSide;
-      const y = this.origin.y - halfGrid + position.y * squareSide;
-      return new Vector({ x, y });
-    });
-    this.drawSquares.squares(tilePositions, squareSide, lineSize);
+    const x = this.origin.x - halfGrid + tile.position.x * squareSide;
+    const y = this.origin.y - halfGrid + tile.position.y * squareSide;
+    const tilePosition: Vector = new Vector({ x, y });
+    this.drawSquares.square(tilePosition, squareSide, lineSize, fillColor);
   }
+
+  gridTiles(
+    grid: Grid, 
+    tiles: NavigatorTile[], 
+    gridSide: number = GRID_DEFAULT_SIDE,
+    lineSize?: number,
+    fillColor?: string
+  ): void {
+    tiles.forEach((tile: NavigatorTile) => {
+      this.gridTile(grid, tile, gridSide, lineSize, fillColor);
+    });
+  }
+
+  grid(grid: Grid, gridSide: number = GRID_DEFAULT_SIDE, lineSize?: number): void {
+    grid.tiles.forEach((tile: NavigatorTile) => {
+      this.gridTile(grid, tile, gridSide, lineSize);
+    });
+  }
+  
 }

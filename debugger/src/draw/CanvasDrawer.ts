@@ -1,4 +1,4 @@
-import { Vector, Triangle, Line, QuadTree, Grid } from '../../../src';
+import { Vector, Triangle, Line, QuadTree, Grid, NavigatorTile } from '../../../src';
 import DrawPoints from './DrawPoints';
 import DrawTriangles from './DrawTriangles';
 import DrawLines from './DrawLines';
@@ -61,7 +61,11 @@ export default class CanvasDrawer {
     });
   }
 
-  grid(grid: Grid, side: number) {
+  gridTile(grid: Grid, tile: NavigatorTile, gridSide?: number, fillColor?: string): void {
+    this.drawGrid.gridTile(grid, tile, gridSide, 1, fillColor);
+  }
+
+  grid(grid: Grid, side: number): void {
     this.drawGrid.grid(grid, side);
   }
 

@@ -16,3 +16,5 @@ export const s_triangle: number = 1;
 //square
 export const c_squareLine: string = 'rgb(102, 219, 249)';
 export const c_squareFill: string = 'rgb(41, 44, 52)';
+//grid
+export const GRID_DEFAULT_SIDE = 500;
