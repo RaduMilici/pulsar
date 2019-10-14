@@ -4,7 +4,7 @@ import * as pulsar from '../../src';
 import * as util from './util';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
-import { triangulationMode, quadTreeMode, pathfindingMode } from './modes';
+import { triangulationMode, quadTreeMode, pathfindingMode, pathfindingRandomMode } from './modes';
 
 const editorContainer: HTMLElement = document.getElementById('debugger-editor-container');
 const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');

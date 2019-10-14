@@ -23,8 +23,9 @@ export default class Editor {
     monaco.editor.setTheme('vs-dark');
     this.setDependencyNameValue();
     // monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-    //   noLib: true,
-    //   lib: ['DOM', 'dom', 'ES6', 'DOM.Iterable', 'ScriptHost'],
+    //   //noLib: true,
+    //   target: monaco.languages.typescript.ScriptTarget.ESNext,
+    //   lib: ['dom', 'es5'],
     //   allowNonTsExtensions: true
     // });
     monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);

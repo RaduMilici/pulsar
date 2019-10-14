@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",                   
+    "target": "esnext",                   
     "module": "es6",                   
     "declaration": true,                  
     "declarationMap": true,               

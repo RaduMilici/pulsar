@@ -4,6 +4,7 @@ const ProgressBar = require('progress');
 const glob = require('glob');
 const { Project } = require('ts-morph');
 
+
 const getProgressBar = (total) => {
   return new ProgressBar(':bar :current / :total', { 
     total,
@@ -46,7 +47,9 @@ const generateDTSfiles = () => {
 }
 
 const concatDTSfiles = () => {
-  const filePaths = glob.sync(path.resolve(__dirname, 'dtsBuild/**/*.ts'));  
+  const dtsBuildPath = glob.sync(path.resolve(__dirname, 'dtsBuild/**/*.ts')); 
+  const libDtsPath = path.resolve(__dirname, '../../node_modules/typescript/lib/lib.dom.d.ts');
+  const filePaths = [...dtsBuildPath];
   const allFileTexts = [];
 
   filePaths.forEach(filePath => {
@@ -54,7 +57,7 @@ const concatDTSfiles = () => {
     allFileTexts.push(fileText);
   });
 
-  const text = `export default \`${allFileTexts.join('')}\``;
+  const text = `export default \`${allFileTexts.join('')}\`;`;
   fs.writeFileSync(path.resolve(__dirname, 'bundle.ts'), text);
 }
 

@@ -6,13 +6,14 @@ import { row, point, size } from '../interfaces';
 import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../constants';
 
 export default class Grid {
-  readonly obstacles: Obstacles = new Obstacles(this);
+  readonly obstacles: Obstacles;
   readonly tiles: row = [];
   readonly rows: row[] = [];
 
   constructor(readonly size: size = DEFAULT_GRID_SIZE) {
     this.checkMinimumGridSize();
     this.makeGrid();
+    this.obstacles = new Obstacles(this);
   }
 
   /** Returns a tile at the specified coordinates. */

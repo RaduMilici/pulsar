@@ -5,11 +5,11 @@ import DrawLines from './DrawLines';
 import DrawGrid from './DrawGrid';
 
 export default class CanvasDrawer {
-  private readonly context: CanvasRenderingContext2D;
-  private readonly drawPoints: DrawPoints;
-  private readonly drawTriangles: DrawTriangles;
-  private readonly drawLines: DrawLines;
-  private readonly drawGrid: DrawGrid;
+  readonly context: CanvasRenderingContext2D;
+  readonly drawPoints: DrawPoints;
+  readonly drawTriangles: DrawTriangles;
+  readonly drawLines: DrawLines;
+  readonly drawGrid: DrawGrid;
   
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.context = this.canvas.getContext('2d');
@@ -63,6 +63,12 @@ export default class CanvasDrawer {
 
   gridTile(grid: Grid, tile: NavigatorTile, fillColor?: string): void {
     this.drawGrid.gridTile(grid, tile, 1, fillColor);
+  }
+
+  gridTiles(grid: Grid, tiles: NavigatorTile[], fillColor?: string): void {
+    tiles.forEach((tile: NavigatorTile) => {
+      this.drawGrid.gridTile(grid, tile, 1, fillColor);
+    });
   }
 
   grid(grid: Grid): void {

@@ -4,14 +4,13 @@ const chalk = require('chalk');
 const { config, debuggerRoot } = require('./webpack.config');
 const { generateDTSfiles, concatDTSfiles } = require('./ast');
 
-const onBuildComplete = () => {
+const prepareForBuild = () => {
   try {
     copyIndexToDist();
     generateDTSfiles();
     concatDTSfiles();
     moveDTSBundle();
-    fs.removeSync(`${__dirname}/dtsBuild`);
-    console.log(chalk.green.bold('\n*** successfully built Pulsar debugger ***'));    
+    fs.removeSync(`${__dirname}/dtsBuild`);   
   }
   catch (err) {
     console.error(chalk.red.bold('\n*** error building Pulsar debugger ***')); 
@@ -31,4 +30,8 @@ const moveDTSBundle = () => {
   fs.moveSync(src, dest, { overwrite: true });
 }
 
-webpack(config).run(onBuildComplete);
+prepareForBuild();
+webpack(config).run(() => {
+  console.log(chalk.green.bold('\n*** successfully built Pulsar debugger ***')); 
+});
+

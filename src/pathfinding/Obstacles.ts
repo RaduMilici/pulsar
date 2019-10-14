@@ -8,7 +8,7 @@ export default class Obstacles {
   private readonly closedList: row = [];
 
   constructor({ tiles }: Grid) {
-    this.openList = tiles;
+    this.openList = Array.from(tiles);
   }
 
   get list(): NavigatorTile[] {
@@ -16,12 +16,12 @@ export default class Obstacles {
   }
 
   add(tile: NavigatorTile): boolean {
-    tile.isObstacle = true;
+    //tile.isObstacle = true;
     return this.manipulate(true, tile);
   }
 
   remove(tile: NavigatorTile): boolean {
-    tile.isObstacle = false;
+    //tile.isObstacle = false;
     return this.manipulate(false, tile);
   }
 
