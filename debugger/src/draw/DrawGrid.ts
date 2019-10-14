@@ -4,11 +4,12 @@ import Draw from './Draw';
 import { GRID_DEFAULT_SIDE } from './const';
 
 export default class DrawGrid extends Draw {
-  pixelWidth: number = 500;
+  pixelWidth: number;
   private drawSquares: DrawSquares;
 
   constructor(context: CanvasRenderingContext2D) {
     super(context);
+    this.pixelWidth = context.canvas.width - 50;
     this.drawSquares = new DrawSquares(context);
   }
 

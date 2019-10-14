@@ -1,8 +1,8 @@
 const code = 
-`const topLeft = new Pulsar.Vector({ x: -100, y: 100 });
-const topRight = new Pulsar.Vector({ x: 100, y: 100 });
-const bottomRight = new Pulsar.Vector({ x: 100, y: -100 });
-const bottomLeft = new Pulsar.Vector({ x: -100, y: -100 });
+`const topLeft = new Pulsar.Vector({ x: -300, y: 300 });
+const topRight = new Pulsar.Vector({ x: 300, y: 300 });
+const bottomRight = new Pulsar.Vector({ x: 300, y: -300 });
+const bottomLeft = new Pulsar.Vector({ x: -300, y: -300 });
 const boxPoints: Pulsar.Vector[] = [
   topLeft, topRight, bottomRight, bottomLeft
 ];

@@ -15,19 +15,19 @@ export default class Editor {
     this.editor = monaco.editor.create(container, {
       value,
       language: 'typescript',
-      fontSize: 14,
+      fontSize: 18,
       wordWrap: 'on',
       wrappingIndent: 'indent'
     });
     this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
     this.setDependencyNameValue();
-    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-      //noLib: true,
-      target: monaco.languages.typescript.ScriptTarget.ESNext,
-      lib: ['dom', 'es5'],
-      allowNonTsExtensions: true
-    });
+    // monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+    //   //noLib: true,
+    //   target: monaco.languages.typescript.ScriptTarget.ESNext,
+    //   lib: ['dom', 'es5'],
+    //   allowNonTsExtensions: true
+    // });
     monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
     /*this.editor.onDidChangeModelContent(() => {
       onChange.forEach(callback => callback());

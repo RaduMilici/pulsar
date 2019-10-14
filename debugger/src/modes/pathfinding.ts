@@ -1,19 +1,16 @@
 const code = 
-`draw.drawGrid.pixelWidth = 800;
-const width: number = 30;
-const height: number = 30;
-const size: size = { width, height };
-const grid: Grid = new Grid(size);
+`const size: Pulsar.size = { width: 30, height: 30 };
+const grid: Pulsar.Grid = new Pulsar.Grid(size);
 draw.grid(grid);
 
-for (let y = 1; y < height - 1; y += 2) {
-  for (let x = 0; x < width; x++) {    
+for (let y = 1; y < 30 - 1; y += 2) {
+  for (let x = 0; x < 30; x++) {    
 	  const gateNumber: number = Math.round(Math.sin(x + y));
     if (gateNumber > 0) {
       continue;
     }
     else {
-      const obstacle: NavigatorTile = grid.getTile({ x, y });
+      const obstacle: Pulsar.NavigatorTile = grid.getTile({ x, y });
       grid.obstacles.add(obstacle);
     }
   }
@@ -21,18 +18,17 @@ for (let y = 1; y < height - 1; y += 2) {
 
 draw.gridTiles(grid, grid.obstacles.list, '#FF6103');
 
-const begin: NavigatorTile = grid.getTile(new Vector({ x: 0, y: 0 }));
-const end: NavigatorTile = grid.getTile(new Vector({ x: width - 1, y: height - 1 }));
-const onComplete = (tiles: NavigatorTile[]) => {
-  tiles.forEach((tile: NavigatorTile) => {
+const begin: Pulsar.NavigatorTile = grid.getTile(new Pulsar.Vector({ x: 0, y: 0 }));
+const end: Pulsar.NavigatorTile = grid.getTile(new Pulsar.Vector({ x: 29, y: 29 }));
+const onComplete = (tiles: Pulsar.NavigatorTile[]) => {
+  tiles.forEach((tile: Pulsar.NavigatorTile) => {
     draw.gridTile(grid, tile, '#67dbf8');
   });
 };
 
-const settings: navigatorSettings = { grid, begin, end, onComplete };
-const navigator: Navigator = new Navigator(settings);
-navigator.start();
-
+const settings: Pulsar.navigatorSettings = { grid, begin, end, onComplete };
+const agent: Pulsar.Navigator = new Pulsar.Navigator(settings);
+agent.start();
 `;
 
 export default { code, name: 'pathfinding' };
