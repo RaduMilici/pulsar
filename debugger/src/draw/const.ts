@@ -7,7 +7,7 @@ export const c_pointStroke: string = 'black';
 export const c_pointFill: string = 'rgb(102, 219, 249)';
 export const s_point: number = 3;
 //line
-export const c_line: string = 'red';
+export const c_line: string = 'rgb(41, 44, 52)';
 export const s_line: number = 1;
 //triangle
 export const c_triangleLine: string = 'rgb(102, 219, 249)';
