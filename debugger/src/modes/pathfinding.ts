@@ -12,7 +12,7 @@ const onComplete = (tiles: NavigatorTile[]) => {
   });
 };
 
-const settings: navigatorSettings = { grid,  begin, end,  onComplete };
+const settings: navigatorSettings = { grid, begin, end, onComplete };
 const navigator: Navigator = new Navigator(settings);
 navigator.start();
 `;
