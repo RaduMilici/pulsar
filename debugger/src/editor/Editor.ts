@@ -1,6 +1,5 @@
 import * as monaco from 'monaco-editor';
-import editorConfig from './editorConfig';
-import editorDependencies from './editorDependencies';
+import { editorConfig, editorDependencies } from './types';
 import dtsBundle from './dtsBundle';
 
 export default class Editor {

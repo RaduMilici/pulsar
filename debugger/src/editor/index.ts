@@ -1,5 +1,4 @@
 import Editor from './Editor';
-import editorConfig from './editorConfig';
-import editorDependencies from './editorDependencies';
+import { editorConfig, editorDependencies } from './types';
 
 export { Editor, editorConfig, editorDependencies };
