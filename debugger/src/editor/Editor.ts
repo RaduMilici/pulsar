@@ -5,24 +5,14 @@ import dtsBundle from './dtsBundle';
 
 export default class Editor {
   private editor: any;
-  private dependencies: editorDependencies[];
-  private dependencyNames: string[];
-  private dependencyValues: any[];
+  private dependencyNames: string[] = [];
+  private dependencyValues: any[] = [];
   private value: string;
 
-  constructor({ container, value, dependencies }: editorConfig) {
-    this.value = value;
-    this.editor = monaco.editor.create(container, {
-      value,
-      language: 'typescript',
-      fontSize: 18,
-      wordWrap: 'on',
-      wrappingIndent: 'indent',
-    });
-    this.dependencies = dependencies;
-    monaco.editor.setTheme('vs-dark');
-    this.setDependencies();
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
+  constructor(config: editorConfig) {
+    this.value = config.value;
+    this.editor = this.createEditor(config);
+    this.setDependencies(config.dependencies);
     this.compile();
   }
 
@@ -51,13 +41,23 @@ export default class Editor {
     );
   }
 
-  private setDependencies(): void {
-    this.dependencyNames = this.dependencies.map(
-      ({ name }: editorDependencies) => name
-    );
-    this.dependencyValues = this.dependencies.map(
-      ({ value }: editorDependencies) => value
-    );
+  private setDependencies(dependencies: editorDependencies[]): void {
+    dependencies.forEach(({ name, value }: editorDependencies) => {
+      this.dependencyNames.push(name);
+      this.dependencyValues.push(value);
+    });
+  }
+
+  private createEditor({ container, value }: editorConfig): any {
+    monaco.editor.setTheme('vs-dark');
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
+    return monaco.editor.create(container, {
+      value,
+      language: 'typescript',
+      fontSize: 18,
+      wordWrap: 'on',
+      wrappingIndent: 'indent',
+    });
   }
 
   private executeCompiledCode(code: string): void {
