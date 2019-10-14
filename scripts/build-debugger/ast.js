@@ -4,7 +4,6 @@ const glob = require('glob');
 const { Project } = require('ts-morph');
 const getProgressBar = require('./progressBar');
 
-
 const generateDTSfiles = () => {
   console.log('Generating .d.ts files:');
 
