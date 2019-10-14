@@ -17,8 +17,7 @@ const extraLibs: editorDependencies[] = [
 const editorConfig: editorConfig = {
   container: editorContainer,
   value: modes.triangulationMode.code,
-  dependencies: [...extraLibs],
-  onChange: [() => { canvas.draw.clear(); }]
+  dependencies: [...extraLibs]
 };
 
 const editor: Editor = new Editor(editorConfig);

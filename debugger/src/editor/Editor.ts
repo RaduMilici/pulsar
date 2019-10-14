@@ -10,7 +10,7 @@ export default class Editor {
   private dependencyValues: any[];
   private value: string;
 
-  constructor({ container, value, dependencies, onChange }: editorConfig) {
+  constructor({ container, value, dependencies }: editorConfig) {
     this.value = value;
     this.editor = monaco.editor.create(container, {
       value,
