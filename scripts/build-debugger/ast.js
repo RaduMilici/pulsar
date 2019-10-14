@@ -57,7 +57,10 @@ const concatDTSfiles = () => {
     allFileTexts.push(fileText);
   });
 
-  const text = `export default \`${allFileTexts.join('')}\`;`;
+  const text = `
+  export default \`declare namespace Pulsar {
+    ${allFileTexts.join('')}
+  }\`;`;
   fs.writeFileSync(path.resolve(__dirname, 'bundle.ts'), text);
 }
 

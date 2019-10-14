@@ -5,8 +5,8 @@ const code =
   left: -300,
   right: 300,
 };
-const points: Vector[] = util.random.points(20, limits);
-const { triangles }: Triangulation = new Triangulation(points);
+const points: Pulsar.Vector[] = util.random.points(20, limits);
+const { triangles }: Pulsar.Triangulation = new Pulsar.Triangulation(points);
 
 draw.triangles(triangles);
 draw.points(points);

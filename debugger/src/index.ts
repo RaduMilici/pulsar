@@ -4,7 +4,13 @@ import * as pulsar from '../../src';
 import * as util from './util';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
-import { triangulationMode, quadTreeMode, pathfindingMode, pathfindingRandomMode } from './modes';
+import { 
+  triangulationMode, 
+  quadTreeMode, 
+  pathfindingMode, 
+  pathfindingRandomMode,
+  MSTMode
+} from './modes';
 
 const editorContainer: HTMLElement = document.getElementById('debugger-editor-container');
 const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');
@@ -12,19 +18,20 @@ const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-co
 const canvas: Canvas = new Canvas(canvasContainer);
 const extraLibs: editorDependencies[] = [
   { name: 'util', value: util },
-  { name: 'draw', value: canvas.draw }
+  { name: 'draw', value: canvas.draw },
+  { name: 'Pulsar', value: pulsar }
 ];
 
-const keys: string[] = Object.keys(pulsar);
-const dependencies: editorDependencies[] = keys.map(name => {
-  const value: any = (<any>pulsar)[name];
-  return { name, value };
-});
+// const keys: string[] = Object.keys(pulsar);
+// const dependencies: editorDependencies[] = keys.map(name => {
+//   const value: any = (<any>pulsar)[name];
+//   return { name, value };
+// });
 
 const editorConfig: editorConfig = {
   container: editorContainer,
   value: triangulationMode.code,
-  dependencies: [...extraLibs, ...dependencies],
+  dependencies: [...extraLibs],
   onChange: [() => { canvas.draw.clear(); }]
 };
 

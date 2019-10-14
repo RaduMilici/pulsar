@@ -1,7 +1,7 @@
 const code = 
 `draw.drawGrid.pixelWidth = 800;
-const width: number = 50;
-const height: number = 50;
+const width: number = 30;
+const height: number = 30;
 const size: size = { width, height };
 const grid: Grid = new Grid(size);
 draw.grid(grid);
