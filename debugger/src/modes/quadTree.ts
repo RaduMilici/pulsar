@@ -1,9 +1,9 @@
 const code = 
 `const limits = {
-  top: 200,
-  bottom: -200,
-  left: -200,
-  right: 200,
+  top: 300,
+  bottom: -300,
+  left: -300,
+  right: 300,
 };
 const points: Vector[] = util.random.points(20, limits);
 const box: BoundingBox = new BoundingBox(points);

@@ -61,12 +61,12 @@ export default class CanvasDrawer {
     });
   }
 
-  gridTile(grid: Grid, tile: NavigatorTile, gridSide?: number, fillColor?: string): void {
-    this.drawGrid.gridTile(grid, tile, gridSide, 1, fillColor);
+  gridTile(grid: Grid, tile: NavigatorTile, fillColor?: string): void {
+    this.drawGrid.gridTile(grid, tile, 1, fillColor);
   }
 
-  grid(grid: Grid, side: number): void {
-    this.drawGrid.grid(grid, side);
+  grid(grid: Grid): void {
+    this.drawGrid.grid(grid);
   }
 
   clear(): void {
