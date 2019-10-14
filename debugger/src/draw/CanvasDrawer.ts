@@ -65,7 +65,6 @@ export default class CanvasDrawer {
     this.lines(quadTree.shape.lines, color, size);
     quadTree.children.forEach((child: QuadTree) => {
       this.quadTree(child);
-      //child.children.forEach(this.drawLoop.bind(this));
     });
   }
 
