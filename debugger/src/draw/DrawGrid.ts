@@ -1,5 +1,5 @@
 import { Grid, Vector, NavigatorTile, point } from '../../../src';
-import DrawSquares  from './DrawSquares';
+import DrawSquares from './DrawSquares';
 import Draw from './Draw';
 import { GRID_DEFAULT_SIDE } from './const';
 
@@ -14,15 +14,13 @@ export default class DrawGrid extends Draw {
   }
 
   gridTile(
-    grid: Grid, 
-    tile: NavigatorTile, 
+    grid: Grid,
+    tile: NavigatorTile,
     lineSize?: number,
     fillColor?: string
   ): void {
-    const divideBy: number = 
-    grid.size.width > grid.size.height ? 
-    grid.size.width :
-    grid.size.height;
+    const divideBy: number =
+      grid.size.width > grid.size.height ? grid.size.width : grid.size.height;
     const squareSide: number = this.pixelWidth / divideBy;
     const halfGrid: number = this.pixelWidth / 2;
     const x = this.origin.x - halfGrid + tile.position.x * squareSide;
@@ -32,8 +30,8 @@ export default class DrawGrid extends Draw {
   }
 
   gridTiles(
-    grid: Grid, 
-    tiles: NavigatorTile[], 
+    grid: Grid,
+    tiles: NavigatorTile[],
     lineSize?: number,
     fillColor?: string
   ): void {
@@ -47,5 +45,4 @@ export default class DrawGrid extends Draw {
       this.gridTile(grid, tile, lineSize);
     });
   }
-  
 }

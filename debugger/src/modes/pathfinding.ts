@@ -1,5 +1,4 @@
-const code = 
-`const size: Pulsar.size = { width: 30, height: 30 };
+const code = `const size: Pulsar.size = { width: 30, height: 30 };
 const grid: Pulsar.Grid = new Pulsar.Grid(size);
 draw.grid(grid);
 

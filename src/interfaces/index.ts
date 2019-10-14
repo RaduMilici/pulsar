@@ -25,5 +25,5 @@ export {
   onExplore,
   onComplete,
   triangleLines,
-  boundingBoxLines
+  boundingBoxLines,
 };

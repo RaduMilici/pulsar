@@ -17,7 +17,7 @@ export default class Editor {
       language: 'typescript',
       fontSize: 18,
       wordWrap: 'on',
-      wrappingIndent: 'indent'
+      wrappingIndent: 'indent',
     });
     this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
@@ -30,10 +30,12 @@ export default class Editor {
     this.setValue(this.value);
   }
 
-  async compile(): Promise<any> {    
+  async compile(): Promise<any> {
     const woker = await monaco.languages.typescript.getTypeScriptWorker();
     const proxy = await woker(this.editor.getModel().uri);
-    const result = await proxy.getEmitOutput(this.editor.getModel().uri.toString());
+    const result = await proxy.getEmitOutput(
+      this.editor.getModel().uri.toString()
+    );
     const code: string = result.outputFiles[0].text;
     this.executeCompiledCode(code);
   }
@@ -50,12 +52,19 @@ export default class Editor {
   }
 
   private setDependencies(): void {
-    this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
-    this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);
+    this.dependencyNames = this.dependencies.map(
+      ({ name }: editorDependencies) => name
+    );
+    this.dependencyValues = this.dependencies.map(
+      ({ value }: editorDependencies) => value
+    );
   }
 
-  private executeCompiledCode(code: string): void  {
-    const compileFunction: Function = new Function(...this.dependencyNames, code);
+  private executeCompiledCode(code: string): void {
+    const compileFunction: Function = new Function(
+      ...this.dependencyNames,
+      code
+    );
     compileFunction.apply(null, this.dependencyValues);
   }
 }

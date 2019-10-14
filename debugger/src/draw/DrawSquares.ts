@@ -1,13 +1,10 @@
 import { Vector, point } from '../../../src';
 import Draw from './Draw';
-import {
-  c_squareLine,
-  c_squareFill,
-} from './const';
+import { c_squareLine, c_squareFill } from './const';
 
 export default class DrawSquares extends Draw {
   square = (
-    { x, y }: Vector, 
+    { x, y }: Vector,
     side: number,
     size: number = 1,
     fillColor: string = c_squareFill,
@@ -21,7 +18,7 @@ export default class DrawSquares extends Draw {
     this.context.fill();
     this.context.stroke();
     this.context.closePath();
-  }
+  };
 
   squares(
     positons: Vector[],
@@ -29,7 +26,9 @@ export default class DrawSquares extends Draw {
     size: number,
     fillColor?: string,
     lineColor?: string
-    ): void {
-      positons.forEach(position => this.square(position, side, size, fillColor, lineColor));
+  ): void {
+    positons.forEach(position =>
+      this.square(position, side, size, fillColor, lineColor)
+    );
   }
 }

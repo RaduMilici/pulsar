@@ -7,7 +7,7 @@ export default abstract class {
   constructor(protected context: CanvasRenderingContext2D) {
     this.setSizes();
   }
-  
+
   protected toCarthesian(point: point): point {
     return {
       x: point.x + this.origin.x,

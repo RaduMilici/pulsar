@@ -1,4 +1,11 @@
-import { Vector, Triangle, Line, QuadTree, Grid, NavigatorTile } from '../../../src';
+import {
+  Vector,
+  Triangle,
+  Line,
+  QuadTree,
+  Grid,
+  NavigatorTile,
+} from '../../../src';
 import DrawPoints from './DrawPoints';
 import DrawTriangles from './DrawTriangles';
 import DrawLines from './DrawLines';
@@ -10,7 +17,7 @@ export default class CanvasDrawer {
   readonly drawTriangles: DrawTriangles;
   readonly drawLines: DrawLines;
   readonly drawGrid: DrawGrid;
-  
+
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.context = this.canvas.getContext('2d');
     this.drawPoints = new DrawPoints(this.context);
@@ -25,7 +32,7 @@ export default class CanvasDrawer {
     fillColor?: string,
     size?: number
   ): void {
-    this.drawPoints.point(position, strokeColor, fillColor, size)
+    this.drawPoints.point(position, strokeColor, fillColor, size);
   }
 
   points(
@@ -41,8 +48,9 @@ export default class CanvasDrawer {
     triangles: Triangle[],
     strokeColor?: string,
     fillColor?: string,
-    size?: number) {
-      this.drawTriangles.triangles(triangles, strokeColor, fillColor, size);
+    size?: number
+  ) {
+    this.drawTriangles.triangles(triangles, strokeColor, fillColor, size);
   }
 
   line(line: Line, color?: string, size?: number): void {
@@ -56,7 +64,7 @@ export default class CanvasDrawer {
   quadTree(quadTree: QuadTree, color?: string, size?: number): void {
     this.lines(quadTree.shape.lines, color, size);
     quadTree.children.forEach((child: QuadTree) => {
-      this.quadTree(child);            
+      this.quadTree(child);
       //child.children.forEach(this.drawLoop.bind(this));
     });
   }
@@ -77,8 +85,10 @@ export default class CanvasDrawer {
 
   clear(): void {
     this.context.clearRect(
-      0, 0, this.context.canvas.width, this.context.canvas.height
+      0,
+      0,
+      this.context.canvas.width,
+      this.context.canvas.height
     );
   }
 }
-

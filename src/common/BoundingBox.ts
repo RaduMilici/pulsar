@@ -49,7 +49,10 @@ export default class BoundingBox {
 
   get shape(): Shape {
     return new Shape([
-      this.topLeft, this.topRight, this.bottomRight, this.bottomLeft
+      this.topLeft,
+      this.topRight,
+      this.bottomRight,
+      this.bottomLeft,
     ]);
   }
 

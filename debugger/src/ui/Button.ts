@@ -1,13 +1,13 @@
 export default abstract class Button {
   private buttonElement: HTMLButtonElement;
-  private onClickCallbacks: { (): void; }[] = [];
+  private onClickCallbacks: { (): void }[] = [];
 
   constructor(selector: string) {
     this.buttonElement = <HTMLButtonElement>document.querySelector(selector);
     this.buttonElement.addEventListener('click', this.onClick);
   }
 
-  addCallback(callback: { (): void; }) {
+  addCallback(callback: { (): void }) {
     this.onClickCallbacks.push(callback);
   }
 
@@ -17,5 +17,5 @@ export default abstract class Button {
       callback();
     });
     this.buttonElement.disabled = false;
-  }
+  };
 }

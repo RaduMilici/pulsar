@@ -2,15 +2,17 @@ import * as modes from '../modes';
 
 class CodeSelect {
   private selectElement: HTMLSelectElement;
-  private onChangeCallbacks: { (...arg: any[]): void; }[] = [];
+  private onChangeCallbacks: { (...arg: any[]): void }[] = [];
 
   constructor() {
-    this.selectElement = <HTMLSelectElement>document.getElementById('debugger-code-select');
+    this.selectElement = <HTMLSelectElement>(
+      document.getElementById('debugger-code-select')
+    );
     this.addOptions();
-    this.selectElement.addEventListener("change", this.onChange);
+    this.selectElement.addEventListener('change', this.onChange);
   }
 
-  addCallback(callback: { (value: string): void; }) {
+  addCallback(callback: { (value: string): void }) {
     this.onChangeCallbacks.push(callback);
   }
 
@@ -29,7 +31,7 @@ class CodeSelect {
     this.onChangeCallbacks.forEach(callback => {
       callback(event.target.value);
     });
-  }
+  };
 }
 
 export default new CodeSelect();

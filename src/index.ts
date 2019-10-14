@@ -27,7 +27,7 @@ import {
   size,
   limits,
   row,
-  navigatorSettings
+  navigatorSettings,
 } from './interfaces';
 import {
   randomPoint,
@@ -72,5 +72,5 @@ export {
   randomPoints,
   randomInt,
   randomFloat,
-  randomColor
+  randomColor,
 };

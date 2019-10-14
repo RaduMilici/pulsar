@@ -16,7 +16,7 @@ export default class Canvas {
     // const realToCSSPixels: number = window.devicePixelRatio;
     // const displayWidth: number  = Math.floor(clientWidth  * realToCSSPixels);
     // const displayHeight: number = Math.floor(clientHeight * realToCSSPixels);
-    this.canvasElement.width  = clientWidth;
+    this.canvasElement.width = clientWidth;
     this.canvasElement.height = clientHeight;
   }
 }

@@ -1,5 +1,4 @@
-const code = 
-`const topLeft = new Pulsar.Vector({ x: -300, y: 300 });
+const code = `const topLeft = new Pulsar.Vector({ x: -300, y: 300 });
 const topRight = new Pulsar.Vector({ x: 300, y: 300 });
 const bottomRight = new Pulsar.Vector({ x: 300, y: -300 });
 const bottomLeft = new Pulsar.Vector({ x: -300, y: -300 });

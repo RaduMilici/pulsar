@@ -1,11 +1,7 @@
 import { point, Triangle } from '../../../src';
 import Draw from './Draw';
 import DrawLines from './DrawLines';
-import {
-  c_triangleLine,
-  c_triangleFill,
-  s_triangle,
-} from './const';
+import { c_triangleLine, c_triangleFill, s_triangle } from './const';
 
 export default class DrawTriangles extends Draw {
   drawLines: DrawLines;

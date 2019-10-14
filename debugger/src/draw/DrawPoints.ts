@@ -1,10 +1,6 @@
 import { point, Vector } from '../../../src';
 import Draw from './Draw';
-import {
-  c_pointStroke,
-  c_pointFill,
-  s_point
-} from './const';
+import { c_pointStroke, c_pointFill, s_point } from './const';
 
 export default class DrawPoints extends Draw {
   point(
