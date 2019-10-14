@@ -31,7 +31,6 @@ const clearAndCompile = () => {
   canvas.draw.clear();
   editor.compile();
 };
-
 runButton.addCallback(clearAndCompile);
 reloadButton.addCallback(() => {
   editor.reset();
