@@ -8,7 +8,8 @@ const randomPoints: Pulsar.Vector[] = Pulsar.randomPoints(50, box);
 const { hull }: Pulsar.Triangulation = new Pulsar.Triangulation(randomPoints);
 hull.start();
 draw.lines(hull.lines);
-draw.points(randomPoints);
+draw.points(hull.points);
+draw.point(Pulsar.Vector.FindPolyCentroid(randomPoints), 'red', 'red', 10);
 `;
 
-export default { code, name: 'hull' };
+export default { code, name: 'centroid' };

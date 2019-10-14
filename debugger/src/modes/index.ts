@@ -4,6 +4,7 @@ import pathfindingRandomMode from './pathfindingRandom';
 import pathfindingMode from './pathfinding';
 import MSTMode from './MST';
 import hull from './hull';
+import centroid from './centroid';
 
 export {
   triangulationMode,
@@ -12,4 +13,5 @@ export {
   pathfindingRandomMode,
   MSTMode,
   hull,
+  centroid,
 };
