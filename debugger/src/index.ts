@@ -22,6 +22,7 @@ const editorConfig: editorConfig = {
 };
 
 const editor: Editor = new Editor(editorConfig);
+editor.addExtraLibsAsAny({ name: 'draw', value: canvas.draw });
 
 const clearAndCompile = () => {
   canvas.draw.clear();

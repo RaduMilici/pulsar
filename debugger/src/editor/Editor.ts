@@ -43,6 +43,12 @@ export default class Editor {
     this.editor.setValue(this.value);
   }
 
+  addExtraLibsAsAny({ name }: editorDependencies) {
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      `declare const ${name}: any`
+    );
+  }
+
   private setDependencies(): void {
     this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
     this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);

@@ -4,6 +4,7 @@ const glob = require('glob');
 const { Project } = require('ts-morph');
 const getProgressBar = require('./progressBar');
 
+
 const generateDTSfiles = () => {
   console.log('Generating .d.ts files:');
 
@@ -35,7 +36,6 @@ const generateDTSfiles = () => {
 
 const concatDTSfiles = () => {
   const dtsBuildPath = glob.sync(path.resolve(__dirname, 'dtsBuild/**/*.ts')); 
-  const libDtsPath = path.resolve(__dirname, '../../node_modules/typescript/lib/lib.dom.d.ts');
   const filePaths = [...dtsBuildPath];
   const allFileTexts = [];
 
