@@ -27,8 +27,7 @@ import {
   size,
   limits,
   row,
-  navigatorSettings,
-  pointLimits,
+  navigatorSettings
 } from './interfaces';
 import {
   randomPoint,
@@ -73,6 +72,5 @@ export {
   randomPoints,
   randomInt,
   randomFloat,
-  randomColor,
-  pointLimits
+  randomColor
 };

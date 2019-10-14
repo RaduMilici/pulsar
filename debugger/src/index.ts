@@ -1,7 +1,6 @@
 import './styles';
 import { codeSelect, runButton, reloadButton } from './ui';
 import * as pulsar from '../../src';
-import * as util from './util';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
 import { 
@@ -17,16 +16,9 @@ const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-co
 
 const canvas: Canvas = new Canvas(canvasContainer);
 const extraLibs: editorDependencies[] = [
-  { name: 'util', value: util },
   { name: 'draw', value: canvas.draw },
   { name: 'Pulsar', value: pulsar }
 ];
-
-// const keys: string[] = Object.keys(pulsar);
-// const dependencies: editorDependencies[] = keys.map(name => {
-//   const value: any = (<any>pulsar)[name];
-//   return { name, value };
-// });
 
 const editorConfig: editorConfig = {
   container: editorContainer,

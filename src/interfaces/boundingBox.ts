@@ -1,12 +1,5 @@
 import { Line, Vector } from '../common';
 
-type pointLimits = {
-  top: number; 
-  bottom: number; 
-  left: number; 
-  right: number 
-};
-
 type boundingBoxLines = {
   top: Line;
   right: Line;
@@ -21,4 +14,4 @@ type limits = {
   right: Vector;
 };
 
-export { boundingBoxLines, limits, pointLimits };
+export { boundingBoxLines, limits };

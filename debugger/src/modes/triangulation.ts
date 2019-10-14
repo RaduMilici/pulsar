@@ -1,15 +1,16 @@
 const code = 
-`const limits = {
-  top: 300,
-  bottom: -300,
-  left: -300,
-  right: 300,
-};
-const points: Pulsar.Vector[] = util.random.points(20, limits);
-const { triangles }: Pulsar.Triangulation = new Pulsar.Triangulation(points);
-
+`const topLeft = new Pulsar.Vector({ x: -100, y: 100 });
+const topRight = new Pulsar.Vector({ x: 100, y: 100 });
+const bottomRight = new Pulsar.Vector({ x: 100, y: -100 });
+const bottomLeft = new Pulsar.Vector({ x: -100, y: -100 });
+const boxPoints: Pulsar.Vector[] = [
+  topLeft, topRight, bottomRight, bottomLeft
+];
+const box: Pulsar.BoundingBox = new Pulsar.BoundingBox(boxPoints);
+const randomPoints: Pulsar.Vector[] = Pulsar.randomPoints(20, box);
+const { triangles }: Pulsar.Triangulation = new Pulsar.Triangulation(randomPoints);
 draw.triangles(triangles);
-draw.points(points);
+draw.points(randomPoints);
 `;
 
 export default { code, name: 'triangluation' };
