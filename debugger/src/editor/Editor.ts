@@ -21,47 +21,31 @@ export default class Editor {
     });
     this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
-    this.setDependencyNameValue();
-    // monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-    //   //noLib: true,
-    //   target: monaco.languages.typescript.ScriptTarget.ESNext,
-    //   lib: ['dom', 'es5'],
-    //   allowNonTsExtensions: true
-    // });
+    this.setDependencies();
     monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
-    /*this.editor.onDidChangeModelContent(() => {
-      onChange.forEach(callback => callback());
-      this.compile();
-    });*/
     this.compile();
   }
 
-  reset = () => {
-    this.setCode(this.value);
+  reset() {
+    this.setValue(this.value);
   }
 
-  compile = async () => {    
-    const woker: any = await monaco.languages.typescript.getTypeScriptWorker();
-    const proxy: any = await woker(this.editor.getModel().uri);
-    const result: any = await proxy.getEmitOutput(this.editor.getModel().uri.toString());
+  async compile(): Promise<any> {    
+    const woker = await monaco.languages.typescript.getTypeScriptWorker();
+    const proxy = await woker(this.editor.getModel().uri);
+    const result = await proxy.getEmitOutput(this.editor.getModel().uri.toString());
     const code: string = result.outputFiles[0].text;
     this.executeCompiledCode(code);
   }
 
-  setCode = (value: string): void => {
+  setValue(value: string): void {
     this.value = value;
     this.editor.setValue(this.value);
   }
 
-  private setDependencyNameValue() {
+  private setDependencies(): void {
     this.dependencyNames = this.dependencies.map(({ name }: editorDependencies) => name);
     this.dependencyValues = this.dependencies.map(({ value }: editorDependencies) => value);
-  }
-
-  addExtraLibs({ name }: editorDependencies) {
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(
-      `declare const ${name}: any`
-    );
   }
 
   private executeCompiledCode(code: string): void  {

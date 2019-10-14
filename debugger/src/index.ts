@@ -1,15 +1,9 @@
 import './styles';
 import { codeSelect, runButton, reloadButton } from './ui';
 import * as pulsar from '../../src';
+import * as modes from './modes';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
-import { 
-  triangulationMode, 
-  quadTreeMode, 
-  pathfindingMode, 
-  pathfindingRandomMode,
-  MSTMode
-} from './modes';
 
 const editorContainer: HTMLElement = document.getElementById('debugger-editor-container');
 const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');
@@ -22,13 +16,12 @@ const extraLibs: editorDependencies[] = [
 
 const editorConfig: editorConfig = {
   container: editorContainer,
-  value: triangulationMode.code,
+  value: modes.triangulationMode.code,
   dependencies: [...extraLibs],
   onChange: [() => { canvas.draw.clear(); }]
 };
 
 const editor: Editor = new Editor(editorConfig);
-extraLibs.forEach(extraLib => editor.addExtraLibs(extraLib));
 
 const clearAndCompile = () => {
   canvas.draw.clear();
@@ -41,6 +34,6 @@ reloadButton.addCallback(() => {
   clearAndCompile();
 });
 codeSelect.addCallback((value: string): void => {
-  editor.setCode(value);
+  editor.setValue(value);
   clearAndCompile();
 });
