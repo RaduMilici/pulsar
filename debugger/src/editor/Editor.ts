@@ -22,6 +22,12 @@ export default class Editor {
     this.dependencies = dependencies;
     monaco.editor.setTheme('vs-dark');
     this.setDependencyNameValue();
+    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+      target: monaco.languages.typescript.ScriptTarget.ESNext,
+      lib: ['DOM' , 'ES6', 'DOM.Iterable', 'ScriptHost'],
+      //noLib: true,
+      allowNonTsExtensions: true
+    });
     monaco.languages.typescript.typescriptDefaults.addExtraLib(dtsBundle);
     /*this.editor.onDidChangeModelContent(() => {
       onChange.forEach(callback => callback());

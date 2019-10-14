@@ -14,6 +14,14 @@ export default class DrawGrid extends Draw {
     this.drawSquares = new DrawSquares(context);
   }
 
+  tile(tile: NavigatorTile): void {
+
+  }
+
+  gridTiles(grid: Grid, tiles: NavigatorTile[], gridSide: number): void {
+    
+  }
+
   grid(grid: Grid, gridSide: number, lineSize?: number): void {
     const divideBy: number = 
       grid.size.width > grid.size.height ? 
