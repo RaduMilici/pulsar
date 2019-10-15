@@ -17,27 +17,27 @@ export default class Updater {
   private frameId: number;
 
   start(): boolean {
-    if (!this.running) {
-      this.running = true;
-      this.clock.start();
-      this.entityUpdater.start();
-      this.components.forEach((component: Component) => component.start());
-      this.update();
-      return true;
+    if (this.running) {
+      return false;
     }
-    return false;
+    this.running = true;
+    this.clock.start();
+    this.entityUpdater.start();
+    this.components.forEach((component: Component) => component.start());
+    this.update();
+    return true;    
   }
 
   stop(): boolean {
-    if (this.running) {
-      this.running = false;
-      cancelAnimationFrame(this.frameId);
-      this.clock.stop();
-      this.entityUpdater.stop();
-      this.components.forEach((component: Component) => component.stop());
-      return true;
+    if (!this.running) {
+      return false;
     }
-    return false;
+    this.running = false;
+    cancelAnimationFrame(this.frameId);
+    this.clock.stop();
+    this.entityUpdater.stop();
+    this.components.forEach((component: Component) => component.stop());
+    return true;
   }
 
   clear(): void {
