@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",                   
+    "module": "es6",                   
+    "declaration": true,                  
+    "declarationMap": true,               
+    "sourceMap": true,                    
+    "outDir": "./build/",                  
+    "noEmitOnError": true,
+    "strict": true,                       
+    "noImplicitAny": true,                
+    "strictNullChecks": false,            
+    "noUnusedParameters": false,          
+    "moduleResolution": "node",           
+    "allowSyntheticDefaultImports": true, 
+    "esModuleInterop": true,
+    "typeRoots": ["interfaces"]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include":[
+    "src/*.ts",
+    "src/!*.d.ts"
+  ]
+}

@@ -13,7 +13,8 @@
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --maxWorkers=4 --watchAll",
-    "madge-circular": "npx madge --circular --extensions ts src"
+    "madge-circular": "npx madge --circular --extensions ts src",
+    "build-debugger": "node scripts/build-debugger/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,11 +25,25 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.14",
+    "abstract-syntax-tree": "^2.4.0",
+    "chalk": "^2.4.2",
+    "css-loader": "^3.2.0",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
     "jest": "^23.6.0",
     "madge": "^3.4.4",
+    "monaco-editor": "^0.18.1",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "prettier": "^1.18.2",
+    "progress": "^2.0.3",
+    "style-loader": "^1.0.0",
     "ts-jest": "^23.10.5",
-    "typescript": "^3.5.3"
+    "ts-loader": "^6.2.0",
+    "ts-morph": "^4.2.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpackbar": "^4.0.0"
   },
   "jest": {
     "transform": {

@@ -5,11 +5,13 @@ import { isOdd } from '../util';
 
 export default class Shape {
   readonly lines: Line[];
-  readonly boundingBox: BoundingBox;
 
   constructor(public readonly points: Vector[]) {
     this.lines = Shape.makeLines(points);
-    this.boundingBox = new BoundingBox(points);
+  }
+
+  get boundingBox(): BoundingBox {
+    return new BoundingBox(this.points);
   }
 
   containsPoint(point: Vector): boolean {
