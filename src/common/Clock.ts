@@ -9,15 +9,23 @@ export default class Clock {
     this.timeFunction = typeof performance === 'undefined' ? Date : performance;
   }
 
-  start(): void {
+  start(): boolean {
+    if (this.running) {
+      return false;
+    }
     this.running = true;
     this.startTime = this.timeFunction.now();
     this.oldTime = this.startTime;
     this.elapsedTime = 0;
+    return true;
   }
 
-  stop(): void {
+  stop(): boolean {
+    if (!this.running) {
+      return false;
+    }
     this.running = false;
+    return true;
   }
 
   getDelta(): number {
