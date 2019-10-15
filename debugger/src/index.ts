@@ -20,7 +20,7 @@ const extraLibs: editorDependencies[] = [
 
 const editorConfig: editorConfig = {
   container: editorContainer,
-  value: modes.triangulationMode.code,
+  value: modes.updater.code,
   dependencies: [...extraLibs],
 };
 

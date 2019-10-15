@@ -3,4 +3,4 @@ const code =
 
 `;
 
-export default { code, name: 'triangluation' };
+export default { code, name: 'updater' };
