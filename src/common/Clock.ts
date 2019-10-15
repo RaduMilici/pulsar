@@ -9,6 +9,10 @@ export default class Clock {
     this.timeFunction = typeof performance === 'undefined' ? Date : performance;
   }
 
+  get elapsed(): number {
+    return this.elapsedTime;
+  }
+
   start(): boolean {
     if (this.running) {
       return false;
@@ -33,11 +37,6 @@ export default class Clock {
     const difference: number = (newTime - this.oldTime) / 1000;
     this.oldTime = newTime;
     this.elapsedTime += difference;
-
     return difference;
-  }
-
-  getElapsed(): number {
-    return this.elapsedTime;
   }
 }
