@@ -2,6 +2,7 @@ export default class Clock {
   private startTime: number = 0;
   private oldTime: number = 0;
   private elapsedTime: number = 0;
+  private running: boolean = false;
   private readonly timeFunction: Performance | DateConstructor;
 
   constructor() {
