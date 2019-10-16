@@ -9,7 +9,7 @@ export default abstract class Component implements I_Component {
   readonly name: string;
   readonly updatePriority: number | null;
 
-  constructor({ name, updatePriority }: componentSettings) {
+  constructor({ name, updatePriority = null }: componentSettings) {
     this.name = name;
     this.updatePriority = updatePriority;
   }

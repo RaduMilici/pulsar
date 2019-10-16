@@ -1,5 +1,4 @@
-const code = 
-`const updater = new Pulsar.Updater();
+const code = `const updater = new Pulsar.Updater();
 
 `;
 

@@ -25,7 +25,7 @@ export default class Updater {
     this.entityUpdater.start();
     this.components.forEach((component: Component) => component.start());
     this.update();
-    return true;    
+    return true;
   }
 
   stop(): boolean {
