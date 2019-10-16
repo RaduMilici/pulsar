@@ -40,8 +40,11 @@ export default class Updater {
     this.components.length = 0;
   }
 
-  add({ components }: I_GameObject): updaterReport[] {
-    return this.loopComponentsWithCallback(components, this.addComponent);
+  add(gameObject: I_GameObject): updaterReport[] {
+    return this.loopComponentsWithCallback(gameObject.components, (component: I_Component) => {
+      component.parent = gameObject;
+      return this.addComponent(component);
+    });
   }
 
   remove({ components }: I_GameObject): updaterReport[] {
@@ -52,7 +55,7 @@ export default class Updater {
     return this.loopComponentsWithCallback(components, this.toggleComponent);
   }
 
-  addComponent(component: I_Component): boolean {
+  addComponent = (component: I_Component): boolean => {
     if (!this.isUpdatingComponent(component)) {
       this.pushToQueue(component);
       return true;
@@ -60,11 +63,11 @@ export default class Updater {
     return false;
   }
 
-  removeComponent(component: I_Component): boolean {
+  removeComponent = (component: I_Component): boolean => {
     return removeFromArray(this.components, component);
   }
 
-  toggleComponent(component: I_Component): boolean {
+  toggleComponent = (component: I_Component): boolean => {
     if (!this.addComponent(component)) {
       this.removeComponent(component);
       return false;
@@ -79,14 +82,18 @@ export default class Updater {
     return { deltaTime, deltaTimeMS, elapsedTime };
   }
 
+  private startAllComponents() {
+
+  }
+
   private isUpdatingComponent(component: I_Component): boolean {
     return contains(this.components, component);
   }
 
-  private loopComponentsWithCallback(
+  private loopComponentsWithCallback = (
     components: I_Component[],
     callback: (component: I_Component) => boolean
-  ): updaterReport[] {
+  ): updaterReport[] => {
     return components.map(
       (component: I_Component): updaterReport => {
         return {

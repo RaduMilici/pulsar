@@ -2,7 +2,7 @@ import { I_Entity } from '../interfaces';
 import { name } from '../types';
 import { uniqueId } from '../util';
 
-export default abstract class GameObject implements I_Entity {
+export default abstract class Entity implements I_Entity {
   readonly id: string = uniqueId();
   readonly name: string;
 
