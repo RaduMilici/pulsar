@@ -1,99 +1,70 @@
 import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util';
-import { updaterReport, tickData } from '../../interfaces';
-import Component from '../Component';
-import Entity from '../GameObject';
-import EntityUpdater from './EntityUpdater';
-import Invoke from './Invoke';
-import InvokeRepeating from './InvokeRepeating';
+import {
+  updaterReport,
+  tickData,
+  I_Component,
+  I_GameObject,
+} from '../../interfaces';
 
 export default class Updater {
-  onUpdateComplete: Component = new Component();
-
-  private components: Component[] = [];
-  private running: boolean = false;
   private clock: Clock = new Clock();
-  private entityUpdater: EntityUpdater = new EntityUpdater(this);
+  private components: I_Component[] = [];
+  private isRunning: boolean = false;
   private frameId: number;
 
   start(): boolean {
-    if (this.running) {
+    if (this.isRunning) {
       return false;
     }
-    this.running = true;
+    this.isRunning = true;
     this.clock.start();
-    this.entityUpdater.start();
-    this.components.forEach((component: Component) => component.start());
+    this.components.forEach((component: I_Component) => component.start());
     this.update();
     return true;
   }
 
   stop(): boolean {
-    if (!this.running) {
+    if (!this.isRunning) {
       return false;
     }
-    this.running = false;
+    this.isRunning = false;
     cancelAnimationFrame(this.frameId);
     this.clock.stop();
-    this.entityUpdater.stop();
-    this.components.forEach((component: Component) => component.stop());
+    this.components.forEach((component: I_Component) => component.stop());
     return true;
   }
 
   clear(): void {
     this.stop();
-    this.entityUpdater.clear();
     this.components.length = 0;
   }
 
-  add(entity: Entity): updaterReport[];
-  add(component: Component): boolean;
-  add(behaviour: Entity | Component): boolean | updaterReport[] {
-    if (behaviour instanceof Component) {
-      return this.addComponent(behaviour);
-    } else {
-      return this.entityUpdater.add(behaviour);
-    }
+  add({ components }: I_GameObject): updaterReport[] {
+    return this.loopComponentsWithCallback(components, this.addComponent);
   }
 
-  remove(entity: Entity): updaterReport[];
-  remove(component: Component): boolean;
-  remove(behaviour: Entity | Component): boolean | updaterReport[] {
-    if (behaviour instanceof Component) {
-      return this.removeComponent(behaviour);
-    } else {
-      return this.entityUpdater.remove(behaviour);
-    }
+  remove({ components }: I_GameObject): updaterReport[] {
+    return this.loopComponentsWithCallback(components, this.removeComponent);
   }
 
-  toggle(entity: Entity): updaterReport[];
-  toggle(component: Component): boolean;
-  toggle(behaviour: Entity | Component): boolean | updaterReport[] {
-    if (behaviour instanceof Component) {
-      return this.toggleComponent(behaviour);
-    } else {
-      return this.entityUpdater.toggle(behaviour);
-    }
+  toggle({ components }: I_GameObject): updaterReport[] {
+    return this.loopComponentsWithCallback(components, this.toggleComponent);
   }
 
-  isUpdatingComponent(component: Component): boolean {
-    return contains(this.components, component);
-  }
-
-  addComponent(component: Component): boolean {
+  addComponent(component: I_Component): boolean {
     if (!this.isUpdatingComponent(component)) {
-      component.updater = this;
       this.pushToQueue(component);
       return true;
     }
     return false;
   }
 
-  removeComponent(component: Component): boolean {
+  removeComponent(component: I_Component): boolean {
     return removeFromArray(this.components, component);
   }
 
-  toggleComponent(component: Component): boolean {
+  toggleComponent(component: I_Component): boolean {
     if (!this.addComponent(component)) {
       this.removeComponent(component);
       return false;
@@ -101,49 +72,45 @@ export default class Updater {
     return true;
   }
 
-  invoke(component: Component, time: number): void {
-    const invoke: Invoke = new Invoke(this, component, time);
-    this.add(invoke);
-  }
-
-  invokeRepeating(
-    component: Component,
-    time: number,
-    times: number = Infinity
-  ): void {
-    const invoke: InvokeRepeating = new InvokeRepeating(
-      this,
-      component,
-      time,
-      times
-    );
-    this.add(invoke);
-  }
-
   getTickData(): tickData {
-    const deltaTime: number = this.clock.getDelta();
+    const deltaTime: number = this.clock.delta;
     const deltaTimeMS: number = deltaTime * 1000;
-    const elapsedTime: number = this.clock.getElapsed();
+    const elapsedTime: number = this.clock.elapsed;
     return { deltaTime, deltaTimeMS, elapsedTime };
   }
 
-  private pushToQueue(component: Component): void {
-    if (typeof component.updatePriority === 'number') {
+  private isUpdatingComponent(component: I_Component): boolean {
+    return contains(this.components, component);
+  }
+
+  private loopComponentsWithCallback(
+    components: I_Component[],
+    callback: (component: I_Component) => boolean
+  ): updaterReport[] {
+    return components.map(
+      (component: I_Component): updaterReport => {
+        return {
+          name: component.name,
+          success: callback(component),
+        };
+      }
+    );
+  }
+
+  private pushToQueue(component: I_Component): void {
+    if (Number.isFinite(component.updatePriority)) {
       this.components.splice(component.updatePriority, 0, component);
     } else {
       this.components.push(component);
     }
   }
 
-  private update(): void {
-    this.frameId = requestAnimationFrame(() => this.update());
-
+  private update = (): void => {
     const tickData: tickData = this.getTickData();
+    this.frameId = requestAnimationFrame(this.update);
 
-    this.components.forEach((component: Component) => {
+    this.components.forEach((component: I_Component) => {
       component.update(tickData);
     });
-
-    this.onUpdateComplete.update(tickData);
-  }
+  };
 }

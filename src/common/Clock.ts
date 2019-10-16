@@ -8,6 +8,14 @@ export default class Clock {
     return this.elapsedTime;
   }
 
+  get delta(): number {
+    const newTime: number = performance.now();
+    const difference: number = (newTime - this.oldTime) / 1000;
+    this.oldTime = newTime;
+    this.elapsedTime += difference;
+    return difference;
+  }
+
   start(): boolean {
     if (this.running) {
       return false;
@@ -25,13 +33,5 @@ export default class Clock {
     }
     this.running = false;
     return true;
-  }
-
-  getDelta(): number {
-    const newTime: number = performance.now();
-    const difference: number = (newTime - this.oldTime) / 1000;
-    this.oldTime = newTime;
-    this.elapsedTime += difference;
-    return difference;
   }
 }

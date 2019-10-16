@@ -1,8 +1,4 @@
 import { name } from './common';
-import { componentSettings, tickData } from './ECS'
+import { componentSettings, tickData } from './ECS';
 
-export {
-  name,
-  componentSettings,
-  tickData,
-}
+export { name, componentSettings, tickData };

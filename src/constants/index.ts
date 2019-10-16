@@ -8,6 +8,7 @@ import {
 } from './navigator';
 import { TILE_NEIGHBORS_COUNT } from './tile';
 import { DEFAULT_VECTOR_POSITION } from './vector';
+import { COMPONENTS_SAME_UPDATE_PRIORITY } from './warnings';
 
 export {
   NO_OP,
@@ -18,4 +19,5 @@ export {
   NAVIGATOR_DIAGONAL_COST,
   TILE_NEIGHBORS_COUNT,
   DEFAULT_VECTOR_POSITION,
+  COMPONENTS_SAME_UPDATE_PRIORITY,
 };
