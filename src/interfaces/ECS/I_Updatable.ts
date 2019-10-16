@@ -1,3 +1,5 @@
+import { tickData } from '../../types'
+
 export default interface I_Updatable {
-  update(): void;
+  update(tickData: tickData): void;
 }

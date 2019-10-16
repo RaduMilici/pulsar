@@ -2,7 +2,7 @@ import { Clock } from '../../common';
 import { contains, removeFromArray } from '../../util';
 import { updaterReport, tickData } from '../../interfaces';
 import Component from '../Component';
-import Entity from '../Entity';
+import Entity from '../GameObject';
 import EntityUpdater from './EntityUpdater';
 import Invoke from './Invoke';
 import InvokeRepeating from './InvokeRepeating';

@@ -1,7 +1,8 @@
 const path = require('path');
 const madge = require('madge');
-const entryPointPath = path.resolve(`${__dirname}/../src/index.ts`);
-const tsConfig = path.resolve(`${__dirname}/../tsconfig.json`);
+//const entryPointPath = path.resolve(`${__dirname}/../src/index.ts`);
+const entryPointPath = path.resolve(`${__dirname}/../../src/interfaces/ECS/index.ts`);
+const tsConfig = path.resolve(`${__dirname}/../../tsconfig.json`);
 const picturePath = path.resolve(`${__dirname}/dependencyTree.png`);
 const config = { 
   fileExtensions: ['ts'], 
