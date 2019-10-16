@@ -1,16 +1,6 @@
 import { I_Component, I_GameObject } from '../interfaces';
-import { name } from '../types';
-import { uniqueId } from '../util';
+import Entity from './Entity';
 
-export default abstract class GameObject implements I_GameObject {
-  readonly id: string = uniqueId();
-  readonly name: string;
+export default abstract class GameObject extends Entity implements I_GameObject {
   readonly components: I_Component[] = [];
-
-  constructor({ name }: name) {
-    this.name = name;
-  }
-
-  start(): void {}
-  stop(): void {}
 }

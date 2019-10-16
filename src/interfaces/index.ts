@@ -10,7 +10,7 @@ import { onTileCreate } from './gridTypes';
 import { onExplore, onComplete } from './navigator';
 import { triangleLines } from './triangle';
 import { boundingBoxLines, limits } from './boundingBox';
-import { I_Component, I_GameObject } from './ECS';
+import { I_Component, I_Entity, I_GameObject } from './ECS';
 
 export {
   id,
@@ -28,5 +28,6 @@ export {
   triangleLines,
   boundingBoxLines,
   I_Component,
+  I_Entity,
   I_GameObject,
 };
