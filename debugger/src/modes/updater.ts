@@ -6,17 +6,14 @@ class Circle extends Pulsar.GameObject {
 
 class Move extends Pulsar.Component {
     parent: Circle;
-
     update({ elapsedTime }: Pulsar.tickData): void {
       const x: number = Math.sin(elapsedTime) * 100;
-      const y: number = Math.tan(elapsedTime) * 100;
-      this.parent.position = new Pulsar.Vector({ x, y });
+      this.parent.position = new Pulsar.Vector({ x, y: 0 });
     }
 }
 
 class Draw extends Pulsar.Component {
   parent: Circle;
-
   update(): void {
     draw.clear();
     draw.point(this.parent.position, 'blue', 'white', 100);
