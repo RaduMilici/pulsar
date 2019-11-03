@@ -23,7 +23,8 @@ class Draw extends Pulsar.Component {
 const circle = new Circle({ name: 'circle' });
 const moveC = new Move({ name: 'move' });
 const drawC = new Draw({ name: 'draw' });
-circle.components.push(moveC, drawC);
+circle.addComponent(moveC);
+circle.addComponent(drawC);
 updater.add(circle);
 updater.start();
 `;

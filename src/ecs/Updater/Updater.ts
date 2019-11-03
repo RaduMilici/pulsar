@@ -21,7 +21,9 @@ export default class Updater {
     }
     this.isRunning = true;
     this.clock.start();
-    this.loopComponentsWithCallback(({ start }: I_Component) => start());
+    this.loopComponentsWithCallback((component: I_Component) =>
+      component.start()
+    );
     this.update();
     return true;
   }
@@ -33,7 +35,9 @@ export default class Updater {
     this.isRunning = false;
     cancelAnimationFrame(this.frameId);
     this.clock.stop();
-    this.loopComponentsWithCallback(({ stop }: I_Component) => stop());
+    this.loopComponentsWithCallback((component: I_Component) =>
+      component.stop()
+    );
     return true;
   }
 
@@ -63,8 +67,8 @@ export default class Updater {
 
   private update = (): void => {
     this.frameId = requestAnimationFrame(this.update);
-    this.loopComponentsWithCallback(({ update }: I_Component) =>
-      update(this.tickData)
+    this.loopComponentsWithCallback((component: I_Component) =>
+      component.update(this.tickData)
     );
   };
 }
