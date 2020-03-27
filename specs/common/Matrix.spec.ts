@@ -61,7 +61,9 @@ describe('common / Matrix3', () => {
   });
 
   it('should multiply a scalar', () => {
-    expect(m.multiplyScalar(29)).toEqual(new Matrix3(145, 116, 87, 58, 29, 174, 203, 232, 261));
+    expect(m.multiplyScalar(29)).toEqual(
+      new Matrix3(145, 116, 87, 58, 29, 174, 203, 232, 261)
+    );
   });
 
   it('should mutiply with another Matrix3', () => {
@@ -92,7 +94,9 @@ describe('common / Matrix4', () => {
 
   it('should add with another Matrix4', () => {
     const m4: Matrix4 = new Matrix4(4, 3, 2, 1, 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4);
-    expect(m.add(m4)).toEqual(new Matrix4(9, 7, 5, 3, 2, 8, 10, 12, 14, 9, 5, 10, 10, 3, 3, 7));
+    expect(m.add(m4)).toEqual(
+      new Matrix4(9, 7, 5, 3, 2, 8, 10, 12, 14, 9, 5, 10, 10, 3, 3, 7)
+    );
   });
 
   it('should multiply a scalar', () => {
@@ -103,11 +107,30 @@ describe('common / Matrix4', () => {
 
   it('should mutiply with another Matrix4', () => {
     const m4 = new Matrix4(4, 3, 2, 1, 2, 3, 4, 5, 6, 9, 8, 5, 4, 6, 8, 1);
-    expect(m.multiply(m4)).toEqual(new Matrix4(54, 66, 66, 42, 90, 132, 146, 74, 90, 108, 118, 52, 50, 48, 46, 17));
+    expect(m.multiply(m4)).toEqual(
+      new Matrix4(54, 66, 66, 42, 90, 132, 146, 74, 90, 108, 118, 52, 50, 48, 46, 17)
+    );
   });
 
   it('should mutiply with another Matrix4', () => {
-    const m1: Matrix4 = new Matrix4(0.004, 0, 0, 0, 0, -0.004, 0, 0, 0, 0, 0.01, 0, -1, 1, 0, 1);
+    const m1: Matrix4 = new Matrix4(
+      0.004,
+      0,
+      0,
+      0,
+      0,
+      -0.004,
+      0,
+      0,
+      0,
+      0,
+      0.01,
+      0,
+      -1,
+      1,
+      0,
+      1
+    );
     const m2: Matrix4 = new Matrix4(
       0.9999999968000002,
       0,

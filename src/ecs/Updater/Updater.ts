@@ -38,15 +38,16 @@ export default class Updater {
   }
 
   clear(): void {
+    this.stop();
     this.gameObjects.length = 0;
   }
 
   add(gameObject: I_GameObject): boolean {
-    const isUpdating: boolean = contains(this.gameObjects, gameObject);
-    if (!isUpdating) {
+    const canAdd: boolean = !contains(this.gameObjects, gameObject);
+    if (canAdd) {
       this.gameObjects.push(gameObject);
     }
-    return isUpdating;
+    return canAdd;
   }
 
   remove(gameObject: I_GameObject): boolean {
@@ -61,6 +62,8 @@ export default class Updater {
 
   private update = (): void => {
     this.frameId = requestAnimationFrame(this.update);
-    this.loopComponentsWithCallback((component: I_Component) => component.update(this.tickData));
+    this.loopComponentsWithCallback((component: I_Component) =>
+      component.update(this.tickData)
+    );
   };
 }

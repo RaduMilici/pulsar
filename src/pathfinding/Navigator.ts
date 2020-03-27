@@ -62,7 +62,9 @@ export default class Navigator implements id {
   }
 
   private deregisterNavigatorData(): void {
-    this.registeredTiles.forEach((tile: NavigatorTile) => tile.deregisterNavigatorData(this));
+    this.registeredTiles.forEach((tile: NavigatorTile) =>
+      tile.deregisterNavigatorData(this)
+    );
   }
 
   private calculateH(tile: NavigatorTile): number {

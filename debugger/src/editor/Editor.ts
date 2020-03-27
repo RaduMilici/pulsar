@@ -33,7 +33,9 @@ export default class Editor {
   }
 
   addExtraLibsAsAny({ name }: editorDependencies) {
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(`declare const ${name}: any`);
+    monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      `declare const ${name}: any`
+    );
   }
 
   private setDependencies(dependencies: editorDependencies[]): void {

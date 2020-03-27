@@ -9,7 +9,10 @@ const editorContainer: HTMLElement = document.getElementById('debugger-editor-co
 const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');
 
 const canvas: Canvas = new Canvas(canvasContainer);
-const extraLibs: editorDependencies[] = [{ name: 'draw', value: canvas.draw }, { name: 'Pulsar', value: pulsar }];
+const extraLibs: editorDependencies[] = [
+  { name: 'draw', value: canvas.draw },
+  { name: 'Pulsar', value: pulsar },
+];
 
 const editorConfig: editorConfig = {
   container: editorContainer,

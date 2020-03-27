@@ -7,7 +7,11 @@ export default class Invoke extends Component {
   id: string = uniqueId();
   originalTimeout: number;
 
-  constructor(readonly updater: Updater, readonly component: Component, public timeout: number) {
+  constructor(
+    readonly updater: Updater,
+    readonly component: Component,
+    public timeout: number
+  ) {
     super();
     this.originalTimeout = timeout;
   }

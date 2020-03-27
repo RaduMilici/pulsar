@@ -79,7 +79,12 @@ describe('common / Triangle', () => {
     const triangle2: Triangle = new Triangle(v00, v11, v33);
 
     const unique: Line[] = Triangle.GetUniqueLines([triangle1, triangle2]);
-    const correct: Line[] = [triangle1.lines.bc, triangle1.lines.ca, triangle2.lines.bc, triangle2.lines.ca];
+    const correct: Line[] = [
+      triangle1.lines.bc,
+      triangle1.lines.ca,
+      triangle2.lines.bc,
+      triangle2.lines.ca,
+    ];
 
     expect(unique).toEqual(correct);
   });

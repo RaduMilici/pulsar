@@ -44,7 +44,10 @@ export default class Obstacles {
     return tile ? tile : null;
   }
 
-  private manipulateMultipleRandom(add: boolean, count: number): NavigatorTile | row | null {
+  private manipulateMultipleRandom(
+    add: boolean,
+    count: number
+  ): NavigatorTile | row | null {
     const tiles: row = [];
 
     if (count > 0) {

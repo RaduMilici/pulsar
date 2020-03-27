@@ -14,7 +14,8 @@ export default class DrawGrid extends Draw {
   }
 
   gridTile(grid: Grid, tile: NavigatorTile, lineSize?: number, fillColor?: string): void {
-    const divideBy: number = grid.size.width > grid.size.height ? grid.size.width : grid.size.height;
+    const divideBy: number =
+      grid.size.width > grid.size.height ? grid.size.width : grid.size.height;
     const squareSide: number = this.pixelWidth / divideBy;
     const halfGrid: number = this.pixelWidth / 2;
     const x = this.origin.x - halfGrid + tile.position.x * squareSide;
@@ -23,7 +24,12 @@ export default class DrawGrid extends Draw {
     this.drawSquares.square(tilePosition, squareSide, lineSize, fillColor);
   }
 
-  gridTiles(grid: Grid, tiles: NavigatorTile[], lineSize?: number, fillColor?: string): void {
+  gridTiles(
+    grid: Grid,
+    tiles: NavigatorTile[],
+    lineSize?: number,
+    fillColor?: string
+  ): void {
     tiles.forEach((tile: NavigatorTile) => {
       this.gridTile(grid, tile, lineSize, fillColor);
     });

@@ -7,7 +7,12 @@ import Invoke from './Invoke';
 export default class InvokeRepeating extends Invoke {
   private updated: number = 0;
 
-  constructor(updater: Updater, component: Component, interval: number, private times: number) {
+  constructor(
+    updater: Updater,
+    component: Component,
+    interval: number,
+    private times: number
+  ) {
     super(updater, component, interval);
   }
 

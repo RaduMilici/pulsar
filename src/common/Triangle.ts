@@ -31,11 +31,17 @@ export default class Triangle implements id {
   equals(triangle: Triangle): boolean {
     const { ab, bc, ca } = this.lines;
     const sameAB: boolean =
-      ab.equals(triangle.lines.ab) || ab.equals(triangle.lines.bc) || ab.equals(triangle.lines.ca);
+      ab.equals(triangle.lines.ab) ||
+      ab.equals(triangle.lines.bc) ||
+      ab.equals(triangle.lines.ca);
     const sameBC: boolean =
-      bc.equals(triangle.lines.ab) || bc.equals(triangle.lines.bc) || bc.equals(triangle.lines.ca);
+      bc.equals(triangle.lines.ab) ||
+      bc.equals(triangle.lines.bc) ||
+      bc.equals(triangle.lines.ca);
     const sameCA: boolean =
-      ca.equals(triangle.lines.ab) || ca.equals(triangle.lines.bc) || ca.equals(triangle.lines.ca);
+      ca.equals(triangle.lines.ab) ||
+      ca.equals(triangle.lines.bc) ||
+      ca.equals(triangle.lines.ca);
 
     return sameAB && sameBC && sameCA;
   }

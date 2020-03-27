@@ -20,7 +20,13 @@ export default class DrawSquares extends Draw {
     this.context.closePath();
   };
 
-  squares(positons: Vector[], side: number, size: number, fillColor?: string, lineColor?: string): void {
+  squares(
+    positons: Vector[],
+    side: number,
+    size: number,
+    fillColor?: string,
+    lineColor?: string
+  ): void {
     positons.forEach(position => this.square(position, side, size, fillColor, lineColor));
   }
 }
