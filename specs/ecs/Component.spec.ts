@@ -28,7 +28,7 @@ describe('ecs / Component', () => {
 
   it('should have its lifecycle hooks called by Updater', () => {
     const updater: Updater = new Updater();
-    const component: MyComponent = new MyComponent();
+    const component: MyComponent = new MyComponent({ name: 'MyComponent' });
 
     updater.add(component);
     updater.start();
@@ -41,7 +41,7 @@ describe('ecs / Component', () => {
 
   it('should call update with a tickData argument', () => {
     const updater: Updater = new Updater();
-    const component: MyComponent = new MyComponent();
+    const component: MyComponent = new MyComponent({ name: 'MyComponent' });
 
     updater.add(component);
     updater.start();
