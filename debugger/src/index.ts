@@ -5,18 +5,11 @@ import * as modes from './modes';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
 
-const editorContainer: HTMLElement = document.getElementById(
-  'debugger-editor-container'
-);
-const canvasContainer: HTMLElement = document.getElementById(
-  'debugger-canvas-container'
-);
+const editorContainer: HTMLElement = document.getElementById('debugger-editor-container');
+const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');
 
 const canvas: Canvas = new Canvas(canvasContainer);
-const extraLibs: editorDependencies[] = [
-  { name: 'draw', value: canvas.draw },
-  { name: 'Pulsar', value: pulsar },
-];
+const extraLibs: editorDependencies[] = [{ name: 'draw', value: canvas.draw }, { name: 'Pulsar', value: pulsar }];
 
 const editorConfig: editorConfig = {
   container: editorContainer,

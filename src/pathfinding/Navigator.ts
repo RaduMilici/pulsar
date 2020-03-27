@@ -2,13 +2,7 @@ import Grid from './Grid';
 import NavigatorTile from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import { uniqueId, contains } from '../util';
-import {
-  row,
-  id,
-  navigatorSettings,
-  onExplore,
-  onComplete,
-} from '../interfaces';
+import { row, id, navigatorSettings, onExplore, onComplete } from '../interfaces';
 import {
   NO_OP,
   NAVIGATOR_MAX_STEPS,
@@ -68,9 +62,7 @@ export default class Navigator implements id {
   }
 
   private deregisterNavigatorData(): void {
-    this.registeredTiles.forEach((tile: NavigatorTile) =>
-      tile.deregisterNavigatorData(this)
-    );
+    this.registeredTiles.forEach((tile: NavigatorTile) => tile.deregisterNavigatorData(this));
   }
 
   private calculateH(tile: NavigatorTile): number {
@@ -179,9 +171,7 @@ export default class Navigator implements id {
       return tile;
     }
 
-    const moveCost = tile.isDiagonal(checkTile)
-      ? this.diagonalCost
-      : this.verticalCost;
+    const moveCost = tile.isDiagonal(checkTile) ? this.diagonalCost : this.verticalCost;
 
     if (tileNavData.gVal + moveCost < checkNavData.gVal) {
       checkNavData.parent = tile;

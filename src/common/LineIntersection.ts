@@ -32,18 +32,12 @@ export default class LineIntersection {
     const f: Matrix2 = new Matrix2(this.y1, 1, this.y2, 1);
     const g: Matrix2 = new Matrix2(this.x3, 1, this.x4, 1);
     const h: Matrix2 = new Matrix2(this.y3, 1, this.y4, 1);
-    const efgh: Matrix2 = new Matrix2(
-      e.determine(),
-      f.determine(),
-      g.determine(),
-      h.determine()
-    );
+    const efgh: Matrix2 = new Matrix2(e.determine(), f.determine(), g.determine(), h.determine());
     this.efghDeterminant = efgh.determine();
   }
 
   get intersects(): boolean {
-    const areValidCoords: boolean =
-      isNumeric(this.point.x) && isNumeric(this.point.y);
+    const areValidCoords: boolean = isNumeric(this.point.x) && isNumeric(this.point.y);
     return areValidCoords && this.isOnSegments();
   }
 
@@ -58,12 +52,7 @@ export default class LineIntersection {
     const b: Matrix2 = new Matrix2(this.x1, 1, this.x2, 1);
     const c: Matrix2 = new Matrix2(this.x3, this.y3, this.x4, this.y4);
     const d: Matrix2 = new Matrix2(this.x3, 1, this.x4, 1);
-    const abcd: Matrix2 = new Matrix2(
-      a.determine(),
-      b.determine(),
-      c.determine(),
-      d.determine()
-    );
+    const abcd: Matrix2 = new Matrix2(a.determine(), b.determine(), c.determine(), d.determine());
 
     return abcd.determine() / this.efghDeterminant;
   }
@@ -73,41 +62,16 @@ export default class LineIntersection {
     const b: Matrix2 = new Matrix2(this.y1, 1, this.y2, 1);
     const c: Matrix2 = new Matrix2(this.x3, this.y3, this.x4, this.y4);
     const d: Matrix2 = new Matrix2(this.y3, 1, this.y4, 1);
-    const abcd: Matrix2 = new Matrix2(
-      a.determine(),
-      b.determine(),
-      c.determine(),
-      d.determine()
-    );
+    const abcd: Matrix2 = new Matrix2(a.determine(), b.determine(), c.determine(), d.determine());
 
     return abcd.determine() / this.efghDeterminant;
   }
 
   private isOnSegments(): boolean {
-    const a: Matrix2 = new Matrix2(
-      this.x1 - this.x3,
-      this.x3 - this.x4,
-      this.y1 - this.y3,
-      this.y3 - this.y4
-    );
-    const b: Matrix2 = new Matrix2(
-      this.x1 - this.x2,
-      this.x3 - this.x4,
-      this.y1 - this.y2,
-      this.y3 - this.y4
-    );
-    const c: Matrix2 = new Matrix2(
-      this.x1 - this.x2,
-      this.x1 - this.x3,
-      this.y1 - this.y2,
-      this.y1 - this.y3
-    );
-    const d: Matrix2 = new Matrix2(
-      this.x1 - this.x2,
-      this.x3 - this.x4,
-      this.y1 - this.y2,
-      this.y3 - this.y4
-    );
+    const a: Matrix2 = new Matrix2(this.x1 - this.x3, this.x3 - this.x4, this.y1 - this.y3, this.y3 - this.y4);
+    const b: Matrix2 = new Matrix2(this.x1 - this.x2, this.x3 - this.x4, this.y1 - this.y2, this.y3 - this.y4);
+    const c: Matrix2 = new Matrix2(this.x1 - this.x2, this.x1 - this.x3, this.y1 - this.y2, this.y1 - this.y3);
+    const d: Matrix2 = new Matrix2(this.x1 - this.x2, this.x3 - this.x4, this.y1 - this.y2, this.y3 - this.y4);
 
     const divisionAB: number = a.determine() / b.determine();
     const divisionCD: number = -(c.determine() / d.determine());

@@ -25,10 +25,7 @@ export default class Hull {
       this.lines.push(line);
     }
 
-    const closingLine: Line = new Line(
-      this._points[this._points.length - 1],
-      this._points[0]
-    );
+    const closingLine: Line = new Line(this._points[this._points.length - 1], this._points[0]);
     this.lines.push(closingLine);
   }
 }

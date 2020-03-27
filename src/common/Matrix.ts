@@ -2,19 +2,13 @@ abstract class Matrix {
   rows: number[][] = [];
   columns: number[][] = [];
 
-  protected static AddElements(
-    elementsA: number[],
-    elementsB: number[]
-  ): number[] {
+  protected static AddElements(elementsA: number[], elementsB: number[]): number[] {
     return elementsA.map((elementA: number, index: number) => {
       return elementA + elementsB[index];
     });
   }
 
-  protected static MultiplyElementsScalar(
-    elements: number[],
-    scalar: number
-  ): number[] {
+  protected static MultiplyElementsScalar(elements: number[], scalar: number): number[] {
     let sum: number[] = new Array(elements.length).fill(0);
 
     for (let i = 0; i < scalar; i++) {
@@ -46,12 +40,7 @@ abstract class Matrix {
 }
 
 class Matrix2 extends Matrix {
-  constructor(
-    readonly a: number = 0,
-    readonly b: number = 0,
-    readonly c: number = 0,
-    readonly d: number = 0
-  ) {
+  constructor(readonly a: number = 0, readonly b: number = 0, readonly c: number = 0, readonly d: number = 0) {
     super();
     this.rows = [[a, b], [c, d]];
     this.columns = [[a, c], [b, d]];
@@ -76,10 +65,7 @@ class Matrix2 extends Matrix {
   }
 
   multiplyScalar(scalar: number): Matrix2 {
-    const product: number[] = Matrix.MultiplyElementsScalar(
-      this.elements,
-      scalar
-    );
+    const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix2(...product);
   }
 }
@@ -124,10 +110,7 @@ class Matrix3 extends Matrix2 {
   }
 
   multiplyScalar(scalar: number): Matrix3 {
-    const product: number[] = Matrix.MultiplyElementsScalar(
-      this.elements,
-      scalar
-    );
+    const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix3(...product);
   }
 }
@@ -157,68 +140,15 @@ class Matrix4 extends Matrix3 {
   }
 
   get elements(): number[] {
-    return [
-      ...super.elements,
-      this.j,
-      this.k,
-      this.l,
-      this.m,
-      this.n,
-      this.o,
-      this.p,
-    ];
+    return [...super.elements, this.j, this.k, this.l, this.m, this.n, this.o, this.p];
   }
 
   determine(): number {
     return (
-      this.a *
-        new Matrix3(
-          this.f,
-          this.g,
-          this.h,
-          this.j,
-          this.k,
-          this.l,
-          this.n,
-          this.o,
-          this.p
-        ).determine() -
-      this.b *
-        new Matrix3(
-          this.e,
-          this.g,
-          this.h,
-          this.i,
-          this.k,
-          this.l,
-          this.m,
-          this.o,
-          this.p
-        ).determine() +
-      this.c *
-        new Matrix3(
-          this.e,
-          this.f,
-          this.h,
-          this.i,
-          this.j,
-          this.l,
-          this.m,
-          this.n,
-          this.p
-        ).determine() -
-      this.d *
-        new Matrix3(
-          this.e,
-          this.f,
-          this.g,
-          this.i,
-          this.j,
-          this.k,
-          this.m,
-          this.n,
-          this.o
-        ).determine()
+      this.a * new Matrix3(this.f, this.g, this.h, this.j, this.k, this.l, this.n, this.o, this.p).determine() -
+      this.b * new Matrix3(this.e, this.g, this.h, this.i, this.k, this.l, this.m, this.o, this.p).determine() +
+      this.c * new Matrix3(this.e, this.f, this.h, this.i, this.j, this.l, this.m, this.n, this.p).determine() -
+      this.d * new Matrix3(this.e, this.f, this.g, this.i, this.j, this.k, this.m, this.n, this.o).determine()
     );
   }
 
@@ -228,10 +158,7 @@ class Matrix4 extends Matrix3 {
   }
 
   multiplyScalar(scalar: number): Matrix4 {
-    const product: number[] = Matrix.MultiplyElementsScalar(
-      this.elements,
-      scalar
-    );
+    const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix4(...product);
   }
 

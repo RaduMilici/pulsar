@@ -2,8 +2,7 @@ import { I_Component, I_GameObject } from '../interfaces';
 import Entity from './Entity';
 import { contains, removeFromArray } from '../util';
 
-export default abstract class GameObject extends Entity
-  implements I_GameObject {
+export default abstract class GameObject extends Entity implements I_GameObject {
   readonly components: I_Component[] = [];
 
   addComponent(component: I_Component): boolean {

@@ -30,12 +30,7 @@ export default class DrawTriangles extends Draw {
     this.drawLines.lines([lines.ab, lines.bc, lines.ca], strokeColor, size);
   }
 
-  triangles(
-    triangles: Triangle[],
-    strokeColor?: string,
-    fillColor?: string,
-    size?: number
-  ): void {
+  triangles(triangles: Triangle[], strokeColor?: string, fillColor?: string, size?: number): void {
     triangles.forEach((triangle: Triangle) => {
       this.triangle(triangle, strokeColor, fillColor, size);
     });

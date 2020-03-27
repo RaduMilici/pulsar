@@ -8,11 +8,7 @@ export default class QuadTree {
 
   private capacity: number = 1;
 
-  constructor(
-    public shape: Shape,
-    private points: Vector[],
-    public level: number = 0
-  ) {
+  constructor(public shape: Shape, private points: Vector[], public level: number = 0) {
     this.start(points);
   }
 
@@ -76,19 +72,9 @@ export default class QuadTree {
   }
 
   divide(points: Vector[]): void {
-    const {
-      topLeft,
-      topRight,
-      bottomLeft,
-      bottomRight,
-    } = this.shape.boundingBox;
+    const { topLeft, topRight, bottomLeft, bottomRight } = this.shape.boundingBox;
     const { top, bottom, left, right } = this.shape.boundingBox.midpoints;
-    const centroid: Vector = Vector.FindPolyCentroid([
-      top,
-      bottom,
-      left,
-      right,
-    ]);
+    const centroid: Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
 
     const nextLevel: number = this.level + 1;
 

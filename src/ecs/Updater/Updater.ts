@@ -21,9 +21,7 @@ export default class Updater {
     }
     this.isRunning = true;
     this.clock.start();
-    this.loopComponentsWithCallback((component: I_Component) =>
-      component.start()
-    );
+    this.loopComponentsWithCallback(({ start }: I_Component) => start);
     this.update();
     return true;
   }
@@ -35,9 +33,7 @@ export default class Updater {
     this.isRunning = false;
     cancelAnimationFrame(this.frameId);
     this.clock.stop();
-    this.loopComponentsWithCallback((component: I_Component) =>
-      component.stop()
-    );
+    this.loopComponentsWithCallback(({ stop }: I_Component) => stop);
     return true;
   }
 
@@ -57,9 +53,7 @@ export default class Updater {
     return removeFromArray(this.gameObjects, gameObject);
   }
 
-  private loopComponentsWithCallback(
-    callback: (component: I_Component) => void
-  ): void {
+  private loopComponentsWithCallback(callback: (component: I_Component) => void): void {
     this.gameObjects.forEach(({ components }: I_GameObject) => {
       components.forEach(callback);
     });
@@ -67,8 +61,6 @@ export default class Updater {
 
   private update = (): void => {
     this.frameId = requestAnimationFrame(this.update);
-    this.loopComponentsWithCallback((component: I_Component) =>
-      component.update(this.tickData)
-    );
+    this.loopComponentsWithCallback((component: I_Component) => component.update(this.tickData));
   };
 }
