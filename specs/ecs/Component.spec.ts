@@ -42,8 +42,8 @@ describe('ecs / Component', () => {
     updater.stop();
 
     expect(startMock).toBeCalledTimes(1);
-    // expect(stopMock.mock.calls.length).toBe(1);
-    // expect(updateMock.mock.calls.length).toBe(1);
+    expect(stopMock).toBeCalledTimes(1);
+    expect(updateMock).toBeCalledTimes(1);
   });
 
   it('should call update with a tickData argument', () => {
