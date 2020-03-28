@@ -16,7 +16,9 @@ export default class QuadTree {
     for (let i = 0; i < points.length; i++) {
       const point: Vector = points[i];
 
-      if (!this.shape.containsPoint(point)) continue;
+      if (!this.shape.containsPoint(point)) {
+        continue;
+      }
 
       if (this.containedPoints.length < this.capacity) {
         point.quadTree = this;
@@ -33,10 +35,10 @@ export default class QuadTree {
     let children: QuadTree[] = [this];
 
     for (let i = 0; i < level; i++) {
-      children = children.reduce((acc: QuadTree[], quadTree: QuadTree) => {
-        acc.push(...quadTree.children);
-        return acc;
-      }, []);
+      children = children.reduce(
+        (acc: QuadTree[], quadTree: QuadTree) => [...acc, ...quadTree.children],
+        []
+      );
     }
 
     return children.length ? children : null;
@@ -46,17 +48,17 @@ export default class QuadTree {
     const contains: boolean = this.shape.containsPoint(point);
     const hasChildren: boolean = this.children.length > 0;
 
-    if (contains) {
-      if (hasChildren) {
-        return this.children.find((child: QuadTree) => {
-          return child.findChildThatContains(point) !== null;
-        });
-      } else {
-        return this;
-      }
+    if (!contains) {
+      return null;
     }
 
-    return null;
+    if (hasChildren) {
+      return this.children.find(
+        (child: QuadTree) => child.findChildThatContains(point) !== null
+      );
+    } else {
+      return this;
+    }
   }
 
   forceDivide(times: number): void {
@@ -92,8 +94,6 @@ export default class QuadTree {
 
     this.children.push(quad1, quad2, quad3, quad4);
 
-    this.children.forEach((child: QuadTree) => {
-      child.parent = this;
-    });
+    this.children.forEach((child: QuadTree) => (child.parent = this));
   }
 }
