@@ -13,7 +13,7 @@
     "format": "prettier prettier.config.js --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --maxWorkers=4 --watchAll",
-    "madge-circular": "madge --circular --extensions ts src",
+    "check-circular-dependencies": "node scripts/madge/madge.js",
     "build-debugger": "node scripts/build-debugger/index.js"
   },
   "repository": {
