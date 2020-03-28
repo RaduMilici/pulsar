@@ -1,5 +1,5 @@
 import I_GameObject from './I_GameObject';
-import { I_Component } from '../Component'; 
+import { I_Component } from '../Component';
 import { Entity } from '../Entity';
 import { contains, removeFromArray } from '../../util';
 
