@@ -1,5 +1,5 @@
-import { I_NavigatorTile } from '../NavigatorTile';
-import { row } from '../../interfaces';
+import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
+import row from '../../interfaces/row';
 
 export default interface I_Obstacles {
   list: I_NavigatorTile[];

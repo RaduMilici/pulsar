@@ -1,5 +1,5 @@
-import { I_Grid } from '../Grid';
-import { I_NavigatorTile } from '../NavigatorTile';
+import I_Grid from '../Grid/I_Grid';
+import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 import { row } from '../../interfaces';
 import { contains, findIndex, randomInt } from '../../util';
 import I_Obstacles from './I_Obstacles';

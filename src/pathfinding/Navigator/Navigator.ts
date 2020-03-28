@@ -1,6 +1,6 @@
 import { I_Grid } from '../Grid';
 import { I_NavigatorTile } from '../NavigatorTile';
-import NavigatorData from '../NavigatorData';
+import NavigatorData from '../NavigatorData/NavigatorData';
 import { uniqueId, contains } from '../../util';
 import { row, id, navigatorSettings, onExplore, onComplete } from '../../interfaces';
 import {

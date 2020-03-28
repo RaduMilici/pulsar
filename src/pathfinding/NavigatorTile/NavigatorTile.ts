@@ -1,6 +1,6 @@
-import Navigator from '../Navigator/Navigator';
-import NavigatorData from '../NavigatorData';
-import { Vector } from '../../common';
+import I_Navigator from '../Navigator/I_Navigator';
+import NavigatorData from '../NavigatorData/NavigatorData';
+import Vector from '../../common/Vector';
 import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../../util';
 import { NAVIGATOR_DIAGONAL_COST, NAVIGATOR_VERTICAL_COST } from '../../constants';
 import I_NavigatorTile from './I_NavigatorTile';
@@ -13,7 +13,7 @@ export default class NavigatorTile implements I_NavigatorTile {
 
   constructor(readonly position: Vector) {}
 
-  registerNavigatorData(navigator: Navigator): boolean {
+  registerNavigatorData(navigator: I_Navigator): boolean {
     const navigationData: NavigatorData = new NavigatorData(navigator);
 
     if (contains(this.navigators, navigationData)) {
@@ -24,12 +24,12 @@ export default class NavigatorTile implements I_NavigatorTile {
     return true;
   }
 
-  deregisterNavigatorData(navigator: Navigator): boolean {
+  deregisterNavigatorData(navigator: I_Navigator): boolean {
     const navData: NavigatorData = this.getNavigatorData(navigator);
     return removeFromArray(this.navigators, navData);
   }
 
-  getNavigatorData(navigator: Navigator): NavigatorData {
+  getNavigatorData(navigator: I_Navigator): NavigatorData {
     const index: number = findIndex(this.navigators, navigator);
 
     if (index !== -1) {

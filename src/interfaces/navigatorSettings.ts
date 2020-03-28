@@ -1,5 +1,5 @@
-import { I_Grid } from '../pathfinding';
-import { I_NavigatorTile } from '../pathfinding/NavigatorTile';
+import I_Grid from '../pathfinding/Grid/I_Grid';
+import I_NavigatorTile from '../pathfinding/NavigatorTile/I_NavigatorTile';
 
 type navigatorSettings = {
   maxSteps?: number;

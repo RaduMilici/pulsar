@@ -1,6 +1,8 @@
-import { I_Obstacles, Obstacles } from '../Obstacles';
-import { I_NavigatorTile, NavigatorTile } from '../NavigatorTile';
-import { Vector } from '../../common';
+import I_Obstacles from '../Obstacles/I_Obstacles';
+import Obstacles from '../Obstacles/Obstacles';
+import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
+import NavigatorTile from '../NavigatorTile/NavigatorTile';
+import Vector from '../../common/Vector';
 import { randomInt } from '../../util';
 import { row, point, size } from '../../interfaces';
 import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../../constants';

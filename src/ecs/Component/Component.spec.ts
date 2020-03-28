@@ -1,7 +1,7 @@
 import Component from './Component';
 import I_Component from './I_Component';
-import { Updater } from '../Updater';
-import { GameObject } from '../GameObject';
+import Updater from '../Updater/Updater';
+import GameObject from '../GameObject/GameObject';
 import { tickData } from '../../interfaces';
 import SpecGameObject from '../../../specs/ecs/fixtures/SpecGameObject';
 

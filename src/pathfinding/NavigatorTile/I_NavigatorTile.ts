@@ -1,16 +1,16 @@
-import Navigator from '../Navigator/Navigator';
-import NavigatorData from '../NavigatorData';
+import I_Navigator from '../Navigator/I_Navigator';
+import I_NavigatorData from '../NavigatorData/I_NavigatorData';
+import Vector from '../../common/Vector/Vector';
 import { id } from '../../interfaces';
-import { Vector } from '../../common';
 
 export default interface I_NavigatorTile extends id {
   id: string;
   isObstacle: boolean;
   readonly position: Vector;
 
-  registerNavigatorData(navigator: Navigator): boolean;
-  deregisterNavigatorData(navigator: Navigator): boolean;
-  getNavigatorData(navigator: Navigator): NavigatorData;
+  registerNavigatorData(navigator: I_Navigator): boolean;
+  deregisterNavigatorData(navigator: I_Navigator): boolean;
+  getNavigatorData(navigator: I_Navigator): I_NavigatorData;
   distanceTo({ position }: I_NavigatorTile): number;
   equals({ position }: I_NavigatorTile): boolean;
   isNeighbour({ position }: I_NavigatorTile): boolean;

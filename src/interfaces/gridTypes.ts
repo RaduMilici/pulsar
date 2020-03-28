@@ -1,5 +1,5 @@
-import { NavigatorTile } from '../pathfinding';
+import I_Navigator from '../pathfinding/Navigator/I_Navigator';
 
-type onTileCreate = (tile: NavigatorTile) => void;
+type onTileCreate = (tile: I_Navigator) => void;
 
 export { onTileCreate };

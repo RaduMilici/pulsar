@@ -1,6 +1,6 @@
-import { id } from '../interfaces';
-import { I_Navigator } from './Navigator';
-import { I_NavigatorTile } from './NavigatorTile';
+import { id } from '../../interfaces';
+import I_Navigator from '../Navigator/I_Navigator';
+import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 
 export default class NavigatorData implements id {
   id: string;
