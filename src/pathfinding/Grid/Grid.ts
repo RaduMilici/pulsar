@@ -4,8 +4,9 @@ import { Vector } from '../../common';
 import { randomInt } from '../../util';
 import { row, point, size } from '../../interfaces';
 import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../../constants';
+import I_Grid from './I_Grid';
 
-export default class Grid {
+export default class Grid implements I_Grid {
   readonly obstacles: Obstacles;
   readonly tiles: row = [];
   readonly rows: row[] = [];

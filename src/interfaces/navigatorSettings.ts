@@ -1,9 +1,9 @@
-import { Grid } from '../pathfinding';
+import { I_Grid } from '../pathfinding';
 import { I_NavigatorTile } from '../pathfinding/NavigatorTile';
 
 type navigatorSettings = {
   maxSteps?: number;
-  grid: Grid;
+  grid: I_Grid;
   begin: I_NavigatorTile;
   end: I_NavigatorTile;
   onExplore?: (tile: I_NavigatorTile) => void;

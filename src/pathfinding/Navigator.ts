@@ -1,4 +1,4 @@
-import Grid from './Grid/Grid';
+import { I_Grid } from './Grid';
 import { I_NavigatorTile } from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import { uniqueId, contains } from '../util';
@@ -20,7 +20,7 @@ export default class Navigator implements id {
   private closed: row = [];
   private registeredTiles: row = [];
   private steps: number = 0;
-  private grid: Grid;
+  private grid: I_Grid;
   private begin: I_NavigatorTile;
   private end: I_NavigatorTile;
   private onExplore: onExplore;
