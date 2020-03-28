@@ -1,4 +1,4 @@
-import Navigator from '../Navigator';
+import Navigator from '../Navigator/Navigator';
 import NavigatorData from '../NavigatorData';
 import { Vector } from '../../common';
 import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../../util';

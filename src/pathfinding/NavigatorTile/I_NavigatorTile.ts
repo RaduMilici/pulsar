@@ -1,4 +1,4 @@
-import Navigator from '../Navigator';
+import Navigator from '../Navigator/Navigator';
 import NavigatorData from '../NavigatorData';
 import { id } from '../../interfaces';
 import { Vector } from '../../common';
