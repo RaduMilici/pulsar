@@ -42,8 +42,7 @@ export default class LineIntersection {
   }
 
   get intersects(): boolean {
-    const areValidCoords: boolean =
-      isNumeric(this.point.x) && isNumeric(this.point.y);
+    const areValidCoords: boolean = isNumeric(this.point.x) && isNumeric(this.point.y);
     return areValidCoords && this.isOnSegments();
   }
 

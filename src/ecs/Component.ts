@@ -1,9 +1,15 @@
+import { I_Component, I_GameObject } from '../interfaces';
+import { componentSettings, tickData } from '../types';
 import Entity from './Entity';
-import { I_Component, I_Entity, tickData } from '../interfaces';
 
-export default class Component extends Entity implements I_Component {
-  entity: I_Entity;
-  updatePriority: number | null = null;
+export default abstract class Component extends Entity implements I_Component {
+  public parent: I_GameObject;
+  readonly updatePriority: number;
+
+  constructor({ name, updatePriority = null }: componentSettings) {
+    super({ name });
+    this.updatePriority = updatePriority;
+  }
 
   update(tickData: tickData): void {}
 }

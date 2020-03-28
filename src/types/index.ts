@@ -1,3 +1,4 @@
-import { updaterReport } from './ECS'
+import { name } from './common';
+import { componentSettings, tickData, updaterReport } from './ECS';
 
-export { updaterReport }
+export { name, componentSettings, tickData, updaterReport };

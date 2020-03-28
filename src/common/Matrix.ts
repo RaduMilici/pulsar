@@ -2,19 +2,13 @@ abstract class Matrix {
   rows: number[][] = [];
   columns: number[][] = [];
 
-  protected static AddElements(
-    elementsA: number[],
-    elementsB: number[]
-  ): number[] {
-    return elementsA.map((elementA: number, index: number) => {
-      return elementA + elementsB[index];
-    });
+  protected static AddElements(elementsA: number[], elementsB: number[]): number[] {
+    return elementsA.map(
+      (elementA: number, index: number) => elementA + elementsB[index]
+    );
   }
 
-  protected static MultiplyElementsScalar(
-    elements: number[],
-    scalar: number
-  ): number[] {
+  protected static MultiplyElementsScalar(elements: number[], scalar: number): number[] {
     let sum: number[] = new Array(elements.length).fill(0);
 
     for (let i = 0; i < scalar; i++) {
@@ -27,21 +21,22 @@ abstract class Matrix {
   protected static Multiply(rows: number[][], columns: number[][]): number[] {
     const elements: number[] = [];
 
-    rows.forEach((row: number[]): void => {
+    rows.forEach((row: number[]): void =>
       columns.forEach((column: number[]): void => {
         const element: number = Matrix.CrossProduct(row, column);
         elements.push(element);
-      });
-    });
+      })
+    );
 
     return elements;
   }
 
   private static CrossProduct(row: number[], column: number[]): number {
-    return row.reduce((acc: number, number: number, index: number): number => {
-      acc += number * column[index];
-      return acc;
-    }, 0);
+    return row.reduce(
+      (acc: number, number: number, index: number): number =>
+        acc + number * column[index],
+      0
+    );
   }
 }
 
@@ -67,7 +62,7 @@ class Matrix2 extends Matrix {
 
   add({ elements }: Matrix2): Matrix2 {
     const sum: number[] = Matrix.AddElements(this.elements, elements);
-    return new Matrix2(...sum);
+    return new Matrix2(...Matrix.AddElements(this.elements, elements));
   }
 
   multiply(m2: Matrix2): Matrix2 {
@@ -76,10 +71,7 @@ class Matrix2 extends Matrix {
   }
 
   multiplyScalar(scalar: number): Matrix2 {
-    const product: number[] = Matrix.MultiplyElementsScalar(
-      this.elements,
-      scalar
-    );
+    const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix2(...product);
   }
 }
@@ -124,10 +116,7 @@ class Matrix3 extends Matrix2 {
   }
 
   multiplyScalar(scalar: number): Matrix3 {
-    const product: number[] = Matrix.MultiplyElementsScalar(
-      this.elements,
-      scalar
-    );
+    const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix3(...product);
   }
 }
@@ -157,16 +146,7 @@ class Matrix4 extends Matrix3 {
   }
 
   get elements(): number[] {
-    return [
-      ...super.elements,
-      this.j,
-      this.k,
-      this.l,
-      this.m,
-      this.n,
-      this.o,
-      this.p,
-    ];
+    return [...super.elements, this.j, this.k, this.l, this.m, this.n, this.o, this.p];
   }
 
   determine(): number {
@@ -228,10 +208,7 @@ class Matrix4 extends Matrix3 {
   }
 
   multiplyScalar(scalar: number): Matrix4 {
-    const product: number[] = Matrix.MultiplyElementsScalar(
-      this.elements,
-      scalar
-    );
+    const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix4(...product);
   }
 

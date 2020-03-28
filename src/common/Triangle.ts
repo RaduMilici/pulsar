@@ -71,24 +71,7 @@ export default class Triangle implements id {
     const o: number = point.x * point.x + point.y * point.y;
     const p: number = 1;
 
-    const matrix: Matrix4 = new Matrix4(
-      a,
-      b,
-      c,
-      d,
-      e,
-      f,
-      g,
-      h,
-      i,
-      j,
-      k,
-      l,
-      m,
-      n,
-      o,
-      p
-    );
+    const matrix: Matrix4 = new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
     return matrix.determine() < 0;
   }
 

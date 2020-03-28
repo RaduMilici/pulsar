@@ -1,5 +1,6 @@
 import Vector from './Vector';
 import Line from './Line';
+import Shape from './Shape';
 import { limits, boundingBoxLines } from '../interfaces';
 import { immutableObjectSort } from '../util';
 
@@ -14,6 +15,7 @@ export default class BoundingBox {
   topRight: Vector;
   bottomRight: Vector;
   bottomLeft: Vector;
+
   readonly lines: boundingBoxLines = {
     top: null,
     right: null,
@@ -43,6 +45,10 @@ export default class BoundingBox {
 
   get height(): number {
     return this.topRight.y - this.bottomRight.y;
+  }
+
+  get shape(): Shape {
+    return new Shape([this.topLeft, this.topRight, this.bottomRight, this.bottomLeft]);
   }
 
   growBy(n: number): void {

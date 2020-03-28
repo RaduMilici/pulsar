@@ -16,11 +16,7 @@ const randomColor = () => {
   return `rgb(${r},${g},${b})`;
 };
 
-const randomPoint = ({
-  topLeft,
-  topRight,
-  bottomLeft,
-}: BoundingBox): Vector => {
+const randomPoint = ({ topLeft, topRight, bottomLeft }: BoundingBox): Vector => {
   const x = randomInt(topLeft.x, topRight.x);
   const y = randomInt(bottomLeft.y, topLeft.y);
 

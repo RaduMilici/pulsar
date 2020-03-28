@@ -1,10 +1,22 @@
-import { I_GameObject, I_Component } from '../interfaces';
+import { I_Component, I_GameObject } from '../interfaces';
 import Entity from './Entity';
+import { contains, removeFromArray } from '../util';
 
-export default class GameObject extends Entity implements I_GameObject{
-  components: I_Component[] = [];
+export default abstract class GameObject extends Entity implements I_GameObject {
+  readonly components: I_Component[] = [];
 
-  addComponent(component: I_Component): void {
+  addComponent(component: I_Component): boolean {
+    if (contains(this.components, component)) {
+      return false;
+    }
+
+    component.parent = this;
     this.components.push(component);
+    return true;
+  }
+
+  removeComponent(component: I_Component): boolean {
+    component.parent = null;
+    return removeFromArray(this.components, component);
   }
 }
