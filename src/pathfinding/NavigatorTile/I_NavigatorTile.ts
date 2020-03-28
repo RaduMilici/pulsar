@@ -6,7 +6,7 @@ import { Vector } from '../../common';
 export default interface I_NavigatorTile extends id {
   id: string;
   isObstacle: boolean;
-  readonly position: Vector
+  readonly position: Vector;
 
   registerNavigatorData(navigator: Navigator): boolean;
   deregisterNavigatorData(navigator: Navigator): boolean;

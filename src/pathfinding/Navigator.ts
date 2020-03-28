@@ -1,4 +1,4 @@
-import Grid from './Grid';
+import Grid from './Grid/Grid';
 import { I_NavigatorTile } from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import { uniqueId, contains } from '../util';

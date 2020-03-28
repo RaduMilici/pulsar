@@ -1,9 +1,9 @@
-import Obstacles from './Obstacles';
-import { I_NavigatorTile, NavigatorTile } from './NavigatorTile';
-import { Vector } from '../common';
-import { randomInt } from '../util';
-import { row, point, size } from '../interfaces';
-import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../constants';
+import Obstacles from '../Obstacles';
+import { I_NavigatorTile, NavigatorTile } from '../NavigatorTile';
+import { Vector } from '../../common';
+import { randomInt } from '../../util';
+import { row, point, size } from '../../interfaces';
+import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../../constants';
 
 export default class Grid {
   readonly obstacles: Obstacles;
