@@ -1,6 +1,7 @@
-import { I_Component, I_GameObject } from '../interfaces';
-import Entity from './Entity';
-import { contains, removeFromArray } from '../util';
+import I_GameObject from './I_GameObject';
+import { I_Component } from '../Component'; 
+import { Entity } from '../Entity';
+import { contains, removeFromArray } from '../../util';
 
 export default abstract class GameObject extends Entity implements I_GameObject {
   readonly components: I_Component[] = [];

@@ -1,5 +1,5 @@
-import I_Entity from './I_Entity';
-import I_Component from './I_Component';
+import I_Entity from '../Entity/I_Entity';
+import {I_Component} from '../Component';
 
 export default interface I_GameObject extends I_Entity {
   readonly components: I_Component[];

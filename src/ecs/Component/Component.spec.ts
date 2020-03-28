@@ -1,6 +1,7 @@
 import Component from './Component';
-import Updater from '../Updater';
-import GameObject from '../GameObject';
+import I_Component from './I_Component';
+import { Updater } from '../Updater';
+import { GameObject } from '../GameObject';
 import { tickData } from '../../interfaces';
 import SpecGameObject from '../../../specs/ecs/fixtures/SpecGameObject';
 
@@ -35,7 +36,7 @@ describe('ecs / Component', () => {
 
   it.only('should have its lifecycle hooks called by Updater', () => {
     const updater: Updater = new Updater();
-    const component: MyComponent = new MyComponent();
+    const component: I_Component = new MyComponent();
     const gameObject: GameObject = new SpecGameObject();
 
     gameObject.addComponent(component);
@@ -50,7 +51,7 @@ describe('ecs / Component', () => {
 
   it('should call update with a tickData argument', () => {
     const updater: Updater = new Updater();
-    const component: MyComponent = new MyComponent();
+    const component: I_Component = new MyComponent();
     const gameObject: GameObject = new SpecGameObject();
 
     gameObject.addComponent(component);

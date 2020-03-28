@@ -1,6 +1,6 @@
-import Updater from '../Updater';
-import Component from '../Component';
-import GameObject from '../GameObject';
+import { Updater } from '../Updater';
+import { Component, I_Component } from '../Component';
+import { GameObject } from '../GameObject';
 import SpecComponent from '../../../specs/ecs/fixtures/SpecComponent';
 import SpecComponentPriority1 from '../../../specs/ecs/fixtures/SpecComponentPriority1';
 import SpecGameObject from '../../../specs/ecs/fixtures/SpecGameObject';
@@ -66,8 +66,8 @@ describe('ecs / Updater', () => {
   it('should update components using a priority number', () => {
     const updater: Updater = new Updater();
     const gameObject: GameObject = new SpecGameObject();
-    const component0: Component = new SpecComponent();
-    const component1: Component = new SpecComponentPriority1();
+    const component0: I_Component = new SpecComponent();
+    const component1: I_Component = new SpecComponentPriority1();
 
     let time0: number = null;
     let time1: number = null;

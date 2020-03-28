@@ -1,6 +1,7 @@
-import { I_Component, I_GameObject } from '../../interfaces';
+import I_Component from './I_Component';
+import { I_GameObject } from '../GameObject';
+import { Entity } from '../Entity';
 import { componentSettings, tickData } from '../../types';
-import Entity from '../Entity';
 
 export default abstract class Component extends Entity implements I_Component {
   public parent: I_GameObject;
