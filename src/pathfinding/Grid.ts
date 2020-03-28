@@ -1,5 +1,5 @@
 import Obstacles from './Obstacles';
-import {NavigatorTile} from './NavigatorTile';
+import { I_NavigatorTile, NavigatorTile } from './NavigatorTile';
 import { Vector } from '../common';
 import { randomInt } from '../util';
 import { row, point, size } from '../interfaces';
@@ -17,20 +17,20 @@ export default class Grid {
   }
 
   /** Returns a tile at the specified coordinates. */
-  getTile({ x, y }: point): NavigatorTile | null {
+  getTile({ x, y }: point): I_NavigatorTile | null {
     const row: row = this.rows[y];
     return row && row.length > x ? row[x] : null;
   }
 
   /** Returns a random tile, can be an obstacle or not. */
-  getRandomTile(): NavigatorTile {
+  getRandomTile(): I_NavigatorTile {
     const x: number = randomInt(0, this.size.width - 1);
     const y: number = randomInt(0, this.size.height - 1);
     return this.getTile({ x, y });
   }
 
   /** Returns a random non-obstacle tile, if it exists. */
-  getRandomFreeTile(): NavigatorTile | null {
+  getRandomFreeTile(): I_NavigatorTile | null {
     return this.obstacles.getRandomOpen();
   }
 

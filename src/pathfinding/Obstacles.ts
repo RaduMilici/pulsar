@@ -1,5 +1,5 @@
 import Grid from './Grid';
-import {NavigatorTile} from './NavigatorTile';
+import { I_NavigatorTile } from './NavigatorTile';
 import { row } from '../interfaces';
 import { contains, findIndex, randomInt } from '../util';
 
@@ -11,45 +11,45 @@ export default class Obstacles {
     this.openList = Array.from(tiles);
   }
 
-  get list(): NavigatorTile[] {
+  get list(): I_NavigatorTile[] {
     return this.closedList;
   }
 
-  add(tile: NavigatorTile): boolean {
+  add(tile: I_NavigatorTile): boolean {
     //tile.isObstacle = true;
     return this.manipulate(true, tile);
   }
 
-  remove(tile: NavigatorTile): boolean {
+  remove(tile: I_NavigatorTile): boolean {
     //tile.isObstacle = false;
     return this.manipulate(false, tile);
   }
 
-  addRandom(count: number = 1): NavigatorTile | row | null {
+  addRandom(count: number = 1): I_NavigatorTile | row | null {
     return this.manipulateMultipleRandom(true, count);
   }
 
-  removeRandom(count: number = 1): NavigatorTile | row | null {
+  removeRandom(count: number = 1): I_NavigatorTile | row | null {
     return this.manipulateMultipleRandom(false, count);
   }
 
-  getRandomOpen(): NavigatorTile | null {
+  getRandomOpen(): I_NavigatorTile | null {
     return this.getRandom(true);
   }
 
-  private getRandom(open: boolean): NavigatorTile | null {
+  private getRandom(open: boolean): I_NavigatorTile | null {
     const list = open ? this.openList : this.closedList;
     const random: number = randomInt(0, list.length - 1);
     const tile = list[random];
     return tile ? tile : null;
   }
 
-  private manipulateMultipleRandom(add: boolean, count: number): NavigatorTile | row | null {
+  private manipulateMultipleRandom(add: boolean, count: number): I_NavigatorTile | row | null {
     const tiles: row = [];
 
     if (count > 0) {
       for (let i = 0; i < count; i++) {
-        const tile: NavigatorTile = this.manipulateSingleRandom(add);
+        const tile: I_NavigatorTile = this.manipulateSingleRandom(add);
         tiles.push(tile);
       }
 
@@ -59,7 +59,7 @@ export default class Obstacles {
     return null;
   }
 
-  private manipulateSingleRandom(add: boolean): NavigatorTile | null {
+  private manipulateSingleRandom(add: boolean): I_NavigatorTile | null {
     const tile = this.getRandom(add);
 
     if (tile) {
@@ -70,15 +70,15 @@ export default class Obstacles {
     return null;
   }
 
-  private manipulate(add: boolean, tile: NavigatorTile): boolean {
+  private manipulate(add: boolean, tile: I_NavigatorTile): boolean {
     const isInvalid: boolean = add ? tile.isObstacle : !tile.isObstacle;
 
     if (isInvalid) {
       return false;
     }
 
-    let list: NavigatorTile[];
-    let otherList: NavigatorTile[];
+    let list: I_NavigatorTile[];
+    let otherList: I_NavigatorTile[];
 
     if (add) {
       list = this.openList;

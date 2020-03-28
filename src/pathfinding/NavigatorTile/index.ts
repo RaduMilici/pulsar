@@ -1,3 +1,4 @@
+import I_NavigatorTile from './I_NavigatorTile';
 import NavigatorTile from './NavigatorTile';
 
-export { NavigatorTile }
+export { I_NavigatorTile, NavigatorTile };

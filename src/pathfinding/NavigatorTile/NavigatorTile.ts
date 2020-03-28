@@ -1,11 +1,11 @@
 import Navigator from '../Navigator';
 import NavigatorData from '../NavigatorData';
-import { id } from '../../interfaces';
 import { Vector } from '../../common';
 import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../../util';
 import { NAVIGATOR_DIAGONAL_COST, NAVIGATOR_VERTICAL_COST } from '../../constants';
+import I_NavigatorTile from './I_NavigatorTile';
 
-export default class NavigatorTile implements id {
+export default class NavigatorTile implements I_NavigatorTile {
   id: string = uniqueId();
   isObstacle: boolean = false;
 

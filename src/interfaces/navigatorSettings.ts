@@ -1,12 +1,13 @@
-import { Grid, NavigatorTile } from '../pathfinding';
+import { Grid } from '../pathfinding';
+import { I_NavigatorTile } from '../pathfinding/NavigatorTile';
 
 type navigatorSettings = {
   maxSteps?: number;
   grid: Grid;
-  begin: NavigatorTile;
-  end: NavigatorTile;
-  onExplore?: (tile: NavigatorTile) => void;
-  onComplete?: (path: NavigatorTile[]) => void;
+  begin: I_NavigatorTile;
+  end: I_NavigatorTile;
+  onExplore?: (tile: I_NavigatorTile) => void;
+  onComplete?: (path: I_NavigatorTile[]) => void;
 };
 
 export default navigatorSettings;

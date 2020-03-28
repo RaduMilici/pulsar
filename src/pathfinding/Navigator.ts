@@ -1,5 +1,5 @@
 import Grid from './Grid';
-import {NavigatorTile} from './NavigatorTile';
+import { I_NavigatorTile } from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import { uniqueId, contains } from '../util';
 import { row, id, navigatorSettings, onExplore, onComplete } from '../interfaces';
@@ -21,8 +21,8 @@ export default class Navigator implements id {
   private registeredTiles: row = [];
   private steps: number = 0;
   private grid: Grid;
-  private begin: NavigatorTile;
-  private end: NavigatorTile;
+  private begin: I_NavigatorTile;
+  private end: I_NavigatorTile;
   private onExplore: onExplore;
   private onComplete: onComplete;
   private maxSteps: number;
@@ -62,16 +62,18 @@ export default class Navigator implements id {
   }
 
   private deregisterNavigatorData(): void {
-    this.registeredTiles.forEach((tile: NavigatorTile) => tile.deregisterNavigatorData(this));
+    this.registeredTiles.forEach((tile: I_NavigatorTile) =>
+      tile.deregisterNavigatorData(this)
+    );
   }
 
-  private calculateH(tile: NavigatorTile): number {
+  private calculateH(tile: I_NavigatorTile): number {
     const colVal: number = Math.abs(tile.position.x - this.end.position.x);
     const rowVal: number = Math.abs(tile.position.y - this.end.position.y);
     return colVal + rowVal;
   }
 
-  private calculateG(tile: NavigatorTile): void {
+  private calculateG(tile: I_NavigatorTile): void {
     const tileNavData = tile.getNavigatorData(this);
     this.addToExplored(tile);
 
@@ -83,7 +85,7 @@ export default class Navigator implements id {
     for (let i = 0; i < TILE_NEIGHBORS_COUNT; i++) {
       const x: number = tile.position.x + Navigator.getColOffset(i);
       const y: number = tile.position.y + Navigator.getRowOffset(i);
-      const exploring: NavigatorTile | null = this.grid.getTile({ x, y });
+      const exploring: I_NavigatorTile | null = this.grid.getTile({ x, y });
 
       if (!exploring) {
         continue;
@@ -127,17 +129,17 @@ export default class Navigator implements id {
       this.onExplore(next);
       this.calculateG(next);
     } else {
-      const path: NavigatorTile[] = this.getPath();
+      const path: I_NavigatorTile[] = this.getPath();
       this.done(path);
     }
   }
 
-  private done(path: NavigatorTile[]) {
+  private done(path: I_NavigatorTile[]) {
     this.deregisterNavigatorData();
     this.onComplete(path);
   }
 
-  private calculateF(tile: NavigatorTile, data: NavigatorData): number {
+  private calculateF(tile: I_NavigatorTile, data: NavigatorData): number {
     const hVal = this.calculateH(tile);
     return data.gVal + hVal;
   }
@@ -161,11 +163,11 @@ export default class Navigator implements id {
   }
 
   private getParent(
-    tile: NavigatorTile,
-    checkTile: NavigatorTile,
+    tile: I_NavigatorTile,
+    checkTile: I_NavigatorTile,
     tileNavData: NavigatorData,
     checkNavData: NavigatorData
-  ): NavigatorTile | null {
+  ): I_NavigatorTile | null {
     if (!checkNavData.parent) {
       checkNavData.parent = tile;
       return tile;
@@ -181,15 +183,15 @@ export default class Navigator implements id {
     return null;
   }
 
-  private chooseNext(): NavigatorTile | null {
-    this.open.sort((a: NavigatorTile, b: NavigatorTile) => {
+  private chooseNext(): I_NavigatorTile | null {
+    this.open.sort((a: I_NavigatorTile, b: I_NavigatorTile) => {
       const aNavData: NavigatorData = a.getNavigatorData(this);
       const bNavData: NavigatorData = b.getNavigatorData(this);
 
       return aNavData.fVal - bNavData.fVal;
     });
 
-    const next: NavigatorTile | undefined = this.open[0];
+    const next: I_NavigatorTile | undefined = this.open[0];
 
     if (!next) {
       return null;
@@ -205,9 +207,9 @@ export default class Navigator implements id {
     return next;
   }
 
-  private getPath(): NavigatorTile[] {
+  private getPath(): I_NavigatorTile[] {
     this._path = [];
-    let current: NavigatorTile = this.end;
+    let current: I_NavigatorTile = this.end;
 
     while (current.id !== this.begin.id) {
       const currentNavData: NavigatorData = current.getNavigatorData(this);
@@ -224,7 +226,7 @@ export default class Navigator implements id {
     return this._path;
   }
 
-  private addToExplored(tile: NavigatorTile): void {
+  private addToExplored(tile: I_NavigatorTile): void {
     if (!contains(this.registeredTiles, tile)) {
       this.registeredTiles.push(tile);
     }
