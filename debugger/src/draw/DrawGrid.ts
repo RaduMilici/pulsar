@@ -24,12 +24,7 @@ export default class DrawGrid extends Draw {
     this.drawSquares.square(tilePosition, squareSide, lineSize, fillColor);
   }
 
-  gridTiles(
-    grid: Grid,
-    tiles: NavigatorTile[],
-    lineSize?: number,
-    fillColor?: string
-  ): void {
+  gridTiles(grid: Grid, tiles: NavigatorTile[], lineSize?: number, fillColor?: string): void {
     tiles.forEach((tile: NavigatorTile) => {
       this.gridTile(grid, tile, lineSize, fillColor);
     });

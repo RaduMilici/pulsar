@@ -43,11 +43,12 @@ export default class Triangulation {
 
   private static MakeHolderTriangle(): Triangle {
     const side: number = Number.MAX_SAFE_INTEGER;
-    const a: Vector = new Vector({ x: side / 2, y: -side });
-    const b: Vector = new Vector({ x: -side, y: side });
-    const c: Vector = new Vector({ x: side, y: side });
 
-    return new Triangle(a, b, c);
+    return new Triangle(
+      new Vector({ x: side / 2, y: -side }),
+      new Vector({ x: -side, y: side }),
+      new Vector({ x: side, y: side })
+    );
   }
 
   private cleanHolderTriangle(): void {
@@ -63,8 +64,6 @@ export default class Triangulation {
   }
 
   private addFinishedTriangulationLines(): void {
-    this.triangles.forEach((triangle: Triangle) => {
-      this.lines.push(...triangle.linesArray);
-    });
+    this.triangles.forEach((triangle: Triangle) => this.lines.push(...triangle.linesArray));
   }
 }

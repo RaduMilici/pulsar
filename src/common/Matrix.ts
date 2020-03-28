@@ -3,9 +3,7 @@ abstract class Matrix {
   columns: number[][] = [];
 
   protected static AddElements(elementsA: number[], elementsB: number[]): number[] {
-    return elementsA.map(
-      (elementA: number, index: number) => elementA + elementsB[index]
-    );
+    return elementsA.map((elementA: number, index: number) => elementA + elementsB[index]);
   }
 
   protected static MultiplyElementsScalar(elements: number[], scalar: number): number[] {
@@ -33,8 +31,7 @@ abstract class Matrix {
 
   private static CrossProduct(row: number[], column: number[]): number {
     return row.reduce(
-      (acc: number, number: number, index: number): number =>
-        acc + number * column[index],
+      (acc: number, number: number, index: number): number => acc + number * column[index],
       0
     );
   }

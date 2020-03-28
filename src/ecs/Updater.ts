@@ -58,9 +58,7 @@ export default class Updater implements I_Updater {
   }
 
   private loopComponentsWithCallback(callback: (component: I_Component) => void): void {
-    this.gameObjects.forEach(({ components }: I_GameObject) =>
-      components.forEach(callback)
-    );
+    this.gameObjects.forEach(({ components }: I_GameObject) => components.forEach(callback));
   }
 
   private update = (): void => {

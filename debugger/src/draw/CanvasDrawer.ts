@@ -23,21 +23,11 @@ export default class CanvasDrawer {
     this.drawPoints.point(position, strokeColor, fillColor, size);
   }
 
-  points(
-    points: Vector[],
-    strokeColor?: string,
-    fillColor?: string,
-    size?: number
-  ): void {
+  points(points: Vector[], strokeColor?: string, fillColor?: string, size?: number): void {
     this.drawPoints.points(points, strokeColor, fillColor, size);
   }
 
-  triangles(
-    triangles: Triangle[],
-    strokeColor?: string,
-    fillColor?: string,
-    size?: number
-  ) {
+  triangles(triangles: Triangle[], strokeColor?: string, fillColor?: string, size?: number) {
     this.drawTriangles.triangles(triangles, strokeColor, fillColor, size);
   }
 
