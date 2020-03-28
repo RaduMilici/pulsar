@@ -1,6 +1,8 @@
-import { Triangle, Vector, Line } from '../../src/common';
-import { v00, v11, v22, v33 } from './fixtures/Vectors';
-import { ab, bc, ca } from './fixtures/Lines';
+import Triangle from './Triangle';
+import Vector from '../Vector';
+import Line from '../Line';
+import { v00, v11, v22, v33 } from '../../../specs/common/fixtures/Vectors';
+import { ab, bc, ca } from '../../../specs/common/fixtures/Lines';
 
 describe('common / Triangle', () => {
   it('stores ab, bc and ca lines', () => {

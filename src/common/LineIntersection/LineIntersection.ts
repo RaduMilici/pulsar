@@ -1,7 +1,7 @@
-import { Matrix2 } from '../common/Matrix';
-import { isNumeric } from '../util';
-import Line from './Line';
-import Vector from '../common/Vector';
+import { Matrix2 } from '../Matrix';
+import { isNumeric } from '../../util';
+import Line from '../Line';
+import Vector from '../Vector';
 
 // https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
 

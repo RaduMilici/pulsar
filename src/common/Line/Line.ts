@@ -1,8 +1,8 @@
-import { id } from '../interfaces';
-import { uniqueId } from '../util';
-import DisjoinedSet from '../triangulation/DisjoinedSet';
-import LineIntersection from './LineIntersection';
-import Vector from './Vector';
+import { id } from '../../interfaces';
+import { uniqueId } from '../../util';
+import DisjoinedSet from '../../triangulation/DisjoinedSet';
+import LineIntersection from '../LineIntersection/LineIntersection';
+import Vector from '../Vector';
 
 export default class Line implements id {
   id: string = uniqueId();

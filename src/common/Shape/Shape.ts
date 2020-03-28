@@ -1,7 +1,7 @@
-import Vector from './Vector';
-import Line from './Line';
-import BoundingBox from './BoundingBox';
-import { isOdd } from '../util';
+import Vector from '../Vector';
+import Line from '../Line';
+import BoundingBox from '../BoundingBox';
+import { isOdd } from '../../util';
 
 export default class Shape {
   readonly lines: Line[];

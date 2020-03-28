@@ -1,5 +1,5 @@
-import { Vector } from '../../src/common';
-import { point } from '../../src/interfaces';
+import Vector from './Vector';
+import { point } from '../../interfaces';
 
 describe('common / Vector', () => {
   xit('set x and y with proper randomFloat accuracy', () => {

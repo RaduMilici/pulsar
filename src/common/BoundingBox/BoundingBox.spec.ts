@@ -1,7 +1,8 @@
-import { BoundingBox, Line, Vector } from '../../src/common';
-import { v00, v01, v11, v10, v33 } from './fixtures/Vectors';
-import { ae, ed, da, af } from './fixtures/Lines';
-import { limits, boundingBoxLines } from '../../src/interfaces';
+import Vector from '../Vector';
+import BoundingBox from './BoundingBox';
+import { v00, v01, v11, v10, v33 } from '../../../specs/common/fixtures/Vectors';
+import { ae, ed, da, af } from '../../../specs/common/fixtures/Lines';
+import { limits, boundingBoxLines } from '../../interfaces';
 
 describe('common / BoundingBox', () => {
   it('should find its four corners', () => {

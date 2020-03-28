@@ -1,6 +1,6 @@
-import { Line, Vector } from '../../src/common';
-import { DisjoinedSet } from '../../src/triangulation';
-import { v00, v11, v22, v33 } from './fixtures/Vectors';
+import { Line, Vector } from '..';
+import { DisjoinedSet } from '../../triangulation';
+import { v00, v11, v22, v33 } from '../../../specs/common/fixtures/Vectors';
 
 describe('common / Line', () => {
   it('set a and b points', () => {

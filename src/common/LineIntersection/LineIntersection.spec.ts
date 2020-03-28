@@ -1,5 +1,6 @@
-import { LineIntersection, Vector } from '../../src/common';
-import { ab, fd } from './fixtures/Lines';
+import LineIntersection from './LineIntersection';
+import Vector from '../Vector';
+import { ab, fd } from '../../../specs/common/fixtures/Lines';
 
 describe('common / LineIntersection', () => {
   it('should know if two lines intersect', () => {

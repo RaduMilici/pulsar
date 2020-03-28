@@ -1,8 +1,8 @@
-import { point } from '../interfaces';
-import { DisjoinedSet } from '../triangulation';
-import { QuadTree } from '../quadtree';
-import { RadToDeg } from '../util/radDeg';
-import { DEFAULT_VECTOR_POSITION } from '../constants';
+import { point } from '../../interfaces';
+import { DisjoinedSet } from '../../triangulation';
+import { QuadTree } from '../../quadtree';
+import { RadToDeg } from '../../util/radDeg';
+import { DEFAULT_VECTOR_POSITION } from '../../constants';
 
 export default class Vector {
   set: DisjoinedSet;

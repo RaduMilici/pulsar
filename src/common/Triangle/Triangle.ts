@@ -1,8 +1,8 @@
-import Vector from './Vector';
-import Line from './Line';
-import { id, triangleLines } from '../interfaces';
-import { uniqueId } from '../util';
-import { Matrix4 } from './Matrix';
+import Vector from '../Vector';
+import Line from '../Line';
+import { id, triangleLines } from '../../interfaces';
+import { uniqueId } from '../../util';
+import { Matrix4 } from '../Matrix';
 
 export default class Triangle implements id {
   id: string = uniqueId();

@@ -1,7 +1,8 @@
-import { Shape, Vector, Line } from '../../src/common';
-import { boundingBoxLines } from '../../src/interfaces';
-import { v00, v01, v03, v11, v10, v30, v33 } from './fixtures/Vectors';
-import { ad, de, ef, af, da, ae, ed } from './fixtures/Lines';
+import Shape from './Shape';
+import Vector from '../Vector';
+import { boundingBoxLines } from '../../interfaces';
+import { v00, v01, v03, v11, v10, v30, v33 } from '../../../specs/common/fixtures/Vectors';
+import { ad, de, ef, af, da, ae, ed } from '../../../specs/common/fixtures/Lines';
 
 describe('common / Shape', () => {
   it('should find its counterclockwise lines', () => {
