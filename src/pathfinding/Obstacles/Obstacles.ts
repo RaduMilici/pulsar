@@ -1,4 +1,4 @@
-import {I_Grid} from '../Grid';
+import { I_Grid } from '../Grid';
 import { I_NavigatorTile } from '../NavigatorTile';
 import { row } from '../../interfaces';
 import { contains, findIndex, randomInt } from '../../util';
