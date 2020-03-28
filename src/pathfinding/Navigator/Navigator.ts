@@ -1,17 +1,18 @@
-import { I_Grid } from './Grid';
-import { I_NavigatorTile } from './NavigatorTile';
-import NavigatorData from './NavigatorData';
-import { uniqueId, contains } from '../util';
-import { row, id, navigatorSettings, onExplore, onComplete } from '../interfaces';
+import { I_Grid } from '../Grid';
+import { I_NavigatorTile } from '../NavigatorTile';
+import NavigatorData from '../NavigatorData';
+import { uniqueId, contains } from '../../util';
+import { row, id, navigatorSettings, onExplore, onComplete } from '../../interfaces';
 import {
   NO_OP,
   NAVIGATOR_MAX_STEPS,
   NAVIGATOR_VERTICAL_COST,
   NAVIGATOR_DIAGONAL_COST,
   TILE_NEIGHBORS_COUNT,
-} from '../constants';
+} from '../../constants';
+import I_Navigator from './I_Navigator';
 
-export default class Navigator implements id {
+export default class Navigator implements I_Navigator {
   readonly id: string = uniqueId();
   private verticalCost: number = NAVIGATOR_VERTICAL_COST;
   private diagonalCost: number = NAVIGATOR_DIAGONAL_COST;

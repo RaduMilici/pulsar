@@ -1,5 +1,5 @@
 import { id } from '../interfaces';
-import Navigator from './Navigator';
+import { I_Navigator } from './Navigator';
 import { I_NavigatorTile } from './NavigatorTile';
 
 export default class NavigatorData implements id {
@@ -9,7 +9,7 @@ export default class NavigatorData implements id {
   fVal: number; // gCost + hCost
   parent: I_NavigatorTile;
 
-  constructor(public readonly navigator: Navigator) {
+  constructor(public readonly navigator: I_Navigator) {
     this.id = navigator.id;
   }
 }
