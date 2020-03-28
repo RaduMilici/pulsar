@@ -1,10 +1,10 @@
 import Vector from '../Vector';
-import Line from '../Line';
+import { I_Line, Line } from '../Line';
 import BoundingBox from '../BoundingBox';
 import { isOdd } from '../../util';
 
 export default class Shape {
-  readonly lines: Line[];
+  readonly lines: I_Line[];
 
   constructor(public readonly points: Vector[]) {
     this.lines = Shape.makeLines(points);
@@ -20,9 +20,9 @@ export default class Shape {
       x: point.x,
       y: Number.MAX_SAFE_INTEGER,
     });
-    const checkLine: Line = new Line(point, checkPoint);
+    const checkLine: I_Line = new Line(point, checkPoint);
 
-    this.lines.forEach((line: Line) => {
+    this.lines.forEach((line: I_Line) => {
       if (line.intersects(checkLine)) {
         intersects++;
       }
@@ -36,19 +36,19 @@ export default class Shape {
   }
 
   private static makeLines(points: Vector[]): Line[] {
-    const lines: Line[] = [];
+    const lines: I_Line[] = [];
     const ccwPoints: Vector[] = Vector.ArrangePointsCCW(points);
 
     for (let i = 1; i < ccwPoints.length; i++) {
       const a: Vector = ccwPoints[i - 1];
       const b: Vector = ccwPoints[i];
-      const ab: Line = new Line(a, b);
+      const ab: I_Line = new Line(a, b);
       lines.push(ab);
     }
 
     const firstPoint: Vector = ccwPoints[0];
     const lastPoint: Vector = ccwPoints[ccwPoints.length - 1];
-    const closingLine: Line = new Line(firstPoint, lastPoint);
+    const closingLine: I_Line = new Line(firstPoint, lastPoint);
 
     lines.push(closingLine);
 

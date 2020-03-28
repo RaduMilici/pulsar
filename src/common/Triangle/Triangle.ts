@@ -1,5 +1,5 @@
 import Vector from '../Vector';
-import Line from '../Line';
+import { I_Line, Line } from '../Line';
 import { id, triangleLines } from '../../interfaces';
 import { uniqueId } from '../../util';
 import { Matrix4 } from '../Matrix';
@@ -24,7 +24,7 @@ export default class Triangle implements id {
     return [this.a, this.b, this.c];
   }
 
-  get linesArray(): Line[] {
+  get linesArray(): I_Line[] {
     return [this.lines.ab, this.lines.bc, this.lines.ca];
   }
 
@@ -87,15 +87,15 @@ export default class Triangle implements id {
     );
   }
 
-  static LinesFromArray(triangles: Triangle[]): Line[] {
-    return triangles.reduce((accumulator: Line[], triangle: Triangle) => {
+  static LinesFromArray(triangles: Triangle[]): I_Line[] {
+    return triangles.reduce((accumulator: I_Line[], triangle: Triangle) => {
       accumulator.push(...triangle.linesArray);
       return accumulator;
     }, []);
   }
 
-  static GetUniqueLines(triangles: Triangle[]): Line[] {
-    const lines: Line[] = Triangle.LinesFromArray(triangles);
-    return lines.filter((line: Line) => Line.IsUnique(line, lines));
+  static GetUniqueLines(triangles: Triangle[]): I_Line[] {
+    const lines: I_Line[] = Triangle.LinesFromArray(triangles);
+    return lines.filter((line: I_Line) => Line.IsUnique(line, lines));
   }
 }

@@ -1,5 +1,5 @@
 import Vector from '../Vector';
-import Line from '../Line';
+import { Line } from '../Line';
 import Shape from '../Shape/Shape';
 import { limits, boundingBoxLines } from '../../interfaces';
 import { immutableObjectSort } from '../../util';

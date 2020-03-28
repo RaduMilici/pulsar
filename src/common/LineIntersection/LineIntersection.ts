@@ -1,6 +1,6 @@
 import { Matrix2 } from '../Matrix';
 import { isNumeric } from '../../util';
-import Line from '../Line';
+import { I_Line } from '../Line';
 import Vector from '../Vector';
 
 // https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
@@ -16,7 +16,7 @@ export default class LineIntersection {
   private readonly y4: number;
   private readonly efghDeterminant: number;
 
-  constructor(private line1: Line, private line2: Line) {
+  constructor(private line1: I_Line, private line2: I_Line) {
     // points
     this.x1 = this.line1.a.x;
     this.y1 = this.line1.a.y;

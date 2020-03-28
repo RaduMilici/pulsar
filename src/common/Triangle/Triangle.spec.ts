@@ -1,6 +1,6 @@
 import Triangle from './Triangle';
 import Vector from '../Vector';
-import Line from '../Line';
+import { I_Line } from '../Line';
 import { v00, v11, v22, v33 } from '../../../specs/common/fixtures/Vectors';
 import { ab, bc, ca } from '../../../specs/common/fixtures/Lines';
 
@@ -71,7 +71,7 @@ describe('common / Triangle', () => {
     const triangle1: Triangle = new Triangle(v00, v11, v22);
     const triangle2: Triangle = new Triangle(v00, v11, v22);
     const triangles: Triangle[] = [triangle1, triangle2];
-    const correct: Line[] = [ab, bc, ca, ab, bc, ca];
+    const correct: I_Line[] = [ab, bc, ca, ab, bc, ca];
 
     expect(Triangle.LinesFromArray(triangles)).toMatchObject(correct);
   });
@@ -80,8 +80,8 @@ describe('common / Triangle', () => {
     const triangle1: Triangle = new Triangle(v00, v11, v22);
     const triangle2: Triangle = new Triangle(v00, v11, v33);
 
-    const unique: Line[] = Triangle.GetUniqueLines([triangle1, triangle2]);
-    const correct: Line[] = [
+    const unique: I_Line[] = Triangle.GetUniqueLines([triangle1, triangle2]);
+    const correct: I_Line[] = [
       triangle1.lines.bc,
       triangle1.lines.ca,
       triangle2.lines.bc,

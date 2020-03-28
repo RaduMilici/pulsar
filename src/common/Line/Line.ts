@@ -1,10 +1,10 @@
-import { id } from '../../interfaces';
 import { uniqueId } from '../../util';
+import I_Line from './I_Line';
 import DisjoinedSet from '../../triangulation/DisjoinedSet';
 import LineIntersection from '../LineIntersection/LineIntersection';
 import Vector from '../Vector';
 
-export default class Line implements id {
+export default class Line implements I_Line {
   id: string = uniqueId();
   constructor(readonly a: Vector, readonly b: Vector) {}
 
@@ -16,21 +16,21 @@ export default class Line implements id {
     return this.a.midpoint(this.b);
   }
 
-  clone(): Line {
+  clone(): I_Line {
     return new Line(this.a, this.b);
   }
 
-  equals(line: Line): boolean {
+  equals(line: I_Line): boolean {
     const equalsNormal: boolean = this.a.equals(line.a) && this.b.equals(line.b);
     const equalsReverse: boolean = this.a.equals(line.b) && this.b.equals(line.a);
     return equalsNormal || equalsReverse;
   }
 
-  intersects(line: Line): boolean {
+  intersects(line: I_Line): boolean {
     return new LineIntersection(this, line).intersects;
   }
 
-  intersectionPoint(line: Line): Vector {
+  intersectionPoint(line: I_Line): Vector {
     return new LineIntersection(this, line).point;
   }
 
@@ -46,18 +46,18 @@ export default class Line implements id {
     }, []);
   }
 
-  static IsUnique(line: Line, lines: Line[]): boolean {
+  static IsUnique(line: I_Line, lines: I_Line[]): boolean {
     return (
-      lines.find((currentLine: Line) => {
+      lines.find((currentLine: I_Line) => {
         return line.id === currentLine.id ? false : line.equals(currentLine);
       }) === undefined
     );
   }
 
-  static RemoveDuplicates(lines: Line[]): Line[] {
-    let clone: Line[] = [...lines];
+  static RemoveDuplicates(lines: I_Line[]): I_Line[] {
+    let clone: I_Line[] = [...lines];
 
-    clone.sort((a: Line, b: Line) => a.length - b.length);
+    clone.sort((a: I_Line, b: I_Line) => a.length - b.length);
 
     for (let i = clone.length - 1; i >= 1; i--) {
       const a = clone[i];
