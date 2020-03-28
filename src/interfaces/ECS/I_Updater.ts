@@ -6,7 +6,7 @@ import { updaterReport } from '../../types';
 export default interface I_Updater extends I_Entity {
   onUpdateComplete: I_Component;
 
-  clear(): void;  
+  clear(): void;
   add(gameObject: I_GameObject): updaterReport[];
   add(component: I_Component): boolean;
   remove(entity: I_GameObject): updaterReport[];
@@ -14,9 +14,5 @@ export default interface I_Updater extends I_Entity {
   toggle(entity: I_GameObject): updaterReport[];
   toggle(component: I_Component): boolean;
   invoke(component: I_Component, time: number): void;
-  invokeRepeating(
-    component: I_Component,
-    time: number,
-    times: number
-  ): void;
+  invokeRepeating(component: I_Component, time: number, times: number): void;
 }

@@ -48,8 +48,14 @@ class Matrix2 extends Matrix {
     readonly d: number = 0
   ) {
     super();
-    this.rows = [[a, b], [c, d]];
-    this.columns = [[a, c], [b, d]];
+    this.rows = [
+      [a, b],
+      [c, d],
+    ];
+    this.columns = [
+      [a, c],
+      [b, d],
+    ];
   }
 
   get elements(): number[] {
@@ -89,8 +95,16 @@ class Matrix3 extends Matrix2 {
     readonly i: number = 0
   ) {
     super(a, b, c, d);
-    this.rows = [[a, b, c], [d, e, f], [g, h, i]];
-    this.columns = [[a, d, g], [b, e, h], [c, f, i]];
+    this.rows = [
+      [a, b, c],
+      [d, e, f],
+      [g, h, i],
+    ];
+    this.columns = [
+      [a, d, g],
+      [b, e, h],
+      [c, f, i],
+    ];
   }
 
   get elements(): number[] {
@@ -141,8 +155,18 @@ class Matrix4 extends Matrix3 {
     readonly p: number = 0
   ) {
     super(a, b, c, d, e, f, g, h, i);
-    this.rows = [[a, b, c, d], [e, f, g, h], [i, j, k, l], [m, n, o, p]];
-    this.columns = [[a, e, i, m], [b, f, j, n], [c, g, k, o], [d, h, l, p]];
+    this.rows = [
+      [a, b, c, d],
+      [e, f, g, h],
+      [i, j, k, l],
+      [m, n, o, p],
+    ];
+    this.columns = [
+      [a, e, i, m],
+      [b, f, j, n],
+      [c, g, k, o],
+      [d, h, l, p],
+    ];
   }
 
   get elements(): number[] {

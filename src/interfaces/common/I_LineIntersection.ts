@@ -1,3 +1,1 @@
-export default interface I_LineIntersection {
-  
-}
+export default interface I_LineIntersection {}

@@ -1,3 +1,1 @@
-export default interface I_Line {
-
-}
+export default interface I_Line {}
