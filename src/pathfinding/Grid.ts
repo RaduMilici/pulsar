@@ -1,5 +1,5 @@
 import Obstacles from './Obstacles';
-import NavigatorTile from './NavigatorTile';
+import {NavigatorTile} from './NavigatorTile';
 import { Vector } from '../common';
 import { randomInt } from '../util';
 import { row, point, size } from '../interfaces';

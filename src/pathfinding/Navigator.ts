@@ -1,5 +1,5 @@
 import Grid from './Grid';
-import NavigatorTile from './NavigatorTile';
+import {NavigatorTile} from './NavigatorTile';
 import NavigatorData from './NavigatorData';
 import { uniqueId, contains } from '../util';
 import { row, id, navigatorSettings, onExplore, onComplete } from '../interfaces';

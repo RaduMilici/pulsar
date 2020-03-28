@@ -1,4 +1,4 @@
-import NavigatorTile from '../pathfinding/NavigatorTile';
+import {NavigatorTile} from '../pathfinding/NavigatorTile';
 
 type row = NavigatorTile[];
 

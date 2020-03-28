@@ -1,5 +1,5 @@
 import Grid from './Grid';
-import NavigatorTile from './NavigatorTile';
+import {NavigatorTile} from './NavigatorTile';
 import { row } from '../interfaces';
 import { contains, findIndex, randomInt } from '../util';
 
