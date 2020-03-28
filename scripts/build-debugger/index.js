@@ -21,6 +21,7 @@ const prepareForBuild = () => {
 const copyIndexToDist = () => {
   const src = `${debuggerRoot}/src/index.html`;
   const dest = `${debuggerRoot}/build/index.html`;
+  fs.ensureDirSync(`${debuggerRoot}/build`);
   fs.copyFileSync(src, dest);
 }
 
