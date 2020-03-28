@@ -1,6 +1,6 @@
-import { Clock } from '../../common';
-import { contains, removeFromArray } from '../../util';
-import { tickData, I_Component, I_GameObject } from '../../interfaces';
+import { Clock } from '../common';
+import { contains, removeFromArray } from '../util';
+import { tickData, I_Component, I_GameObject } from '../interfaces';
 
 export default class Updater {
   private clock: Clock = new Clock();
