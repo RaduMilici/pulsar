@@ -22,9 +22,7 @@ export default class Editor {
   async compile(): Promise<any> {
     const woker = await monaco.languages.typescript.getTypeScriptWorker();
     const proxy = await woker(this.editor.getModel().uri);
-    const result = await proxy.getEmitOutput(
-      this.editor.getModel().uri.toString()
-    );
+    const result = await proxy.getEmitOutput(this.editor.getModel().uri.toString());
     const code: string = result.outputFiles[0].text;
     this.executeCompiledCode(code);
   }
@@ -60,10 +58,7 @@ export default class Editor {
   }
 
   private executeCompiledCode(code: string): void {
-    const compileFunction: Function = new Function(
-      ...this.dependencyNames,
-      code
-    );
+    const compileFunction: Function = new Function(...this.dependencyNames, code);
     compileFunction.apply(null, this.dependencyValues);
   }
 }

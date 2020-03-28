@@ -1,11 +1,4 @@
-import {
-  Vector,
-  Triangle,
-  Line,
-  QuadTree,
-  Grid,
-  NavigatorTile,
-} from '../../../src';
+import { Vector, Triangle, Line, QuadTree, Grid, NavigatorTile } from '../../../src';
 import DrawPoints from './DrawPoints';
 import DrawTriangles from './DrawTriangles';
 import DrawLines from './DrawLines';
@@ -26,12 +19,7 @@ export default class CanvasDrawer {
     this.drawGrid = new DrawGrid(this.context);
   }
 
-  point(
-    position: Vector,
-    strokeColor?: string,
-    fillColor?: string,
-    size?: number
-  ): void {
+  point(position: Vector, strokeColor?: string, fillColor?: string, size?: number): void {
     this.drawPoints.point(position, strokeColor, fillColor, size);
   }
 
@@ -83,11 +71,6 @@ export default class CanvasDrawer {
   }
 
   clear(): void {
-    this.context.clearRect(
-      0,
-      0,
-      this.context.canvas.width,
-      this.context.canvas.height
-    );
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
   }
 }

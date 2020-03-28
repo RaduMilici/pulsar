@@ -27,8 +27,6 @@ export default class DrawSquares extends Draw {
     fillColor?: string,
     lineColor?: string
   ): void {
-    positons.forEach(position =>
-      this.square(position, side, size, fillColor, lineColor)
-    );
+    positons.forEach(position => this.square(position, side, size, fillColor, lineColor));
   }
 }

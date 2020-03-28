@@ -1,18 +1,15 @@
-import Updater from './Updater/Updater';
-import { id, tickData, Update } from '../interfaces';
-import { uniqueId } from '../util';
+import { I_Component, I_GameObject } from '../interfaces';
+import { componentSettings, tickData } from '../types';
 import Entity from './Entity';
 
-export default class Component implements id, Update {
-  readonly id: string = uniqueId();
-  name: string;
-  updater: Updater;
-  entity: Entity;
-  updatePriority: number | null = null;
+export default abstract class Component extends Entity implements I_Component {
+  public parent: I_GameObject;
+  readonly updatePriority: number;
 
-  start(): void {}
-
-  stop(): void {}
+  constructor({ name, updatePriority = null }: componentSettings) {
+    super({ name });
+    this.updatePriority = updatePriority;
+  }
 
   update(tickData: tickData): void {}
 }

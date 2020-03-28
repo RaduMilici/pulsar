@@ -3,6 +3,7 @@ dist/
 debugger/build/
 debugger/src/editor/dtsBundle.ts
 scripts/build-debugger/dtsBuild/
+scripts/madge/dependencyTree.png
 
 # Logs
 logs

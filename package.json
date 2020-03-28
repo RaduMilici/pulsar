@@ -10,10 +10,10 @@
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc --watch",
-    "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
+    "format": "prettier prettier.config.js --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --maxWorkers=4 --watchAll",
-    "madge-circular": "npx madge --circular --extensions ts src",
+    "madge-circular": "madge --circular --extensions ts src",
     "build-debugger": "node scripts/build-debugger/index.js"
   },
   "repository": {

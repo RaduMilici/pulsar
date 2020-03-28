@@ -5,12 +5,8 @@ import * as modes from './modes';
 import { Editor, editorConfig, editorDependencies } from './editor';
 import { Canvas } from './canvas';
 
-const editorContainer: HTMLElement = document.getElementById(
-  'debugger-editor-container'
-);
-const canvasContainer: HTMLElement = document.getElementById(
-  'debugger-canvas-container'
-);
+const editorContainer: HTMLElement = document.getElementById('debugger-editor-container');
+const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-container');
 
 const canvas: Canvas = new Canvas(canvasContainer);
 const extraLibs: editorDependencies[] = [
@@ -20,7 +16,7 @@ const extraLibs: editorDependencies[] = [
 
 const editorConfig: editorConfig = {
   container: editorContainer,
-  value: modes.triangulationMode.code,
+  value: modes.updater.code,
   dependencies: [...extraLibs],
 };
 

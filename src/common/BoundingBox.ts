@@ -48,12 +48,7 @@ export default class BoundingBox {
   }
 
   get shape(): Shape {
-    return new Shape([
-      this.topLeft,
-      this.topRight,
-      this.bottomRight,
-      this.bottomLeft,
-    ]);
+    return new Shape([this.topLeft, this.topRight, this.bottomRight, this.bottomLeft]);
   }
 
   growBy(n: number): void {

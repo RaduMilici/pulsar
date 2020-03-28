@@ -20,22 +20,9 @@ import {
   DegToRad,
   removeFromArray,
 } from './util';
-import { Entity, Component, Updater } from './ecs';
-import {
-  tickData,
-  point,
-  size,
-  limits,
-  row,
-  navigatorSettings,
-} from './interfaces';
-import {
-  randomPoint,
-  randomPoints,
-  randomInt,
-  randomFloat,
-  randomColor,
-} from './util';
+import { GameObject, Component, Updater } from './ecs';
+import { tickData, point, size, limits, row, navigatorSettings } from './interfaces';
+import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util';
 
 export {
   Grid,
@@ -59,7 +46,7 @@ export {
   RadToDeg,
   DegToRad,
   removeFromArray,
-  Entity,
+  GameObject,
   Component,
   Updater,
   tickData,

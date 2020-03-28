@@ -13,12 +13,7 @@ export default class DrawGrid extends Draw {
     this.drawSquares = new DrawSquares(context);
   }
 
-  gridTile(
-    grid: Grid,
-    tile: NavigatorTile,
-    lineSize?: number,
-    fillColor?: string
-  ): void {
+  gridTile(grid: Grid, tile: NavigatorTile, lineSize?: number, fillColor?: string): void {
     const divideBy: number =
       grid.size.width > grid.size.height ? grid.size.width : grid.size.height;
     const squareSide: number = this.pixelWidth / divideBy;
