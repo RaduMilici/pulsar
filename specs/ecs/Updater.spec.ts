@@ -1,4 +1,6 @@
 import { Updater, Component, GameObject } from '../../src/ecs';
+import SpecComponent from './fixtures/SpecComponent';
+import SpecComponentPriority1 from './fixtures/SpecComponentPriority1';
 import SpecGameObject from './fixtures/SpecGameObject';
 
 describe('ecs / Updater', () => {
@@ -35,7 +37,7 @@ describe('ecs / Updater', () => {
     expect(stop).toBe(false);
   });
 
-  it('should only add a component once', () => {
+  it('should only add a GameObject once', () => {
     const updater: Updater = new Updater();
     const gameObject: GameObject = new SpecGameObject();
 
@@ -46,21 +48,7 @@ describe('ecs / Updater', () => {
     expect(add2).toBe(false);
   });
 
-  // it("should only add an entity's components once", () => {
-  //   const updater: Updater = new Updater();
-  //   const entity: SpecEntity = new SpecEntity();
-
-  //   const add1: updaterReport[] = updater.add(entity);
-  //   const add2: updaterReport[] = updater.add(entity);
-
-  //   const successful: any[] = [{ name: 'SpecComponent', success: true }];
-  //   const unsuccessful: any[] = [{ name: 'SpecComponent', success: false }];
-
-  //   expect(add1).toMatchObject(successful);
-  //   expect(add2).toMatchObject(unsuccessful);
-  // });
-
-  it('should only remove a component once', () => {
+  it('should only remove a GameObject once', () => {
     const updater: Updater = new Updater();
     const gameObject: GameObject = new SpecGameObject();
 
@@ -73,62 +61,30 @@ describe('ecs / Updater', () => {
     expect(remove2).toBe(false);
   });
 
-  // it("should only remove an entity's components once", () => {
-  //   const updater: Updater = new Updater();
-  //   const entity: SpecEntity = new SpecEntity();
+  it('should update components using a priority number', () => {
+    const updater: Updater = new Updater();
+    const gameObject: GameObject = new SpecGameObject();
+    const component0: Component = new SpecComponent();
+    const component1: Component = new SpecComponentPriority1();
 
-  //   updater.add(entity);
+    let time0: number = null;
+    let time1: number = null;
 
-  //   const remove1: updaterReport[] = updater.remove(entity);
-  //   const remove2: updaterReport[] = updater.remove(entity);
+    component0.update = () => {
+      time0 = performance.now();
+    };
 
-  //   const successful: any[] = [{ name: 'SpecComponent', success: true }];
-  //   const unsuccessful: any[] = [{ name: 'SpecComponent', success: false }];
+    component1.update = () => {
+      time1 = performance.now();
+    };
 
-  //   expect(remove1).toMatchObject(successful);
-  //   expect(remove2).toMatchObject(unsuccessful);
-  // });
+    gameObject.addComponent(component0);
+    gameObject.addComponent(component1);
 
-  // it('should know if a component is being updated', () => {
-  //   const updater: Updater = new Updater();
-  //   const component: Component = new SpecComponent();
-  //   const gameObject: GameObject = new SpecGameObject();
+    updater.add(gameObject);
+    updater.start();
+    updater.stop();
 
-  //   updater.add(gameObject);
-
-  //   const isUpdated: boolean = updater.isUpdatingComponent(component);
-
-  //   updater.remove(component);
-
-  //   const isNotUpdated: boolean = updater.isUpdatingComponent(component);
-
-  //   expect(isUpdated).toBe(true);
-  //   expect(isNotUpdated).toBe(false);
-  // });
-
-  // it('should update components using a priority number', () => {
-  //   const updater: Updater = new Updater();
-  //   const entity: Entity = new Entity();
-  //   const component0: Component = new SpecComponent(); // update priority 0
-  //   const component1: Component = new Priority1Component(); // update priority 1
-
-  //   let time0: number = null;
-  //   let time1: number = null;
-
-  //   component0.update = () => {
-  //     time0 = performance.now();
-  //   };
-
-  //   component1.update = () => {
-  //     time1 = performance.now();
-  //   };
-
-  //   entity.components.push(component0, component1);
-
-  //   updater.add(entity);
-  //   updater.start();
-  //   updater.stop();
-
-  //   expect(time0).toBeLessThan(time1);
-  // });
+    expect(time0).toBeLessThan(time1);
+  });
 });

@@ -1,4 +1,4 @@
-import { Component } from '../../../../src/ecs';
+import { Component } from '../../../src/ecs';
 
 export default class Priority1Component extends Component {
   constructor() {

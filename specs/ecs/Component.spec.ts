@@ -2,11 +2,15 @@ import { Component, Updater, GameObject } from '../../src/ecs';
 import { tickData } from '../../src/interfaces';
 import SpecGameObject from './fixtures/SpecGameObject';
 
-let startMock: any;
-let stopMock: any;
-let updateMock: any;
+const startMock: any = jest.fn();
+const stopMock: any = jest.fn();
+const updateMock: any = jest.fn();
 
 class MyComponent extends Component {
+  constructor() {
+    super({ name: 'MyComponent' });
+  }
+
   start() {
     startMock();
   }
@@ -22,14 +26,14 @@ class MyComponent extends Component {
 
 describe('ecs / Component', () => {
   beforeEach(() => {
-    startMock = jest.fn();
-    stopMock = jest.fn();
-    updateMock = jest.fn();
+    startMock.mockReset();
+    stopMock.mockReset();
+    updateMock.mockReset();
   });
 
   it.only('should have its lifecycle hooks called by Updater', () => {
     const updater: Updater = new Updater();
-    const component: MyComponent = new MyComponent({ name: 'MyComponent' });
+    const component: MyComponent = new MyComponent();
     const gameObject: GameObject = new SpecGameObject();
 
     gameObject.addComponent(component);
@@ -44,7 +48,7 @@ describe('ecs / Component', () => {
 
   it('should call update with a tickData argument', () => {
     const updater: Updater = new Updater();
-    const component: MyComponent = new MyComponent({ name: 'MyComponent' });
+    const component: MyComponent = new MyComponent();
     const gameObject: GameObject = new SpecGameObject();
 
     gameObject.addComponent(component);

@@ -1,4 +1,4 @@
-import { Component } from '../../../../src/ecs';
+import { Component } from '../../../src/ecs';
 
 export default class SpecComponent extends Component {
   constructor() {
