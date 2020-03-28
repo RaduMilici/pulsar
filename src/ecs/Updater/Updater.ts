@@ -1,6 +1,6 @@
-import { Clock } from '../common';
-import { contains, removeFromArray } from '../util';
-import { tickData, I_Component, I_GameObject, I_Updater } from '../interfaces';
+import { Clock } from '../../common';
+import { contains, removeFromArray } from '../../util';
+import { tickData, I_Component, I_GameObject, I_Updater } from '../../interfaces';
 
 export default class Updater implements I_Updater {
   readonly id: string = 'Updater';

@@ -1,7 +1,9 @@
-import { Updater, Component, GameObject } from '../../src/ecs';
-import SpecComponent from './fixtures/SpecComponent';
-import SpecComponentPriority1 from './fixtures/SpecComponentPriority1';
-import SpecGameObject from './fixtures/SpecGameObject';
+import Updater from '../Updater';
+import Component from '../Component';
+import GameObject from '../GameObject';
+import SpecComponent from '../../../specs/ecs/fixtures/SpecComponent';
+import SpecComponentPriority1 from '../../../specs/ecs/fixtures/SpecComponentPriority1';
+import SpecGameObject from '../../../specs/ecs/fixtures/SpecGameObject';
 
 describe('ecs / Updater', () => {
   it('should start only once', () => {

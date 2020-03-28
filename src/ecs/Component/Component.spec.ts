@@ -1,6 +1,8 @@
-import { Component, Updater, GameObject } from '../../src/ecs';
-import { tickData } from '../../src/interfaces';
-import SpecGameObject from './fixtures/SpecGameObject';
+import Component from './Component';
+import Updater from '../Updater';
+import GameObject from '../GameObject';
+import { tickData } from '../../interfaces';
+import SpecGameObject from '../../../specs/ecs/fixtures/SpecGameObject';
 
 const startMock: any = jest.fn();
 const stopMock: any = jest.fn();
