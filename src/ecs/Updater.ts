@@ -5,7 +5,7 @@ import { tickData, I_Component, I_GameObject, I_Updater } from '../interfaces';
 export default class Updater implements I_Updater {
   readonly id: string = 'Updater';
   readonly name: string = 'Updater';
-  
+
   private clock: Clock = new Clock();
   private gameObjects: I_GameObject[] = [];
   private isRunning: boolean = false;
@@ -58,9 +58,9 @@ export default class Updater implements I_Updater {
   }
 
   private loopComponentsWithCallback(callback: (component: I_Component) => void): void {
-    this.gameObjects.forEach(({ components }: I_GameObject) => {
-      components.forEach(callback);
-    });
+    this.gameObjects.forEach(({ components }: I_GameObject) =>
+      components.forEach(callback)
+    );
   }
 
   private update = (): void => {
