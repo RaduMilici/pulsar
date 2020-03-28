@@ -1,12 +1,12 @@
 import { Vector, Line, Triangle } from '../common';
-import Triangulation from './Triangulation';
+import { I_Triangulation } from './Triangulation';
 
 export default class Hull {
   readonly lines: Line[] = [];
   private _points: Vector[];
   private readonly triangles: Triangle[];
 
-  constructor({ triangles }: Triangulation) {
+  constructor({ triangles }: I_Triangulation) {
     this.triangles = triangles;
   }
 

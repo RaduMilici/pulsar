@@ -1,19 +1,14 @@
-import { Vector, Line, Triangle } from '../common';
-import Hull from './Hull';
-import MinimumSpanningTree from './MinimumSpanningTree';
+import { Vector, Line, Triangle } from '../../common';
+import I_Triangulation from './I_Triangulation';
 
-export default class Triangulation {
+export default class Triangulation implements I_Triangulation {
   readonly lines: Line[] = [];
   readonly triangles: Triangle[] = [];
-  readonly MST: MinimumSpanningTree;
-  readonly hull: Hull;
   private holderTriangle: Triangle = Triangulation.MakeHolderTriangle();
 
   constructor(readonly points: Vector[]) {
     this.triangles.push(this.holderTriangle);
     this.triangulate();
-    this.hull = new Hull(this);
-    this.MST = new MinimumSpanningTree(this);
   }
 
   private triangulate(): void {
