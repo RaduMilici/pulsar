@@ -1,5 +1,5 @@
 import { Updater } from '../Updater';
-import { Component, I_Component } from '../Component';
+import { I_Component } from '../Component';
 import { GameObject } from '../GameObject';
 import SpecComponent from '../../../specs/ecs/fixtures/SpecComponent';
 import SpecComponentPriority1 from '../../../specs/ecs/fixtures/SpecComponentPriority1';
