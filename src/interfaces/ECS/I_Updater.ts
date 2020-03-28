@@ -1,5 +1,4 @@
 import I_Entity from './I_Entity';
-import I_Component from './I_Component';
 import I_GameObject from './I_GameObject';
 
 export default interface I_Updater extends I_Entity {
