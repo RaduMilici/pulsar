@@ -1,4 +1,4 @@
-import Obstacles from '../Obstacles';
+import { I_Obstacles, Obstacles } from '../Obstacles';
 import { I_NavigatorTile, NavigatorTile } from '../NavigatorTile';
 import { Vector } from '../../common';
 import { randomInt } from '../../util';
@@ -7,7 +7,7 @@ import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../../constants';
 import I_Grid from './I_Grid';
 
 export default class Grid implements I_Grid {
-  readonly obstacles: Obstacles;
+  readonly obstacles: I_Obstacles;
   readonly tiles: row = [];
   readonly rows: row[] = [];
 

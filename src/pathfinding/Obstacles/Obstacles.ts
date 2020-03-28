@@ -1,13 +1,14 @@
-import Grid from './Grid/Grid';
-import { I_NavigatorTile } from './NavigatorTile';
-import { row } from '../interfaces';
-import { contains, findIndex, randomInt } from '../util';
+import {I_Grid} from '../Grid';
+import { I_NavigatorTile } from '../NavigatorTile';
+import { row } from '../../interfaces';
+import { contains, findIndex, randomInt } from '../../util';
+import I_Obstacles from './I_Obstacles';
 
-export default class Obstacles {
+export default class Obstacles implements I_Obstacles {
   private readonly openList: row = [];
   private readonly closedList: row = [];
 
-  constructor({ tiles }: Grid) {
+  constructor({ tiles }: I_Grid) {
     this.openList = Array.from(tiles);
   }
 
