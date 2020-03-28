@@ -3,7 +3,7 @@ import { contains, removeFromArray } from '../../util';
 import { tickData } from '../../interfaces';
 import { I_Component } from '../Component';
 import { I_GameObject } from '../GameObject';
-import { I_Updater } from '../Updater';
+import I_Updater from './I_Updater';
 
 export default class Updater implements I_Updater {
   readonly id: string = 'Updater';
