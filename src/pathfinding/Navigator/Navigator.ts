@@ -1,8 +1,8 @@
 import { I_Grid } from '../Grid';
 import { I_NavigatorTile } from '../NavigatorTile';
-import NavigatorData from '../NavigatorData/NavigatorData';
+import I_NavigatorData from '../NavigatorData/I_NavigatorData';
 import { uniqueId, contains } from '../../util';
-import { row, id, navigatorSettings, onExplore, onComplete } from '../../interfaces';
+import { row, navigatorSettings, onExplore, onComplete } from '../../interfaces';
 import {
   NO_OP,
   NAVIGATOR_MAX_STEPS,
@@ -22,11 +22,11 @@ export default class Navigator implements I_Navigator {
   private registeredTiles: row = [];
   private steps: number = 0;
   private grid: I_Grid;
-  private begin: I_NavigatorTile;
-  private end: I_NavigatorTile;
-  private onExplore: onExplore;
-  private onComplete: onComplete;
-  private maxSteps: number;
+  private readonly begin: I_NavigatorTile;
+  private readonly end: I_NavigatorTile;
+  private readonly onExplore: onExplore;
+  private readonly onComplete: onComplete;
+  private readonly maxSteps: number;
 
   constructor({
     grid,
@@ -54,7 +54,7 @@ export default class Navigator implements I_Navigator {
       return false;
     }
     this.closed.push(this.begin);
-    const beginNavData: NavigatorData = this.begin.getNavigatorData(this);
+    const beginNavData: I_NavigatorData = this.begin.getNavigatorData(this);
     this.addToExplored(this.begin);
 
     beginNavData.gVal = 0;
@@ -92,7 +92,7 @@ export default class Navigator implements I_Navigator {
         continue;
       }
 
-      const exploringNavData: NavigatorData = exploring.getNavigatorData(this);
+      const exploringNavData: I_NavigatorData = exploring.getNavigatorData(this);
       this.addToExplored(exploring);
 
       if (exploring.isObstacle) {
@@ -140,7 +140,7 @@ export default class Navigator implements I_Navigator {
     this.onComplete(path);
   }
 
-  private calculateF(tile: I_NavigatorTile, data: NavigatorData): number {
+  private calculateF(tile: I_NavigatorTile, data: I_NavigatorData): number {
     const hVal = this.calculateH(tile);
     return data.gVal + hVal;
   }
@@ -166,8 +166,8 @@ export default class Navigator implements I_Navigator {
   private getParent(
     tile: I_NavigatorTile,
     checkTile: I_NavigatorTile,
-    tileNavData: NavigatorData,
-    checkNavData: NavigatorData
+    tileNavData: I_NavigatorData,
+    checkNavData: I_NavigatorData
   ): I_NavigatorTile | null {
     if (!checkNavData.parent) {
       checkNavData.parent = tile;
@@ -186,8 +186,8 @@ export default class Navigator implements I_Navigator {
 
   private chooseNext(): I_NavigatorTile | null {
     this.open.sort((a: I_NavigatorTile, b: I_NavigatorTile) => {
-      const aNavData: NavigatorData = a.getNavigatorData(this);
-      const bNavData: NavigatorData = b.getNavigatorData(this);
+      const aNavData: I_NavigatorData = a.getNavigatorData(this);
+      const bNavData: I_NavigatorData = b.getNavigatorData(this);
 
       return aNavData.fVal - bNavData.fVal;
     });
@@ -213,7 +213,7 @@ export default class Navigator implements I_Navigator {
     let current: I_NavigatorTile = this.end;
 
     while (current.id !== this.begin.id) {
-      const currentNavData: NavigatorData = current.getNavigatorData(this);
+      const currentNavData: I_NavigatorData = current.getNavigatorData(this);
       this._path.push(current);
 
       if (currentNavData.parent) {
