@@ -1,7 +1,7 @@
-import { point } from '../../interfaces';
-import { DisjoinedSet } from '../../triangulation';
-import { QuadTree } from '../../quadtree';
-import { RadToDeg } from '../../util/radDeg';
+import point from '../../interfaces/point';
+import DisjoinedSet from '../../triangulation/DisjoinedSet';
+import QuadTree from '../../quadtree/QuadTree';
+import { RadToDeg } from '../../util';
 import { DEFAULT_VECTOR_POSITION } from '../../constants';
 
 export default class Vector {
@@ -22,8 +22,7 @@ export default class Vector {
   magnitude(): number {
     const x: number = this.x * this.x;
     const y: number = this.y * this.y;
-    const magnitude: number = Math.sqrt(x + y);
-    return magnitude;
+    return Math.sqrt(x + y);
   }
 
   dotProduct({ x, y }: Vector): number {
@@ -138,7 +137,7 @@ export default class Vector {
 
   static ArrangePointsCCW(points: Vector[]): Vector[] {
     const centroid: Vector = Vector.FindPolyCentroid(points);
-    let clone: Vector[] = [...points];
+    const clone: Vector[] = [...points];
 
     clone.sort((a: Vector, b: Vector) => {
       const angleA: number = Math.atan2(a.y - centroid.y, a.x - centroid.x);
@@ -150,13 +149,10 @@ export default class Vector {
   }
 
   static UniqueFromArray(points: Vector[]): Vector[] {
-    const isUnique = (vector: Vector, index: number, array: Vector[]) => {
-      return (
-        array.findIndex((vectorIndex: Vector) => {
-          return vector.equals(vectorIndex);
-        }) === index
-      );
-    };
+    const isUnique = (vector: Vector, index: number, array: Vector[]) =>
+      array.findIndex((vectorIndex: Vector) => {
+        return vector.equals(vectorIndex);
+      }) === index;
 
     return points.filter(isUnique);
   }
