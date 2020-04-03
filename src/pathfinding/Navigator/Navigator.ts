@@ -1,6 +1,7 @@
-import { I_Grid } from '../Grid';
-import { I_NavigatorTile } from '../NavigatorTile';
+import I_Grid from '../Grid/I_Grid';
+import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 import I_NavigatorData from '../NavigatorData/I_NavigatorData';
+import I_Navigator from './I_Navigator';
 import { uniqueId, contains } from '../../util';
 import { row, navigatorSettings, onExplore, onComplete } from '../../interfaces';
 import {
@@ -10,7 +11,6 @@ import {
   NAVIGATOR_DIAGONAL_COST,
   TILE_NEIGHBORS_COUNT,
 } from '../../constants';
-import I_Navigator from './I_Navigator';
 
 export default class Navigator implements I_Navigator {
   readonly id: string = uniqueId();
@@ -75,7 +75,7 @@ export default class Navigator implements I_Navigator {
   }
 
   private calculateG(tile: I_NavigatorTile): void {
-    const tileNavData = tile.getNavigatorData(this);
+    const tileNavData: I_NavigatorData = tile.getNavigatorData(this);
     this.addToExplored(tile);
 
     if (++this.steps === this.maxSteps) {
@@ -92,7 +92,6 @@ export default class Navigator implements I_Navigator {
         continue;
       }
 
-      const exploringNavData: I_NavigatorData = exploring.getNavigatorData(this);
       this.addToExplored(exploring);
 
       if (exploring.isObstacle) {
@@ -102,6 +101,8 @@ export default class Navigator implements I_Navigator {
       if (contains(this.closed, exploring)) {
         continue;
       }
+
+      const exploringNavData: I_NavigatorData = exploring.getNavigatorData(this);
 
       if (tile.id === exploring.id) {
         this.closed.push(exploring);

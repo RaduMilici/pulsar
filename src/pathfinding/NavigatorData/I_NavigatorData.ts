@@ -1,8 +1,7 @@
-import { id } from '../../interfaces';
+import id from '../../interfaces/id';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 
-export default interface NavigatorData extends id {
-  id: string;
+export default interface I_NavigatorData extends id {
   hVal: number;
   gVal: number;
   fVal: number;

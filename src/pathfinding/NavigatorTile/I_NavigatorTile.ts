@@ -1,10 +1,9 @@
 import I_Navigator from '../Navigator/I_Navigator';
 import I_NavigatorData from '../NavigatorData/I_NavigatorData';
 import Vector from '../../common/Vector/Vector';
-import { id } from '../../interfaces';
+import id from '../../interfaces/id';
 
 export default interface I_NavigatorTile extends id {
-  id: string;
   isObstacle: boolean;
   readonly position: Vector;
 

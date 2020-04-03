@@ -1,4 +1,4 @@
-import { id } from '../../interfaces';
+import id from '../../interfaces/id';
 import I_Navigator from '../Navigator/I_Navigator';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 
