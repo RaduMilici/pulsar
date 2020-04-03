@@ -1,20 +1,22 @@
-import { Vector, Shape } from '../common';
+import I_Vector from '../common/Vector/I_Vector';
+import Shape from '../common/Shape/Shape';
+import Vector from '../common/Vector/Vector';
 
 export default class QuadTree {
   parent: QuadTree;
 
   readonly children: QuadTree[] = [];
-  readonly containedPoints: Vector[] = [];
+  readonly containedPoints: I_Vector[] = [];
 
   private capacity: number = 1;
 
-  constructor(public shape: Shape, private points: Vector[], public level: number = 0) {
+  constructor(public shape: Shape, private points: I_Vector[], public level: number = 0) {
     this.start(points);
   }
 
-  private start(points: Vector[]): void {
+  private start(points: I_Vector[]): void {
     for (let i = 0; i < points.length; i++) {
-      const point: Vector = points[i];
+      const point: I_Vector = points[i];
 
       if (!this.shape.containsPoint(point)) {
         continue;
@@ -44,7 +46,7 @@ export default class QuadTree {
     return children.length ? children : null;
   }
 
-  findChildThatContains(point: Vector): QuadTree {
+  findChildThatContains(point: I_Vector): QuadTree {
     const contains: boolean = this.shape.containsPoint(point);
     const hasChildren: boolean = this.children.length > 0;
 
@@ -73,10 +75,10 @@ export default class QuadTree {
     }
   }
 
-  divide(points: Vector[]): void {
+  divide(points: I_Vector[]): void {
     const { topLeft, topRight, bottomLeft, bottomRight } = this.shape.boundingBox;
     const { top, bottom, left, right } = this.shape.boundingBox.midpoints;
-    const centroid: Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
+    const centroid: I_Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
 
     const nextLevel: number = this.level + 1;
 

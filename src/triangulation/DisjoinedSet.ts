@@ -1,12 +1,12 @@
-import { id } from '../interfaces';
+import id from '../interfaces/id';
 import { uniqueId } from '../util';
-import { Vector } from '../common';
+import I_Vector from '../common/Vector/I_Vector';
 
 export default class DisjoinedSet implements id {
   id: string = uniqueId();
-  readonly points: Vector[];
+  readonly points: I_Vector[];
 
-  constructor(point: Vector) {
+  constructor(point: I_Vector) {
     this.points = [point];
   }
 
@@ -15,7 +15,7 @@ export default class DisjoinedSet implements id {
   }
 
   merge({ points }: DisjoinedSet): DisjoinedSet {
-    points.forEach((point: Vector) => {
+    points.forEach((point: I_Vector) => {
       point.set = this;
       this.points.push(point);
     });

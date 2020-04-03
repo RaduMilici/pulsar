@@ -3,8 +3,9 @@ import DisjoinedSet from '../../triangulation/DisjoinedSet';
 import QuadTree from '../../quadtree/QuadTree';
 import { RadToDeg } from '../../util';
 import { DEFAULT_VECTOR_POSITION } from '../../constants';
+import I_Vector from './I_Vector';
 
-export default class Vector {
+export default class Vector implements I_Vector {
   set: DisjoinedSet;
   quadTree: QuadTree;
   x: number;
@@ -15,7 +16,7 @@ export default class Vector {
     this.y = y;
   }
 
-  clone(): Vector {
+  clone(): I_Vector {
     return new Vector({ x: this.x, y: this.y });
   }
 
@@ -25,32 +26,32 @@ export default class Vector {
     return Math.sqrt(x + y);
   }
 
-  dotProduct({ x, y }: Vector): number {
+  dotProduct({ x, y }: I_Vector): number {
     return this.x * x + this.y * y;
   }
 
-  add(vector: Vector): Vector {
+  add(vector: I_Vector): I_Vector {
     const x: number = this.x + vector.x;
     const y: number = this.y + vector.y;
 
     return new Vector({ x, y });
   }
 
-  sub(vector: Vector): Vector {
+  sub(vector: I_Vector): I_Vector {
     const x: number = this.x + -vector.x;
     const y: number = this.y + -vector.y;
 
     return new Vector({ x, y });
   }
 
-  multiplyScalar(scalar: number): Vector {
+  multiplyScalar(scalar: number): I_Vector {
     const x: number = this.x * scalar;
     const y: number = this.y * scalar;
 
     return new Vector({ x, y });
   }
 
-  normalize(): Vector {
+  normalize(): I_Vector {
     const magnitude: number = this.magnitude();
     const x: number = this.x / magnitude;
     const y: number = this.y / magnitude;
@@ -58,73 +59,73 @@ export default class Vector {
     return new Vector({ x, y });
   }
 
-  lerp(vector: Vector, alpha: number): Vector {
+  lerp(vector: I_Vector, alpha: number): I_Vector {
     const x = this.x + (vector.x - this.x) * alpha;
     const y = this.y + (vector.y - this.y) * alpha;
 
     return new Vector({ x, y });
   }
 
-  negative(): Vector {
+  negative(): I_Vector {
     const x: number = -this.x;
     const y: number = -this.y;
 
     return new Vector({ x, y });
   }
 
-  perpendicular(): { left: Vector; right: Vector } {
-    const right: Vector = new Vector({ x: -this.y, y: this.x });
-    const left: Vector = new Vector({ x: this.y, y: -this.x });
+  perpendicular(): { left: I_Vector; right: I_Vector } {
+    const right: I_Vector = new Vector({ x: -this.y, y: this.x });
+    const left: I_Vector = new Vector({ x: this.y, y: -this.x });
 
     return { left, right };
   }
 
-  scale(length: number): Vector {
-    const normalized: Vector = this.normalize();
+  scale(length: number): I_Vector {
+    const normalized: I_Vector = this.normalize();
     const x: number = normalized.x * length;
     const y: number = normalized.y * length;
 
     return new Vector({ x, y });
   }
 
-  angleDeg(vector: Vector): number {
+  angleDeg(vector: I_Vector): number {
     const angle: number = this.angle(vector);
     return RadToDeg(angle);
   }
 
-  angleRad(vector: Vector): number {
+  angleRad(vector: I_Vector): number {
     return this.angle(vector);
   }
 
-  bisector(vector: Vector): Vector {
-    const normalized: Vector = this.normalize();
-    const normalizedVector: Vector = vector.normalize();
-    const sum: Vector = normalized.add(normalizedVector);
+  bisector(vector: I_Vector): I_Vector {
+    const normalized: I_Vector = this.normalize();
+    const normalizedVector: I_Vector = vector.normalize();
+    const sum: I_Vector = normalized.add(normalizedVector);
     const magnitude: number = (this.magnitude() + vector.magnitude()) / 2;
 
     return sum.scale(magnitude);
   }
 
-  equals(vector: Vector): boolean {
+  equals(vector: I_Vector): boolean {
     return this.x === vector.x && this.y === vector.y;
   }
 
-  distanceTo(vector: Vector): number {
+  distanceTo(vector: I_Vector): number {
     return this.sub(vector).magnitude();
   }
 
-  midpoint(vector: Vector): Vector {
+  midpoint(vector: I_Vector): I_Vector {
     const x: number = (this.x + vector.x) / 2;
     const y: number = (this.y + vector.y) / 2;
 
     return new Vector({ x, y });
   }
 
-  static FindPolyCentroid(points: Vector[]): Vector {
+  static FindPolyCentroid(points: I_Vector[]): I_Vector {
     let x = 0;
     let y = 0;
 
-    points.forEach((point: Vector) => {
+    points.forEach((point: I_Vector) => {
       x += point.x;
       y += point.y;
     });
@@ -135,11 +136,11 @@ export default class Vector {
     return new Vector({ x, y });
   }
 
-  static ArrangePointsCCW(points: Vector[]): Vector[] {
-    const centroid: Vector = Vector.FindPolyCentroid(points);
-    const clone: Vector[] = [...points];
+  static ArrangePointsCCW(points: I_Vector[]): I_Vector[] {
+    const centroid: I_Vector = Vector.FindPolyCentroid(points);
+    const clone: I_Vector[] = [...points];
 
-    clone.sort((a: Vector, b: Vector) => {
+    clone.sort((a: I_Vector, b: I_Vector) => {
       const angleA: number = Math.atan2(a.y - centroid.y, a.x - centroid.x);
       const angleB: number = Math.atan2(b.y - centroid.y, b.x - centroid.x);
       return angleA - angleB;
@@ -148,16 +149,16 @@ export default class Vector {
     return clone;
   }
 
-  static UniqueFromArray(points: Vector[]): Vector[] {
-    const isUnique = (vector: Vector, index: number, array: Vector[]) =>
-      array.findIndex((vectorIndex: Vector) => {
+  static UniqueFromArray(points: I_Vector[]): I_Vector[] {
+    const isUnique = (vector: I_Vector, index: number, array: I_Vector[]) =>
+      array.findIndex((vectorIndex: I_Vector) => {
         return vector.equals(vectorIndex);
       }) === index;
 
     return points.filter(isUnique);
   }
 
-  private angle(vector: Vector): number {
+  private angle(vector: I_Vector): number {
     const product: number = this.dotProduct(vector);
     const cosAngle: number = product / (this.magnitude() * vector.magnitude());
     return Math.acos(cosAngle);

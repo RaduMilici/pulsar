@@ -1,4 +1,5 @@
-import Vector from '../Vector';
+import Vector from '../Vector/Vector';
+import I_Vector from '../Vector/I_Vector';
 import { Line } from '../Line';
 import Shape from '../Shape/Shape';
 import { limits, boundingBoxLines } from '../../interfaces';
@@ -11,10 +12,10 @@ import { immutableObjectSort } from '../../util';
 
 export default class BoundingBox {
   // points
-  topLeft: Vector;
-  topRight: Vector;
-  bottomRight: Vector;
-  bottomLeft: Vector;
+  topLeft: I_Vector;
+  topRight: I_Vector;
+  bottomRight: I_Vector;
+  bottomLeft: I_Vector;
 
   readonly lines: boundingBoxLines = {
     top: null,
@@ -25,7 +26,7 @@ export default class BoundingBox {
 
   limits: limits;
 
-  constructor(private readonly points: Vector[]) {
+  constructor(private readonly points: I_Vector[]) {
     this.findCorners();
     this.makeLines();
     this.findLimits();
@@ -63,8 +64,8 @@ export default class BoundingBox {
   }
 
   private findCorners(): void {
-    const sortedX: Vector[] = immutableObjectSort(this.points, 'x');
-    const sortedY: Vector[] = immutableObjectSort(this.points, 'y');
+    const sortedX: I_Vector[] = immutableObjectSort(this.points, 'x');
+    const sortedY: I_Vector[] = immutableObjectSort(this.points, 'y');
 
     const firstX = sortedX[0];
     const firstY = sortedY[0];
@@ -85,10 +86,11 @@ export default class BoundingBox {
   }
 
   private findLimits(): void {
-    const top: Vector = this.topLeft.midpoint(this.topRight);
-    const bottom: Vector = this.bottomLeft.midpoint(this.bottomRight);
-    const left: Vector = this.topLeft.midpoint(this.bottomLeft);
-    const right: Vector = this.topRight.midpoint(this.bottomRight);
+    const top: I_Vector = this.topLeft.midpoint(this.topRight);
+    const bottom: I_Vector = this.bottomLeft.midpoint(this.bottomRight);
+    const left: I_Vector = this.topLeft.midpoint(this.bottomLeft);
+    const right: I_Vector = this.topRight.midpoint(this.bottomRight);
+
     this.limits = { top, bottom, left, right };
   }
 }

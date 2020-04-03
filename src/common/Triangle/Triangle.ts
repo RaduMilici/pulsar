@@ -1,14 +1,17 @@
-import Vector from '../Vector';
-import { I_Line, Line } from '../Line';
-import { id, triangleLines } from '../../interfaces';
+import I_Vector from '../Vector/I_Vector';
+import I_Line from '../Line/I_Line';
+import I_Triangle from './I_Triangle';
+import Vector from '../Vector/Vector';
+import Line from '../Line/Line';
+import Matrix4 from '../Matrix/Matrix4';
+import { triangleLines } from '../../interfaces';
 import { uniqueId } from '../../util';
-import { Matrix4 } from '../Matrix';
 
-export default class Triangle implements id {
+export default class Triangle implements I_Triangle {
   id: string = uniqueId();
   readonly lines: triangleLines;
 
-  constructor(readonly a: Vector, readonly b: Vector, readonly c: Vector) {
+  constructor(readonly a: I_Vector, readonly b: I_Vector, readonly c: I_Vector) {
     this.lines = {
       ab: new Line(a, b),
       bc: new Line(b, c),
@@ -16,11 +19,11 @@ export default class Triangle implements id {
     };
   }
 
-  get centroid(): Vector {
+  get centroid(): I_Vector {
     return Vector.FindPolyCentroid(this.points);
   }
 
-  get points(): Vector[] {
+  get points(): I_Vector[] {
     return [this.a, this.b, this.c];
   }
 
@@ -46,7 +49,7 @@ export default class Triangle implements id {
     return sameAB && sameBC && sameCA;
   }
 
-  isPointInCircumcircle(point: Vector): boolean {
+  isPointInCircumcircle(point: I_Vector): boolean {
     const ax = this.a.x;
     const ay = this.a.y;
     const bx = this.b.x;
@@ -75,20 +78,20 @@ export default class Triangle implements id {
     return matrix.determine() < 0;
   }
 
-  hasPoint(point: Vector): boolean {
+  hasPoint(point: I_Vector): boolean {
     return this.a.equals(point) || this.b.equals(point) || this.c.equals(point);
   }
 
-  hasAnyPoint(points: Vector[]): boolean {
+  hasAnyPoint(points: I_Vector[]): boolean {
     return (
-      points.filter((point: Vector) => {
+      points.filter((point: I_Vector) => {
         return this.hasPoint(point);
       }).length !== 0
     );
   }
 
-  static LinesFromArray(triangles: Triangle[]): I_Line[] {
-    return triangles.reduce((accumulator: I_Line[], triangle: Triangle) => {
+  static LinesFromArray(triangles: I_Triangle[]): I_Line[] {
+    return triangles.reduce((accumulator: I_Line[], triangle: I_Triangle) => {
       accumulator.push(...triangle.linesArray);
       return accumulator;
     }, []);

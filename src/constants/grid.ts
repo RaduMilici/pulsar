@@ -1,4 +1,4 @@
-import { size } from '../interfaces';
+import size from '../interfaces/size';
 
 const DEFAULT_GRID_SIZE: size = { width: 10, height: 10 };
 

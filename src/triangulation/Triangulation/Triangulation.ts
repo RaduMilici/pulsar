@@ -1,18 +1,21 @@
-import { Vector, Line, Triangle } from '../../common';
+import I_Vector from '../../common/Vector/I_Vector';
+import Vector from '../../common/Vector/Vector';
+import I_Line from '../../common/Line/I_Line';
+import Triangle from '../../common/Triangle/Triangle';
 import I_Triangulation from './I_Triangulation';
 
 export default class Triangulation implements I_Triangulation {
-  readonly lines: Line[] = [];
+  readonly lines: I_Line[] = [];
   readonly triangles: Triangle[] = [];
   private holderTriangle: Triangle = Triangulation.MakeHolderTriangle();
 
-  constructor(readonly points: Vector[]) {
+  constructor(readonly points: I_Vector[]) {
     this.triangles.push(this.holderTriangle);
     this.triangulate();
   }
 
   private triangulate(): void {
-    this.points.forEach((point: Vector) => {
+    this.points.forEach((point: I_Vector) => {
       const badTriangles: Triangle[] = [];
 
       for (let i = this.triangles.length - 1; i >= 0; i--) {
@@ -24,9 +27,9 @@ export default class Triangulation implements I_Triangulation {
         }
       }
 
-      const uniqueLines: Line[] = Triangle.GetUniqueLines(badTriangles);
+      const uniqueLines: I_Line[] = Triangle.GetUniqueLines(badTriangles);
 
-      uniqueLines.forEach((line: Line) => {
+      uniqueLines.forEach((line: I_Line) => {
         const triangle: Triangle = new Triangle(point, line.a, line.b);
         this.triangles.push(triangle);
       });

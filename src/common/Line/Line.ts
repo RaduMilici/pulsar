@@ -2,17 +2,17 @@ import { uniqueId } from '../../util';
 import I_Line from './I_Line';
 import DisjoinedSet from '../../triangulation/DisjoinedSet';
 import LineIntersection from '../LineIntersection/LineIntersection';
-import Vector from '../Vector';
+import I_Vector from '../Vector/I_Vector';
 
 export default class Line implements I_Line {
   id: string = uniqueId();
-  constructor(readonly a: Vector, readonly b: Vector) {}
+  constructor(readonly a: I_Vector, readonly b: I_Vector) {}
 
   get length(): number {
     return this.a.sub(this.b).magnitude();
   }
 
-  get midpoint(): Vector {
+  get midpoint(): I_Vector {
     return this.a.midpoint(this.b);
   }
 
@@ -30,7 +30,7 @@ export default class Line implements I_Line {
     return new LineIntersection(this, line).intersects;
   }
 
-  intersectionPoint(line: I_Line): Vector {
+  intersectionPoint(line: I_Line): I_Vector {
     return new LineIntersection(this, line).point;
   }
 
@@ -39,8 +39,8 @@ export default class Line implements I_Line {
     this.b.set = new DisjoinedSet(this.b);
   }
 
-  static PointsFromArray(lines: Line[]): Vector[] {
-    return lines.reduce((accumulator: Vector[], line: Line) => {
+  static PointsFromArray(lines: Line[]): I_Vector[] {
+    return lines.reduce((accumulator: I_Vector[], line: Line) => {
       accumulator.push(...[line.a, line.b]);
       return accumulator;
     }, []);
