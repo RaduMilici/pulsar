@@ -1,6 +1,7 @@
 import Line from './Line';
 import I_Line from './I_Line';
-import Vector from '../Vector';
+import Vector from '../Vector/Vector';
+import I_Vector from '../Vector/I_Vector';
 import { DisjoinedSet } from '../../triangulation';
 import { v00, v11, v22, v33 } from '../../../specs/common/fixtures/Vectors';
 
@@ -21,8 +22,8 @@ describe('common / Line', () => {
 
   it('calculates its midpoint', () => {
     const line: I_Line = new Line(v00, v11);
-    const midpoint: Vector = line.midpoint;
-    const correct: Vector = new Vector({ x: 0.5, y: 0.5 });
+    const midpoint: I_Vector = line.midpoint;
+    const correct: I_Vector = new Vector({ x: 0.5, y: 0.5 });
 
     expect(midpoint).toEqual(correct);
   });
@@ -47,8 +48,8 @@ describe('common / Line', () => {
   it('checks intersection with another line', () => {
     const line1: I_Line = new Line(v00, v11);
 
-    const v22b: Vector = new Vector({ x: 1, y: 0 });
-    const v33b: Vector = new Vector({ x: 0, y: 1 });
+    const v22b: I_Vector = new Vector({ x: 1, y: 0 });
+    const v33b: I_Vector = new Vector({ x: 0, y: 1 });
     const line2: I_Line = new Line(v22b, v33b);
 
     const intersects: boolean = line1.intersects(line2);
@@ -59,12 +60,12 @@ describe('common / Line', () => {
   it('calculates intersection point with another line', () => {
     const line1: I_Line = new Line(v00, v11);
 
-    const v22b: Vector = new Vector({ x: 1, y: 0 });
-    const v33b: Vector = new Vector({ x: 0, y: 1 });
+    const v22b: I_Vector = new Vector({ x: 1, y: 0 });
+    const v33b: I_Vector = new Vector({ x: 0, y: 1 });
     const line2: I_Line = new Line(v22b, v33b);
 
-    const intersectionPoint: Vector = line1.intersectionPoint(line2);
-    const correct: Vector = new Vector({ x: 0.5, y: 0.5 });
+    const intersectionPoint: I_Vector = line1.intersectionPoint(line2);
+    const correct: I_Vector = new Vector({ x: 0.5, y: 0.5 });
 
     expect(intersectionPoint).toEqual(correct);
   });
@@ -81,7 +82,7 @@ describe('common / Line', () => {
     const line1: I_Line = new Line(v00, v11);
     const line2: I_Line = new Line(v22, v33);
 
-    const points: Vector[] = Line.PointsFromArray([line1, line2]);
+    const points: I_Vector[] = Line.PointsFromArray([line1, line2]);
     expect(points).toEqual([v00, v11, v22, v33]);
   });
 
