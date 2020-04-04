@@ -1,9 +1,10 @@
-import { row, id } from '../../interfaces';
+import id from '../../interfaces/id';
+import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 
 export default interface I_Navigator extends id {
   readonly id: string;
 
-  path: row;
+  path: I_NavigatorTile[];
 
   start(): boolean;
 }

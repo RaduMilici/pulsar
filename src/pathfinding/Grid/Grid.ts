@@ -4,14 +4,14 @@ import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 import NavigatorTile from '../NavigatorTile/NavigatorTile';
 import Vector from '../../common/Vector';
 import { randomInt } from '../../util';
-import { row, point, size } from '../../interfaces';
+import { point, size } from '../../interfaces';
 import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../../constants';
 import I_Grid from './I_Grid';
 
 export default class Grid implements I_Grid {
   readonly obstacles: I_Obstacles;
-  readonly tiles: row = [];
-  readonly rows: row[] = [];
+  readonly tiles: I_NavigatorTile[] = [];
+  readonly rows: I_NavigatorTile[][] = [];
 
   constructor(readonly size: size = DEFAULT_GRID_SIZE) {
     this.checkMinimumGridSize();
@@ -21,7 +21,7 @@ export default class Grid implements I_Grid {
 
   /** Returns a tile at the specified coordinates. */
   getTile({ x, y }: point): I_NavigatorTile | null {
-    const row: row = this.rows[y];
+    const row: I_NavigatorTile[] = this.rows[y];
     return row && row.length > x ? row[x] : null;
   }
 
@@ -48,7 +48,7 @@ export default class Grid implements I_Grid {
     const { width, height }: size = this.size;
 
     for (let y: number = 0; y < height; y++) {
-      const row: row = [];
+      const row: I_NavigatorTile[] = [];
 
       for (let x: number = 0; x < width; x++) {
         const tilePosition: Vector = new Vector({ x, y });

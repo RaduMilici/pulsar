@@ -1,5 +1,5 @@
 import I_Vector from '../Vector/I_Vector';
-import { id } from '../../interfaces';
+import id from '../../interfaces/id';
 
 export default interface I_Line extends id {
   readonly a: I_Vector;

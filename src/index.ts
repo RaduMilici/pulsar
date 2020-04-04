@@ -21,7 +21,7 @@ import {
   removeFromArray,
 } from './util';
 import { GameObject, Component, Updater } from './ecs';
-import { tickData, point, size, limits, row, navigatorSettings } from './interfaces';
+import { tickData, point, size, limits, navigatorSettings } from './interfaces';
 import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util';
 
 export {
@@ -53,7 +53,6 @@ export {
   point,
   size,
   limits,
-  row,
   navigatorSettings,
   randomPoint,
   randomPoints,

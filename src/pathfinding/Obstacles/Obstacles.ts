@@ -1,12 +1,11 @@
 import I_Grid from '../Grid/I_Grid';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
-import { row } from '../../interfaces';
 import { contains, findIndex, randomInt } from '../../util';
 import I_Obstacles from './I_Obstacles';
 
 export default class Obstacles implements I_Obstacles {
-  private readonly openList: row = [];
-  private readonly closedList: row = [];
+  private readonly openList: I_NavigatorTile[] = [];
+  private readonly closedList: I_NavigatorTile[] = [];
 
   constructor({ tiles }: I_Grid) {
     this.openList = Array.from(tiles);
@@ -26,11 +25,11 @@ export default class Obstacles implements I_Obstacles {
     return this.manipulate(false, tile);
   }
 
-  addRandom(count: number = 1): I_NavigatorTile | row | null {
+  addRandom(count: number = 1): I_NavigatorTile | I_NavigatorTile[] | null {
     return this.manipulateMultipleRandom(true, count);
   }
 
-  removeRandom(count: number = 1): I_NavigatorTile | row | null {
+  removeRandom(count: number = 1): I_NavigatorTile | I_NavigatorTile[] | null {
     return this.manipulateMultipleRandom(false, count);
   }
 
@@ -45,8 +44,11 @@ export default class Obstacles implements I_Obstacles {
     return tile ? tile : null;
   }
 
-  private manipulateMultipleRandom(add: boolean, count: number): I_NavigatorTile | row | null {
-    const tiles: row = [];
+  private manipulateMultipleRandom(
+    add: boolean,
+    count: number
+  ): I_NavigatorTile | I_NavigatorTile[] | null {
+    const tiles: I_NavigatorTile[] = [];
 
     if (count > 0) {
       for (let i = 0; i < count; i++) {

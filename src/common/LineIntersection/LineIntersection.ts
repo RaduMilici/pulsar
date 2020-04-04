@@ -1,6 +1,6 @@
 import { Matrix2 } from '../Matrix';
 import { isNumeric } from '../../util';
-import { I_Line } from '../Line';
+import I_Line from '../Line/I_Line';
 import Vector from '../Vector';
 
 // https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection

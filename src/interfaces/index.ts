@@ -1,6 +1,5 @@
 import id from './id';
 import point from './point';
-import row from './row';
 import size from './size';
 import tickData from '../types/ECS/tickData';
 import navigatorSettings from './navigatorSettings';
@@ -13,7 +12,6 @@ export {
   id,
   limits,
   point,
-  row,
   size,
   tickData,
   navigatorSettings,

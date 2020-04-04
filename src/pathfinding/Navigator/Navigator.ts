@@ -3,7 +3,7 @@ import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 import I_NavigatorData from '../NavigatorData/I_NavigatorData';
 import I_Navigator from './I_Navigator';
 import { uniqueId, contains } from '../../util';
-import { row, navigatorSettings, onExplore, onComplete } from '../../interfaces';
+import { navigatorSettings, onExplore, onComplete } from '../../interfaces';
 import {
   NO_OP,
   NAVIGATOR_MAX_STEPS,
@@ -16,10 +16,10 @@ export default class Navigator implements I_Navigator {
   readonly id: string = uniqueId();
   private verticalCost: number = NAVIGATOR_VERTICAL_COST;
   private diagonalCost: number = NAVIGATOR_DIAGONAL_COST;
-  private _path: row = [];
-  private open: row = [];
-  private closed: row = [];
-  private registeredTiles: row = [];
+  private _path: I_NavigatorTile[] = [];
+  private open: I_NavigatorTile[] = [];
+  private closed: I_NavigatorTile[] = [];
+  private registeredTiles: I_NavigatorTile[] = [];
   private steps: number = 0;
   private grid: I_Grid;
   private readonly begin: I_NavigatorTile;
@@ -44,7 +44,7 @@ export default class Navigator implements I_Navigator {
     this.maxSteps = maxSteps;
   }
 
-  get path(): row {
+  get path(): I_NavigatorTile[] {
     return this._path;
   }
 
