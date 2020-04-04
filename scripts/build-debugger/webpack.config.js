@@ -1,13 +1,12 @@
 const path = require('path');
 const WebpackBar = require('webpackbar');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const debuggerRoot = path.resolve(__dirname, '../../debugger')
+const debuggerRoot = path.resolve(__dirname, '../../debugger');
 
 const config = {
   mode: 'development',
   entry: {
     main: `${debuggerRoot}/src/index.ts`,
-    // pulsar: './src/index.ts'
   },
   module: {
     rules: [
@@ -18,7 +17,6 @@ const config = {
             loader: 'ts-loader',
             options: {
               configFile: `${debuggerRoot}/tsconfig.webpack.json`,
-              // transpileOnly: true
             }  
           }
         ],
@@ -26,7 +24,6 @@ const config = {
       },
       {
         test: /\.css$/,
-        // use: ['style-loader', 'css-loader']
         use: [
           { 
             loader: 'style-loader', 
@@ -49,7 +46,8 @@ const config = {
   },
   plugins: [
     new MonacoWebpackPlugin({
-      languages: ['typescript']
+      languages: ['typescript'],
+      features: ['!gotoSymbol']
     }),
     new WebpackBar()
   ]

@@ -12,13 +12,14 @@ export default class Hull {
 
   constructor({ triangles }: I_Triangulation) {
     this.triangles = triangles;
+    this.start();
   }
 
   get points(): I_Vector[] {
     return this._points;
   }
 
-  start(): void {
+  private start(): void {
     const uniqueLines: I_Line[] = Triangle.GetUniqueLines(this.triangles);
     const uniquePoints: I_Vector[] = Line.PointsFromArray(uniqueLines);
     const ccwPoints: I_Vector[] = Vector.ArrangePointsCCW(uniquePoints);

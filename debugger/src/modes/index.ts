@@ -5,10 +5,10 @@ import pathfindingMode from './pathfinding';
 import MSTMode from './MST';
 import hull from './hull';
 import centroid from './centroid';
-import updater from './updater';
+//import updater from './updater';
 
 export {
-  updater,
+  //updater,
   triangulationMode,
   quadTreeMode,
   pathfindingMode,

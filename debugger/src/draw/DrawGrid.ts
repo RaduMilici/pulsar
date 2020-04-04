@@ -1,7 +1,6 @@
-import { Grid, Vector, NavigatorTile, point } from '../../../src';
+import { Grid, Vector, I_NavigatorTile } from '../../../src';
 import DrawSquares from './DrawSquares';
 import Draw from './Draw';
-import { GRID_DEFAULT_SIDE } from './const';
 
 export default class DrawGrid extends Draw {
   pixelWidth: number;
@@ -13,7 +12,7 @@ export default class DrawGrid extends Draw {
     this.drawSquares = new DrawSquares(context);
   }
 
-  gridTile(grid: Grid, tile: NavigatorTile, lineSize?: number, fillColor?: string): void {
+  gridTile(grid: Grid, tile: I_NavigatorTile, lineSize?: number, fillColor?: string): void {
     const divideBy: number =
       grid.size.width > grid.size.height ? grid.size.width : grid.size.height;
     const squareSide: number = this.pixelWidth / divideBy;
@@ -24,14 +23,14 @@ export default class DrawGrid extends Draw {
     this.drawSquares.square(tilePosition, squareSide, lineSize, fillColor);
   }
 
-  gridTiles(grid: Grid, tiles: NavigatorTile[], lineSize?: number, fillColor?: string): void {
-    tiles.forEach((tile: NavigatorTile) => {
+  gridTiles(grid: Grid, tiles: I_NavigatorTile[], lineSize?: number, fillColor?: string): void {
+    tiles.forEach((tile: I_NavigatorTile) => {
       this.gridTile(grid, tile, lineSize, fillColor);
     });
   }
 
   grid(grid: Grid, lineSize?: number): void {
-    grid.tiles.forEach((tile: NavigatorTile) => {
+    grid.tiles.forEach((tile: I_NavigatorTile) => {
       this.gridTile(grid, tile, lineSize);
     });
   }

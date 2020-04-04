@@ -1,5 +1,5 @@
-import { Grid, Navigator, NavigatorTile } from './pathfinding';
-import { Triangulation, Hull } from './triangulation';
+import { Grid, Navigator, NavigatorTile, I_NavigatorTile } from './pathfinding';
+import { Triangulation, Hull, MinimumSpanningTree } from './triangulation';
 import { QuadTree } from './quadtree';
 import {
   Vector,
@@ -28,8 +28,10 @@ export {
   Grid,
   Navigator,
   NavigatorTile,
+  I_NavigatorTile,
   Triangulation,
   Hull,
+  MinimumSpanningTree,
   Vector,
   Line,
   Triangle,
