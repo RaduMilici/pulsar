@@ -1,6 +1,6 @@
 import Vector from '../Vector/Vector';
 import I_Vector from '../Vector/I_Vector';
-import { Line } from '../Line';
+import Line from '../Line/Line';
 import Shape from '../Shape/Shape';
 import { limits, boundingBoxLines } from '../../interfaces';
 import { immutableObjectSort } from '../../util';

@@ -1,5 +1,5 @@
 import id from '../interfaces/id';
-import { uniqueId } from '../util';
+import uniqueId from '../util/uniqueID';
 import I_Vector from '../common/Vector/I_Vector';
 
 export default class DisjoinedSet implements id {

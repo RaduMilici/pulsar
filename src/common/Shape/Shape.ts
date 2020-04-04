@@ -1,8 +1,9 @@
 import Vector from '../Vector/Vector';
 import I_Vector from '../Vector/I_Vector';
-import { I_Line, Line } from '../Line';
-import BoundingBox from '../BoundingBox';
-import { isOdd } from '../../util';
+import I_Line from '../Line/I_Line';
+import Line from '../Line/Line';
+import BoundingBox from '../BoundingBox/BoundingBox';
+import { isOdd } from '../../util/number';
 
 export default class Shape {
   readonly lines: I_Line[];
@@ -36,7 +37,7 @@ export default class Shape {
     return Vector.FindPolyCentroid(this.points);
   }
 
-  private static makeLines(points: I_Vector[]): Line[] {
+  private static makeLines(points: I_Vector[]): I_Line[] {
     const lines: I_Line[] = [];
     const ccwPoints: I_Vector[] = Vector.ArrangePointsCCW(points);
 

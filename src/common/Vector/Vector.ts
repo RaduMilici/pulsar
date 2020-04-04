@@ -1,7 +1,7 @@
 import point from '../../interfaces/point';
 import DisjoinedSet from '../../triangulation/DisjoinedSet';
 import QuadTree from '../../quadtree/QuadTree';
-import { RadToDeg } from '../../util';
+import { RadToDeg } from '../../util/radDeg';
 import { DEFAULT_VECTOR_POSITION } from '../../constants';
 import I_Vector from './I_Vector';
 
