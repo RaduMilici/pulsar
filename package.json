@@ -44,5 +44,8 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpackbar": "^4.0.0"
+  },
+  "dependencies": {
+    "serve": "^11.3.0"
   }
 }

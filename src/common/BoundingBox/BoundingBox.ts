@@ -1,7 +1,7 @@
-import Vector from '../Vector/Vector';
+import I_BoundingBox from './I_BoundingBox';
 import I_Vector from '../Vector/I_Vector';
+import Vector from '../Vector/Vector';
 import Line from '../Line/Line';
-import Shape from '../Shape/Shape';
 import { limits, boundingBoxLines } from '../../interfaces';
 import { immutableObjectSort } from '../../util';
 
@@ -10,7 +10,7 @@ import { immutableObjectSort } from '../../util';
  * This class regards its point of origin at the top left corner.
  * */
 
-export default class BoundingBox {
+export default class BoundingBox implements I_BoundingBox {
   // points
   topLeft: I_Vector;
   topRight: I_Vector;
@@ -26,7 +26,7 @@ export default class BoundingBox {
 
   limits: limits;
 
-  constructor(private readonly points: I_Vector[]) {
+  constructor(readonly points: I_Vector[]) {
     this.findCorners();
     this.makeLines();
     this.findLimits();
@@ -48,10 +48,6 @@ export default class BoundingBox {
     return this.topRight.y - this.bottomRight.y;
   }
 
-  get shape(): Shape {
-    return new Shape([this.topLeft, this.topRight, this.bottomRight, this.bottomLeft]);
-  }
-
   growBy(n: number): void {
     this.topLeft = this.topLeft.add(new Vector({ x: -n, y: n }));
     this.topRight = this.topRight.add(new Vector({ x: n, y: n }));
@@ -59,7 +55,7 @@ export default class BoundingBox {
     this.bottomRight = this.bottomRight.add(new Vector({ x: n, y: -n }));
   }
 
-  clone(): BoundingBox {
+  clone(): I_BoundingBox {
     return new BoundingBox(this.points);
   }
 

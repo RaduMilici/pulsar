@@ -10,7 +10,7 @@ const hull = new Pulsar.Hull(triangulation);
 
 draw.lines(hull.lines);
 draw.points(hull.points);
-draw.point(Pulsar.Vector.FindPolyCentroid(randomPoints), 'red', 'red', 10);
+draw.point(Pulsar.Vector.FindPolyCentroid(hull.points), 'red', 'red', 10);
 `;
 
 export default { code, name: 'centroid' };

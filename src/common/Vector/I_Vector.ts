@@ -1,9 +1,7 @@
 import DisjoinedSet from '../../triangulation/DisjoinedSet';
-import QuadTree from '../../quadtree/QuadTree';
 
 export default interface I_Vector {
   set: DisjoinedSet;
-  quadTree: QuadTree;
   x: number;
   y: number;
 

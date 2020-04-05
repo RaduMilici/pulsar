@@ -1,9 +1,10 @@
-import Vector from '../Vector/Vector';
+import I_BoundingBox from '../BoundingBox/I_BoundingBox';
 import I_Vector from '../Vector/I_Vector';
 import I_Line from '../Line/I_Line';
+import Vector from '../Vector/Vector';
 import Line from '../Line/Line';
 import BoundingBox from '../BoundingBox/BoundingBox';
-import { isOdd } from '../../util/number';
+import { isOdd } from '../../util';
 
 export default class Shape {
   readonly lines: I_Line[];
@@ -12,7 +13,7 @@ export default class Shape {
     this.lines = Shape.makeLines(points);
   }
 
-  get boundingBox(): BoundingBox {
+  get boundingBox(): I_BoundingBox {
     return new BoundingBox(this.points);
   }
 

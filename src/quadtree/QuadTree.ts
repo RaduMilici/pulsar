@@ -11,19 +11,13 @@ export default class QuadTree {
   private capacity: number = 1;
 
   constructor(public shape: Shape, private points: I_Vector[], public level: number = 0) {
-    this.start(points);
-  }
-
-  private start(points: I_Vector[]): void {
-    for (let i = 0; i < points.length; i++) {
-      const point: I_Vector = points[i];
+    for (let point of points) {
 
       if (!this.shape.containsPoint(point)) {
         continue;
       }
 
       if (this.containedPoints.length < this.capacity) {
-        point.quadTree = this;
         this.containedPoints.push(point);
       } else {
         this.containedPoints.length = 0;
