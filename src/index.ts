@@ -1,6 +1,13 @@
 import { Grid, Navigator, NavigatorTile, I_NavigatorTile } from './pathfinding';
 import { Triangulation, Hull, MinimumSpanningTree } from './triangulation';
 import { QuadTree } from './quadtree';
+import { sort, immutableObjectSort } from './util/sort';
+import { contains, removeFromArray } from './util/id';
+import { RadToDeg, DegToRad } from './util/radDeg';
+import { GameObject, Component, Updater } from './ecs';
+import { tickData, point, size, limits, navigatorSettings } from './interfaces';
+import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util/random';
+import uniqueId from './util/uniqueID';
 import {
   Vector,
   Line,
@@ -11,18 +18,6 @@ import {
   Matrix3,
   Matrix4,
 } from './common';
-import {
-  uniqueId,
-  sort,
-  immutableObjectSort,
-  contains,
-  RadToDeg,
-  DegToRad,
-  removeFromArray,
-} from './util';
-import { GameObject, Component, Updater } from './ecs';
-import { tickData, point, size, limits, navigatorSettings } from './interfaces';
-import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util';
 
 export {
   Grid,

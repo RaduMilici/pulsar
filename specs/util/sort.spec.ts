@@ -1,4 +1,4 @@
-import { sort, immutableObjectSort } from '../../src/util';
+import { sort, immutableObjectSort } from '../../src/util/sort';
 import { v00, v01, v22 } from '../common/fixtures/Vectors';
 import { Vector } from '../../src/common';
 

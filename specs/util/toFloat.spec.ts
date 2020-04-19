@@ -1,4 +1,4 @@
-import { toFloat } from '../../src/util';
+import toFloat from '../../src/util/toFloat';
 
 describe('util / toFloat', () => {
   it('should reduce a randomFloat to two decimals', () => {

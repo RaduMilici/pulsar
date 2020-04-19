@@ -2,7 +2,8 @@ import I_Grid from '../Grid/I_Grid';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 import I_NavigatorData from '../NavigatorData/I_NavigatorData';
 import I_Navigator from './I_Navigator';
-import { uniqueId, contains } from '../../util';
+import { contains } from '../../util/id';
+import uniqueId from '../../util/uniqueID';
 import { navigatorSettings, onExplore, onComplete } from '../../interfaces';
 import {
   NO_OP,

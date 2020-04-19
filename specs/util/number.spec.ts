@@ -1,4 +1,4 @@
-import { isOdd, isEven, isNumeric } from '../../src/util';
+import { isOdd, isEven, isNumeric } from '../../src/util/number';
 
 describe('util / number', () => {
   it('should know an odd number', () => {

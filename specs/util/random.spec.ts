@@ -1,4 +1,4 @@
-import { randomInt, randomFloat } from '../../src/util';
+import { randomInt, randomFloat } from '../../src/util/random';
 
 describe('util / random', () => {
   it('should generate a random randomInt', () => {

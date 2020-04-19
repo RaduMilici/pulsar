@@ -1,6 +1,7 @@
 import I_Grid from '../Grid/I_Grid';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
-import { contains, findIndex, randomInt } from '../../util';
+import { contains, findIndex } from '../../util/id';
+import { randomInt } from '../../util/random';
 import I_Obstacles from './I_Obstacles';
 
 export default class Obstacles implements I_Obstacles {

@@ -12,7 +12,6 @@ export default class QuadTree {
 
   constructor(public shape: Shape, private points: I_Vector[], public level: number = 0) {
     for (let point of points) {
-
       if (!this.shape.containsPoint(point)) {
         continue;
       }

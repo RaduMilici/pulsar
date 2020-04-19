@@ -3,7 +3,7 @@ import Obstacles from '../Obstacles/Obstacles';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 import NavigatorTile from '../NavigatorTile/NavigatorTile';
 import Vector from '../../common/Vector';
-import { randomInt } from '../../util';
+import { randomInt } from '../../util/random';
 import { point, size } from '../../interfaces';
 import { DEFAULT_GRID_SIZE, MIN_GRID_SIZE_ERROR } from '../../constants';
 import I_Grid from './I_Grid';

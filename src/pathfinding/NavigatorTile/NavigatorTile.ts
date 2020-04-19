@@ -3,7 +3,9 @@ import I_NavigatorData from '../NavigatorData/I_NavigatorData';
 import I_NavigatorTile from './I_NavigatorTile';
 import NavigatorData from '../NavigatorData/NavigatorData';
 import Vector from '../../common/Vector';
-import { contains, uniqueId, removeFromArray, findIndex, XOR } from '../../util';
+import { contains, removeFromArray, findIndex } from '../../util/id';
+import uniqueId from '../../util/uniqueID';
+import XOR from '../../util/xor';
 import { NAVIGATOR_DIAGONAL_COST, NAVIGATOR_VERTICAL_COST } from '../../constants';
 
 export default class NavigatorTile implements I_NavigatorTile {

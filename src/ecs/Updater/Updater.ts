@@ -1,5 +1,5 @@
 import { Clock } from '../../common';
-import { contains, removeFromArray } from '../../util';
+import { contains, removeFromArray } from '../../util/id';
 import { tickData } from '../../interfaces';
 import { I_Component } from '../Component';
 import { I_GameObject } from '../GameObject';
