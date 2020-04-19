@@ -1,7 +1,5 @@
-import Vector from './Vector';
-import Line from './Line';
+import { Vector, Line, Triangle } from '../common';
 import Triangulation from './Triangulation';
-import Triangle from './Triangle';
 
 export default class Hull {
   readonly lines: Line[] = [];
@@ -17,7 +15,7 @@ export default class Hull {
   }
 
   start(): void {
-    const uniqueLines: Line[] = Line.GetUniqueLines(this.triangles);
+    const uniqueLines: Line[] = Triangle.GetUniqueLines(this.triangles);
     const uniquePoints: Vector[] = Line.PointsFromArray(uniqueLines);
     const ccwPoints: Vector[] = Vector.ArrangePointsCCW(uniquePoints);
     this._points = Vector.UniqueFromArray(ccwPoints);

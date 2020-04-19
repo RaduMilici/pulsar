@@ -1,13 +1,13 @@
-import id from '../interfaces/id';
-import uniqueId from '../util/uniqueID';
-import Vector from '../triangulation/Vector';
+import { id, point } from '../interfaces';
 import Navigator from './Navigator';
-import { contains } from '../util/id';
 import NavigatorData from './NavigatorData';
+import { contains, uniqueId, removeFromArray, findIndex } from '../util';
+import { Vector } from '../common';
 
 export default class NavigatorTile implements id {
   id: number = uniqueId();
   isObstacle: boolean = false;
+
   private navigators: NavigatorData[] = [];
 
   constructor(readonly position: Vector) {}
@@ -23,11 +23,24 @@ export default class NavigatorTile implements id {
     return true;
   }
 
-  getNavigatorData(navigator: Navigator): NavigatorData | null {
-    const navData = this.navigators.find((navigationData: NavigatorData) => {
-      return navigationData.navigator.id === navigator.id;
-    });
+  deregisterNavigatorData(navigator: Navigator): boolean {
+    const navData: NavigatorData = this.getNavigatorData(navigator);
+    return removeFromArray(this.navigators, navData);
+  }
 
-    return navData ? navData : null;
+  getNavigatorData(navigator: Navigator): NavigatorData {
+    const index: number = findIndex(this.navigators, navigator);
+
+    if (index !== -1) {
+      return this.navigators[index];
+    }
+
+    const data: NavigatorData = new NavigatorData(navigator);
+    this.navigators.push(data);
+    return data;
+  }
+
+  isDiagonal({ position }: NavigatorTile): boolean {
+    return this.position.x !== position.x && this.position.y !== position.y;
   }
 }

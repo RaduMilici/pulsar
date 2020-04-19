@@ -1,8 +1,7 @@
 import Grid from './Grid';
 import NavigatorTile from './NavigatorTile';
-import { int } from '../util/random';
-import { contains, findIndex } from '../util/id';
-import row from '../interfaces/row';
+import { contains, findIndex, randomInt } from '../util';
+import { row } from '../interfaces';
 
 export default class Obstacles {
   private readonly openList: NavigatorTile[] = [];
@@ -17,10 +16,12 @@ export default class Obstacles {
   }
 
   add(tile: NavigatorTile): boolean {
+    tile.isObstacle = true;
     return this.manipulate(true, tile);
   }
 
   remove(tile: NavigatorTile): boolean {
+    tile.isObstacle = false;
     return this.manipulate(false, tile);
   }
 
@@ -38,7 +39,7 @@ export default class Obstacles {
 
   private getRandom(open: boolean): NavigatorTile | null {
     const list = open ? this.openList : this.closedList;
-    const random: number = int(0, list.length - 1);
+    const random: number = randomInt(0, list.length - 1);
     const tile = list[random];
     return tile ? tile : null;
   }
@@ -76,7 +77,7 @@ export default class Obstacles {
     const isInvalid: boolean = add ? tile.isObstacle : !tile.isObstacle;
 
     if (isInvalid) {
-      return;
+      return false;
     }
 
     let list: NavigatorTile[];

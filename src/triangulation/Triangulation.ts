@@ -1,6 +1,4 @@
-import Vector from './Vector';
-import Line from './Line';
-import Triangle from './Triangle';
+import { Vector, Line, Triangle } from '../common';
 import Hull from './Hull';
 import MinimumSpanningTree from './MinimumSpanningTree';
 
@@ -30,7 +28,7 @@ export default class Triangulation {
         }
       }
 
-      const uniqueLines: Line[] = Line.GetUniqueLines(badTriangles);
+      const uniqueLines: Line[] = Triangle.GetUniqueLines(badTriangles);
 
       uniqueLines.forEach((line: Line) => {
         const triangle: Triangle = new Triangle(point, line.a, line.b);

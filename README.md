@@ -6,6 +6,8 @@
     />
 </p>
 
+[![Build Status](https://travis-ci.org/RaduMilici/pulsar.svg?branch=master)](https://travis-ci.org/RaduMilici/pulsar)
+
 <p align="center">pulsar-pathfinding is a TypeScript implementation of the Greedy Best-First 
 pathfinding algorithm.</p>
 
@@ -23,7 +25,7 @@ npm install pulsar-pathfinding
 NOTE: All pictures below are captured from debug mode. You may use the results in any way, 
 graphical or not.
 
-#### 1: Start by creating a `Grid`.  
+#### 1: Creating the `Grid`.  
 This represents an abstract mathematical graph of nodes implemented as `NavigatorTile`.
 It may have any `width` and `height` as a constructor argument, and it defaults to
 `{width: 10, height: 10}`.
@@ -39,12 +41,12 @@ const grid: Grid = new Grid({width: 10, height: 10});
     />
 </p>
 
-#### 2: Create a `Navigator`.  
-This is the object that traverses the `Grid` you created.  
-It requires the following as constructor arguments: a grid, a begin tile and an end tile.  
-Tiles are stored by the `Grid` and can be accessed either by grid coordinates  
+#### 2: Accessing `NavigatorTile` on the grid
+
+`NavigatorTile` are stored by the `Grid` and can be accessed either by grid coordinates
 ```javascript
-const tile: NavigatorTile = grid.findTile({x: 0, y: 0});
+const begin: NavigatorTile = grid.findTile({x: 0, y: 0});
+const end: NavigatorTile = grid.findTile({x: 9, y: 9});
 ```
 
 or randomly:
@@ -54,40 +56,56 @@ const randomTile: NavigatorTile = grid.randomTile();         // any possible til
 const randomFreeTile: NavigatorTile = grid.randomFreeTile(); // only tiles that are not obstacles
 ```
 
-Knowing this, we can now create a `Navigator`.
+#### 3: Creating `Obstacles`.
+
+`Obstacles` can be added and removed with the `add(tile)`, `remove(tile)` methods
+on `grid.obstacles`
 
 ```javascript
-import { Navigator, NavigatorTile } from 'pulsar-pathfinding';
-const begin: NavigatorTile = grid.findTile({x: 0, y: 0});
+  const tile: NavigatorTile = grid.findTile({x: 0, y: 0});
+  grid.obstacles.add(tile); // tile.isObstacle = true
+  grid.obstacles.remove(tile); // tile.isObstacle = false
+```
+
+#### 4: Creating a `Navigator`.
+This is the object that traverses the `Grid` you created.
+It requires the following as constructor arguments: a grid, a begin tile and an end tile.
+
+```javascript
+import { Navigator } from 'pulsar-pathfinding';
+
+const grid: Grid = new Grid({width: 10, height: 10});
+
+const begin: NavigatorTile = grid.findTile({x: 1, y: 1});
 const end: NavigatorTile = grid.findTile({x: 9, y: 9});
-const navigator: Navigator = new Navigator(grid, begin, end);
+
+const navigator: Navigator = new Navigator({grid, begin, end});
 ```
 
-Once created, we now call the `start` method.  
-The path (a `NavigatorTile` array), is stored in the `path` property.
+Optionally, `Navigator` may receive two callback functions, in the form of `onExplore` and `onComplete`.  
+and an optional `maxSteps` parameter.  
 
-```javascript
-navigator.start();
-draw(navigator.path);
+```typescript
+const navigator: Navigator = new Navigator({
+  grid,
+  begin,
+  end,
+  onExplore: (NavigatorTile) => {
+    // NavigatorTile
+  },
+  onComplete: (NavigatorTileArray) => {
+    // NavigatorTile[]
+  },
+  maxSteps: 10,
+});
 ```
 
-<p align="center">
-    <img
-      alt="Node.js"
-      src="https://i.imgur.com/4GkbWly.png"
-      width="200"
-    />
-</p>
+`onExplore(NavigatorTile)` will be called for each `NavigatorTile` that the `Navigator` explores  
+`onComplete(NavigatorTile[])` will be called with the array of `NavigatorTile`s in the shortest path that the `Navigator` found
 
-Optionally, it may receive two additional callback functions, in the form of `onExplore`
-and `onComplete`.  
 The `Navigator` explores multiple possible tiles until it finds the shortest route.  
 
-Every time a `NavigatorTile` is explored, the `onExplore` function is called, with the
-respective tile passed as an argument.  
-  
-Once the shortest path is found, the `onComplete` function is called, with an array of 
-`NavigatorTile`s passed as an argument.  
+If No path is found, `onComplete` will return an empty Array
 
 <p align="center">
     Pictured below: an artificially slowed down demonstration of callbacks.
@@ -101,7 +119,18 @@ Once the shortest path is found, the `onComplete` function is called, with an ar
     />
 </p>
 
-#### 3: Creating obstacles. 
+Once the navigator is created, we now call the `start` method.  
+The resulting path (a `NavigatorTile` array), is stored in the `path` property.
 
+```javascript
+navigator.start();
+draw(navigator.path);
+```
 
-
+<p align="center">
+  <img
+    alt="Node.js"
+    src="https://i.imgur.com/4GkbWly.png"
+    width="200"
+  />
+</p>

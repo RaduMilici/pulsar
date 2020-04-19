@@ -1,0 +1,1 @@
+{"version":3,"file":"NavigatorData.js","sourceRoot":"","sources":["../../src/pathfinding/NavigatorData.ts"],"names":[],"mappings":"AAKA,MAAM,CAAC,OAAO,OAAO,aAAa;IAOhC,YAA4B,SAAoB;QAApB,cAAS,GAAT,SAAS,CAAW;QAC9C,IAAI,CAAC,EAAE,GAAG,SAAS,CAAC,EAAE,CAAC;IACzB,CAAC;CACF"}
