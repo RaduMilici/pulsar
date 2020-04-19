@@ -1,1 +1,0 @@
-{"version":3,"file":"clone.js","sourceRoot":"","sources":["../../src/util/clone.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,GAAG,CAAC,MAAW,EAAE,EAAE,CAAC,mBAAM,MAAM,EAAG,CAAC;AAErD,MAAM,gBAAgB,GAAG,CAAC,KAAU,EAAE,EAAE,CAAC,KAAK,CAAC,GAAG,CAAC,WAAW,CAAC,CAAC;AAEhE,OAAO,EAAE,WAAW,EAAE,gBAAgB,EAAE,CAAC"}

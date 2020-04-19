@@ -1,1 +1,0 @@
-{"version":3,"file":"toFloat.js","sourceRoot":"","sources":["../../src/util/toFloat.ts"],"names":[],"mappings":"AAAA,MAAM,cAAc,GAAW,CAAC,CAAC;AAEjC,MAAM,OAAO,GAAG,CAAC,MAAc,EAAU,EAAE;IACzC,OAAO,MAAM,CAAC,MAAM,CAAC,OAAO,CAAC,cAAc,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC;AAEF,eAAe,OAAO,CAAC"}
