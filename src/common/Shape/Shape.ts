@@ -4,7 +4,7 @@ import I_Line from '../Line/I_Line';
 import Vector from '../Vector/Vector';
 import Line from '../Line/Line';
 import BoundingBox from '../BoundingBox/BoundingBox';
-import { isOdd } from '../../util';
+import { isOdd } from '../../util/number';
 
 export default class Shape {
   readonly lines: I_Line[];

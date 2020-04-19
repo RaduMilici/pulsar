@@ -1,4 +1,4 @@
-import { uniqueId } from '../../util';
+import uniqueId from '../../util/uniqueID';
 import I_Line from './I_Line';
 import DisjoinedSet from '../../triangulation/DisjoinedSet';
 import LineIntersection from '../LineIntersection/LineIntersection';

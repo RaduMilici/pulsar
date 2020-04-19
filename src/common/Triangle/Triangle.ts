@@ -5,7 +5,7 @@ import Vector from '../Vector/Vector';
 import Line from '../Line/Line';
 import Matrix4 from '../Matrix/Matrix4';
 import { triangleLines } from '../../interfaces';
-import { uniqueId } from '../../util';
+import uniqueId from '../../util/uniqueID';
 
 export default class Triangle implements I_Triangle {
   id: string = uniqueId();

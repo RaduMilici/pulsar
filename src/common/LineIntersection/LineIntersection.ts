@@ -1,5 +1,5 @@
 import { Matrix2 } from '../Matrix';
-import { isNumeric } from '../../util';
+import { isNumeric } from '../../util/number';
 import I_Line from '../Line/I_Line';
 import Vector from '../Vector';
 

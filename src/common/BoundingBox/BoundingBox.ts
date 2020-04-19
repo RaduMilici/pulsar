@@ -3,7 +3,7 @@ import I_Vector from '../Vector/I_Vector';
 import Vector from '../Vector/Vector';
 import Line from '../Line/Line';
 import { limits, boundingBoxLines } from '../../interfaces';
-import { immutableObjectSort } from '../../util';
+import { immutableObjectSort } from '../../util/sort';
 
 /*
  * !WARNING!
