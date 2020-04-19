@@ -1,7 +1,8 @@
 const path = require('path');
 const madge = require('madge');
-//const entryPointPath = path.resolve(`${__dirname}/../src/index.ts`);
-const entryPointPath = path.resolve(`${__dirname}/../../src/interfaces/ECS/index.ts`);
+const chalk = require('chalk');
+
+const entryPointPath = path.resolve(`${__dirname}/../../src/index.ts`);
 const tsConfig = path.resolve(`${__dirname}/../../tsconfig.json`);
 const picturePath = path.resolve(`${__dirname}/dependencyTree.png`);
 const config = { 
@@ -12,4 +13,13 @@ const config = {
 
 madge(entryPointPath, config).then(res => {
   res.image(picturePath);
+  
+  const circularDependencies = res.circular();
+
+  console.warn(chalk.yellow('***WARNINGS***'));
+  console.warn(res.warnings());
+  
+  console.error(chalk.red('***CIRCULAR DEPENDENCIES***'));
+  console.error(circularDependencies);
+  console.error(chalk.red(`${circularDependencies.length} circular dependencies`));
 });

@@ -5,9 +5,7 @@ class CodeSelect {
   private onChangeCallbacks: { (...arg: any[]): void }[] = [];
 
   constructor() {
-    this.selectElement = <HTMLSelectElement>(
-      document.getElementById('debugger-code-select')
-    );
+    this.selectElement = <HTMLSelectElement>document.getElementById('debugger-code-select');
     this.addOptions();
     this.selectElement.addEventListener('change', this.onChange);
   }

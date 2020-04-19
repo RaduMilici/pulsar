@@ -1,5 +1,5 @@
 const code = `const size: Pulsar.size = { width: 30, height: 30 };
-const grid: Pulsar.Grid = new Pulsar.Grid(size);
+const grid = new Pulsar.Grid(size);
 draw.grid(grid);
 
 for (let y = 1; y < 30 - 1; y += 2) {
@@ -9,7 +9,7 @@ for (let y = 1; y < 30 - 1; y += 2) {
       continue;
     }
     else {
-      const obstacle: Pulsar.NavigatorTile = grid.getTile({ x, y });
+      const obstacle = grid.getTile({ x, y });
       grid.obstacles.add(obstacle);
     }
   }
@@ -17,16 +17,16 @@ for (let y = 1; y < 30 - 1; y += 2) {
 
 draw.gridTiles(grid, grid.obstacles.list, '#FF6103');
 
-const begin: Pulsar.NavigatorTile = grid.getTile(new Pulsar.Vector({ x: 0, y: 0 }));
-const end: Pulsar.NavigatorTile = grid.getTile(new Pulsar.Vector({ x: 29, y: 29 }));
-const onComplete = (tiles: Pulsar.NavigatorTile[]) => {
-  tiles.forEach((tile: Pulsar.NavigatorTile) => {
+const begin = grid.getTile(new Pulsar.Vector({ x: 0, y: 0 }));
+const end = grid.getTile(new Pulsar.Vector({ x: 29, y: 29 }));
+const onComplete = tiles => {
+  tiles.forEach(tile => {
     draw.gridTile(grid, tile, '#67dbf8');
   });
 };
 
-const settings: Pulsar.navigatorSettings = { grid, begin, end, onComplete };
-const agent: Pulsar.Navigator = new Pulsar.Navigator(settings);
+const settings = { grid, begin, end, onComplete };
+const agent = new Pulsar.Navigator(settings);
 agent.start();
 `;
 

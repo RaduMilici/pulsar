@@ -1,1 +1,1 @@
-export default (): void => {};
+export default (...args: any[]): any => {};

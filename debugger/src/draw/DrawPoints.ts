@@ -20,12 +20,7 @@ export default class DrawPoints extends Draw {
     this.context.closePath();
   }
 
-  points(
-    points: Vector[],
-    strokeColor?: string,
-    fillColor?: string,
-    size?: number
-  ): void {
+  points(points: Vector[], strokeColor?: string, fillColor?: string, size?: number): void {
     points.forEach((point: Vector) => {
       this.point(point, strokeColor, fillColor, size);
     });

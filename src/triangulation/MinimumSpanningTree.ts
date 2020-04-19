@@ -1,5 +1,5 @@
 import { Line } from '../common';
-import Triangulation from './Triangulation';
+import { I_Triangulation } from './Triangulation';
 
 export default class MinimumSpanningTree {
   readonly lines: Line[] = [];
@@ -7,15 +7,16 @@ export default class MinimumSpanningTree {
   private uniqueLines: Line[] = [];
   private readonly triangulationLines: Line[] = [];
 
-  constructor({ lines }: Triangulation) {
+  constructor({ lines }: I_Triangulation) {
     this.triangulationLines = lines;
+    this.start();
   }
 
   get nonMinSpanLines(): Line[] {
     return this._nonMinSpanLines;
   }
 
-  start(): void {
+  private start(): void {
     this.getLines();
 
     this.uniqueLines.forEach((line: Line) => line.makeDisjoinedSets());

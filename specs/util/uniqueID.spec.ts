@@ -1,4 +1,4 @@
-import { uniqueId } from '../../src/util';
+import uniqueId from '../../src/util/uniqueID';
 
 describe('until / uniqueId', () => {
   it('should generate an incrementing unique id', () => {

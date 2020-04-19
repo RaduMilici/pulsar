@@ -1,6 +1,6 @@
 import { Line } from '../../src/common';
 import { v00, v11 } from '../common/fixtures/Vectors';
-import { contains, findIndex } from '../../src/util';
+import { contains, findIndex } from '../../src/util/id';
 
 /*
  * In this case, we do not import fixtures because

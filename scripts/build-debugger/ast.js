@@ -14,7 +14,7 @@ const generateDTSfiles = () => {
     },
   });
   
-  project.addExistingSourceFiles(`${srcPath}/**/*.ts`);
+  project.addExistingSourceFiles(`${srcPath}/**/!(*.spec).ts`);
   const sourceFiles = project.getSourceFiles();
   const bar = getProgressBar(sourceFiles.length);
   
@@ -31,7 +31,7 @@ const generateDTSfiles = () => {
   });
   
   project.emitSync({ emitOnlyDtsFiles: true });
-}
+};
 
 const concatDTSfiles = () => {
   const dtsBuildPath = glob.sync(path.resolve(__dirname, 'dtsBuild/**/*.ts')); 
@@ -48,9 +48,9 @@ const concatDTSfiles = () => {
     ${allFileTexts.join('')}
   }\`;`;
   fs.writeFileSync(path.resolve(__dirname, 'bundle.ts'), text);
-}
+};
 
 module.exports = {
   generateDTSfiles,
   concatDTSfiles,
-}
+};

@@ -1,5 +1,5 @@
 import { Vector } from '../../src/common';
-import { cloneObject, cloneObjectArray } from '../../src/util';
+import { cloneObject, cloneObjectArray } from '../../src/util/clone';
 
 describe('util / clone', () => {
   it('should deep clone an object', () => {

@@ -1,25 +1,22 @@
-import { Vector, Shape } from '../common';
+import I_Vector from '../common/Vector/I_Vector';
+import Shape from '../common/Shape/Shape';
+import Vector from '../common/Vector/Vector';
 
 export default class QuadTree {
   parent: QuadTree;
 
   readonly children: QuadTree[] = [];
-  readonly containedPoints: Vector[] = [];
+  readonly containedPoints: I_Vector[] = [];
 
   private capacity: number = 1;
 
-  constructor(public shape: Shape, private points: Vector[], public level: number = 0) {
-    this.start(points);
-  }
-
-  private start(points: Vector[]): void {
-    for (let i = 0; i < points.length; i++) {
-      const point: Vector = points[i];
-
-      if (!this.shape.containsPoint(point)) continue;
+  constructor(public shape: Shape, private points: I_Vector[], public level: number = 0) {
+    for (let point of points) {
+      if (!this.shape.containsPoint(point)) {
+        continue;
+      }
 
       if (this.containedPoints.length < this.capacity) {
-        point.quadTree = this;
         this.containedPoints.push(point);
       } else {
         this.containedPoints.length = 0;
@@ -33,30 +30,30 @@ export default class QuadTree {
     let children: QuadTree[] = [this];
 
     for (let i = 0; i < level; i++) {
-      children = children.reduce((acc: QuadTree[], quadTree: QuadTree) => {
-        acc.push(...quadTree.children);
-        return acc;
-      }, []);
+      children = children.reduce(
+        (acc: QuadTree[], quadTree: QuadTree) => [...acc, ...quadTree.children],
+        []
+      );
     }
 
     return children.length ? children : null;
   }
 
-  findChildThatContains(point: Vector): QuadTree {
+  findChildThatContains(point: I_Vector): QuadTree {
     const contains: boolean = this.shape.containsPoint(point);
     const hasChildren: boolean = this.children.length > 0;
 
-    if (contains) {
-      if (hasChildren) {
-        return this.children.find((child: QuadTree) => {
-          return child.findChildThatContains(point) !== null;
-        });
-      } else {
-        return this;
-      }
+    if (!contains) {
+      return null;
     }
 
-    return null;
+    if (hasChildren) {
+      return this.children.find(
+        (child: QuadTree) => child.findChildThatContains(point) !== null
+      );
+    } else {
+      return this;
+    }
   }
 
   forceDivide(times: number): void {
@@ -71,10 +68,10 @@ export default class QuadTree {
     }
   }
 
-  divide(points: Vector[]): void {
+  divide(points: I_Vector[]): void {
     const { topLeft, topRight, bottomLeft, bottomRight } = this.shape.boundingBox;
     const { top, bottom, left, right } = this.shape.boundingBox.midpoints;
-    const centroid: Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
+    const centroid: I_Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
 
     const nextLevel: number = this.level + 1;
 
@@ -92,8 +89,6 @@ export default class QuadTree {
 
     this.children.push(quad1, quad2, quad3, quad4);
 
-    this.children.forEach((child: QuadTree) => {
-      child.parent = this;
-    });
+    this.children.forEach((child: QuadTree) => (child.parent = this));
   }
 }

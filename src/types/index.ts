@@ -1,4 +1,4 @@
 import { name } from './common';
-import { componentSettings, tickData } from './ECS';
+import { componentSettings, tickData, updaterReport } from './ECS';
 
-export { name, componentSettings, tickData };
+export { name, componentSettings, tickData, updaterReport };
