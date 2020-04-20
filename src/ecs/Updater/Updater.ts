@@ -14,7 +14,11 @@ export default class Updater implements I_Updater {
   private isRunning: boolean = false;
   private frameId: number;
 
-  private get tickData(): tickData {
+  constructor() {
+    this.update = this.update.bind(this);
+  }
+
+  private getTickData(): tickData {
     const deltaTime: number = this.clock.delta;
     const deltaTimeMS: number = deltaTime * 1000;
     const elapsedTime: number = this.clock.elapsed;
@@ -64,8 +68,9 @@ export default class Updater implements I_Updater {
     this.gameObjects.forEach(({ components }: I_GameObject) => components.forEach(callback));
   }
 
-  private update = (): void => {
+  protected update(): void {
     this.frameId = requestAnimationFrame(this.update);
-    this.loopComponentsWithCallback(({ update }: I_Component) => update(this.tickData));
-  };
+    const tickData: tickData = this.getTickData();
+    this.loopComponentsWithCallback((component: I_Component) => component.update(tickData));
+  }
 }

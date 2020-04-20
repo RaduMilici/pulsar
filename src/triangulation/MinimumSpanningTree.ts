@@ -1,5 +1,5 @@
 import { Line } from '../common';
-import { I_Triangulation } from './Triangulation';
+import I_Triangulation from './Triangulation/I_Triangulation';
 
 export default class MinimumSpanningTree {
   readonly lines: Line[] = [];
