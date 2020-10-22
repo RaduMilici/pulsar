@@ -4,6 +4,7 @@ debugger/build/
 debugger/src/editor/dtsBundle.ts
 scripts/build-debugger/dtsBuild/
 scripts/madge/dependencyTree.png
+src/pathfinding/rust-wasm/target
 
 # Logs
 logs
