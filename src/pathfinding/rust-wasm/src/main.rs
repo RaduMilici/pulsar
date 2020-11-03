@@ -1,36 +1,38 @@
-use rand::{thread_rng, Rng};
-use std::cmp::Ordering;
-use std::io::stdin;
+mod armor_class;
+mod character;
+mod damage;
 
 fn main() {
-    println!("guess the secret number");
-    let secret_number = thread_rng().gen_range(1, 101);
-    println!("secret_number {}", secret_number);
+    let mut zug = character::Character {
+        name: String::from("Zug"),
+        armor_class: armor_class::ArmorClass::Plate,
+        health: 127,
+        damage: damage::Damage { min: 10, max: 30 },
+    };
+
+    let mut crug = character::Character {
+        name: String::from("Crug"),
+        armor_class: armor_class::ArmorClass::Plate,
+        health: 127,
+        damage: damage::Damage { min: 10, max: 30 },
+    };
+
+    zug.attack(&mut crug);
+    crug.attack(&mut zug);
+
+    let mut round_number = 0;
 
     loop {
-        println!("enter a number");
+        round_number = round_number + 1;
+        println!("---round {}---", round_number);
+        crug.attack(&mut zug);
+        if zug.is_dead() {
+            break;
+        }
 
-        let mut guess = String::new();
-        stdin()
-            .read_line(&mut guess)
-            .expect("could not read line");
-        let guess: u32 = match guess.trim().parse() {
-            Ok(number) => number,
-            Err(_) => {
-                println!("you did not enter a number");
-                continue;
-            }
-        };
-
-        println!("you have entered {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("too small"),
-            Ordering::Greater => println!("too big"),
-            Ordering::Equal => {
-                println!("you win");
-                break;
-            }
+        zug.attack(&mut crug);
+        if crug.is_dead() {
+            break;
         }
     }
 }
