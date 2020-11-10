@@ -13,11 +13,11 @@ pub fn to_pig_latin(text: &String) -> String {
 
 fn manipulate_pig_vowel(word: &String) -> String {
     let first_letter = &word[..1];
-    let rest_of_word = &word[1..];
 
     if is_vowel(&first_letter) {
-        format!("{}{}-hay ", first_letter, rest_of_word)
+        format!("{}-hay ", word)
     } else {
+        let rest_of_word = &word[1..];
         format!("{}-{}ay ", rest_of_word, first_letter)
     }
 }
