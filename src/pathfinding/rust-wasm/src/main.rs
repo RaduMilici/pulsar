@@ -1,9 +1,12 @@
+mod employees;
 mod pig_latin;
 mod common {
+    pub mod string_tools;
     pub mod vec_math;
 }
 
 use common::vec_math::{find_mean, find_median, find_mode};
+use employees::manage_employees;
 use pig_latin::to_pig_latin;
 
 fn main() {
@@ -25,4 +28,6 @@ fn main() {
     let text = String::from("bravo charlie delta foxtrot");
     let pig_latin = to_pig_latin(&text);
     println!("consonant pig latin: {}", pig_latin);
+
+    manage_employees();
 }
