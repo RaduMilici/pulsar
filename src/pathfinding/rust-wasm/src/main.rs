@@ -1,33 +1,23 @@
-mod employees;
-mod pig_latin;
-mod common {
-    pub mod string_tools;
-    pub mod vec_math;
-}
-
-use common::vec_math::{find_mean, find_median, find_mode};
-use employees::manage_employees;
-use pig_latin::to_pig_latin;
+use std::fs::File;
+use std::io::{Error, Read};
 
 fn main() {
-    let numbers = vec![1, 1, 2, 2, 3, 5, 5, 5, 5];
+    let file_content = read_file("src/hello.txt").expect("could not read file");
+    println!("file_content:\n{}", file_content);
+}
 
-    let mean = find_mean(&numbers);
-    println!("mean {}", mean);
+fn read_file(path: &str) -> Result<String, Error> {
+    let file = File::open(path);
 
-    let median = find_median(&numbers);
-    println!("median {}", median);
+    let mut file = match file {
+        Ok(f) => f,
+        Err(e) => return Err(e),
+    };
 
-    let mode = find_mode(&numbers);
-    println!("mode {}", mode);
+    let mut content = String::new();
 
-    let text = String::from("alfa echo india oscar uniform");
-    let pig_latin = to_pig_latin(&text);
-    println!("vowel pig latin: {}", pig_latin);
-
-    let text = String::from("bravo charlie delta foxtrot");
-    let pig_latin = to_pig_latin(&text);
-    println!("consonant pig latin: {}", pig_latin);
-
-    manage_employees();
+    match file.read_to_string(&mut content) {
+        Ok(_) => Ok(content),
+        Err(e) => Err(e),
+    }
 }
