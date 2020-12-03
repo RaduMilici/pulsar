@@ -1,42 +1,61 @@
-use std::fs::{read_to_string, File};
-use std::io::{Error, Read};
-
-fn main() {
-    let path = "src/hello.txt";
-    let file_content = read_file(path).expect("could not read file");
-    println!("*file_content:\n{}", file_content);
-
-    let file_content =
-        read_file_with_error_propagation(path).expect("could not read file");
-    println!("*file_content from error propagation:\n{}", file_content);
-
-    let file_content =
-        read_file_with_read_to_string(path).expect("could not read file");
-    println!("*file_content from read_to_string:\n{}", file_content);
-}
-
-pub fn read_file(path: &str) -> Result<String, Error> {
-    let file = File::open(path);
-
-    let mut file = match file {
-        Ok(f) => f,
-        Err(e) => return Err(e),
-    };
-
-    let mut content = String::new();
-
-    match file.read_to_string(&mut content) {
-        Ok(_) => Ok(content),
-        Err(e) => Err(e),
+trait Summary {
+    fn summarize(&self) -> String {
+        String::from("Read more...")
     }
 }
 
-fn read_file_with_error_propagation(path: &str) -> Result<String, Error> {
-    let mut content = String::new();
-    File::open(path)?.read_to_string(&mut content)?;
-    Ok(content)
+trait Display {
+    fn display(&self) -> String;
 }
 
-fn read_file_with_read_to_string(path: &str) -> Result<String, Error> {
-    read_to_string(path)
+struct Tweet {
+    author: String,
+    content: String,
+}
+
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        format!("{}: {}...", self.author, &self.content[..12])
+    }
+}
+
+impl Display for Tweet {
+    fn display(&self) -> String {
+        format!("{}", &self.content)
+    }
+}
+
+fn main() {
+    let tweets: [Tweet; 2] = [
+        Tweet {
+            author: String::from("test author 1"),
+            content: String::from("content1 123456789"),
+        },
+        Tweet {
+            author: String::from("test author 2"),
+            content: String::from("content2 123456789"),
+        },
+    ];
+
+    print_summaries(&tweets);
+    print_summaries_generic(&tweets);
+}
+
+fn print_summaries(items: &[impl Summary + Display]) {
+    println!("******using impl******");
+    for item in items {
+        println!("summary: {}", item.summarize());
+        println!("content: {}", item.display());
+    }
+}
+
+fn print_summaries_generic<T>(items: &[T])
+where
+    T: Summary + Display,
+{
+    println!("******using generics******");
+    for item in items {
+        println!("summary: {}", item.summarize());
+        println!("content: {}", item.display());
+    }
 }
