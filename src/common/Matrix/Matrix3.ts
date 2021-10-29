@@ -15,14 +15,14 @@ export default class Matrix3 extends Matrix2 {
   ) {
     super(a, b, c, d);
     this.rows = [
-      [a, b, c],
-      [d, e, f],
-      [g, h, i],
-    ];
-    this.columns = [
       [a, d, g],
       [b, e, h],
       [c, f, i],
+    ];
+    this.columns = [
+      [a, b, c],
+      [d, e, f],
+      [g, h, i],
     ];
   }
 

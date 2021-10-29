@@ -9,12 +9,12 @@ export default class Matrix2 extends Matrix {
   ) {
     super();
     this.rows = [
-      [a, b],
-      [c, d],
-    ];
-    this.columns = [
       [a, c],
       [b, d],
+    ];
+    this.columns = [
+      [a, b],
+      [c, d],
     ];
   }
 
@@ -27,7 +27,6 @@ export default class Matrix2 extends Matrix {
   }
 
   add({ elements }: Matrix2): Matrix2 {
-    const sum: number[] = Matrix.AddElements(this.elements, elements);
     return new Matrix2(...Matrix.AddElements(this.elements, elements));
   }
 

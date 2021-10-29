@@ -22,16 +22,16 @@ export default class Matrix4 extends Matrix3 {
   ) {
     super(a, b, c, d, e, f, g, h, i);
     this.rows = [
-      [a, b, c, d],
-      [e, f, g, h],
-      [i, j, k, l],
-      [m, n, o, p],
-    ];
-    this.columns = [
       [a, e, i, m],
       [b, f, j, n],
       [c, g, k, o],
       [d, h, l, p],
+    ];
+    this.columns = [
+      [a, b, c, d],
+      [e, f, g, h],
+      [i, j, k, l],
+      [m, n, o, p],
     ];
   }
 

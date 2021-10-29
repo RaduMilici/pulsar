@@ -7,6 +7,7 @@ import { RadToDeg, DegToRad } from './util/radDeg';
 import { GameObject, Component, Updater } from './ecs';
 import { tickData, point, size, limits, navigatorSettings } from './interfaces';
 import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util/random';
+
 import uniqueId from './util/uniqueID';
 import {
   Vector,
