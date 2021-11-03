@@ -47,8 +47,10 @@ export default class Matrix2 extends Matrix {
       return new Matrix2();
     }
 
-    const matrix = new Matrix2(this.d, -this.b, -this.c, this.a);
-    const inverted = Matrix.MultiplyElementsScalar(matrix.elements, 1 / determinant);
+    const inverted = Matrix.MultiplyElementsScalar(
+      [this.d, -this.b, -this.c, this.a],
+      1 / determinant
+    );
     return new Matrix2(...inverted);
   }
 }
