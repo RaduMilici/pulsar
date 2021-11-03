@@ -39,4 +39,15 @@ export default class Matrix2 extends Matrix {
     const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix2(...product);
   }
+
+  invert(): Matrix2 {
+    if (this.determine() === 0) {
+      return new Matrix2();
+    }
+    const scalar = 1 / (this.a * this.d - this.b * this.c);
+    const matrix = new Matrix2(this.d, -this.b, -this.c, this.a);
+
+    const inverted = Matrix.MultiplyElementsScalar(matrix.elements, scalar);
+    return new Matrix2(...inverted);
+  }
 }

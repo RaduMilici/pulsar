@@ -7,13 +7,7 @@ export default abstract class Matrix {
   }
 
   protected static MultiplyElementsScalar(elements: number[], scalar: number): number[] {
-    let sum: number[] = new Array(elements.length).fill(0);
-
-    for (let i = 0; i < scalar; i++) {
-      sum = Matrix.AddElements(sum, elements);
-    }
-
-    return sum;
+    return elements.map(element => element * scalar);
   }
 
   protected static Multiply(rows: number[][], columns: number[][]): number[] {
