@@ -53,6 +53,10 @@ export default class Matrix3 extends Matrix2 {
     return new Matrix3(...product);
   }
 
+  transpose(): Matrix3 {
+    return new Matrix3(...Matrix3.rowsToColumns(this.elements));
+  }
+
   cofactor(): Matrix3 {
     const cofactors: Array<number> = [];
 
@@ -74,20 +78,30 @@ export default class Matrix3 extends Matrix2 {
       }
     }
 
-    const [a, d, g, b, e, h, c, f, i] = cofactors;
+    const [a, b, c, d, e, f, g, h, i] = Matrix3.columnsToRows(cofactors);
     return new Matrix3(a, -b, c, -d, e, -f, g, -h, i);
   }
 
   invert(): Matrix3 {
-    //cofactor
     const determinant = this.determine();
 
     if (determinant === 0) {
       return new Matrix3();
     }
 
-    const matrix = new Matrix3();
-    const inverted = Matrix.MultiplyElementsScalar(matrix.elements, 1 / determinant);
+    const inverted = Matrix.MultiplyElementsScalar(
+      this.cofactor().transpose().elements,
+      1 / determinant
+    );
+
     return new Matrix3(...inverted);
+  }
+
+  private static columnsToRows([a, d, g, b, e, h, c, f, i]: Array<number>): Array<number> {
+    return [a, b, c, d, e, f, g, h, i];
+  }
+
+  private static rowsToColumns([a, b, c, d, e, f, g, h, i]: Array<number>): Array<number> {
+    return [a, d, g, b, e, h, c, f, i];
   }
 }

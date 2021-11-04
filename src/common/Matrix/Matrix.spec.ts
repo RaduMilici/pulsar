@@ -98,7 +98,19 @@ describe('common / Matrix', () => {
 
     it('inverts a Matrix3', () => {
       const m3 = new Matrix3(0, 2, 1, 0, -1, 1, 1, 3, 4);
-      console.log(m3.determine());
+      expect(m3.invert()).toEqual(
+        new Matrix3(
+          -2.333333333333333,
+          -1.6666666666666665,
+          1,
+          0.3333333333333333,
+          -0.3333333333333333,
+          -0,
+          0.3333333333333333,
+          0.6666666666666666,
+          -0
+        )
+      );
     });
 
     it('finds the cofactor', () => {
