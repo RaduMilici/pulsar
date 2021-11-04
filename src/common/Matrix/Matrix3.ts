@@ -52,4 +52,42 @@ export default class Matrix3 extends Matrix2 {
     const product: number[] = Matrix.MultiplyElementsScalar(this.elements, scalar);
     return new Matrix3(...product);
   }
+
+  cofactor(): Matrix3 {
+    const cofactors: Array<number> = [];
+
+    for (let row = 0; row < this.rows.length; row++) {
+      const remaining: Array<number> = [];
+      const currentRows = [...this.rows];
+      currentRows.splice(row, 1);
+
+      for (let col = 0; col < this.columns.length; col++) {
+        for (let i = 0; i < currentRows.length; i++) {
+          const currentNumbers = [...currentRows[i]];
+          currentNumbers.splice(col, 1);
+          remaining.push(...currentNumbers);
+        }
+
+        const [a, c, b, d] = remaining;
+        cofactors.push(new Matrix2(a, b, c, d).determine());
+        remaining.length = 0;
+      }
+    }
+
+    const [a, d, g, b, e, h, c, f, i] = cofactors;
+    return new Matrix3(a, -b, c, -d, e, -f, g, -h, i);
+  }
+
+  invert(): Matrix3 {
+    //cofactor
+    const determinant = this.determine();
+
+    if (determinant === 0) {
+      return new Matrix3();
+    }
+
+    const matrix = new Matrix3();
+    const inverted = Matrix.MultiplyElementsScalar(matrix.elements, 1 / determinant);
+    return new Matrix3(...inverted);
+  }
 }

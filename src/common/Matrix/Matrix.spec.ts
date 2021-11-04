@@ -95,6 +95,29 @@ describe('common / Matrix', () => {
       const m3 = new Matrix3(4, 3, 2, 1, 2, 3, 4, 5, 6);
       expect(m.multiply(m3)).toEqual(new Matrix3(40, 35, 48, 30, 30, 42, 72, 69, 96));
     });
+
+    it('inverts a Matrix3', () => {
+      const m3 = new Matrix3(0, 2, 1, 0, -1, 1, 1, 3, 4);
+      console.log(m3.determine());
+    });
+
+    it('finds the cofactor', () => {
+      const m = new Matrix3(0, 2, 1, 0, -1, 1, 1, 3, 4);
+      expect(m.cofactor().elements).toEqual([-7, 1, 1, -5, -1, 2, 3, -0, -0]);
+
+      const m2 = new Matrix3(29, -5, 19, -89, -69, 420, -33, 1, 0);
+      expect(m2.cofactor().elements).toEqual([
+        -420,
+        -13860,
+        -2366,
+        19,
+        627,
+        136,
+        -789,
+        -13871,
+        -2446,
+      ]);
+    });
   });
 
   describe('common / Matrix4', () => {

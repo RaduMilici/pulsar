@@ -1,6 +1,8 @@
 import Matrix from './Matrix';
 
 export default class Matrix2 extends Matrix {
+  public static readonly identity: Matrix2 = new Matrix2(1, 0, 1, 0);
+
   constructor(
     readonly a: number = 0,
     readonly b: number = 0,
