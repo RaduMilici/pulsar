@@ -2,6 +2,8 @@ import Matrix from './Matrix';
 import Matrix2 from './Matrix2';
 
 export default class Matrix3 extends Matrix2 {
+  public static readonly ElementCount: number = 9;
+
   constructor(
     a: number = 0,
     b: number = 0,
@@ -59,25 +61,11 @@ export default class Matrix3 extends Matrix2 {
 
   cofactor(): Matrix3 {
     const cofactors: Array<number> = [];
-
-    for (let row = 0; row < this.rows.length; row++) {
-      const remaining: Array<number> = [];
-      const currentRows = [...this.rows];
-      currentRows.splice(row, 1);
-
-      for (let col = 0; col < this.columns.length; col++) {
-        for (let i = 0; i < currentRows.length; i++) {
-          const currentNumbers = [...currentRows[i]];
-          currentNumbers.splice(col, 1);
-          remaining.push(...currentNumbers);
-        }
-
-        const [a, c, b, d] = remaining;
-        cofactors.push(new Matrix2(a, b, c, d).determine());
-        remaining.length = 0;
-      }
+    const cofactorElements = Matrix.CofactorElements(this.rows, this.columns);
+    for (let i = 0; i < cofactorElements.length; i += Matrix2.ElementCount) {
+      const { [i]: a, [i + 1]: c, [i + 2]: b, [i + 3]: d } = cofactorElements;
+      cofactors.push(new Matrix2(a, b, c, d).determine());
     }
-
     const [a, b, c, d, e, f, g, h, i] = Matrix3.columnsToRows(cofactors);
     return new Matrix3(a, -b, c, -d, e, -f, g, -h, i);
   }
@@ -97,11 +85,11 @@ export default class Matrix3 extends Matrix2 {
     return new Matrix3(...inverted);
   }
 
-  private static columnsToRows([a, d, g, b, e, h, c, f, i]: Array<number>): Array<number> {
+  protected static columnsToRows([a, d, g, b, e, h, c, f, i]: Array<number>): Array<number> {
     return [a, b, c, d, e, f, g, h, i];
   }
 
-  private static rowsToColumns([a, b, c, d, e, f, g, h, i]: Array<number>): Array<number> {
+  protected static rowsToColumns([a, b, c, d, e, f, g, h, i]: Array<number>): Array<number> {
     return [a, d, g, b, e, h, c, f, i];
   }
 }

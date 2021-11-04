@@ -1,4 +1,4 @@
-export default abstract class Matrix {
+export default class Matrix {
   rows: number[][] = [];
   columns: number[][] = [];
 
@@ -28,5 +28,28 @@ export default abstract class Matrix {
       (acc: number, number: number, index: number): number => acc + number * column[index],
       0
     );
+  }
+
+  protected static CofactorElements(rows: number[][], columns: number[][]): number[] {
+    const cofactorElements: Array<number> = [];
+
+    for (let row = 0; row < rows.length; row++) {
+      const remaining: Array<number> = [];
+      const currentRows = [...rows];
+      currentRows.splice(row, 1);
+
+      for (let col = 0; col < columns.length; col++) {
+        for (let i = 0; i < currentRows.length; i++) {
+          const currentNumbers = [...currentRows[i]];
+          currentNumbers.splice(col, 1);
+          remaining.push(...currentNumbers);
+        }
+
+        cofactorElements.push(...remaining);
+        remaining.length = 0;
+      }
+    }
+
+    return cofactorElements;
   }
 }
