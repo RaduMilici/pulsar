@@ -3,7 +3,7 @@
   "author": "RaduMilici",
   "license": "ISC",
   "homepage": "https://github.com/RaduMilici/pulsar#readme",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "implementation of Greedy Best-First pathfinding",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
