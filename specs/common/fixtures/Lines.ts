@@ -2,10 +2,10 @@ import { Line, Vector } from '../../../src/common';
 import { v00, v01, v10, v11, v22 } from './Vectors';
 
 const makeLine = (a: Vector, b: Vector): Line => {
-  // id is irrelevant in specs and tampers with assertions
-  const line: Line = new Line(a, b);
-  delete line.id;
-  return line;
+    // id is irrelevant in specs and tampers with assertions
+    const line: Line = new Line(a, b);
+    delete line.id;
+    return line;
 };
 
 const ab: Line = makeLine(v00, v11);

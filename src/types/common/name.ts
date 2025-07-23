@@ -1,5 +1,5 @@
 type name = {
-  name: string;
+    name: string;
 };
 
 export default name;

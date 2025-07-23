@@ -10,29 +10,29 @@ const canvasContainer: HTMLElement = document.getElementById('debugger-canvas-co
 
 const canvas: Canvas = new Canvas(canvasContainer);
 const extraLibs: editorDependencies[] = [
-  { name: 'draw', value: canvas.draw },
-  { name: 'Pulsar', value: pulsar },
+    { name: 'draw', value: canvas.draw },
+    { name: 'Pulsar', value: pulsar },
 ];
 
 const editorConfig: editorConfig = {
-  container: editorContainer,
-  value: modes.triangulationMode.code,
-  dependencies: [...extraLibs],
+    container: editorContainer,
+    value: modes.triangulationMode.code,
+    dependencies: [...extraLibs],
 };
 
 const editor: Editor = new Editor(editorConfig);
 editor.addExtraLibsAsAny({ name: 'draw', value: canvas.draw });
 
 const clearAndCompile = () => {
-  canvas.draw.clear();
-  editor.compile();
+    canvas.draw.clear();
+    editor.compile();
 };
 runButton.addCallback(clearAndCompile);
 reloadButton.addCallback(() => {
-  editor.reset();
-  clearAndCompile();
+    editor.reset();
+    clearAndCompile();
 });
 codeSelect.addCallback((value: string): void => {
-  editor.setValue(value);
-  clearAndCompile();
+    editor.setValue(value);
+    clearAndCompile();
 });

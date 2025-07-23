@@ -9,15 +9,15 @@ import { triangleLines } from './triangle';
 import { boundingBoxLines, limits } from './boundingBox';
 
 export {
-  id,
-  limits,
-  point,
-  size,
-  tickData,
-  navigatorSettings,
-  onTileCreate,
-  onExplore,
-  onComplete,
-  triangleLines,
-  boundingBoxLines,
+    id,
+    limits,
+    point,
+    size,
+    tickData,
+    navigatorSettings,
+    onTileCreate,
+    onExplore,
+    onComplete,
+    triangleLines,
+    boundingBoxLines,
 };

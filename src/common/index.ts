@@ -8,14 +8,14 @@ import Triangle from './Triangle';
 import Vector from './Vector';
 
 export {
-  BoundingBox,
-  Clock,
-  Line,
-  LineIntersection,
-  Matrix2,
-  Matrix3,
-  Matrix4,
-  Shape,
-  Triangle,
-  Vector,
+    BoundingBox,
+    Clock,
+    Line,
+    LineIntersection,
+    Matrix2,
+    Matrix3,
+    Matrix4,
+    Shape,
+    Triangle,
+    Vector,
 };

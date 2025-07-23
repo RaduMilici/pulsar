@@ -1,3 +1,3 @@
 export default interface id {
-  id: string;
+    id: string;
 }

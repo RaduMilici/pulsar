@@ -1,6 +1,6 @@
 type componentSettings = {
-  name: string;
-  updatePriority?: number;
+    name: string;
+    updatePriority?: number;
 };
 
 export default componentSettings;

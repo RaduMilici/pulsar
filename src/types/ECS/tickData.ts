@@ -1,7 +1,7 @@
 type tickData = {
-  deltaTime: number;
-  deltaTimeMS: number;
-  elapsedTime: number;
+    deltaTime: number;
+    deltaTimeMS: number;
+    elapsedTime: number;
 };
 
 export default tickData;

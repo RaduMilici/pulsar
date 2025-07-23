@@ -2,9 +2,9 @@ import id from '../../interfaces/id';
 import I_NavigatorTile from '../NavigatorTile/I_NavigatorTile';
 
 export default interface I_Navigator extends id {
-  readonly id: string;
+    readonly id: string;
 
-  path: I_NavigatorTile[];
+    path: I_NavigatorTile[];
 
-  start(): boolean;
+    start(): boolean;
 }

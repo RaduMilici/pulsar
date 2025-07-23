@@ -3,23 +3,23 @@ import uniqueId from '../util/uniqueID';
 import I_Vector from '../common/Vector/I_Vector';
 
 export default class DisjoinedSet implements id {
-  id: string = uniqueId();
-  readonly points: I_Vector[];
+    id: string = uniqueId();
+    readonly points: I_Vector[];
 
-  constructor(point: I_Vector) {
-    this.points = [point];
-  }
+    constructor(point: I_Vector) {
+        this.points = [point];
+    }
 
-  equals({ id }: DisjoinedSet): boolean {
-    return this.id === id;
-  }
+    equals({ id }: DisjoinedSet): boolean {
+        return this.id === id;
+    }
 
-  merge({ points }: DisjoinedSet): DisjoinedSet {
-    points.forEach((point: I_Vector) => {
-      point.set = this;
-      this.points.push(point);
-    });
+    merge({ points }: DisjoinedSet): DisjoinedSet {
+        points.forEach((point: I_Vector) => {
+            point.set = this;
+            this.points.push(point);
+        });
 
-    return this;
-  }
+        return this;
+    }
 }

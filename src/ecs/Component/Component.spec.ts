@@ -10,57 +10,57 @@ const stopMock: any = jest.fn();
 const updateMock: any = jest.fn();
 
 class MyComponent extends Component {
-  constructor() {
-    super({ name: 'MyComponent' });
-  }
+    constructor() {
+        super({ name: 'MyComponent' });
+    }
 
-  start() {
-    startMock();
-  }
+    start() {
+        startMock();
+    }
 
-  stop() {
-    stopMock();
-  }
+    stop() {
+        stopMock();
+    }
 
-  update(tickData: tickData) {
-    updateMock(tickData);
-  }
+    update(tickData: tickData) {
+        updateMock(tickData);
+    }
 }
 
 describe('ecs / Component', () => {
-  beforeEach(() => {
-    startMock.mockReset();
-    stopMock.mockReset();
-    updateMock.mockReset();
-  });
+    beforeEach(() => {
+        startMock.mockReset();
+        stopMock.mockReset();
+        updateMock.mockReset();
+    });
 
-  it.only('should have its lifecycle hooks called by Updater', () => {
-    const updater: Updater = new Updater();
-    const component: I_Component = new MyComponent();
-    const gameObject: GameObject = new SpecGameObject();
+    it.only('should have its lifecycle hooks called by Updater', () => {
+        const updater: Updater = new Updater();
+        const component: I_Component = new MyComponent();
+        const gameObject: GameObject = new SpecGameObject();
 
-    gameObject.addComponent(component);
-    updater.add(gameObject);
-    updater.start();
-    updater.stop();
+        gameObject.addComponent(component);
+        updater.add(gameObject);
+        updater.start();
+        updater.stop();
 
-    expect(startMock).toBeCalledTimes(1);
-    expect(stopMock).toBeCalledTimes(1);
-    expect(updateMock).toBeCalledTimes(1);
-  });
+        expect(startMock).toBeCalledTimes(1);
+        expect(stopMock).toBeCalledTimes(1);
+        expect(updateMock).toBeCalledTimes(1);
+    });
 
-  it('should call update with a tickData argument', () => {
-    const updater: Updater = new Updater();
-    const component: I_Component = new MyComponent();
-    const gameObject: GameObject = new SpecGameObject();
+    it('should call update with a tickData argument', () => {
+        const updater: Updater = new Updater();
+        const component: I_Component = new MyComponent();
+        const gameObject: GameObject = new SpecGameObject();
 
-    gameObject.addComponent(component);
+        gameObject.addComponent(component);
 
-    updater.add(gameObject);
-    updater.start();
-    updater.stop();
+        updater.add(gameObject);
+        updater.start();
+        updater.stop();
 
-    expect(updateMock.mock.calls[0][0]).toHaveProperty('deltaTime');
-    expect(updateMock.mock.calls[0][0]).toHaveProperty('elapsedTime');
-  });
+        expect(updateMock.mock.calls[0][0]).toHaveProperty('deltaTime');
+        expect(updateMock.mock.calls[0][0]).toHaveProperty('elapsedTime');
+    });
 });
