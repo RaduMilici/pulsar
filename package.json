@@ -14,7 +14,7 @@
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --maxWorkers=4 --watchAll",
     "check-circular-dependencies": "node scripts/madge/madge.js",
-    "build-debugger": "node scripts/build-debugger/index.js",
+    "build-debugger": "node --openssl-legacy-provider scripts/build-debugger/index.js",
     "debugger": "serve debugger/build"
   },
   "repository": {
