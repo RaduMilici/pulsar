@@ -18,20 +18,24 @@ export default class Shape {
   }
 
   containsPoint(point: I_Vector): boolean {
-    let intersects: number = 0;
-    const checkPoint: I_Vector = new Vector({
-      x: point.x,
-      y: Number.MAX_SAFE_INTEGER,
-    });
-    const checkLine: I_Line = new Line(point, checkPoint);
-
-    this.lines.forEach((line: I_Line) => {
-      if (line.intersects(checkLine)) {
+    // Use a more robust ray casting algorithm
+    // Cast a ray to the right and count intersections
+    let intersects = 0;
+    const points = this.points;
+    const n = points.length;
+    
+    for (let i = 0; i < n; i++) {
+      const p1 = points[i];
+      const p2 = points[(i + 1) % n];
+      
+      // Check if the ray from point to the right intersects edge p1->p2
+      if (((p1.y > point.y) !== (p2.y > point.y)) &&
+          (point.x < (p2.x - p1.x) * (point.y - p1.y) / (p2.y - p1.y) + p1.x)) {
         intersects++;
       }
-    });
-
-    return isOdd(intersects);
+    }
+    
+    return (intersects % 2) === 1;
   }
 
   get centroid(): I_Vector {

@@ -226,6 +226,7 @@ export default class Navigator implements I_Navigator {
     }
 
     this._path.reverse();
+    this._path.unshift(this.begin);
     return this._path;
   }
 

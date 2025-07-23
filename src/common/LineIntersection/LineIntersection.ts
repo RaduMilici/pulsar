@@ -111,9 +111,12 @@ export default class LineIntersection {
     const divisionAB: number = a.determine() / b.determine();
     const divisionCD: number = -(c.determine() / d.determine());
 
-    const isOnSegmentA: boolean = divisionAB >= 0 && divisionAB <= 1;
-    const isOnSegmentB: boolean = divisionCD >= 0 && divisionCD <= 1;
+    const isOnSegmentA: boolean = divisionAB > 0 && divisionAB < 1;
+    const isOnSegmentB: boolean = divisionCD > 0 && divisionCD < 1;
+    const isOnLeftEdge: boolean = divisionAB === 0 && divisionCD >= 0 && divisionCD <= 1;
+    const isOnTopEdge: boolean = divisionCD === 0 && divisionAB >= 0 && divisionAB <= 1;
 
-    return isOnSegmentA && isOnSegmentB;
+    return isOnSegmentA || isOnSegmentB || isOnLeftEdge || isOnTopEdge;
+    //return isOnSegmentA && isOnSegmentB;
   }
 }

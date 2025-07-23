@@ -48,9 +48,13 @@ export default class QuadTree {
     }
 
     if (hasChildren) {
-      return this.children.find(
-        (child: QuadTree) => child.findChildThatContains(point) !== null
-      );
+      for (const child of this.children) {
+        const result = child.findChildThatContains(point);
+        if (result !== null) {
+          return result;
+        }
+      }
+      return null;
     } else {
       return this;
     }
@@ -69,6 +73,11 @@ export default class QuadTree {
   }
 
   divide(points: I_Vector[]): void {
+    // Don't divide if already divided
+    if (this.children.length > 0) {
+      return;
+    }
+
     const { topLeft, topRight, bottomLeft, bottomRight } = this.shape.boundingBox;
     const { top, bottom, left, right } = this.shape.boundingBox.midpoints;
     const centroid: I_Vector = Vector.FindPolyCentroid([top, bottom, left, right]);
